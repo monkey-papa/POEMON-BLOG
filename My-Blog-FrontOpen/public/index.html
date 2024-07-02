@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./title.jpg" sizes="16x16" />
+    <!-- <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+    <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+      <link src="<%= htmlWebpackPlugin.options.cdn.js[i] %>" rel="preload" as="script"></link>
+    <% } %>
+    <title>
+      <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
+    <title>Monkey-PaPaの窝</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+    <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+      <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+    <% } %>
+    <style>
+      body {
+        margin: 0;
+      }
+      * {
+        cursor: url(./normal.png) 1 1, auto;
+      }
+      #loading-box .loading-left-bg,
+      #loading-box .loading-right-bg {
+        position: fixed;
+        z-index: 999998;
+        width: 50%;
+        height: 100%;
+        transition: all 0.7s cubic-bezier(0.42, 0, 0, 1.01);
+        backdrop-filter: blur(10px);
+      }
+      #loading-box .loading-left-bg {
+        background: linear-gradient(to right, #0095c2, #1dabc4) no-repeat;
+      }
+      #loading-box .loading-right-bg {
+        right: 0;
+        background: linear-gradient(to right, #1dabc4, #4ed0c7) no-repeat;
+      }
+      #loading-box > .spinner-box {
+        position: fixed;
+        z-index: 999999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+      }
+      #loading-box .spinner-box .loading-word {
+        position: absolute;
+        color: #ffffff;
+        font-size: 1.2rem;
+        transform: translateY(64px);
+        text-align: center;
+      }
+      p.loading-title {
+        font-size: 1.5rem;
+        margin: 20px 10px 4px 10px;
+      }
+      div.loaded div.loading-left-bg {
+        transform: translate(-100%, 0);
+      }
+      div.loaded div.loading-right-bg {
+        transform: translate(100%, 0);
+      }
+      div.loaded div.spinner-box {
+        display: none !important;
+      }
+      .loader {
+        position: absolute;
+        top: calc(50% - 32px);
+        left: calc(50% - 32px);
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        perspective: 800px;
+        transition: all 0.7s cubic-bezier(0.42, 0, 0, 1.01);
+      }
+      .inner {
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+      .inner.one {
+        left: 0%;
+        top: 0%;
+        animation: rotate-one 1s linear infinite;
+        border-bottom: 4px solid #ec695c;
+      }
+      .inner.two {
+        right: 0%;
+        top: 0%;
+        animation: rotate-two 1s linear infinite;
+        border-right: 4px solid #67C23A;
+      }
+      .inner.three {
+        right: 0%;
+        bottom: 0%;
+        animation: rotate-three 1s linear infinite;
+        border-top: 4px solid #74bdf0;
+      }
+      @keyframes rotate-one {
+        0% {
+          transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+        }
+        100% {
+          transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+        }
+      }
+      @keyframes rotate-two {
+        0% {
+          transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+        }
+        100% {
+          transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+        }
+      }
+      @keyframes rotate-three {
+        0% {
+          transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+        }
+        100% {
+          transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!--加载动画-->
+      <div id="loading-box">
+        <div class="loading-left-bg"></div>
+        <div class="loading-right-bg"></div>
+        <div class="spinner-box">
+          <div class="loader">
+            <div class="inner one"></div>
+            <div class="inner two"></div>
+            <div class="inner three"></div>
+          </div>
+          <div class="loading-word">
+            <p class="loading-title" id="loading-title">ZJHの主页</p>
+            <span id="loading-text">踹门中ing&nbsp;┭┮﹏┭┮</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // 加载完成后执行;
+    window.addEventListener(
+      'load',
+      function () {
+        //载入动画
+        $('#loading-box').attr('class', 'loaded')
+      },
+      false
+    )
+    //动画特效
+    new WOW().init()
+    // 鼠标动画
+    document.querySelector('body').addEventListener('click', mouseAnimation)
+    function mouseAnimation(e) {
+      let idx = Math.floor(Math.random() * 13)
+      let list = new Array('富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善')
+      let span = $('<span>').text(list[idx])
+      let x = e.pageX,
+        y = e.pageY
+      span.css({
+        'z-index': 1000,
+        top: y - 20,
+        left: x,
+        position: 'absolute',
+        'pointer-events': 'none',
+        'font-weight': 'bold',
+        color: '#ff6651'
+      })
+      $('body').append(span)
+      span.animate({ top: y - 180, opacity: 0 }, 1500, function () {
+        span.remove()
+      })
+    }
+    //禁用开发者工具F12
+    document.onkeydown = document.onkeyup = document.onkeypress = function(event) {
+      let e = event || window.event || arguments.callee.caller.arguments[0];
+      if (e && e.keyCode == 123) {
+        e.returnValue = false;
+        return false;
+      }
+    };
+  </script>
+</html>

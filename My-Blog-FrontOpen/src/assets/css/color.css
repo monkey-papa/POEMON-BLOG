@@ -1,0 +1,87 @@
+:root {
+  /* Switch */
+  --slide-ease: cubic-bezier(0.4, -0.3, 0.6, 1.3);
+  --easing: var(--slide-ease);
+  --speed: 0.5s;
+  --width: clamp(200px, 45vmin, 500px);
+  --ar: 8 / 3;
+  --ray: hsl(0 0% 100% / 0.5);
+  --sun: hsl(47, 91%, 58%);
+  --moon: hsl(212, 13%, 82%);
+  --crater: hsl(221, 16%, 68%);
+  --bg: hsl(219, 30%, 88%);
+  --bear-speed: 10s;
+  --color: hsl(219 30% 20%);
+  /* 背景 */
+  --background: rgba(255, 255, 255, 0.4);
+  --myAsideColor: rgba(236, 105, 92, 0.2);
+  --myAsideBorderColor: rgba(0, 255, 255, 0.7);
+  --gradualBackground: linear-gradient(to right bottom, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  --favoriteBg: #f7f9fe;
+  /* 主要字体 */
+  --fontColor: #1f2d3d;
+  /* 边框 */
+  --borderColor: rgba(0, 0, 0, 0.5);
+  /* 边框 */
+  --borderHoverColor: rgba(110, 110, 110, 0.4);
+  /* 文章字体 */
+  --articleFontColor: #1f1f1f;
+  /* 文章灰色字体 */
+  --articleGreyFontColor: #616161;
+  /* 评论背景颜色 */
+  --commentContent: #f7f9fe;
+  /* 渐变动画色 */
+  --gradientAnimation: linear-gradient(to right, #ec695c, #61c454) no-repeat right bottom;
+  /* 渐变色 */
+  --gradualRed: linear-gradient(to right, #ff4b2b, #61c454);
+  /* 导航栏背景 */
+  --toolbarBackground: rgba(0, 238, 255, 0.3);
+  /* 灰色字体 */
+  --greyFont: #797979;
+  --maxGreyFont: #595a5a;
+  /* footer背景 */
+  --gradientBG: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  /* 白色遮罩 */
+  --whiteMask: rgba(255, 255, 255, 0.3);
+  /* max白色遮罩 */
+  --maxWhiteMask: rgba(255, 255, 255, 0.5);
+  --maxMaxWhiteMask: rgba(255, 255, 255, 0.7);
+  /* mini白色遮罩 */
+  --miniWhiteMask: rgba(255, 255, 255, 0.15);
+  /* 透明 */
+  --transparent: rgba(0, 0, 0, 0);
+  /* mini黑色遮罩 */
+  --miniMask: rgba(0, 0, 0, 0.15);
+  /* 黑色遮罩 */
+  --mask: rgba(0, 0, 0, 0.3);
+  /* 半透明 */
+  --translucent: rgba(188, 233, 236, 0.5);
+  /* 深黑遮罩 */
+  --maxMask: rgba(0, 0, 0, 0.7);
+  /* red遮罩 */
+  --redMask: rgba(236, 105, 92, 0.7);
+  --pink: #ff9e9e;
+  --red: #ec695c;
+  --bigRed: rgb(214, 16, 16);
+  --lightRed: #ff4b2b;
+  --maxLightRed: #ff416c;
+  --orangeRed: #ef794f;
+  --azure: #ecf7fe;
+  --blue: #74bdf0;
+  --darkBlue: #04597b;
+  --lightGray: #b0b0b0;
+  --maxLightGray: #eeeeee;
+  --maxMaxLightGray: rgba(242, 242, 242, 0.5);
+  --green: #67c23a;
+  --lightBlue: #00c4b6;
+  /* --globalFont: zjh; */
+  /* 图片替换为自己的 */
+  --admireImage: url(https://www.qiniuyun.jpg);
+  --comment1URL: url(../file/comment1.png);
+  --comment2URL: url(../file/comment2.png);
+  --springBg: url(https://www.qiniuyun.jpg);
+  --toTop: url(../file/top.jpg);
+  --verifyImage: url(https://www.qiniuyun.jpg);
+  --toolbar: url(../file/bg.jpg);
+  --love: url(https://www.qiniuyun.jpg);
+}

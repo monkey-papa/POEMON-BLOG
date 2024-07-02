@@ -1,0 +1,285 @@
+/* 通用css */
+* {
+  box-sizing: border-box;
+}
+body {
+  color: var(--fontColor);
+  /* font-family: var(--globalFont), serif; */
+  font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", sans-serif;
+  font-weight: 700;
+  word-break: break-word;
+}
+a {
+  text-decoration: none;
+}
+/* @font-face {
+  font-family: zjh;
+  src: url(https://sourcebucket.s3.bitiful.net/fonts/甜甜圈海报字体.woff2);
+  font-display: swap;
+} */
+/* 展示小火箭 */
+@font-face {
+  font-family: "iconfont";
+  src: url("//at.alicdn.com/t/c/font_3811949_2u7pl2i964k.woff2?t=1691744017355") format("woff2"), url("//at.alicdn.com/t/c/font_3811949_2u7pl2i964k.woff?t=1691744017355") format("woff"), url("//at.alicdn.com/t/c/font_3811949_2u7pl2i964k.ttf?t=1691744017355") format("truetype");
+}
+/* 图片 */
+.background-image {
+  width: 100vw;
+  height: 100vh;
+  /* 固定位置，不随滚动条滚动 */
+  position: fixed;
+  z-index: -1;
+}
+.background-image-changeBg {
+  background-size: cover !important;
+  background-attachment: local !important;
+  background-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-repeat: no-repeat !important;
+}
+.background-image-error {
+  width: 100vw;
+  height: 100vh;
+  /* 固定位置，不随滚动条滚动 */
+  position: fixed;
+  z-index: -1;
+}
+.my-el-image {
+  width: 100%;
+  height: 100%;
+}
+.my-el-image .image-slot {
+  width: 100%;
+  height: 100%;
+}
+.user-avatar {
+  transition: all 0.3s;
+  user-select: none;
+}
+.user-avatar:hover {
+  transform: rotate(360deg);
+}
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 0px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(73, 177, 245, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--red);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+  border-radius: 1em;
+}
+.el-select-dropdown.el-popper ::-webkit-scrollbar {
+  display: none;
+}
+/* 选中样式 */
+::selection {
+  background: var(--lightBlue);
+  color: black;
+}
+/* 居中 */
+.myCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.transformCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* 两边 */
+.myBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 阴影 */
+.shadow-box-mini {
+  box-shadow: 1px 1px 3px var(--mask);
+}
+.shadow-box {
+  box-shadow: 0 1px 20px -6px var(--borderColor);
+  transition: all 0.3s ease;
+}
+.shadow-box:hover {
+  box-shadow: 0 5px 10px 5px var(--borderHoverColor);
+}
+.el-pagination.is-background .btn-next:hover,
+.el-pagination.is-background .btn-prev:hover {
+  background: rgba(29, 191, 255, 0.945);
+  color: #fff;
+  transition: all 0.2s;
+}
+/* el弹出框样式 */
+.el-message {
+  top: 80px !important;
+  border: 0;
+}
+.el-message * {
+  color: var(--darkBlue) !important;
+  font-weight: 400;
+  font-size: 18px;
+}
+.el-message--success {
+  background: var(--pink);
+}
+.el-message--warning {
+  background: var(--pink);
+}
+.el-message--error {
+  background: var(--pink);
+}
+/* 图标旋转 */
+.iconRotate {
+  animation: rotate 2s linear infinite;
+}
+/* 树洞留言 */
+.baberrage-item .baberrage-msg {
+  padding-right: 5px;
+}
+.baberrage-item .normal .baberrage-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.el-upload.el-upload--picture,
+.el-upload.el-upload--text {
+  width: 100%;
+}
+.el-upload-dragger {
+  width: 100% !important;
+  height: 100px !important;
+}
+/* 导航栏 */
+.toolbarDrawer {
+  position: relative;
+  letter-spacing: 3px;
+}
+.small-menu {
+  padding-left: 25px;
+  margin: 0;
+  color: var(--blue);
+  font-size: 20px;
+  user-select: none;
+  position: relative;
+}
+.small-menu > li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  list-style: none;
+  height: 45px;
+  line-height: 35px;
+}
+.small-menu li:hover {
+  border-radius: 8px;
+  padding-left: 10px;
+  background: var(--red);
+}
+.el-tooltip__popper.is-light {
+  background: var(--gradientAnimation);
+  border-radius: 10px;
+  color: white;
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 1.2rem;
+  border: unset;
+}
+.el-button--primary {
+  background-color: #ee7752 !important;
+  border-color: #ee7752 !important;
+}
+.el-select .el-input__inner,
+.el-select .el-input .el-select__caret,
+.el-button,
+.el-image__preview,
+.el-image-viewer__btn,
+.el-switch__core,
+.el-select-dropdown__item,
+.el-menu-item,
+.el-tag .el-icon-close,
+.el-collapse-item__header,
+.el-dropdown-menu__item,
+.aplayer .aplayer-info .aplayer-music,
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap,
+.aplayer .aplayer-pic,
+.aplayer .aplayer-list ol li,
+.aplayer .aplayer-list ol li .aplayer-list-index,
+.aplayer .aplayer-list ol li .aplayer-list-author,
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon,
+.el-notification__closeBtn.el-icon-close,
+.el-image__inner,
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li,
+.el-dialog__headerbtn {
+  cursor: url(../../../public/normal.png) 1 1, auto;
+}
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+  border-radius: 8px;
+}
+.el-tooltip__popper .popper__arrow {
+  border-style: unset;
+}
+.el-popover {
+  opacity: 0.8;
+  background: #00c4b6;
+  border: none;
+}
+.markdown-body pre code {
+  white-space: pre-line !important;
+}
+@media screen and (max-width: 800px) {
+  .el-dialog {
+    width: 70% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .el-dialog {
+    width: 80% !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .el-dialog {
+    width: 90% !important;
+  }
+}
+@property --c1 {
+  syntax: "<color>";
+  initial-value: transparent;
+  inherits: false;
+}
+@property --c2 {
+  syntax: "<color>";
+  initial-value: transparent;
+  inherits: false;
+}
+@property --c3 {
+  syntax: "<color>";
+  initial-value: transparent;
+  inherits: false;
+}
+html {
+  background: linear-gradient(to bottom, var(--c1) 33%, var(--c2) 66%, var(--c3) 100%);
+  animation: spread 0.5s ease-in forwards;
+  transition-property: --c1, --c2, --c3;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+  min-height: 100vh;
+}
+.card-container.photoRef {
+  background: linear-gradient(to bottom, var(--c1) 33%, var(--c2) 66%, var(--c3) 100%);
+  animation: spread 0.5s ease-in forwards;
+  transition-property: --c1, --c2, --c3;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+}
