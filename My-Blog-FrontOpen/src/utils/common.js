@@ -196,9 +196,12 @@ export default {
         isAdmin
       )
       .catch((error) => {
-        that.$message({
-          message: error.message,
+        that.$notify({
           type: "error",
+          title: "可恶🤬",
+          message: error.message,
+          position: "top-left",
+          offset: 50,
         });
       });
   },
@@ -213,6 +216,8 @@ export default {
         .then(async (res) => {
           if (!that.$common.isEmpty(res.result[0].data[0].ip)) {
             const ip = res.result[0].data[0].ip;
+            console.log(ip);
+            if (ip === "127.0.0.1") return;
             //高德
             const result1 = await axios.get(
               `https://restapi.amap.com/v3/ip?ip=${ip}&key=407cd13370e3e36bcb96759e9b08d958`
@@ -224,9 +229,12 @@ export default {
               !result1.data.rectangle ||
               isiOS
             ) {
-              that.$message({
-                message: "由于设备隐私问题，无法获取您当前地点的天气信息",
+              that.$notify({
                 type: "error",
+                title: "可恶🤬",
+                message: "由于设备隐私问题，无法获取您当前地点的天气信息",
+                position: "top-left",
+                offset: 50,
               });
               return;
             }
@@ -256,16 +264,22 @@ export default {
             weather = result3.data.forecasts[0];
             resolve({ city, address, weather });
           } else {
-            that.$message({
-              message: "由于设备隐私问题，无法获取您当前地点的天气信息",
+            that.$notify({
               type: "error",
+              title: "可恶🤬",
+              message: "由于设备隐私问题，无法获取您当前地点的天气信息",
+              position: "top-left",
+              offset: 50,
             });
           }
         })
         .catch((error) => {
-          that.$message({
-            message: "由于设备隐私问题，无法获取您当前地点的天气信息",
+          that.$notify({
             type: "error",
+            title: "可恶🤬",
+            message: "由于设备隐私问题，无法获取您当前地点的天气信息",
+            position: "top-left",
+            offset: 50,
           });
         });
     });

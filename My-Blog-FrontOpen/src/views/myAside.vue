@@ -2,12 +2,7 @@
   <div>
     <!-- 网站信息 -->
     <div class="card-content1 shadow-box">
-      <el-avatar
-        style="margin-top: 20px"
-        class="user-avatar"
-        :size="120"
-        :src="$store.state.webInfo.randomCover[12]"
-      ></el-avatar>
+      <el-avatar style="margin-top: 20px" class="user-avatar" :size="120" :src="$store.state.webInfo.randomCover[12]"></el-avatar>
       <div class="web-name">{{ webInfo.webName }}</div>
       <div class="web-info">
         <div class="blog-info-box">
@@ -24,27 +19,20 @@
         </div>
       </div>
       <a class="collection-btn" @click="showTip()">
-        <i
-          class="el-icon-loading"
-          style="
+        <i class="el-icon-loading" style="
             margin-right: 5px;
             color: var(--maxLightRed);
             font-size: larger;
-          "
-        ></i
-        >微言圈
+          "></i>微言圈
       </a>
       <div class="my-link a-svg">
         <a href="https://juejin.cn/user/3204412407287917/posts" target="_blank">
           <img src="../assets/svg/juejin.svg" />
         </a>
-        <a
-          href="https://blog.csdn.net/qq_53461589?spm=1038.2274.3001.5343"
-          target="_blank"
-        >
+        <a href="https://blog.csdn.net/qq_53461589?spm=1038.2274.3001.5343" target="_blank">
           <img src="../assets/svg/csdn.svg" />
         </a>
-        <a href="https://github.com/monkey-papa" target="_blank">
+        <a href="https://github.com/monkey-papa/POEMON-BLOG" target="_blank">
           <img src="../assets/svg/github.svg" />
         </a>
         <a href="https://www.zjh2002.icu">
@@ -53,85 +41,59 @@
       </div>
     </div>
     <!-- 天气时间 -->
-    <div
-      class="wow card-widget"
-      style="
+    <div v-if="$route.path !== '/article'" class="wow card-widget" style="
         margin-top: 20px;
         position: relative;
         padding: 25px 10px 5px 17px;
         border-radius: 18px;
         animation: hideToShow 1s ease-in-out;
-      "
-    >
+      ">
       <div class="card-content2-title">
         <i class="fa fa-thermometer-3 card-content2-icon"></i>
         <span>小窝天气</span>
       </div>
-      <div
-        style="line-height: 25px; word-break: break-all; color: var(--darkBlue)"
-      >
+      <div style="line-height: 25px; word-break: break-all; color: var(--darkBlue)">
         <div>
           欢迎来自<span style="color: var(--bigRed)">{{
             city || "五湖四海"
-          }}</span
-          >的小伙伴，让我们嗨起来叭！
+          }}</span>的小伙伴，让我们嗨起来叭！
         </div>
         <div>{{ city }}</div>
         <div>
-          <span style="color: var(--bigRed)"
-            >今天（周{{ weather.week }}）: {{ weather.nighttemp }}℃~{{
+          <span style="color: var(--bigRed)">今天（周{{ weather.week }}）: {{ weather.nighttemp }}℃~{{
               weather.daytemp
-            }}℃ {{ weather.dayweather }} 🎈</span
-          >
+            }}℃ {{ weather.dayweather }} 🎈</span>
         </div>
         <div>{{ city }}</div>
         <div>
-          <span style="color: var(--bigRed)"
-            >明天（周{{ tomWeather.week }}）: {{ tomWeather.nighttemp }}℃~{{
+          <span style="color: var(--bigRed)">明天（周{{ tomWeather.week }}）: {{ tomWeather.nighttemp }}℃~{{
               tomWeather.daytemp
-            }}℃ {{ tomWeather.dayweather }} 🎈</span
-          >
+            }}℃ {{ tomWeather.dayweather }} 🎈</span>
         </div>
       </div>
     </div>
     <!-- 最近更新 -->
-    <div
-      v-if="!$common.isEmpty(latelyArticles)"
-      style="
+    <div v-if="!$common.isEmpty(latelyArticles)" style="
         position: relative;
         padding: 25px;
         border-radius: 18px;
         margin-top: 20px;
         animation: hideToShow 1s ease-in-out;
-      "
-      class="card-widget wow"
-    >
+      " class="card-widget wow">
       <div class="card-content2-title">
         <i class="fa fa-history card-content2-icon"></i>
         <span>最近更新</span>
       </div>
-      <div
-        v-for="(article, index) in latelyArticles"
-        :key="index"
-        @click="$router.push({ path: '/article', query: { id: article.id } })"
-      >
+      <div v-for="(article, index) in latelyArticles" :key="index" @click="$router.push({ path: '/article', query: { id: article.id } })">
         <div class="aside-post-detail">
           <div class="aside-post-image">
-            <el-image
-              lazy
-              class="my-el-image"
-              :src="article.articleCover"
-              fit="cover"
-            >
+            <el-image lazy class="my-el-image" :src="article.articleCover" fit="cover">
               <!-- 懒加载颜色 -->
               <div slot="placeholder">
-                <div
-                  class="dot"
-                  :class="{
+                <div class="dot" :class="{
                     leftImage: index % 2 !== 0,
                     rightImage: index % 2 === 0,
-                  }"
-                ></div>
+                  }"></div>
               </div>
               <div slot="error" class="image-slot">
                 <div class="error-aside-image">
@@ -141,60 +103,37 @@
             </el-image>
           </div>
           <div class="aside-post-title">
-            <el-tooltip
-              placement="top"
-              effect="light"
-              :content="article.articleTitle"
-            >
+            <el-tooltip placement="top" effect="light" :content="article.articleTitle">
               <div>{{ article.articleTitle }}</div>
             </el-tooltip>
           </div>
         </div>
         <div class="aside-post-date">
-          <i class="el-icon-date" style="color: var(--red)"></i
-          >{{ article.createTime | formatter }}
+          <i class="el-icon-date" style="color: var(--red)"></i>{{ article.createTime | formatter }}
         </div>
       </div>
     </div>
     <!-- 流浪者 -->
-    <div
-      class="card-widget wow"
-      v-if="!$common.isEmpty(users)"
-      style="
+    <div class="card-widget wow" v-if="!$common.isEmpty(users) && $route.path !== '/article'" style="
         margin-top: 20px;
         position: relative;
         padding: 25px 10px 5px 17px;
         border-radius: 18px;
         animation: hideToShow 1s ease-in-out;
-      "
-    >
+      ">
       <div style="font-weight: bold; margin-bottom: 20px">🎄流浪者</div>
       <div>
-        <vue-seamless-scroll
-          :data="users"
-          style="height: 200px; overflow: hidden"
-          :class-option="defaultOption"
-        >
-          <div
-            v-for="(item, i) in users"
-            style="display: flex; justify-content: space-between"
-            :key="i"
-          >
+        <vue-seamless-scroll :data="users" style="height: 200px; overflow: hidden" :class-option="defaultOption">
+          <div v-for="(item, i) in users" style="display: flex; justify-content: space-between" :key="i">
             <div style="display: flex">
-              <el-avatar
-                style="margin-bottom: 10px"
-                :size="36"
-                :src="item.avatar ? item.avatar : $store.state.webInfo.avatar"
-              ></el-avatar>
-              <div
-                style="
+              <el-avatar style="margin-bottom: 10px" :size="36" :src="item.avatar ? item.avatar : $store.state.webInfo.avatar"></el-avatar>
+              <div style="
                   margin-left: 10px;
                   height: 36px;
                   line-height: 36px;
                   overflow: hidden;
                   max-width: 110px;
-                "
-              >
+                ">
                 {{ item.username }}
               </div>
             </div>
@@ -207,72 +146,46 @@
       <div class="admire-btn" @click="showTissue()">加入我们</div>
     </div>
     <!-- 分类 -->
-    <div
-      class="wow card-widget"
-      style="
+    <div class="wow card-widget" style="
         margin-top: 20px;
         position: relative;
         padding: 25px 10px 5px 17px;
         border-radius: 18px;
         animation: hideToShow 1s ease-in-out;
-      "
-    >
+      ">
       <div class="card-content2-title">
         <i class="el-icon-menu card-content2-icon"></i>
         <span>文章分类</span>
       </div>
-      <div
-        v-for="(sort, index) in sortInfo"
-        :key="index"
-        class="post-sort"
-        @click="$router.push({ path: '/sort', query: { sortId: sort.id } })"
-      >
+      <div v-for="(sort, index) in sortInfo" :key="index" class="post-sort" @click="$router.push({ path: '/sort', query: { sortId: sort.id } })">
         <div>
           <span v-for="(s, i) in sort.sortName.split('')" :key="i">
-            {{ s }}</span
-          >
+            {{ s }}</span>
         </div>
       </div>
     </div>
     <!-- 书虫 -->
-    <div
-      v-if="!$common.isEmpty($store.getters.labelInfo)"
-      style="
+    <div v-if="!$common.isEmpty($store.getters.labelInfo)" style="
         position: relative;
         padding: 10px 10px 10px 15px;
         border-radius: 18px;
         margin-top: 20px;
         animation: hideToShow 1s ease-in-out;
-      "
-      class="wow card-widget"
-    >
+      " class="wow card-widget">
       <div class="card-content2-title">
-        <img
-          class="card-content2-icon"
-          style="vertical-align: -4px; margin-right: 2px"
-          src="../assets/svg/insect.svg"
-        />
+        <img class="card-content2-icon" style="vertical-align: -4px; margin-right: 2px" src="../assets/svg/insect.svg" />
         <span>书虫</span>
       </div>
       <div class="card-tag-cloud">
-        <a
-          class="item"
-          v-for="(label, index) in $store.getters.labelInfo"
-          :key="index"
-          @click="$router.push({ path: '/tags', query: { labelId: label.id } })"
-        >
+        <a class="item" v-for="(label, index) in $store.getters.labelInfo" :key="index" @click="$router.push({ path: '/tags', query: { labelId: label.id } })">
           {{ label.labelName }}
           <sup>{{ label.countOfLabel }}</sup>
         </a>
       </div>
     </div>
     <!-- 速览 -->
-    <div
-      v-for="(sort, index) in fastSeeInfo"
-      @click="selectSort(sort)"
-      :key="index"
-      class="wow card-widget"
-      style="
+    <template v-if="$route.path !== '/article'">
+      <div v-for="(sort, index) in fastSeeInfo" @click="selectSort(sort)" :key="index" class="wow card-widget" style="
         background-size: 100% 100%;
         position: relative;
         padding: 20px 40px 40px;
@@ -280,40 +193,27 @@
         margin-top: 20px;
         font-size: 18px;
         color: var(--fontColor);
-      "
-    >
-      <div>
-        <i
-          class="el-icon-s-data card-content2-icon"
-          style="margin-right: 5px; color: var(--red)"
-        ></i
-        >速览
-      </div>
-      <div class="sort-name">
-        {{ sort.sortName }}
-      </div>
-      <div
-        style="
+      ">
+        <div>
+          <i class="el-icon-s-data card-content2-icon" style="margin-right: 5px; color: var(--red)"></i>速览
+        </div>
+        <div class="sort-name">
+          {{ sort.sortName }}
+        </div>
+        <div style="
           font-weight: 400;
           font-size: 14px;
           margin-top: 20px;
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
-        "
-      >
-        {{ sort.sortDescription }}
+        ">
+          {{ sort.sortDescription }}
+        </div>
       </div>
-    </div>
+    </template>
     <!-- 加入我们 -->
-    <el-dialog
-      title="加入组织"
-      :visible.sync="showTissueDialog"
-      width="25%"
-      :append-to-body="true"
-      destroy-on-close
-      center
-    >
+    <el-dialog title="加入组织" :visible.sync="showTissueDialog" width="25%" :append-to-body="true" destroy-on-close center>
       <div>
         <div class="admire-image"></div>
         <div>
@@ -325,176 +225,171 @@
   </div>
 </template>
 <script>
-import vueSeamlessScroll from "vue-seamless-scroll";
+import vueSeamlessScroll from 'vue-seamless-scroll'
 export default {
   components: {
-    vueSeamlessScroll,
+    vueSeamlessScroll
   },
   data() {
     return {
       pagination: {
         current: 1,
-        size: 4,
+        size: 4
       },
       latelyArticles: [],
       showTissueDialog: false,
-      city: "",
+      city: '',
       weather: {},
       tomWeather: {},
-      week: "",
+      week: '',
       total_sum: 0,
       userPagination: {
         current: 1,
         size: 9999,
         total: 0,
-        searchKey: "",
+        searchKey: '',
         userStatus: null,
-        userType: null,
+        userType: null
       },
       users: [],
-      weekDay: "",
-    };
+      weekDay: ''
+    }
   },
   computed: {
     webInfo() {
-      return this.$store.state.webInfo;
+      return this.$store.state.webInfo
     },
     sortInfo() {
-      return this.$store.state.sortInfo;
+      return this.$store.state.sortInfo
     },
     fastSeeInfo() {
-      return this.$store.getters.navigationBar;
+      return this.$store.getters.navigationBar
     },
     defaultOption() {
       return {
         step: 1, // 数值越大速度滚动越快
-        limitMoveNum: this.users.length, // 开始无缝滚动的数据量
-      };
-    },
+        limitMoveNum: this.users.length // 开始无缝滚动的数据量
+      }
+    }
   },
   mounted() {
-    this.latelyArticles = this.$store.state.newArticles;
-    this.randomColor();
-    this.postProvinceAndCity();
-    this.getHistoryInfo();
-    this.getUsers();
+    this.latelyArticles = this.$store.state.newArticles
+    this.randomColor()
+    this.postProvinceAndCity()
+    this.getHistoryInfo()
+    this.getUsers()
     if (!this.weather.week) {
-      this.getWeek();
+      this.getWeek()
     }
   },
   filters: {
     formatter(row) {
-      const day = row.split(".")[0].split("T")[0];
-      const time = row.split(".")[0].split("T")[1];
-      return `${day} 日 ${time}`;
-    },
+      const day = row.split('.')[0].split('T')[0]
+      const time = row.split('.')[0].split('T')[1]
+      return `${day} 日 ${time}`
+    }
   },
   methods: {
     getWeek() {
-      const week = ["日", "一", "二", "三", "四", "五", "六"];
-      this.weekDay = new Date().getDay();
-      this.weather.week = week[this.weekDay];
-      this.tomWeather.week = week[this.weekDay + 1];
+      const week = ['日', '一', '二', '三', '四', '五', '六']
+      this.weekDay = new Date().getDay()
+      this.weather.week = week[this.weekDay]
+      this.tomWeather.week = week[this.weekDay + 1]
       if (this.weekDay == 6) {
-        this.tomWeather.week = "日";
+        this.tomWeather.week = '日'
       }
     },
     selectSort(sort) {
-      this.$emit("selectSort", sort);
+      this.$emit('selectSort', sort)
     },
     showTip() {
-      this.$router.push({ path: "/weiYan" });
+      this.$router.push({ path: '/weiYan' })
     },
     randomColor() {
       function getRandomColor() {
-        return `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
-          Math.random() * 255
-        })`;
+        return `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`
       }
-      const itemEls = document.querySelectorAll(".item");
+      const itemEls = document.querySelectorAll('.item')
       for (const item of itemEls) {
-        item.style.color = getRandomColor();
+        item.style.color = getRandomColor()
       }
     },
     async postProvinceAndCity() {
-      const res = await this.$common.getIpAndCity(this);
-      this.city = res.city;
-      this.weather = res.weather.casts[0];
-      this.tomWeather = res.weather.casts[1];
+      const res = await this.$common.getIpAndCity(this)
+      this.city = res.city
+      this.weather = res.weather.casts[0]
+      this.tomWeather = res.weather.casts[1]
       this.$http
-        .post(this.$constant.baseURL + "/submit/", {
+        .post(this.$constant.baseURL + '/submit/', {
           province: res.weather.province,
           city: res.city,
-          userId: this.$store.state.currentUser.id,
+          userId: this.$store.state.currentUser.id
         })
-        .then((res) => {})
-        .catch((error) => {
-          this.$message({
+        .then(res => {})
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error",
-          });
-        });
+            position: 'top-left',
+            offset: 50
+          })
+        })
     },
     getHistoryInfo() {
       this.$http
-        .get(this.$constant.baseURL + "/list/ip/")
-        .then((res) => {
+        .get(this.$constant.baseURL + '/list/ip/')
+        .then(res => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.total_sum = res.result[0].total_sum;
-            this.$store.commit("pageView", res.result[0]);
+            this.total_sum = res.result[0].total_sum
+            this.$store.commit('pageView', res.result[0])
           }
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error",
-          });
-        });
+            position: 'top-left',
+            offset: 50
+          })
+        })
     },
     getUsers() {
       this.$http
-        .post(
-          this.$constant.baseURL + "/admin/user/list/",
-          this.userPagination,
-          true,
-          false
-        )
-        .then((res) => {
+        .post(this.$constant.baseURL + '/admin/user/list/', this.userPagination, true, false)
+        .then(res => {
           if (!this.$common.isEmpty(res.result[0].data)) {
-            this.users = res.result[0].data;
+            this.users = res.result[0].data
           } else {
-            this.users = [];
+            this.users = []
           }
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error",
-          });
-        });
+            position: 'top-left',
+            offset: 50
+          })
+        })
     },
     showTissue() {
-      this.showTissueDialog = true;
-    },
-  },
-};
+      this.showTissueDialog = true
+    }
+  }
+}
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .a-svg a {
   transition: all 0.5s;
-}
-.a-svg a:hover {
-  transform: scale(1.3);
+  &:hover {
+    transform: scale(1.3);
+  }
 }
 .card-content1 {
-  background: linear-gradient(
-    -45deg,
-    #e8d8b9,
-    #ef629f,
-    #81e2ec,
-    #ec695c,
-    #eec1ea
-  );
+  background: linear-gradient(-45deg, var(--wheat), var(--red6), var(--blue7), var(--red), var(--pink1));
   background-size: 400% 400%;
   animation: gradientBG 16s ease infinite;
   display: flex;
@@ -503,9 +398,9 @@ export default {
   border-radius: 18px;
   position: relative;
   overflow: hidden;
-}
-.card-content1 :not(:first-child) {
-  z-index: 10;
+  :not(:first-child) {
+    z-index: 10;
+  }
 }
 .web-name {
   font-size: 30px;
@@ -531,7 +426,7 @@ export default {
 .collection-btn {
   position: relative;
   margin-top: 12px;
-  background: #bcbeef;
+  background: var(--purple2);
   width: 65%;
   height: 35px;
   border-radius: 1rem;
@@ -541,24 +436,24 @@ export default {
   overflow: hidden;
   z-index: 1;
   margin-bottom: 10px;
-}
-.collection-btn::before {
-  background: var(--gradualRed);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  content: "";
-  transform: scaleX(0);
-  transform-origin: 0;
-  transition: transform 0.5s ease-out;
-  transition-timing-function: cubic-bezier(0.45, 1.64, 0.47, 0.66);
-  border-radius: 1rem;
-  z-index: -1;
-}
-.collection-btn:hover::before {
-  transform: scaleX(1);
+  &::before {
+    background: var(--gradualRed);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    transform: scaleX(0);
+    transform-origin: 0;
+    transition: transform 0.5s ease-out;
+    transition-timing-function: cubic-bezier(0.45, 1.64, 0.47, 0.66);
+    border-radius: 1rem;
+    z-index: -1;
+  }
+  &:hover::before {
+    transform: scaleX(1);
+  }
 }
 .card-content2-title {
   font-size: 18px;
@@ -577,29 +472,24 @@ export default {
   border-radius: 0.2rem;
   margin-right: 8px;
   overflow: hidden;
-}
-@media screen and (max-width: 1100px) {
-  .aside-post-image {
-    width: 30%;
+  transition: all 1s;
+  &:hover {
+    transform: scale(1.1);
   }
 }
 .aside-post-title {
-  /* 设置文本行数为2 */
-  height: 40px; /* 2行文本的高度 = 行高 * 行数 */
+  height: 40px;
   line-height: 20px;
   width: 50%;
-  /* 省略号 */
   text-overflow: ellipsis;
-  /* 限制在两行 */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  /* 防止溢出 */
   overflow: hidden;
 }
 .error-aside-image {
   background: var(--gradientAnimation);
-  color: white;
+  color: var(--white);
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -616,11 +506,11 @@ export default {
   margin-bottom: 15px;
   line-height: 30px;
   transition: all 0.3s;
-}
-.post-sort:hover {
-  background: var(--gradientAnimation);
-  padding: 0px 15px;
-  color: white;
+  &:hover {
+    background: var(--gradientAnimation);
+    padding: 0px 15px;
+    color: var(--white);
+  }
 }
 .sort-name {
   font-weight: bold;
@@ -629,45 +519,45 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-.sort-name:after {
-  top: 104px;
-  width: 70px;
-  left: 40px;
-  height: 3px;
-  background: var(--gradientAnimation);
-  content: "";
-  border-radius: 1px;
-  position: absolute;
+  &:after {
+    top: 104px;
+    width: 70px;
+    left: 40px;
+    height: 3px;
+    background: var(--gradientAnimation);
+    content: '';
+    border-radius: 1px;
+    position: absolute;
+  }
 }
 .dot {
-  position: absolute !important;
-  height: 100% !important;
-  width: 100% !important;
-  background: var(--gradientAnimation) !important;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: var(--gradientAnimation);
 }
 .card-tag-cloud {
   width: inherit;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-}
-.card-tag-cloud a {
-  height: 30px;
-  line-height: 15px;
-  padding: 4px;
-  margin: 2px 2px 2px 0;
-  border-radius: 3px;
-  font-size: 18px;
-}
-.card-tag-cloud a:hover {
-  color: #eee !important;
-  background: var(--red);
-  animation: hideToShow 0.3s ease-in-out;
-}
-.card-tag-cloud sup {
-  font-size: 10px;
-  opacity: 0.6;
+  a {
+    height: 30px;
+    line-height: 15px;
+    padding: 4px;
+    margin: 2px 2px 2px 0;
+    border-radius: 3px;
+    font-size: 18px;
+    &:hover {
+      color: var(--white) !important;
+      background: var(--red);
+      animation: hideToShow 0.3s ease-in-out;
+    }
+  }
+  sup {
+    font-size: 10px;
+    opacity: 0.6;
+  }
 }
 .my-link {
   margin: 8px;
@@ -705,16 +595,22 @@ export default {
   border-radius: 18px;
   border: 2px solid var(--myAsideBorderColor);
   background: var(--myAsideColor);
-}
-.card-widget::before {
-  content: "";
-  width: 12.5px;
-  background: linear-gradient(to top, transparent, #ee6363bb);
-  display: block;
-  position: absolute;
-  left: 0;
-  height: 113px;
-  bottom: 27px;
+  transition: all 1s;
+  &::before {
+    content: '';
+    width: 12.5px;
+    background: linear-gradient(to top, transparent, var(--red));
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 113px;
+    bottom: 27px;
+  }
+  &:hover {
+    transform: scale(0.95);
+    background-color: var(--blue);
+    transition-duration: 0.4s;
+  }
 }
 .admire-box {
   background: var(--springBg) center center / cover no-repeat;
@@ -727,15 +623,15 @@ export default {
   padding: 13px 15px;
   background: var(--maxLightRed);
   border-radius: 3rem;
-  color: white;
+  color: var(--white);
   width: 100px;
   user-select: none;
   text-align: center;
   margin: 20px auto 0;
   transition: all 1s;
-}
-.admire-btn:hover {
-  transform: scale(1.2);
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 .admire-image {
   margin: 0 auto 10px;
@@ -751,13 +647,18 @@ export default {
   margin: 5px;
 }
 ::v-deep .el-dialog {
-  background: rgba(255, 158, 158, 0.85);
+  background: var(--pink);
   border-radius: 14px;
   overflow: scroll;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px var(--mask), 0 10px 10px var(--miniMask);
   height: 320px;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 }
-::v-deep .el-dialog::-webkit-scrollbar {
-  width: 0px;
+@media screen and (max-width: 1100px) {
+  .aside-post-image {
+    width: 30%;
+  }
 }
 </style>

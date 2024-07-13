@@ -63,7 +63,7 @@
         <el-table-column :formatter="$common.formatter" prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="text" icon="el-icon-delete" style="color: var(--orangeRed)" @click="handleDelete(scope.row)">
+            <el-button type="text" icon="el-icon-delete" style="color: var(--red)" @click="handleDelete(scope.row)">
               删除
             </el-button>
           </template>
@@ -126,31 +126,43 @@ export default {
             .then(res => {
               this.pagination.current = 1
               this.getResources()
-              this.$message({
+              this.$notify({
+                title: '可以啦🍨',
                 message: '删除成功！',
-                type: 'success'
+                type: 'success',
+                offset: 50,
+                position: 'top-left'
               })
             })
             .catch(error => {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: error.message,
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             })
         })
         .catch(() => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消删除！',
             type: 'success',
-            message: '已取消删除!'
+            offset: 50,
+            position: 'top-left'
           })
         })
     },
     addPicture(res) {},
     addResources() {
       if (this.$common.isEmpty(this.pagination.resourceType)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请选择资源类型！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -171,9 +183,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -188,15 +203,21 @@ export default {
           true
         )
         .then(res => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '修改成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -207,7 +228,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .handle-box {
   margin-bottom: 20px;
 }

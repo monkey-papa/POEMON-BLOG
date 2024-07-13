@@ -1,5 +1,5 @@
 :root {
-  /* Switch */
+  /* Switch固定颜色 */
   --slide-ease: cubic-bezier(0.4, -0.3, 0.6, 1.3);
   --easing: var(--slide-ease);
   --speed: 0.5s;
@@ -12,76 +12,73 @@
   --bg: hsl(219, 30%, 88%);
   --bear-speed: 10s;
   --color: hsl(219 30% 20%);
-  /* 背景 */
+  /* 主题1 */
   --background: rgba(255, 255, 255, 0.4);
-  --myAsideColor: rgba(236, 105, 92, 0.2);
+  --myAsideColor: rgba(236, 105, 92, 0.3);
   --myAsideBorderColor: rgba(0, 255, 255, 0.7);
-  --gradualBackground: linear-gradient(to right bottom, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  --gradualBackground: linear-gradient(to right bottom, var(--red), var(--red6), var(--blue1), var(--green6));
   --favoriteBg: #f7f9fe;
-  /* 主要字体 */
-  --fontColor: #1f2d3d;
-  /* 边框 */
-  --borderColor: rgba(0, 0, 0, 0.5);
-  /* 边框 */
+  --fontColor: #363636;
+  --borderColor: #21232a;
   --borderHoverColor: rgba(110, 110, 110, 0.4);
-  /* 文章字体 */
-  --articleFontColor: #1f1f1f;
-  /* 文章灰色字体 */
-  --articleGreyFontColor: #616161;
-  /* 评论背景颜色 */
-  --commentContent: #f7f9fe;
-  /* 渐变动画色 */
-  --gradientAnimation: linear-gradient(to right, #ec695c, #61c454) no-repeat right bottom;
-  /* 渐变色 */
-  --gradualRed: linear-gradient(to right, #ff4b2b, #61c454);
-  /* 导航栏背景 */
-  --toolbarBackground: rgba(0, 238, 255, 0.3);
-  /* 灰色字体 */
-  --greyFont: #797979;
-  --maxGreyFont: #595a5a;
-  /* footer背景 */
-  --gradientBG: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  /* 白色遮罩 */
-  --whiteMask: rgba(255, 255, 255, 0.3);
-  /* max白色遮罩 */
-  --maxWhiteMask: rgba(255, 255, 255, 0.5);
-  --maxMaxWhiteMask: rgba(255, 255, 255, 0.7);
-  /* mini白色遮罩 */
-  --miniWhiteMask: rgba(255, 255, 255, 0.15);
-  /* 透明 */
   --transparent: rgba(0, 0, 0, 0);
-  /* mini黑色遮罩 */
   --miniMask: rgba(0, 0, 0, 0.15);
-  /* 黑色遮罩 */
   --mask: rgba(0, 0, 0, 0.3);
-  /* 半透明 */
-  --translucent: rgba(188, 233, 236, 0.5);
-  /* 深黑遮罩 */
-  --maxMask: rgba(0, 0, 0, 0.7);
-  /* red遮罩 */
-  --redMask: rgba(236, 105, 92, 0.7);
-  --pink: #ff9e9e;
-  --red: #ec695c;
+  --black: black;
+  --black5: #363636;
+  --black19: #21252b;
+  --black21: #18171d;
+  --black6: rgba(41, 50, 60, 0.82);
+  --black7: rgba(28, 28, 28, 0.83);
+  --black12: rgba(37, 82, 110, 0.1);
+  --gradientAnimation: linear-gradient(to right, var(--red), var(--green1)) no-repeat right bottom;
+  --gradualRed: linear-gradient(to right, var(--lightRed), var(--green1));
+  --toolbarBackground: rgba(0, 238, 255, 0.3);
+  --gradientBG: linear-gradient(-90deg, var(--red), var(--red6), var(--blue1), var(--green6));
+  --whiteMask: rgba(255, 255, 255, 0.3);
+  --maxMaxWhiteMask: rgba(255, 255, 255, 0.67);
+  --white: #fff;
+  --wheat: wheat;
+  --gray2: rgba(188, 233, 236, 0.6);
+  --gray3: #f7f7f9;
+  --gray15: #888f96;
+  --pink: rgba(255, 158, 158, 0.8);
+  --pink1: #ffd7e4;
   --bigRed: rgb(214, 16, 16);
+  --red: #ec695c;
+  --red6: #ef629f;
   --lightRed: #ff4b2b;
   --maxLightRed: #ff416c;
-  --orangeRed: #ef794f;
-  --azure: #ecf7fe;
-  --blue: #74bdf0;
+  /* markdown代码颜色 */
+  --yellow2: #fefac7;
+  --yellow3: #fdbc40;
+  --yellow4: #e6c07b;
+  --yellow5: #d19a66;
   --darkBlue: #04597b;
-  --lightGray: #b0b0b0;
-  --maxLightGray: #eeeeee;
-  --maxMaxLightGray: rgba(242, 242, 242, 0.5);
-  --green: #67c23a;
-  --lightBlue: #00c4b6;
+  --blue: #74bdf0;
+  --blue1: #0095c2;
+  --blue7: #3fdaee;
+  --blue8: rgba(49, 52, 243, 0.8);
+  --blue9: rgba(0, 219, 235, 0.8);
+  --blue22: rgba(0, 134, 139, 0.86);
+  --blue24: rgba(10, 90, 190, 0.86);
+  --blue25: rgba(47, 203, 255, 0.86);
+  --green1: #6bdf8f;
+  --green2: rgba(0, 196, 182, 0.95);
+  --green6: #64e1c8;
+  --orange: orange;
+  --orange1: #c69043;
+  --orange6: rgb(255, 117, 0);
+  --purple1: #b04fe6;
+  --purple2: #bcbeef;
+  --brown: brown;
   /* --globalFont: zjh; */
-  /* 图片替换为自己的 */
-  --admireImage: url(https://www.qiniuyun.jpg);
+  --admireImage: url(https://www.qiniuyun.zjh2002.icu/images/%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg);
   --comment1URL: url(../file/comment1.png);
   --comment2URL: url(../file/comment2.png);
-  --springBg: url(https://www.qiniuyun.jpg);
+  --springBg: url(https://www.qiniuyun.zjh2002.icu/avatar/%E7%99%BE%E5%AE%9D%E8%A2%8Bbg.jpg);
   --toTop: url(../file/top.jpg);
-  --verifyImage: url(https://www.qiniuyun.jpg);
+  --verifyImage: url(https://www.qiniuyun.zjh2002.icu/avatar/%E7%99%BE%E5%AE%9D%E8%A2%8Bbg.jpg);
   --toolbar: url(../file/bg.jpg);
-  --love: url(https://www.qiniuyun.jpg);
+  --love: url(https://www.qiniuyun.zjh2002.icu/avatar/%E4%B9%A1%E6%9D%91.jpg);
 }

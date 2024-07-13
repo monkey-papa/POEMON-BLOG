@@ -170,10 +170,12 @@ export default {
       //定时器
       intervalCode: null,
       currentUser: {},
-      active: false
+      active: false,
+      province: ''
     }
   },
   mounted() {
+    this.postProvinceAndCity()
     this.currentUser = JSON.parse(localStorage.getItem('vuex')).currentUser
   },
   methods: {
@@ -187,15 +189,24 @@ export default {
     signIn() {
       this.active = false
     },
+    async postProvinceAndCity() {
+      this.province = ''
+      const res = await this.$common.getIpAndCity(this)
+      this.province = res.weather.province
+    },
     login() {
       if (this.$common.isEmpty(this.account) || this.$common.isEmpty(this.password)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请输入账号或密码！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       let user = {
+        province: this.province || '',
         account: this.account.trim(),
         password: this.$common.encrypt(this.password.trim())
       }
@@ -203,16 +214,22 @@ export default {
         .post(this.$constant.baseURL + '/appone/login/', user, false, false)
         .then(res => {
           if (res.result === 'The account is disabled or deleted') {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: '您的账号已被管理员禁用！',
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
             return
           }
           if (!this.$common.isEmpty(res.result[0])) {
-            this.$message({
+            this.$notify({
+              title: '可以啦🍨',
               message: '登录成功！欢迎光临小舍~~~🥰🥰🥰',
-              type: 'success'
+              type: 'success',
+              offset: 50,
+              position: 'top-left'
             })
             this.$store.commit('loadCurrentUser', res.result[0].data[0])
             localStorage.setItem('userToken', res.result[0].data[0].accessToken)
@@ -223,55 +240,77 @@ export default {
         })
         .catch(error => {
           if (error.response.data.error === 'Username or password is incorrect.') {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: '密码错误！请输入正确密码~~',
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           } else {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: error.message,
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           }
         })
     },
     register() {
       if (this.$common.isEmpty(this.username) || this.$common.isEmpty(this.password)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请输入用户名或密码！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.dialogTitle === '邮箱验证码' && this.$common.isEmpty(this.email)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请输入邮箱！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return false
       }
       if (this.$common.isEmpty(this.code)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请输入验证码！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.username.indexOf(' ') !== -1 || this.password.indexOf(' ') !== -1) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '用户名或密码不能包含空格！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.username === 'monkey-papa') {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '用户名不可以跟店长昵称一样喔~~~😊',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       let user = {
+        province: this.province || '',
         username: this.username.trim(),
         code: this.code.trim(),
         password: this.$common.encrypt(this.password.trim())
@@ -283,23 +322,32 @@ export default {
         .post(this.$constant.baseURL + '/appone/registration/', user)
         .then(res => {
           if (res.result === '验证码错误') {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: '验证码错误！',
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
             return
           }
           if (res.result === '验证码已过期') {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: '验证码已过期！',
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
             return
           }
           if (!this.$common.isEmpty(res.result[0].data)) {
-            this.$message({
+            this.$notify({
+              title: '可以啦🍨',
               message: '注册成功！',
-              type: 'success'
+              type: 'success',
+              offset: 50,
+              position: 'top-left'
             })
             this.$store.commit('loadCurrentUser', res.result[0].data[0])
             localStorage.setItem('userToken', res.result[0].data[0].accessToken)
@@ -310,14 +358,20 @@ export default {
         })
         .catch(error => {
           if (error.response.data.error === 'Username already exists.') {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: '账号已被注册，请重新注册~~',
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           } else {
-            this.$message({
-              message: error.message,
-              type: 'error'
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
+              message: '用户名或者邮箱已存在！',
+              position: 'top-left',
+              offset: 50
             })
           }
         })
@@ -350,39 +404,54 @@ export default {
               if (!this.$common.isEmpty(res.result[0])) {
                 this.$store.commit('loadCurrentUser', res.result[0].data[0])
                 this.currentUser = this.$store.state.currentUser
-                this.$message({
+                this.$notify({
+                  title: '可以啦🍨',
                   message: '修改成功！',
-                  type: 'success'
+                  type: 'success',
+                  offset: 50,
+                  position: 'top-left'
                 })
               }
             })
             .catch(error => {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: error.message,
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             })
         })
         .catch(() => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消保存！',
             type: 'success',
-            message: '已取消保存!'
+            offset: 50,
+            position: 'top-left'
           })
         })
     },
     checkParams(params) {
       if (this.dialogTitle === '修改邮箱' || this.dialogTitle === '邮箱验证码' || this.dialogTitle === '找回密码') {
         if (this.$common.isEmpty(this.email)) {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: '请输入邮箱！',
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
           return false
         }
         if (!/^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/.test(this.email)) {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: '邮箱格式有误！',
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
           return false
         }
@@ -393,23 +462,32 @@ export default {
     },
     checkParameters() {
       if (this.$common.isEmpty(this.currentUser.username)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请输入用户名！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return false
       }
       if (!/^1[345789]\d{9}$/.test(this.currentUser.phoneNumber) && this.currentUser.phoneNumber) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '手机号格式有误！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return false
       }
       if (this.currentUser.username.indexOf(' ') !== -1) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '用户名不能包含空格！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return false
       }
@@ -418,16 +496,22 @@ export default {
     changeDialog(value) {
       if (value === '邮箱验证码') {
         if (this.$common.isEmpty(this.email)) {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: '请输入邮箱！',
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
           return false
         }
         if (!/^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/.test(this.email)) {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: '邮箱格式有误！',
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
           return false
         }
@@ -439,9 +523,12 @@ export default {
     submitDialog() {
       if (this.dialogTitle === '修改头像') {
         if (this.$common.isEmpty(this.avatar)) {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: '请上传头像！',
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         } else {
           let user = {
@@ -455,16 +542,22 @@ export default {
                 this.$store.commit('loadCurrentUser', res.result[0].data[0])
                 this.currentUser = this.$store.state.currentUser
                 this.clearDialog()
-                this.$message({
+                this.$notify({
+                  title: '可以啦🍨',
                   message: '修改成功！',
-                  type: 'success'
+                  type: 'success',
+                  offset: 50,
+                  position: 'top-left'
                 })
               }
             })
             .catch(error => {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: error.message,
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             })
         }
@@ -478,16 +571,22 @@ export default {
     },
     updateSecretInfo() {
       if (this.$common.isEmpty(this.code)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请输入验证码！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.$common.isEmpty(this.password) && this.dialogTitle !== '修改邮箱') {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请输入密码！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -507,28 +606,40 @@ export default {
           .then(res => {
             this.clearDialog()
             if (res.result === '验证码错误') {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: '验证码错误！',
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
               return
             }
             if (res.result === '验证码已过期') {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: '验证码已过期！',
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
               return
             }
-            this.$message({
+            this.$notify({
+              title: '可以啦🍨',
               message: '修改成功，请重新登录！',
-              type: 'success'
+              type: 'success',
+              offset: 50,
+              position: 'top-left'
             })
           })
           .catch(error => {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: error.message,
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           })
       } else {
@@ -539,16 +650,22 @@ export default {
               this.$store.commit('loadCurrentUser', res.result[0].data[0])
               this.currentUser = this.$store.state.currentUser
               this.clearDialog()
-              this.$message({
+              this.$notify({
+                title: '可以啦🍨',
                 message: '修改成功！',
-                type: 'success'
+                type: 'success',
+                offset: 50,
+                position: 'top-left'
               })
             }
           })
           .catch(error => {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: error.message,
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           })
       }
@@ -563,15 +680,21 @@ export default {
         this.$http
           .post(this.$constant.baseURL + '/code/', params)
           .then(res => {
-            this.$message({
+            this.$notify({
+              title: '可以啦🍨',
               message: '验证码已发送，请注意查收！',
-              type: 'success'
+              type: 'success',
+              offset: 50,
+              position: 'top-left'
             })
           })
           .catch(error => {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: error.message,
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           })
         this.codeString = '30'
@@ -584,9 +707,12 @@ export default {
           }
         }, 1000)
       } else {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '请稍后再试！',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
       }
     },
@@ -602,12 +728,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .in-up-container {
-  height: 100vh;
+  height: calc(100vh - 62px);
   position: relative;
 }
-
 .in-up {
   opacity: 0.9;
   border-radius: 10px;
@@ -618,79 +743,86 @@ export default {
   max-width: 100%;
   min-height: 450px;
   margin: 10px;
+  p {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 20px 0 30px 0;
+  }
+  a {
+    color: var(--black);
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+  }
+  button {
+    border-radius: 2rem;
+    border: none;
+    background: var(--lightRed);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 2px;
+    &:hover {
+      animation: scale 0.8s ease-in-out;
+    }
+    &.ghost {
+      background: transparent;
+      border: 1px solid var(--white);
+    }
+  }
+  &.right-panel-active .sign-in-container {
+    transform: translateY(100%);
+  }
+  &.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+  }
+  &.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  &.right-panel-active .overlay {
+    transform: translateX(50%);
+    &-left {
+      transform: translateY(0);
+    }
+    &-right {
+      transform: translateY(20%);
+    }
+  }
 }
-
-.in-up p {
-  font-size: 14px;
-  letter-spacing: 1px;
-  margin: 20px 0 30px 0;
-}
-
-.in-up a {
-  color: black;
-  font-size: 14px;
-  text-decoration: none;
-  margin: 15px 0;
-}
-
 .form-container {
   position: absolute;
   height: 100%;
   transition: all 0.5s ease-in-out;
+  div {
+    background: var(--white);
+    flex-direction: column;
+    padding: 0 20px;
+    height: 100%;
+  }
+  input {
+    background: var(--white);
+    border-radius: 2px;
+    border: none;
+    padding: 12px 15px;
+    margin: 10px 0;
+    width: 100%;
+    outline: none;
+  }
 }
-
 .sign-in-container {
   left: 0;
   width: 50%;
 }
-
 .sign-up-container {
   left: 0;
   width: 50%;
   opacity: 0;
+  button {
+    margin-top: 20px;
+  }
 }
-
-.form-container div {
-  background: white;
-  flex-direction: column;
-  padding: 0 20px;
-  height: 100%;
-}
-
-.form-container input {
-  background: var(--maxLightGray);
-  border-radius: 2px;
-  border: none;
-  padding: 12px 15px;
-  margin: 10px 0;
-  width: 100%;
-  outline: none;
-}
-
-.in-up button {
-  border-radius: 2rem;
-  border: none;
-  background: var(--lightRed);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 12px 45px;
-  letter-spacing: 2px;
-}
-
-.in-up button:hover {
-  animation: scale 0.8s ease-in-out;
-}
-
-.in-up button.ghost {
-  background: transparent;
-  border: 1px solid white;
-}
-
-.sign-up-container button {
-  margin-top: 20px;
-}
-
 .overlay-container {
   position: absolute;
   left: 50%;
@@ -699,65 +831,34 @@ export default {
   overflow: hidden;
   transition: all 0.5s ease-in-out;
 }
-
 .overlay {
   background: var(--gradualRed);
-  color: white;
+  color: var(--white);
   position: relative;
   left: -100%;
   height: 100%;
   width: 200%;
+  &-panel {
+    position: absolute;
+    top: 0;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    transition: all 0.5s ease-in-out;
+  }
+  &-right {
+    right: 0;
+    transform: translateY(0);
+  }
+  &-left {
+    transform: translateY(-20%);
+  }
 }
-
-.overlay-panel {
-  position: absolute;
-  top: 0;
-  flex-direction: column;
-  height: 100%;
-  width: 50%;
-  transition: all 0.5s ease-in-out;
-}
-
-.overlay-right {
-  right: 0;
-  transform: translateY(0);
-}
-
-.overlay-left {
-  transform: translateY(-20%);
-}
-
-.in-up.right-panel-active .sign-in-container {
-  transform: translateY(100%);
-}
-
-.in-up.right-panel-active .overlay-container {
-  transform: translateX(-100%);
-}
-
-.in-up.right-panel-active .sign-up-container {
-  transform: translateX(100%);
-  opacity: 1;
-}
-
-.in-up.right-panel-active .overlay {
-  transform: translateX(50%);
-}
-
-.in-up.right-panel-active .overlay-left {
-  transform: translateY(0);
-}
-
-.in-up.right-panel-active .overlay-right {
-  transform: translateY(20%);
-}
-
 .user-container {
   width: 100vw;
   height: 100vh;
   position: relative;
 }
-
 .user-info {
   width: 80%;
   z-index: 10;
@@ -767,7 +868,6 @@ export default {
   border-radius: 10px;
   overflow: hidden;
 }
-
 .user-left {
   width: 50%;
   background: var(--maxMaxWhiteMask);
@@ -777,47 +877,39 @@ export default {
   overflow-y: auto;
   padding: 20px;
 }
-
 .user-right {
   width: 50%;
-  background: var(--maxWhiteMask);
+  background: var(--whiteMask);
   padding: 20px;
 }
-
 .user-title {
   text-align: right;
   user-select: none;
+  div {
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+  }
 }
-
 .user-content {
   text-align: left;
+  > div {
+    height: 55px;
+    display: flex;
+    align-items: center;
+  }
+  ::v-deep .el-input__inner,
+  ::v-deep .el-textarea__inner {
+    border: none;
+    background: var(--whiteMask);
+  }
+  ::v-deep .el-input__count {
+    background: var(--transparent);
+    user-select: none;
+  }
 }
-
-.user-title div {
-  height: 55px;
-  line-height: 55px;
-  text-align: center;
-}
-
-.user-content > div {
-  height: 55px;
-  display: flex;
-  align-items: center;
-}
-
-.user-content >>> .el-input__inner,
-.user-content >>> .el-textarea__inner {
-  border: none;
-  background: var(--whiteMask);
-}
-
-.user-content >>> .el-input__count {
-  background: var(--transparent);
-  user-select: none;
-}
-
 .changeInfo {
-  color: white;
+  color: var(--white);
   font-size: 0.75rem;
   white-space: nowrap;
   background: var(--gradientAnimation);
@@ -825,29 +917,25 @@ export default {
   border-radius: 0.2rem;
   user-select: none;
 }
+::v-deep .dialog {
+  border-radius: 14px;
+  overflow: scroll;
+  box-shadow: 0 14px 28px var(--mask), 0 10px 10px var(--miniMask);
+  height: 400px;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+}
 
 @media screen and (max-width: 920px) {
   .user-info {
     width: 90%;
   }
-
   .user-left {
     width: 100%;
   }
-
   .user-right {
     display: none;
   }
-}
-
-::v-deep .dialog {
-  border-radius: 14px;
-  overflow: scroll;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  height: 400px;
-}
-
-::v-deep .dialog::-webkit-scrollbar {
-  width: 0px;
 }
 </style>

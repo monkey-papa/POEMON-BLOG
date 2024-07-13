@@ -8,21 +8,13 @@
         <div id="tag" style="max-width: 100%; min-height: 100vh" ref="geo"></div>
       </div>
     </div>
-    <!-- 页脚 -->
-    <div>
-      <myFooter></myFooter>
-    </div>
   </div>
 </template>
 <script>
 import * as echarts from 'echarts'
-const myFooter = () => import('./common/myFooter')
 export default {
   mounted() {
     this.map()
-  },
-  components: {
-    myFooter
   },
   methods: {
     async map() {
@@ -54,7 +46,7 @@ export default {
           left: 'left', //可视地图显示的位置
           top: 'center', //可视地图显示的位置
           min: 0, //区间的最小值
-          max: 10000, //区间数据的最大值
+          max: 10, //区间数据的最大值
           text: ['高', '低'],
           calculable: true //是否允许控制区间
         },
@@ -117,9 +109,12 @@ export default {
             }
           })
           .catch(error => {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: error.message,
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           })
       })
@@ -134,9 +129,12 @@ export default {
             }
           })
           .catch(error => {
-            this.$message({
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
               message: error.message,
-              type: 'error'
+              position: 'top-left',
+              offset: 50
             })
           })
       })
@@ -144,28 +142,28 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .main {
   margin: 0 auto;
-  padding: 60px 40px 10px;
+  padding: 60px 0px 0px;
   min-height: 100vh;
 }
 .layout {
   display: flex;
-}
-.layout .hide-aside {
-  max-width: 1408px;
+  .hide-aside {
+    max-width: 1408px;
+  }
+  > div {
+    border-radius: 18px 18px 0 0;
+    padding: 10px 5px;
+  }
 }
 div #tag {
   height: 100%;
   width: 100%;
-  border: 2px dashed rgba(0, 255, 255, 0.6);
+  border: 2px dashed var(--blue9);
   font-weight: 700;
   background: var(--background);
-}
-.layout > div {
-  border-radius: 18px;
-  padding: 10px 5px;
 }
 @media screen and (max-width: 1286px) {
   .main {

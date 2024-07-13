@@ -267,7 +267,7 @@
               <div>
                 <img :src="$store.state.webInfo.randomCover[10]" style="width: 100%; margin: 5px auto" />
               </div>
-              <p style="font-size: 12px; text-align: center; color: #999">
+              <p style="font-size: 12px; text-align: center; color: var(--black5)">
                 欢迎入住表白墙
               </p>
             </div>
@@ -305,17 +305,12 @@
           </div>
         </div>
       </el-dialog>
-      <div>
-        <!-- 页脚 -->
-        <myFooter></myFooter>
-      </div>
     </div>
   </div>
 </template>
 <script>
 const treeHole = () => import('./common/treeHole')
 const comment = () => import('./common/comment')
-const myFooter = () => import('./common/myFooter')
 const photo = () => import('./common/photo')
 const proTag = () => import('./common/proTag')
 const proButton = () => import('./common/proButton')
@@ -325,7 +320,6 @@ export default {
     comment,
     photo,
     treeHole,
-    myFooter,
     proTag,
     proButton,
     uploadPicture
@@ -405,26 +399,35 @@ export default {
     },
     addResourcePath() {
       if (this.$common.isEmpty(this.resourcePath.title) || this.$common.isEmpty(this.resourcePath.classify) || this.$common.isEmpty(this.resourcePath.cover)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '标题、分类、封面不能为空！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       this.$http
         .post(this.$constant.baseURL + '/webInfo/saveResourcePath/', this.resourcePath, true)
         .then(res => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '保存成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
           this.clearDialog()
           this.getPhotoTitles('1')
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -464,69 +467,96 @@ export default {
     },
     submitLove() {
       if (this.userLove.bgCover.trim() === '') {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '你还没设置背景封面呢~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.userLove.manCover.trim() === '') {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '你还没设置男生头像呢~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.userLove.womanCover.trim() === '') {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '你还没设置女生头像呢~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.userLove.manName.trim() === '') {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '你还没写男生昵称呢~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.userLove.womanName.trim() === '') {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '你还没写女生昵称呢~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.userLove.timing.trim() === '') {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '你还没设置计时时间呢~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       this.$http
         .post(this.$constant.baseURL + '/family/addFamily/', this.userLove)
         .then(res => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '提交成功，待管理员审核！',
             type: 'success',
-            message: '提交成功，待管理员审核！'
+            offset: 50,
+            position: 'top-left'
           })
           this.userLove = {}
           this.loveDialogVisible = false
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
     loveDialog() {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请先登录！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -554,9 +584,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -576,9 +609,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -591,9 +627,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -624,9 +663,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -677,9 +719,12 @@ export default {
         this.weiYanPagination.current = this.weiYanPagination.current + 1
         this.getWeiYan()
       } else {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '~~到底啦~~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
       }
     },
@@ -699,17 +744,23 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
     deleteTreeHole(id) {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请先登录！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -723,37 +774,46 @@ export default {
           this.$http
             .get(this.$constant.baseURL + '/weiYan/deleteWeiYan/', { id: id })
             .then(res => {
-              this.$message({
+              this.$notify({
+                title: '可以啦🍨',
+                message: '删除成功!',
                 type: 'success',
-                message: '删除成功!'
+                offset: 50,
+                position: 'top-left'
               })
               this.weiYanPagination.current = 1
               this.getWeiYan()
             })
             .catch(error => {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: error.message,
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             })
         })
         .catch(() => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消删除!',
             type: 'success',
-            message: '已取消删除!'
+            offset: 50,
+            position: 'top-left'
           })
         })
     }
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .article-info-news {
   height: 30px;
   animation: scale 1s ease-in-out infinite;
 }
 .love-container {
-  background-image: linear-gradient(to right, rgba(37, 82, 110, 0.1) 1px, var(--background) 1px), linear-gradient(to bottom, rgba(37, 82, 110, 0.1) 1px, var(--background) 1px);
+  background-image: linear-gradient(to right, var(--black12) 1px, var(--background) 1px), linear-gradient(to bottom, var(--black12) 1px, var(--background) 1px);
   background-size: 3rem 3rem;
 }
 .bg-wrap {
@@ -771,7 +831,7 @@ export default {
 .love-wrap {
   width: 90%;
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--whiteMask);
   max-width: 950px;
   border-radius: 3em;
   display: flex;
@@ -780,7 +840,7 @@ export default {
   padding: 50px 70px 30px 70px;
 }
 .love-avatar {
-  border: rgba(255, 255, 255, 0.2) 4px solid;
+  border: var(--whiteMask) 4px solid;
   width: 180px;
   height: 180px;
 }
@@ -808,11 +868,11 @@ export default {
   letter-spacing: 0.2rem;
   line-height: 4rem;
   text-align: center;
-  background-image: linear-gradient(270deg, #ff4500, #ffa500, #ec695c, #67c23a, #74bdf0, #1e90ff, #9370db, #ff69b4, #ff4500);
+  background-image: linear-gradient(270deg, var(--orange6), var(--orange), var(--red), var(--green1), var(--blue), var(--blue1), var(--purple1), var(--red), var(--orange6));
   -webkit-background-clip: text;
   animation: jianBian 60s linear infinite;
   width: 3000px;
-  color: rgba(0, 0, 0, 0);
+  color: var(--transparent);
 }
 .love-time-title2 {
   color: var(--bigRed);
@@ -827,10 +887,10 @@ export default {
   text-align: center;
   font-size: 2rem;
   font-weight: 700;
-}
-.love-time1-item {
-  font-size: 4rem;
-  font-weight: 700;
+  &-item {
+    font-size: 4rem;
+    font-weight: 700;
+  }
 }
 .card-wrap {
   max-width: 1200px;
@@ -865,11 +925,10 @@ export default {
 .card-desc {
   font-size: 1.1rem;
   letter-spacing: 0.2rem;
-  color: #777777;
+  color: var(--black6);
 }
 .card-container {
   max-width: 1500px;
-  margin: 20px auto 40px;
 }
 .pagination-wrap {
   display: flex;
@@ -878,17 +937,17 @@ export default {
 }
 .pagination {
   padding: 13px 15px;
-  border: 1px solid var(--lightGray);
+  border: 1px solid var(--red);
   border-radius: 3rem;
-  color: var(--greyFont);
+  color: var(--red);
   width: 100px;
   user-select: none;
   text-align: center;
-}
-.pagination:hover {
-  border: 1px solid var(--gradientAnimation);
-  color: var(--gradientAnimation);
-  box-shadow: 0 0 5px var(--gradientAnimation);
+  &:hover {
+    border: 1px solid var(--blue);
+    color: var(--orange);
+    box-shadow: 0 0 5px var(--blue);
+  }
 }
 .comment-content {
   max-width: 1000px;
@@ -901,15 +960,15 @@ export default {
   line-height: 80px;
   letter-spacing: 2px;
   color: var(--red);
-}
-.photo-title-warp {
-  max-width: 1150px;
-  margin: 50px auto;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  &-warp {
+    max-width: 1150px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 }
 .isActive {
   animation: scale 2.5s ease-in-out infinite;
@@ -928,27 +987,27 @@ export default {
   transition: all 0.3s;
   background: var(--love) center center / cover no-repeat;
   user-select: none;
-}
-.family-button::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: var(--miniMask);
-}
-.family-button-title {
-  position: absolute;
-  line-height: 150px;
-  margin-left: 20px;
-  font-size: 25px;
-  font-weight: 700;
-  color: var(--red);
-}
-.family-button-car {
-  position: absolute;
-  margin-left: 220px;
-  margin-top: 55px;
-  animation: passing 4s linear infinite;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--miniMask);
+  }
+  &-title {
+    position: absolute;
+    line-height: 150px;
+    margin-left: 20px;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--red);
+  }
+  &-car {
+    position: absolute;
+    margin-left: 220px;
+    margin-top: 55px;
+    animation: passing 4s linear infinite;
+  }
 }
 .family-container {
   display: flex;
@@ -968,7 +1027,7 @@ export default {
   user-select: none;
 }
 .family-avatar {
-  border: var(--pink) 4px solid;
+  border: var(--whiteMask) 4px solid;
   width: 90px;
   height: 90px;
 }
@@ -979,17 +1038,11 @@ export default {
   font-weight: 400;
   color: var(--red);
   display: -webkit-box;
-  /*弹性伸缩盒子*/
   -webkit-box-orient: vertical;
-  /*子元素垂直排列*/
   white-space: wrap;
-  /*溢出换行*/
   -webkit-line-clamp: 2;
-  /*显示的行数*/
   overflow: hidden;
-  /*溢出部分隐藏*/
   text-overflow: ellipsis;
-  /*溢出部分用省略号显示*/
 }
 .family-img {
   animation: imgScale 2s linear infinite;
@@ -1002,7 +1055,7 @@ export default {
   margin: 0 0 40px;
 }
 .family-bottom {
-  color: white;
+  color: var(--white);
   border-radius: 3rem;
   width: 150px;
   text-align: center;
@@ -1019,29 +1072,27 @@ export default {
   display: flex;
   align-items: center;
 }
-.user-content >>> .el-input__inner {
-  border: none;
-  height: 40px;
-  width: 250px;
-  background: var(--whiteMask);
-}
-.user-content >>> .el-textarea__inner {
-  border: none;
-  width: 250px;
-  background: var(--whiteMask);
-}
-.user-content >>> .el-input__count {
-  background: var(--transparent);
-  user-select: none;
-}
 .form-friend {
-  background-color: #ebf1f6;
+  background-color: var(--favoriteBg);
   padding: 20px 0;
 }
 .form-title {
   margin: 10px;
   text-align: center;
 }
+::v-deep .el-dialog {
+  border-radius: 18px;
+}
+::v-deep .form-title {
+  color: var(--fontColor);
+}
+::v-deep .el-input__inner::placeholder {
+  color: var(--fontColor);
+}
+::v-deep .el-input__icon.el-icon-time {
+  color: var(--fontColor);
+}
+
 @media screen and (max-width: 1200px) {
   .user-content > div {
     display: unset;
@@ -1121,17 +1172,5 @@ export default {
   .family-button {
     max-width: 780px;
   }
-}
-::v-deep .el-dialog {
-  border-radius: 18px;
-}
-::v-deep .form-title {
-  color: var(--fontColor);
-}
-::v-deep .el-input__inner::placeholder {
-  color: var(--fontColor);
-}
-::v-deep .el-input__icon.el-icon-time {
-  color: var(--fontColor);
 }
 </style>

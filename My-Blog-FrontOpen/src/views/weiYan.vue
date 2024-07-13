@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div style="animation: header-effect 2s;" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
     <!-- 两句诗 -->
     <div class="my-animation-slide-top">
       <twoPoem :isHitokoto="false"></twoPoem>
@@ -11,8 +12,6 @@
         <proPage :current="pagination.current" :size="pagination.size" :total="pagination.total" :buttonSize="3" :color="$constant.pageColor" @toPage="toPage">
         </proPage>
       </div>
-      <!-- 页脚 -->
-      <myFooter :showFooter="showFooter"></myFooter>
     </div>
     <el-dialog title="微言" :visible.sync="weiYanDialogVisible" width="40%" :before-close="handleClose" :append-to-body="true" destroy-on-close center custom-class="dialog">
       <div>
@@ -31,14 +30,12 @@
 
 <script>
 const twoPoem = () => import('./common/twoPoem')
-const myFooter = () => import('./common/myFooter')
 const treeHole = () => import('./common/treeHole')
 const proPage = () => import('./common/proPage')
 const commentBox = () => import('./common/commentBox')
 export default {
   components: {
     twoPoem,
-    myFooter,
     treeHole,
     proPage,
     commentBox
@@ -71,9 +68,12 @@ export default {
     },
     launch() {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请先登录！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -94,18 +94,24 @@ export default {
           this.getWeiYan()
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
       this.handleClose()
     },
     deleteTreeHole(id) {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请先登录！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -119,24 +125,33 @@ export default {
           this.$http
             .get(this.$constant.baseURL + '/weiYan/deleteWeiYan/', { id: id })
             .then(res => {
-              this.$message({
+              this.$notify({
+                title: '可以啦🍨',
+                message: '删除成功！',
                 type: 'success',
-                message: '删除成功!'
+                offset: 50,
+                position: 'top-left'
               })
               this.pagination.current = 1
               this.getWeiYan()
             })
             .catch(error => {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: error.message,
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             })
         })
         .catch(() => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消删除！',
             type: 'success',
-            message: '已取消删除!'
+            offset: 50,
+            position: 'top-left'
           })
         })
     },
@@ -160,9 +175,12 @@ export default {
           })
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     }
@@ -170,14 +188,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ::v-deep .dialog {
   border-radius: 14px;
   overflow: scroll;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px var(--mask), 0 10px 10px var(--miniMask);
   height: 450px;
-}
-::v-deep .dialog::-webkit-scrollbar {
-  width: 0px;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 }
 </style>

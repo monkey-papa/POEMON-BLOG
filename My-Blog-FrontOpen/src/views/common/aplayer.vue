@@ -113,29 +113,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .aplayer {
   margin: 0;
 }
-::v-deep .aplayer.aplayer-fixed .aplayer-body {
-  bottom: 330px;
-  /* left: -68px; */
-}
-
-::v-deep .aplayer.aplayer-fixed {
-  bottom: 330px;
-}
-
-::v-deep .aplayer.aplayer-fixed .aplayer-lrc {
-  text-shadow: none;
-}
-
-::v-deep .aplayer .aplayer-lrc p {
-  font-size: 16px;
-  color: var(--bigRed);
-}
-
-::v-deep .aplayer .aplayer-miniswitcher .aplayer-icon path {
-  fill: var(--darkBlue);
+::v-deep #aplayer {
+  margin: 0;
+  &.aplayer-fixed {
+    bottom: 330px;
+    .aplayer-body {
+      bottom: 330px;
+      /* left: -68px; */
+    }
+    .aplayer-lrc {
+      text-shadow: none;
+      p {
+        font-size: 16px;
+        color: var(--bigRed);
+      }
+    }
+  }
+  .aplayer-miniswitcher .aplayer-icon path {
+    fill: var(--darkBlue);
+  }
 }
 </style>

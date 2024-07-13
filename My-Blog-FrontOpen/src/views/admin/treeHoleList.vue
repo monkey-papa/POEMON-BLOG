@@ -16,10 +16,10 @@
       <el-table-column :formatter="$common.formatter" prop="createTime" label="创建时间" align="center"></el-table-column>
       <el-table-column label="操作" width="180" align="center">
         <template slot-scope="scope">
-          <el-button type="text" icon="el-icon-circle-plus" style="color: green" @click="addProWords(scope.row)">
+          <el-button type="text" icon="el-icon-circle-plus" style="color: var(--green6)" @click="addProWords(scope.row)">
             添加违禁词
           </el-button>
-          <el-button type="text" icon="el-icon-delete" style="color: var(--orangeRed)" @click="handleDelete(scope.row)">
+          <el-button type="text" icon="el-icon-delete" style="color: var(--red)" @click="handleDelete(scope.row)">
             删除
           </el-button>
         </template>
@@ -58,9 +58,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -79,9 +82,12 @@ export default {
           this.doDelete(item)
         })
         .catch(() => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消删除！',
             type: 'success',
-            message: '已取消删除!'
+            offset: 50,
+            position: 'top-left'
           })
         })
     },
@@ -91,15 +97,21 @@ export default {
         .then(res => {
           this.pagination.current = 1
           this.getTreeHoles()
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '删除成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -124,16 +136,22 @@ export default {
             if (res.failure !== 'exists null or error') {
               this.doDelete(item)
             } else {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: '违禁词已存在！添加失败,请删除！',
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             }
           })
           .catch(error => {
-            this.$message({
-              message: '违禁词已存在！添加失败!',
-              type: 'error'
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
+              message: '违禁词已存在！添加失败！',
+              position: 'top-left',
+              offset: 50
             })
           })
       })
@@ -142,19 +160,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .my-tag {
   margin-bottom: 40px;
   width: 100%;
   text-align: left;
-  background: var(--lightBlue);
+  background: var(--green2);
   border: none;
   height: 40px;
   line-height: 40px;
   font-size: 16px;
-  color: black;
+  color: var(--black);
 }
-
 .pagination {
   margin: 20px 0;
   text-align: right;

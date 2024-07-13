@@ -1,20 +1,6 @@
 <template>
   <div>
-    <el-upload
-      class="upload-demo"
-      ref="upload"
-      multiple
-      drag
-      name="image"
-      :action="this.$constant.qiniuUploadImages"
-      :on-change="handleChange"
-      :on-success="handleSuccess"
-      :on-error="handleError"
-      :list-type="listType"
-      :accept="accept"
-      :limit="maxNumber"
-      :auto-upload="false"
-    >
+    <el-upload class="upload-demo" ref="upload" multiple drag name="image" :action="this.$constant.qiniuUploadImages" :on-change="handleChange" :on-success="handleSuccess" :on-error="handleError" :list-type="listType" :accept="accept" :limit="maxNumber" :auto-upload="false">
       <div class="el-upload__text">
         <img style="margin-top: 10px" src="../../assets/svg/upload.svg" />
         <div>拖拽上传 / 点击上传</div>
@@ -42,77 +28,78 @@ export default {
   props: {
     isAdmin: {
       type: Boolean,
-      default: false,
+      default: false
     },
     listType: {
       type: String,
-      default: "picture",
+      default: 'picture'
     },
     //接受上传的文件类型
     accept: {
       type: String,
-      default: "image/*",
+      default: 'image/*'
     },
     maxSize: {
       type: Number,
-      default: 5,
+      default: 5
     },
     maxNumber: {
       type: Number,
-      default: 5,
+      default: 5
     },
     ResourceType: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   methods: {
     //上传点击事件
     submitUpload() {
-      this.$refs.upload.submit();
+      this.$refs.upload.submit()
     },
     // 文件上传成功时的钩子
     handleSuccess(response, file) {
-      let id = this.$store.state.currentAdmin.id;
+      let id = this.$store.state.currentAdmin.id
       //存取资源接口
-      this.$common.saveResource(
-        this,
-        file.raw.type,
-        response.url,
-        file.size,
-        this.ResourceType,
-        id,
-        true
-      );
+      this.$common.saveResource(this, file.raw.type, response.url, file.size, this.ResourceType, id, true)
       if (response.url) {
-        this.$emit("addPicture", response.url);
+        this.$emit('addPicture', response.url)
       }
-      this.$message({
-        message: "上传成功！",
-        type: "success",
-      });
+      this.$notify({
+        title: '可以啦🍨',
+        message: '上传成功！',
+        type: 'success',
+        offset: 50,
+        position: 'top-left'
+      })
     },
     //文件上传失败时的钩子
     handleError() {
-      this.$message({
-        message: "上传出错！",
-        type: "warning",
-      });
+      this.$notify({
+        type: 'warning',
+        title: '淘气👻',
+        message: '上传出错！',
+        position: 'top-left',
+        offset: 50
+      })
     },
     // 添加文件、上传成功和上传失败时都会被调用
     handleChange(file, fileList) {
-      let flag = false;
+      let flag = false
       if (file.size > this.maxSize * 1024 * 1024) {
-        this.$message({
-          message: "图片最大为" + this.maxSize + "M！",
-          type: "warning",
-        });
-        flag = true;
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
+          message: '图片最大为' + this.maxSize + 'M！',
+          position: 'top-left',
+          offset: 50
+        })
+        flag = true
       }
       if (flag) {
-        fileList.splice(fileList.size - 1, 1);
+        fileList.splice(fileList.size - 1, 1)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

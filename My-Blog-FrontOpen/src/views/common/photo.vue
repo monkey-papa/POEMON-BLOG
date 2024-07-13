@@ -1,28 +1,10 @@
 <template>
-  <div
-    class="card-container photoRef"
-    v-if="!$common.isEmpty(resourcePathList)"
-  >
-    <div
-      v-for="(resourcePath, index) in resourcePathList"
-      :key="index"
-      class="card-item wow shadow-box-mini"
-    >
+  <div class="card-container photoRef" v-if="!$common.isEmpty(resourcePathList)">
+    <div v-for="(resourcePath, index) in resourcePathList" :key="index" class="card-item wow shadow-box-mini">
       <div class="card-image container">
-        <el-image
-          :style="{
+        <el-image :style="{
             opacity: hoverIndex === -1 ? 1 : index === hoverIndex ? 1 : 0.2,
-          }"
-          crossorigin="anonymous"
-          @mouseenter="handleMouseEnter($event.target, index)"
-          @mouseleave="handleMouseLeave"
-          class="my-el-image"
-          v-once
-          lazy
-          :preview-src-list="[resourcePath.cover]"
-          :src="resourcePath.cover"
-          fit="cover"
-        >
+          }" crossorigin="anonymous" @mouseenter="handleMouseEnter($event.target, index)" @mouseleave="handleMouseLeave" class="my-el-image" v-once lazy :preview-src-list="[resourcePath.cover]" :src="resourcePath.cover" fit="cover">
           <div slot="error" class="image-slot">
             <div class="error-aside-image">
               <div class="error-text">肥肠抱歉，图片跑掉了┮﹏┭</div>
@@ -48,50 +30,50 @@
   </div>
 </template>
 <script>
-import ColorThief from "colorthief";
+import ColorThief from 'colorthief'
 export default {
   props: {
     resourcePathList: {
-      type: Array,
-    },
+      type: Array
+    }
   },
   data() {
     return {
-      hoverIndex: -1,
-    };
+      hoverIndex: -1
+    }
   },
   mounted() {
-    this.handleMouseLeave();
+    this.handleMouseLeave()
   },
   methods: {
     async handleMouseEnter(img, i) {
-      const colorThief = new ColorThief();
-      const html = document.documentElement;
-      this.hoverIndex = i;
+      const colorThief = new ColorThief()
+      const html = document.documentElement
+      this.hoverIndex = i
       // 得到这张图片的调色盘（前三种主要颜色）
-      const colors = await colorThief.getPalette(img, 3);
-      const [c1, c2, c3] = colors.map((c) => `rgb(${c[0]},${c[1]},${c[2]})`);
-      if (this.$route.path == "/travel") {
-        let photoRef = document.querySelector(".photoRef");
-        photoRef.style.setProperty("--background", "rgba(0, 0, 0, 0)");
-        photoRef.style.setProperty("--c1", c1);
-        photoRef.style.setProperty("--c2", c2);
-        photoRef.style.setProperty("--c3", c3);
+      const colors = await colorThief.getPalette(img, 3)
+      const [c1, c2, c3] = colors.map(c => `rgb(${c[0]},${c[1]},${c[2]})`)
+      if (this.$route.path == '/travel') {
+        let photoRef = document.querySelector('.photoRef')
+        photoRef.style.setProperty('--background', 'rgba(0, 0, 0, 0)')
+        photoRef.style.setProperty('--c1', c1)
+        photoRef.style.setProperty('--c2', c2)
+        photoRef.style.setProperty('--c3', c3)
       } else {
-        let root = document.querySelector(":root");
-        root.style.setProperty("--background", "rgba(0, 0, 0, 0)");
-        html.style.setProperty("--c1", c1);
-        html.style.setProperty("--c2", c2);
-        html.style.setProperty("--c3", c3);
+        let root = document.querySelector(':root')
+        root.style.setProperty('--background', 'rgba(0, 0, 0, 0)')
+        html.style.setProperty('--c1', c1)
+        html.style.setProperty('--c2', c2)
+        html.style.setProperty('--c3', c3)
       }
     },
     handleMouseLeave() {
-      this.hoverIndex = -1;
-    },
-  },
-};
+      this.hoverIndex = -1
+    }
+  }
+}
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -115,14 +97,14 @@ export default {
   height: 400px;
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(147, 147, 147, 0.61);
+  box-shadow: 0 -2px 10px var(--whiteMask);
   margin-bottom: 1rem;
-}
-.card-image >>> .el-image__inner {
-  transition: all 1s;
-}
-.card-image >>> .el-image__inner:hover {
-  transform: scale(1.2);
+  ::v-deep .el-image__inner {
+    transition: all 1s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 }
 .card-body {
   padding: 10px 5px;
@@ -142,8 +124,20 @@ export default {
 .card-time {
   position: absolute;
   bottom: 15px;
-  color: var(--green);
+  color: var(--green1);
   font-weight: 500;
+}
+.error-aside-image {
+  background: var(--gradientAnimation);
+  color: var(--white);
+  text-align: center;
+  height: 100%;
+}
+.error-text {
+  color: var(--wheat);
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 @media screen and (max-width: 1300px) {
   .card-item {
@@ -171,17 +165,5 @@ export default {
   .card-image {
     height: 250px;
   }
-}
-.error-aside-image {
-  background: var(--gradientAnimation);
-  color: white;
-  text-align: center;
-  height: 100%;
-}
-.error-text {
-  color: wheat;
-  position: relative;
-  top: 50%;
-  transform: translate(0, -50%);
 }
 </style>

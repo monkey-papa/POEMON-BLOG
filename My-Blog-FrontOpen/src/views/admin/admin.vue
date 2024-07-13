@@ -11,18 +11,18 @@
 </template>
 
 <script>
-import myHeader from "../common/myHeader.vue";
-import sidebar from "../common/sidebar.vue";
+import myHeader from '../common/myHeader.vue'
+import sidebar from '../common/sidebar.vue'
 
 export default {
   components: {
     myHeader,
-    sidebar,
-  },
-};
+    sidebar
+  }
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .content-box {
   position: absolute;
   left: 200px;
@@ -31,7 +31,6 @@ export default {
   bottom: 0;
   transition: left 0.3s ease-in-out;
 }
-
 .content {
   width: auto;
   height: 100%;

@@ -3,19 +3,13 @@
     <!-- 评论框 -->
     <div style="margin-bottom: 40px">
       <div class="comment-head">
-        <i
-          class="el-icon-edit-outline"
-          style="font-weight: bold; font-size: 22px"
-        ></i>
+        <i class="el-icon-edit-outline" style="font-weight: bold; font-size: 22px"></i>
         留言
       </div>
       <div>
         <!-- 文字评论 -->
         <div v-show="!isGraffiti">
-          <commentBox
-            @showGraffiti="isGraffiti = !isGraffiti"
-            @submitComment="submitComment"
-          >
+          <commentBox @showGraffiti="isGraffiti = !isGraffiti" @submitComment="submitComment">
           </commentBox>
         </div>
         <!-- 画笔 -->
@@ -33,35 +27,21 @@
         <span>{{ total }} 条留言</span>
       </div>
       <!-- 评论详情 -->
-      <div
-        id="comment-content"
-        class="commentInfo-detail"
-        v-for="(item, index) in comments"
-        :key="index"
-      >
+      <div id="comment-content" class="commentInfo-detail" v-for="(item, index) in comments" :key="index">
         <!-- 头像 -->
-        <el-avatar
-          shape="square"
-          class="commentInfo-avatar"
-          :size="35"
-          :src="item.avatar || $store.state.webInfo.avatar"
-        ></el-avatar>
+        <el-avatar shape="square" class="commentInfo-avatar" :size="35" :src="item.avatar || $store.state.webInfo.avatar"></el-avatar>
         <div style="flex: 1; padding-left: 12px">
           <!-- 评论人信息 -->
           <div style="display: flex; justify-content: space-between">
             <div class="commentInfo-left">
               <span class="commentInfo-username">{{ item.username }}</span>
-              <span class="commentInfo-master" v-if="item.userType === 0"
-                >店长</span
-              >
+              <span class="commentInfo-master" v-if="item.userType === 0">店长</span>
               <span class="commentInfo-other">{{
                 $common.getDateDiff(item.createTime)
               }}</span>
             </div>
             <div class="commentInfo-reply" @click="replyDialog(item, item)">
-              <span v-if="item.childComments[0].total > 0"
-                >{{ item.childComments[0].total }} </span
-              ><span>回复</span>
+              <span v-if="item.childComments[0].total > 0">{{ item.childComments[0].total }} </span><span>回复</span>
             </div>
           </div>
           <!-- 评论内容 -->
@@ -69,24 +49,13 @@
             <span v-html="item.commentContent"></span>
           </div>
           <!-- 回复模块 -->
-          <div
-            v-if="
+          <div v-if="
               !$common.isEmpty(item.childComments[0]) &&
               !$common.isEmpty(item.childComments[0].records)
-            "
-          >
-            <div
-              class="commentInfo-detail"
-              v-for="(childItem, i) in item.childComments[0].records"
-              :key="i"
-            >
+            ">
+            <div class="commentInfo-detail" v-for="(childItem, i) in item.childComments[0].records" :key="i">
               <!-- 头像 -->
-              <el-avatar
-                shape="square"
-                class="commentInfo-avatar"
-                :size="30"
-                :src="childItem.avatar || $store.state.webInfo.avatar"
-              ></el-avatar>
+              <el-avatar shape="square" class="commentInfo-avatar" :size="30" :src="childItem.avatar || $store.state.webInfo.avatar"></el-avatar>
               <div style="flex: 1; padding-left: 12px">
                 <!-- 评论人信息 -->
                 <div style="display: flex; justify-content: space-between">
@@ -94,76 +63,45 @@
                     <span class="commentInfo-username-small">{{
                       childItem.username
                     }}</span>
-                    <span
-                      class="commentInfo-master"
-                      v-if="childItem.userType === 0"
-                      >店长</span
-                    >
+                    <span class="commentInfo-master" v-if="childItem.userType === 0">店长</span>
                     <span class="commentInfo-other">{{
                       $common.getDateDiff(childItem.createTime)
                     }}</span>
                   </div>
                   <div>
-                    <span
-                      class="commentInfo-reply"
-                      @click="replyDialog(childItem, item)"
-                      >回复</span
-                    >
+                    <span class="commentInfo-reply" @click="replyDialog(childItem, item)">回复</span>
                   </div>
                 </div>
                 <!-- 评论内容 -->
                 <div class="commentInfo-content">
-                  <template
-                    v-if="
+                  <template v-if="
                       childItem.parentCommentId !== item.id &&
                       childItem.parentUserId !== childItem.userId
-                    "
-                  >
-                    <span style="color: var(--blue)"
-                      >@{{ childItem.parentUsername }} </span
-                    >:
+                    ">
+                    <span style="color: var(--blue)">@{{ childItem.parentUsername }} </span>:
                   </template>
                   <span v-html="childItem.commentContent"></span>
                 </div>
               </div>
             </div>
             <!-- 分页 -->
-            <div
-              class="pagination-wrap"
-              v-if="
+            <div class="pagination-wrap" v-if="
                 item.childComments[0].records.length <
                 item.childComments[0].total
-              "
-            >
+              ">
               <div class="pagination" @click="toChildPage(item)">展开</div>
             </div>
           </div>
         </div>
       </div>
       <!-- 分页 -->
-      <proPage
-        :current="pagination.current"
-        :size="pagination.size"
-        :total="pagination.total"
-        :buttonSize="6"
-        :color="$constant.commentPageColor"
-        @toPage="toPage"
-      >
+      <proPage :current="pagination.current" :size="pagination.size" :total="pagination.total" :buttonSize="6" :color="$constant.commentPageColor" @toPage="toPage">
       </proPage>
     </div>
     <div v-else class="myCenter" style="color: var(--red)">
       <i>来发第一个留言啦~</i>
     </div>
-    <el-dialog
-      title="留言"
-      :visible.sync="replyDialogVisible"
-      width="30%"
-      :before-close="handleClose"
-      :append-to-body="true"
-      destroy-on-close
-      center
-      custom-class="dialog"
-    >
+    <el-dialog title="留言" :visible.sync="replyDialogVisible" width="30%" :before-close="handleClose" :append-to-body="true" destroy-on-close center custom-class="dialog">
       <div>
         <commentBox :disableGraffiti="true" @submitComment="submitReply">
         </commentBox>
@@ -173,21 +111,21 @@
 </template>
 <script>
 // const graffiti = () => import("./graffiti");
-const commentBox = () => import("./commentBox");
-const proPage = () => import("./proPage");
+const commentBox = () => import('./commentBox')
+const proPage = () => import('./proPage')
 export default {
   components: {
     // graffiti,
     commentBox,
-    proPage,
+    proPage
   },
   props: {
     source: {
-      type: Number, // 0 树洞评论 1 恋爱留言 其他 文章评论
+      type: Number // 0 树洞评论 1 恋爱留言 其他 文章评论
     },
     type: {
-      type: String,
-    },
+      type: String
+    }
   },
   data() {
     return {
@@ -204,28 +142,28 @@ export default {
         source: this.source,
         commentType: this.type,
         floorCommentId: null,
-        csize: 5,
+        csize: 5
       },
-      prohibitedWordsList: [],
-    };
+      prohibitedWordsList: []
+    }
   },
   created() {
-    this.getProhibitedWordsList();
-    this.getComments(this.pagination);
+    this.getProhibitedWordsList()
+    this.getComments(this.pagination)
   },
   methods: {
     //跳转到指定页数
     toPage(page) {
-      this.pagination.current = page;
+      this.pagination.current = page
       window.scrollTo({
-        top: document.getElementById("comment-content").offsetTop,
-      });
-      this.getComments(this.pagination);
+        top: document.getElementById('comment-content').offsetTop
+      })
+      this.getComments(this.pagination)
     },
     //展开
     toChildPage(floorComment) {
       //floorComment 传过来的一个一级评论对象
-      floorComment.childComments[0].current += 1;
+      floorComment.childComments[0].current += 1
       let pagination = {
         current: floorComment.childComments[0].current,
         size: 5,
@@ -233,77 +171,70 @@ export default {
         source: this.source,
         commentType: this.type,
         floorCommentId: floorComment.id,
-        csize: 5,
-      };
-      this.getComments(pagination, floorComment, true);
+        csize: 5
+      }
+      this.getComments(pagination, floorComment, true)
     },
     emoji(comments, flag) {
       //传过来的true对应着comments是this.comments，false对应着comments是floorComment.childComments[0].records
-      comments.forEach((c) => {
-        c.commentContent = c.commentContent.replace(/\n/g, "<br/>");
+      comments.forEach(c => {
+        c.commentContent = c.commentContent.replace(/\n/g, '<br/>')
         // 表情包转换
-        c.commentContent = this.$common.faceReg(c.commentContent);
+        c.commentContent = this.$common.faceReg(c.commentContent)
         // 图片转换
-        c.commentContent = this.$common.pictureReg(c.commentContent);
+        c.commentContent = this.$common.pictureReg(c.commentContent)
         //传过来的true对应着comments是this.comments，false是floorComment.childComments[0].records
         if (flag) {
-          if (
-            !this.$common.isEmpty(c.childComments) &&
-            !this.$common.isEmpty(c.childComments[0].records)
-          ) {
-            c.childComments[0].records.forEach((cc) => {
-              c.commentContent = c.commentContent.replace(/\n/g, "<br/>");
-              cc.commentContent = this.$common.faceReg(cc.commentContent);
-              cc.commentContent = this.$common.pictureReg(cc.commentContent);
-            });
+          if (!this.$common.isEmpty(c.childComments) && !this.$common.isEmpty(c.childComments[0].records)) {
+            c.childComments[0].records.forEach(cc => {
+              c.commentContent = c.commentContent.replace(/\n/g, '<br/>')
+              cc.commentContent = this.$common.faceReg(cc.commentContent)
+              cc.commentContent = this.$common.pictureReg(cc.commentContent)
+            })
           }
         }
-      });
+      })
     },
     getComments(pagination, floorComment = {}, isToPage = false) {
       this.$http
-        .post(this.$constant.baseURL + "/comment/listComment/", pagination)
-        .then((res) => {
-          if (
-            !this.$common.isEmpty(res.result[0]) &&
-            !this.$common.isEmpty(res.result[0].data)
-          ) {
+        .post(this.$constant.baseURL + '/comment/listComment/', pagination)
+        .then(res => {
+          if (!this.$common.isEmpty(res.result[0]) && !this.$common.isEmpty(res.result[0].data)) {
             if (this.$common.isEmpty(floorComment)) {
-              this.comments = res.result[0].data;
+              this.comments = res.result[0].data
               // pagination.total用来判断分页
-              pagination.total =
-                res.result[0].total - res.result[0].parenttotal;
-              this.total = res.result[0].total;
-              this.emoji(this.comments, true);
+              pagination.total = res.result[0].total - res.result[0].parenttotal
+              this.total = res.result[0].total
+              this.emoji(this.comments, true)
             } else {
               //floorComment 有值的情况是回复或者展开的情况
               //floorComment 传过来的都是一个一级评论对象
               //点击回复的时候
               if (isToPage === false) {
                 //将新返回的二级列表返回给一级目录中，通过数据改变视图
-                floorComment.childComments[0].records = res.result[0].data;
-                floorComment.childComments[0].total = res.result[0].parenttotal;
+                floorComment.childComments[0].records = res.result[0].data
+                floorComment.childComments[0].total = res.result[0].parenttotal
               } else {
                 //点击展开评论的时候
-                floorComment.childComments[0].total = res.result[0].parenttotal;
-                floorComment.childComments[0].records =
-                  floorComment.childComments[0].records.concat(
-                    res.result[0].data
-                  );
+                floorComment.childComments[0].total = res.result[0].parenttotal
+                floorComment.childComments[0].records = floorComment.childComments[0].records.concat(res.result[0].data)
               }
-              this.emoji(floorComment.childComments[0].records, false);
+              this.emoji(floorComment.childComments[0].records, false)
             }
           }
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error",
-          });
-        });
+            position: 'top-left',
+            offset: 50
+          })
+        })
     },
     addGraffitiComment(graffitiComment) {
-      this.submitComment(graffitiComment);
+      this.submitComment(graffitiComment)
     },
     submitComment(commentContent) {
       let comment = {
@@ -315,36 +246,39 @@ export default {
         floorCommentId: null,
         parentUserId: null,
         likeCount: 0,
-        commentInfo: "",
-      };
-      let newArr = [];
-      let list = [];
-      let word = comment.commentContent.split("");
-      this.prohibitedWordsList.forEach((e) => list.push(e.message));
+        commentInfo: ''
+      }
+      let newArr = []
+      let list = []
+      let word = comment.commentContent.split('')
+      this.prohibitedWordsList.forEach(e => list.push(e.message))
       for (let i = 0; i < list.length; i++) {
         for (let j = 0; j < word.length; j++) {
           if (word[j] === list[i]) {
-            newArr.push(word[j]);
+            newArr.push(word[j])
           }
         }
       }
       if (newArr.length > 0) {
-        this.$message({
-          message: "你发的评论带有违禁词！请发一条友好的评论~~~",
-          type: "error",
-        });
-        return;
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
+          message: '你发的评论带有违禁词！请发一条友好的评论~~~',
+          position: 'top-left',
+          offset: 50
+        })
+        return
       }
       this.$http
-        .post(
-          this.$constant.baseURL + "/admin/comment/boss/addComment/",
-          comment
-        )
-        .then((res) => {
-          this.$message({
-            type: "success",
-            message: "保存成功！",
-          });
+        .post(this.$constant.baseURL + '/admin/comment/boss/addComment/', comment)
+        .then(res => {
+          this.$notify({
+            title: '可以啦🍨',
+            message: '保存成功！',
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
+          })
           this.pagination = {
             current: 1,
             size: 5,
@@ -352,16 +286,19 @@ export default {
             source: this.source,
             commentType: this.type,
             floorCommentId: null,
-            csize: 5,
-          };
-          this.getComments(this.pagination);
+            csize: 5
+          }
+          this.getComments(this.pagination)
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error",
-          });
-        });
+            position: 'top-left',
+            offset: 50
+          })
+        })
     },
     //commentContent是回复弹窗输入的值
     submitReply(commentContent) {
@@ -376,89 +313,98 @@ export default {
         likeCount: 0,
         floorCommentId: this.floorComment.id,
         parentUserId: this.replyComment.userId,
-        commentInfo: "",
-      };
+        commentInfo: ''
+      }
       //floorComment 一级评论对象
-      let floorComment = this.floorComment;
-      floorComment.childComments[0].current = 1;
-      let newArr = [];
-      let list = [];
-      let word = comment.commentContent.split("");
-      this.prohibitedWordsList.forEach((e) => list.push(e.message));
+      let floorComment = this.floorComment
+      floorComment.childComments[0].current = 1
+      let newArr = []
+      let list = []
+      let word = comment.commentContent.split('')
+      this.prohibitedWordsList.forEach(e => list.push(e.message))
       for (let i = 0; i < list.length; i++) {
         for (let j = 0; j < word.length; j++) {
           if (word[j] === list[i]) {
-            newArr.push(word[j]);
+            newArr.push(word[j])
           }
         }
       }
       if (newArr.length > 0) {
-        this.$message({
-          message: "你发的评论带有违禁词！请发一条友好的评论~~~",
-          type: "error",
-        });
-        return;
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
+          message: '你发的评论带有违禁词！请发一条友好的评论~~~',
+          position: 'top-left',
+          offset: 50
+        })
+        return
       }
       this.$http
-        .post(
-          this.$constant.baseURL + "/admin/comment/boss/addComment/",
-          comment
-        )
-        .then((res) => {
+        .post(this.$constant.baseURL + '/admin/comment/boss/addComment/', comment)
+        .then(res => {
           let pagination = {
             current: 1,
             size: 5,
             total: 0,
             source: this.source,
             commentType: this.type,
-            floorCommentId: floorComment.id,
-          };
-          this.getComments(pagination, floorComment);
+            floorCommentId: floorComment.id
+          }
+          this.getComments(pagination, floorComment)
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error",
-          });
-        });
-      this.handleClose();
+            position: 'top-left',
+            offset: 50
+          })
+        })
+      this.handleClose()
     },
     //floorComment 传过来的一个一级评论对象，comment上面的回复是item，下面的是childItem
     replyDialog(comment, floorComment) {
-      this.replyComment = comment;
-      this.floorComment = floorComment;
-      this.replyDialogVisible = true;
+      this.replyComment = comment
+      this.floorComment = floorComment
+      this.replyDialogVisible = true
     },
     handleClose() {
-      this.replyDialogVisible = false;
-      this.floorComment = {};
-      this.replyComment = {};
+      this.replyDialogVisible = false
+      this.floorComment = {}
+      this.replyComment = {}
     },
     getProhibitedWordsList() {
       this.$http
         .post(
-          this.$constant.baseURL + "/prohibitedWords/list/",
+          this.$constant.baseURL + '/prohibitedWords/list/',
           {
             current: 1,
             size: 10,
             total: 0,
-            searchKey: "",
+            searchKey: ''
           },
           true
         )
-        .then((res) => {
+        .then(res => {
           if (res.result[0]) {
-            this.prohibitedWordsList = res.result[0].data;
-            this.$emit("getProhibitedWordsList", this.prohibitedWordsList);
+            this.prohibitedWordsList = res.result[0].data
+            this.$emit('getProhibitedWordsList', this.prohibitedWordsList)
           } else {
-            this.$message.error(res.data.msg);
+            this.$notify({
+              type: 'error',
+              title: '可恶🤬',
+              message: res.data.msg,
+              position: 'top-left',
+              offset: 50
+            })
           }
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .comment-head {
   display: flex;
   align-items: center;
@@ -484,12 +430,12 @@ export default {
   font-size: 18px;
   font-weight: 400;
   margin-right: 5px;
-}
-.commentInfo-username-small {
-  color: var(--red);
-  font-size: 16px;
-  font-weight: 400;
-  margin-right: 5px;
+  &-small {
+    color: var(--red);
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 5px;
+  }
 }
 .commentInfo-master {
   color: var(--bigRed);
@@ -509,7 +455,7 @@ export default {
   max-height: 22px;
   font-size: 12px;
   user-select: none;
-  color: white;
+  color: var(--white);
   background: var(--red);
   border-radius: 0.2rem;
   padding: 3px 6px;
@@ -517,9 +463,9 @@ export default {
 .commentInfo-content {
   margin: 15px 0 25px;
   padding: 18px 20px;
-  background: var(--commentContent);
+  background: var(--favoriteBg);
   border-radius: 12px;
-  color: black;
+  color: var(--fontColor);
   word-break: break-word;
 }
 .pagination-wrap {
@@ -529,18 +475,28 @@ export default {
 }
 .pagination {
   padding: 6px 20px;
-  border: 1px solid var(--lightGray);
+  border: 1px solid var(--red);
   border-radius: 3rem;
-  color: var(--greyFont);
+  color: var(--red);
   user-select: none;
   text-align: center;
   font-size: 12px;
+  &:hover {
+    border: 1px solid var(--blue);
+    color: var(--orange);
+    box-shadow: 0 0 5px var(--blue);
+  }
 }
-.pagination:hover {
-  border: 1px solid var(--red);
-  color: var(--red);
-  box-shadow: 0 0 5px var(--red);
+::v-deep .dialog {
+  border-radius: 14px;
+  overflow: scroll;
+  box-shadow: 0 14px 28px var(--mask), 0 10px 10px var(--miniMask);
+  height: 400px;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 }
+
 @media screen and (max-width: 515px) {
   .commentInfo-left {
     min-width: 196px;
@@ -548,14 +504,5 @@ export default {
   .commentReply-left {
     min-width: 210px;
   }
-}
-::v-deep .dialog {
-  border-radius: 14px;
-  overflow: scroll;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  height: 400px;
-}
-::v-deep .dialog::-webkit-scrollbar {
-  width: 0px;
 }
 </style>

@@ -17,20 +17,17 @@
 
         <el-table-column label="背景封面" align="center">
           <template slot-scope="scope">
-            <el-image lazy :preview-src-list="[scope.row.bgCover]" class="table-td-thumb" :src="scope.row.bgCover"
-              fit="cover"></el-image>
+            <el-image lazy :preview-src-list="[scope.row.bgCover]" class="table-td-thumb" :src="scope.row.bgCover" fit="cover"></el-image>
           </template>
         </el-table-column>
         <el-table-column label="男生头像" align="center">
           <template slot-scope="scope">
-            <el-image lazy :preview-src-list="[scope.row.manCover]" class="table-td-thumb" :src="scope.row.manCover"
-              fit="cover"></el-image>
+            <el-image lazy :preview-src-list="[scope.row.manCover]" class="table-td-thumb" :src="scope.row.manCover" fit="cover"></el-image>
           </template>
         </el-table-column>
         <el-table-column label="女生头像" align="center">
           <template slot-scope="scope">
-            <el-image lazy :preview-src-list="[scope.row.womanCover]" class="table-td-thumb" :src="scope.row.womanCover"
-              fit="cover"></el-image>
+            <el-image lazy :preview-src-list="[scope.row.womanCover]" class="table-td-thumb" :src="scope.row.womanCover" fit="cover"></el-image>
           </template>
         </el-table-column>
 
@@ -50,15 +47,14 @@
         <el-table-column :formatter="$common.formatter" prop="createTime" label="创建时间" align="center"></el-table-column>
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
-            <el-button type="text" icon="el-icon-delete" style="color: var(--orangeRed)" @click="handleDelete(scope.row)">
+            <el-button type="text" icon="el-icon-delete" style="color: var(--red)" @click="handleDelete(scope.row)">
               删除
             </el-button>
           </template>
         </el-table-column>
       </el-table>
       <div class="pagination">
-        <el-pagination background layout="total, prev, pager, next" :current-page="pagination.current"
-          :page-size="pagination.size" :total="pagination.total" @current-change="handlePageChange">
+        <el-pagination background layout="total, prev, pager, next" :current-page="pagination.current" :page-size="pagination.size" :total="pagination.total" @current-change="handlePageChange">
         </el-pagination>
       </div>
     </div>
@@ -66,7 +62,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -80,7 +75,7 @@ export default {
     }
   },
   created() {
-    this.getLoves();
+    this.getLoves()
   },
   methods: {
     handleDelete(item) {
@@ -89,109 +84,130 @@ export default {
         cancelButtonText: '取消',
         type: 'warning',
         center: true
-      }).then(() => {
-        this.$http.get(this.$constant.baseURL + "/family/deleteFamily/", { id: item.id }, true)
-          .then((res) => {
-            this.pagination.current = 1;
-            this.getLoves();
-            this.$message({
-              message: "删除成功！",
-              type: "success"
-            });
+      })
+        .then(() => {
+          this.$http
+            .get(this.$constant.baseURL + '/family/deleteFamily/', { id: item.id }, true)
+            .then(res => {
+              this.pagination.current = 1
+              this.getLoves()
+              this.$notify({
+                title: '可以啦🍨',
+                message: '删除成功！',
+                type: 'success',
+                offset: 50,
+                position: 'top-left'
+              })
+            })
+            .catch(error => {
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
+                message: error.message,
+                position: 'top-left',
+                offset: 50
+              })
+            })
+        })
+        .catch(() => {
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消删除！',
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
-          .catch((error) => {
-            this.$message({
-              message: error.message,
-              type: "error"
-            });
-          });
-      }).catch(() => {
-        this.$message({
-          type: 'success',
-          message: '已取消删除!'
-        });
-      });
+        })
     },
     search() {
-      this.pagination.total = 0;
-      this.pagination.current = 1;
-      this.getLoves();
+      this.pagination.total = 0
+      this.pagination.current = 1
+      this.getLoves()
     },
     getLoves() {
-      this.$http.post(this.$constant.baseURL + "/family/listFamily/", this.pagination, true)
-        .then((res) => {
+      this.$http
+        .post(this.$constant.baseURL + '/family/listFamily/', this.pagination, true)
+        .then(res => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.loves = res.result[0].records;
-            this.pagination.total = res.result[0].total;
+            this.loves = res.result[0].records
+            this.pagination.total = res.result[0].total
           }
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error"
-          });
-        });
+            position: 'top-left',
+            offset: 50
+          })
+        })
     },
     changeStatus(item) {
-      this.$http.get(this.$constant.baseURL + "/family/changeLoveStatus/", {
-        id: item.id,
-        flag: item.status
-      }, true)
-        .then((res) => {
-          this.$message({
-            message: "修改成功！",
-            type: "success"
-          });
+      this.$http
+        .get(
+          this.$constant.baseURL + '/family/changeLoveStatus/',
+          {
+            id: item.id,
+            flag: item.status
+          },
+          true
+        )
+        .then(res => {
+          this.$notify({
+            title: '可以啦🍨',
+            message: '修改成功！',
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
+          })
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error"
-          });
-        });
+            position: 'top-left',
+            offset: 50
+          })
+        })
     },
     handlePageChange(val) {
-      this.pagination.current = val;
-      this.getLoves();
+      this.pagination.current = val
+      this.getLoves()
     },
     closeOptions() {
       this.$refs.status.blur()
-    },
+    }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .handle-box {
   margin-bottom: 20px;
 }
-
 .handle-select {
   width: 200px;
 }
-
 .table {
   width: 100%;
   font-size: 14px;
 }
-
 .mrb10 {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-
 .table-td-thumb {
   display: block;
   margin: auto;
   width: 40px;
   height: 40px;
 }
-
 .pagination {
   margin: 20px 0;
   text-align: right;
 }
-
 .el-switch {
   margin: 5px;
 }

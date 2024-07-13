@@ -3,10 +3,10 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const cdn = {
   js: [
-    "https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js",
-    "https://cdn.bootcdn.net/ajax/libs/vuex/3.6.2/vuex.min.js",
-    "https://cdn.bootcdn.net/ajax/libs/vue-router/3.2.0/vue-router.min.js",
-    "https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js",
+    "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.11/vue.min.js",
+    "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vuex/3.6.2/vuex.min.js",
+    "https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-router/3.2.0/vue-router.min.js",
+    "https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js",
   ],
 };
 module.exports = {

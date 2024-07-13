@@ -105,7 +105,7 @@ class RcView(APIView):
                             ipone1.dcount = ipone1.dcount + 1
                             ipone1.save()
                     else:
-                        Ip.objects.filter(user_id=userid, ip=ip, dcount=1, province=region, city=city)
+                        Ip.objects.create(user_id=userid, ip=ip, dcount=1, province=region, city=city, create_time=current_time)
             else:
                 now_ip = Ip.objects.filter(ip=ip)
                 for i in now_ip:

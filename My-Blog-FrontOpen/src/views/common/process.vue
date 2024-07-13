@@ -1,27 +1,16 @@
 <template>
   <div v-if="!$common.isEmpty(treeHoleList)">
     <div class="process-line">
-      <div
-        class="process-item"
-        v-for="(treeHole, index) in treeHoleList"
-        :key="index"
-      >
+      <div class="process-item" v-for="(treeHole, index) in treeHoleList" :key="index">
         <div class="timeline-item-time">
           <span>
             {{ $common.getDateDiff(treeHole.createTime) }}
           </span>
-          <span
-            @click="deleteTreeHole(treeHole.id)"
-            class="process-delete"
-            v-if="
+          <span @click="deleteTreeHole(treeHole.id)" class="process-delete" v-if="
               !$common.isEmpty($store.state.currentUser) &&
               $store.state.currentUser.id === treeHole.userId
-            "
-          >
-            <img
-              style="vertical-align: -3px"
-              src="../../assets/svg/trash.svg"
-            />
+            ">
+            <img style="vertical-align: -3px" src="../../assets/svg/trash.svg" />
           </span>
         </div>
         <div class="timeline-item-content" v-html="treeHole.content"></div>
@@ -33,40 +22,40 @@
 export default {
   props: {
     treeHoleList: {
-      type: Array,
-    },
+      type: Array
+    }
   },
   methods: {
     deleteTreeHole(id) {
-      this.$emit("deleteTreeHole", id);
-    },
-  },
-};
+      this.$emit('deleteTreeHole', id)
+    }
+  }
+}
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .process-line {
   border-left: 2px solid var(--blue);
   padding: 50px 20px 10px;
   margin-left: 20px;
   position: relative;
-}
-.process-line:before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border: 4px solid var(--maxLightRed);
-  border-radius: 50%;
-  position: absolute;
-  top: 15px;
-  left: -1px;
-  transform: translateX(-50%);
-  background-color: white;
-  animation: weiYanShadowFlashing 1.5s linear infinite;
+  &:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border: 4px solid var(--maxLightRed);
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: -1px;
+    transform: translateX(-50%);
+    background-color: var(--white);
+    animation: weiYanShadowFlashing 1.5s linear infinite;
+  }
 }
 .process-item {
   position: relative;
   margin: 10px;
-  color: black;
+  color: var(--fontColor);
 }
 .timeline-item-time::before {
   position: absolute;
@@ -76,14 +65,14 @@ export default {
   height: 6px;
   border: 3px solid var(--blue);
   border-radius: 50%;
-  background: white;
-  content: "";
+  background: var(--white);
+  content: '';
 }
 .timeline-item-content {
   padding: 12px 15px;
   margin: 10px 0 15px;
   border-radius: 10px;
-  background-color: rgba(236, 105, 92, 0.6);
+  background-color: var(--pink);
 }
 .process-delete {
   margin-left: 10px;

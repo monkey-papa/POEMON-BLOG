@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background: var(--background);">
     <!-- 首页图片 -->
     <div style="animation: header-effect 2s" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
     <!-- 标签区域 -->
@@ -89,19 +89,19 @@
               <div class="author-content-item selfInfo single">
                 <div>
                   <span class="selfInfo-title">生于</span>
-                  <span class="selfInfo-content" style="color: #43a6c6; font-family: 'Microsoft YaHei'">2002</span>
+                  <span class="selfInfo-content" style="color: var(--blue1); font-family: 'Microsoft YaHei'">2002</span>
                 </div>
                 <div>
                   <span class="selfInfo-title">内蒙古科技大学</span>
-                  <span class="selfInfo-content" style="color: #c69043">软件工程</span>
+                  <span class="selfInfo-content" style="color: var(--orange1)">软件工程</span>
                 </div>
                 <div>
                   <span class="selfInfo-title">职业（2023年）</span>
-                  <span class="selfInfo-content" style="color: #b04fe6">大三学生 👨‍🎓</span>
+                  <span class="selfInfo-content" style="color: var(--purple1)">大三学生 👨‍🎓</span>
                 </div>
                 <div>
                   <span class="selfInfo-title">工作</span>
-                  <span class="selfInfo-content" style="color: #d34d45; font-size: 16px">金山前端打工人 🧑‍💻</span>
+                  <span class="selfInfo-content" style="color: var(--red); font-size: 16px">金山前端打工人 🧑‍💻</span>
                 </div>
               </div>
             </div>
@@ -225,14 +225,9 @@
         </div>
       </div>
     </div>
-    <!-- 页脚 -->
-    <div>
-      <myFooter></myFooter>
-    </div>
   </div>
 </template>
 <script>
-const myFooter = () => import('./common/myFooter')
 export default {
   data() {
     return {
@@ -246,9 +241,6 @@ export default {
       last_user: this.$store.state.pageView.data.last_user.length
     }
   },
-  components: {
-    myFooter
-  },
   methods: {
     btnClick(i) {
       this.current = i
@@ -258,7 +250,7 @@ export default {
 </script>
 <style scoped>
 .banner-button-text {
-  color: #c69043;
+  color: var(--orange1);
 }
 .music-tips {
   margin-bottom: 27px;
@@ -295,7 +287,7 @@ export default {
   position: relative;
   width: 189px;
   height: 189px;
-  background: rgba(253, 253, 253, 0.8);
+  background: var(--favoriteBg);
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -307,7 +299,7 @@ export default {
   position: absolute;
   width: 500px;
   height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, #8758ff);
+  background-image: conic-gradient(transparent, transparent, transparent, var(--purple1));
   animation: animate 4s linear infinite;
   animation-delay: -2s;
 }
@@ -316,7 +308,7 @@ export default {
   position: absolute;
   width: 500px;
   height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, #5cb8e4);
+  background-image: conic-gradient(transparent, transparent, transparent, var(--blue));
   animation: animate 4s linear infinite;
 }
 @keyframes animate {
@@ -331,7 +323,7 @@ export default {
   position: absolute;
   inset: 5px;
   border-radius: 50%;
-  background: rgba(253, 253, 253, 0.8);
+  background: var(--favoriteBg);
   z-index: 1;
 }
 .author-img {
@@ -341,7 +333,7 @@ export default {
   width: 180px;
   height: 180px;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.67);
+  background: var(--maxMaxWhiteMask);
 }
 .author-img img {
   border-radius: 11px;
@@ -353,10 +345,10 @@ export default {
 .image-dot {
   width: 30px;
   height: 30px;
-  background: #6bdf8f;
+  background: var(--green1);
   position: absolute;
   border-radius: 50%;
-  border: 6px solid rgba(253, 253, 253, 0.9);
+  border: 6px solid var(--favoriteBg);
   top: 50%;
   left: 50%;
   z-index: 20;
@@ -402,13 +394,12 @@ export default {
   line-height: 32px;
   transform: translate(0, -4px);
   padding: 1px 8px;
-  background: rgba(255, 253, 253, 0.67);
-  border: 1px solid #e3e8f7a6;
+  background: var(--favoriteBg);
+  border: 1px solid var(--maxMaxWhiteMask);
   border-radius: 40px;
   margin-top: 6px;
   font-size: 14px;
   font-weight: 400;
-  box-shadow: 0 5px 12px -5px rgba(102, 68, 68, 0);
   animation: floating 6s ease-in-out 0s infinite normal none running;
 }
 @keyframes floating {
@@ -435,11 +426,11 @@ export default {
   font-weight: 700;
   letter-spacing: 6px;
   -webkit-background-clip: text;
-  background-image: linear-gradient(90deg, #2ca2b4, #5598de 24%, #7f87ff 45%, #f65aad 85%, #df80b4);
+  background-image: linear-gradient(90deg, var(--blue), var(--blue1) 24%, var(--purple1) 45%, var(--red) 80%, var(--bigRed));
   display: inline-block;
   text-align: center;
   color: transparent;
-  -webkit-text-stroke: 1px #3fdaee;
+  -webkit-text-stroke: 1px var(--blue7);
 }
 .author-content {
   display: flex;
@@ -452,8 +443,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
-  background: linear-gradient(130deg, #3134f3cc 0, #00dbebcc 80%);
+  color: var(--white);
+  background: linear-gradient(130deg, var(--blue8) 0, var(--blue9) 80%);
   background-size: 200%;
   animation: gradient 15s ease infinite;
   width: 59%;
@@ -461,9 +452,9 @@ export default {
 .author-content-item {
   width: 49%;
   border-radius: 24px;
-  background: rgba(255, 253, 253, 0.67);
-  border: 1px solid #e3e8f7a6;
-  box-shadow: 0 8px 16px -4px #2c2d300c;
+  background: var(--maxMaxWhiteMask);
+  border: 1px solid var(--maxMaxWhiteMask);
+  box-shadow: 0 8px 16px -4px var(--mask);
   position: relative;
   padding: 1.5rem 2.5rem;
   overflow: hidden;
@@ -507,7 +498,7 @@ export default {
   font-family: Helvetica;
   line-height: 1.06;
   letter-spacing: -0.02em;
-  color: #353535;
+  color: var(--black5);
   margin-top: 0;
 }
 .about-statistic {
@@ -515,7 +506,7 @@ export default {
   width: 39%;
   background: url(https://bu.dusays.com/2022/11/18/63765da00f149.png) no-repeat top;
   background-size: cover;
-  color: rgb(255, 253, 253, 0.92);
+  color: var(--favoriteBg);
   overflow: hidden;
 }
 .author-content-item .card-content {
@@ -540,7 +531,7 @@ export default {
   font-size: 16px;
   border-radius: 15px;
   width: 100%;
-  color: white;
+  color: var(--white);
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -566,7 +557,7 @@ export default {
   white-space: nowrap;
 }
 .post-tips {
-  color: #999999;
+  color: var(--maxMaxWhiteMask);
   font-size: 16px;
   position: absolute;
   bottom: 1rem;
@@ -579,9 +570,9 @@ export default {
   transition: all 0.3s;
 }
 .post-tips a:hover {
-  background-color: #49b1f5;
+  background-color: var(--blue);
   border-radius: 5px;
-  color: #fff;
+  color: var(--white);
   padding: 0.4em 0.2em;
   text-decoration: none;
   font-weight: 700;
@@ -598,7 +589,7 @@ export default {
   width: 100%;
 }
 .author-content-item.map {
-  background: url(https://www.qiniuyun.png) no-repeat center;
+  background: url(https://www.qiniuyun.zjh2002.icu/avatar/map.png) no-repeat center;
   min-height: 200px;
   max-height: 400px;
   position: relative;
@@ -625,7 +616,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--maxMaxWhiteMask);
   padding: 0.5rem 2rem;
   backdrop-filter: saturate(180%) blur(2px);
   -webkit-backdrop-filter: blur(20px);
@@ -634,7 +625,7 @@ export default {
 }
 .author-content-item.map .map-title b,
 .author-content-item.myphoto .map-title b {
-  color: #353535;
+  color: var(--black5);
   font-weight: bolder;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -673,8 +664,8 @@ export default {
   font-weight: 700;
   line-height: 1.1;
   display: flex;
-  color: rgb(255, 253, 253, 0.95);
-  background: url(https://www.qiniuyun.jpg) no-repeat;
+  color: var(--favoriteBg);
+  background: url(https://www.qiniuyun.zjh2002.icu/avatar/about1.jpg) no-repeat;
   background-size: cover;
   align-items: flex-start;
   flex-direction: column;
@@ -687,7 +678,7 @@ export default {
   font-family: STZhongsong, 'Microsoft YaHei';
 }
 .author-content-item.myphoto {
-  background: url(https://www.qiniuyun.webp) no-repeat;
+  background: url(https://www.qiniuyun.zjh2002.icu/avatar/about2.webp) no-repeat;
   height: 60%;
   background-size: 100%;
   transition: 2s ease-in-out;
@@ -717,7 +708,7 @@ sup {
   width: 100%;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top center, #29323cd0, #1c1c1cd4);
+  background: radial-gradient(circle at top center, var(--black6), var(--black7));
 }
 .chuckle-img .container {
   display: flex;
@@ -742,7 +733,7 @@ sup {
   overflow: hidden;
 }
 .chuckle-img .item.active .shadow {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 65%, transparent);
+  background: linear-gradient(to top, var(--mask) 65%, transparent);
 }
 .chuckle-img .item .shadow {
   position: absolute;
@@ -770,36 +761,36 @@ sup {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
 }
 .chuckle-img .item:nth-child(1) .fa {
-  color: #fc6e51;
+  color: var(--red);
 }
 .chuckle-img .item:nth-child(2) .fa {
-  color: #ffce54;
+  color: var(--yellow3);
 }
 .chuckle-img .item:nth-child(3) .fa {
-  color: #2ecc71;
+  color: var(--green1);
 }
 .chuckle-img .item:nth-child(4) .fa {
-  color: #5d9cec;
+  color: var(--blue);
 }
 .chuckle-img .item:nth-child(5) .fa {
-  color: #ac92ec;
+  color: var(--purple1);
 }
 .chuckle-img .item:nth-child(6) .fa {
-  color: #363636;
+  color: var(--black);
 }
 .chuckle-img .item .content .text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: 10px;
-  color: white;
+  color: var(--white);
   width: 100%;
 }
 .chuckle-img .item.active .content .text div {
@@ -822,11 +813,11 @@ sup {
   transition-delay: 0.1s;
 }
 .author-content-item.game-lol {
-  background: url(https://www.qiniuyun.png) no-repeat top;
+  background: url(https://www.qiniuyun.zjh2002.icu/avatar/%E9%95%9C.png) no-repeat top;
   background-size: cover;
   min-height: 300px;
   overflow: hidden;
-  color: white;
+  color: var(--white);
   width: 42%;
   border: 1px;
 }
@@ -857,25 +848,25 @@ sup {
 .author-content-item.game-wolf {
   border: 1px;
   width: 56%;
-  background: url(https://www.qiniuyun.jpg) no-repeat top;
+  background: url(https://www.qiniuyun.zjh2002.icu/avatar/%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89.jpg) no-repeat top;
   background-size: cover;
   min-height: 300px;
   overflow: hidden;
-  color: white;
+  color: var(--white);
 }
 .author-content-item.like-technology {
   border: 1px;
-  background: url(https://www.qiniuyun.jpg) no-repeat;
+  background: url(https://www.qiniuyun.zjh2002.icu/avatar/iphone.jpg) no-repeat;
   background-size: cover;
   min-height: 230px;
   color: var(--red);
 }
 .author-content-item.like-music {
   border: 1px;
-  background: url(https://www.qiniuyun.webp) no-repeat top;
+  background: url(https://www.qiniuyun.zjh2002.icu/avatar/Jay.webp) no-repeat top;
   background-size: cover;
   min-height: 400px;
-  color: rgb(198, 144, 67);
+  color: var(--orange1);
   overflow: hidden;
 }
 .author-content-item-changjian {
@@ -893,16 +884,15 @@ sup {
   width: 124px;
   border-radius: 20px;
   justify-content: center;
-  background: rgba(255, 253, 253, 0.9);
+  background: var(--favoriteBg);
   text-decoration: none;
   display: flex;
   align-items: center;
   z-index: 1;
-  transition: all 0.2s;
 }
 .banner-button-group .banner-button:hover {
   text-decoration: none;
-  background: linear-gradient(to bottom right, #0396ff, #abdcff);
+  background: linear-gradient(to bottom right, var(--blue1), var(--blue));
 }
 p {
   line-height: 1.7;

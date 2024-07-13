@@ -28,7 +28,7 @@ class Client(models.Model):
     update_time = models.DateTimeField(auto_now=True, verbose_name='最终修改时间')
     update_by = models.CharField(max_length=32, null=True, blank=True, verbose_name='最终修改人')
     deleted = models.BooleanField(default=False, verbose_name='是否删除')
-
+    province = models.CharField(max_length=20, null=True, blank=True, verbose_name="省")
     class Meta:
         db_table = 'user'
         verbose_name = '用户信息表'

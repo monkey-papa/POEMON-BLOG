@@ -84,11 +84,6 @@ const routes = [
         name: "user",
         component: () => import("../views/user"),
       },
-      {
-        path: "/letter",
-        name: "letter",
-        component: () => import("../views/letter"),
-      },
     ],
   },
   {

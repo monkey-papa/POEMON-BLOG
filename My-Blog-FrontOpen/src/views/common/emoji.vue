@@ -21,53 +21,48 @@ export default {
     return {
       emojiList: this.$constant.emojiList,
       emojiListURL: {}
-    };
+    }
   },
   created() {
-    this.emojiListURL = this.getEmojiList(this.emojiList);
+    this.emojiListURL = this.getEmojiList(this.emojiList)
   },
   methods: {
     addEmoji(key) {
-      this.$emit("addEmoji", key);
+      this.$emit('addEmoji', key)
     },
     getEmojiList(emojiList) {
-      let emojiName;
-      let url;
+      let emojiName
+      let url
       let result = {}
       for (let i = 0; i < emojiList.length; i++) {
-        emojiName = "[" + emojiList[i] + "]";
-        let j = i + 1;
-        url = this.$constant.qiniuUploadEntrance + "emoji/q" + j + ".gif";
-        result[emojiName] = url;
+        emojiName = '[' + emojiList[i] + ']'
+        let j = i + 1
+        url = this.$constant.qiniuUploadEntrance + 'emoji/q' + j + '.gif'
+        result[emojiName] = url
       }
-      return result;
+      return result
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .emoji-item {
   display: inline-block;
+  &:hover {
+    transition: all 0.2s;
+    border-radius: 0.25rem;
+    background: var(--gray15);
+  }
 }
-
-.emoji-item:hover {
-  transition: all 0.2s;
-  border-radius: 0.25rem;
-  background: var(--lightGray);
-}
-
 .emoji {
   margin: 0.25rem;
-  /* 把此元素放置在父元素的中部 */
   vertical-align: middle;
 }
-
 .body-enter-active,
 .body-leave-active {
   transition: all 0.3s;
 }
-
 .body-enter,
 .body-leave-to {
   opacity: 0;

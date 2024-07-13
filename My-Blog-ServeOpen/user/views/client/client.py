@@ -58,6 +58,7 @@ class ClientView(APIView):
                     'introduction': client.introduction,
                     'userType': client.user_type,
                     'createTime': client.create_time,
+                    'province': client.province
                 })
 
             dataall.append({

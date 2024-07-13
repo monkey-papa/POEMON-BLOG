@@ -14,6 +14,17 @@
           </template>
         </printer>
       </div>
+      <section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+          </defs>
+          <g class="parallax">
+            <use href="#gentle-wave" x="48" y="0"></use>
+            <use href="#gentle-wave" x="48" y="3"></use>
+            <use href="#gentle-wave" x="48" y="5"></use>
+            <use href="#gentle-wave" x="48" y="7"></use>
+          </g>
+        </svg></section>
       <i class="el-icon-arrow-down" @click="navigation('.page-container-wrap')"></i>
     </div>
     <!-- 首页内容 -->
@@ -35,14 +46,14 @@
             <div class="content">
               <div class="category_group">
                 <div class="category_item" style="
-                    background: linear-gradient(to right, #00868bdb, #3fc1c9db);
+                    background: linear-gradient(to right, var(--blue22), var(--blue9));
                   ">
                   <a href="https://www.zjh2002.icu/" class="category_button category_buttons">
                     <span class="category_button_text">云音乐</span>
                   </a>
                 </div>
                 <div @click="$router.push({ path: '/map' })" class="category_item" style="
-                    background: linear-gradient(to right, #0a5abedb, #2fcbffdb);
+                    background: linear-gradient(to right, var(--blue24), var(--blue25));
                   ">
                   <a href="javascript:;" class="category_button">
                     <span class="category_button_text">四海之内</span>
@@ -87,10 +98,6 @@
       <!-- live2d -->
       <live2d class="live2d" :style="style" :model="['Potion-Maker/Pio', 'school-2017-costume-yellow']" :direction="direction" :size="this.$common.mobile() ? 140 : size"></live2d>
     </div>
-    <!-- 页脚 -->
-    <div style="background: var(--background)">
-      <myFooter></myFooter>
-    </div>
   </div>
 </template>
 <script>
@@ -98,13 +105,11 @@
 import live2d from 'vue-live2d'
 const printer = () => import('./common/printer')
 const articleList = () => import('./articleList')
-const myFooter = () => import('./common/myFooter')
 const myAside = () => import('./myAside')
 export default {
   components: {
     printer,
     articleList,
-    myFooter,
     myAside,
     live2d
   },
@@ -194,9 +199,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -222,9 +230,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -258,15 +269,69 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+.vue-live2d-tool {
+  cursor: url(../../public/normal.png) 1 1, auto !important;
+}
+.vue-live2d-toggle {
+  text-align: center;
+  height: 64px;
+  bottom: 90px !important;
+  position: absolute;
+  left: 0;
+  bottom: 31px;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+  cursor: url(../../public/normal.png) 1 1, auto !important;
+  &:hover {
+    background: var(--blue24);
+    width: 1.5rem !important;
+  }
+}
+</style>
+<style lang="scss" scoped>
+.main-hero-waves-area {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -11px;
+  z-index: 5;
+  .waves-svg {
+    width: 100%;
+    height: 60px;
+    .parallax > use:nth-child(1) {
+      animation-delay: -2s;
+      animation-duration: 7s;
+      fill: var(--favoriteBg);
+      opacity: 0.5;
+    }
+    .parallax > use:nth-child(2) {
+      animation-delay: -3s;
+      animation-duration: 10s;
+      fill: var(--favoriteBg);
+      opacity: 0.6;
+    }
+    .parallax > use:nth-child(3) {
+      animation-delay: -4s;
+      animation-duration: 13s;
+      fill: var(--favoriteBg);
+      opacity: 0.7;
+    }
+    .parallax > use:nth-child(4) {
+      animation-delay: -5s;
+      animation-duration: 20s;
+      fill: var(--favoriteBg);
+    }
+    .parallax > use {
+      animation: move-forever 30s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+    }
+  }
+}
 .live2d {
   position: fixed;
   z-index: 100;
   bottom: -0.8rem;
 }
-
 .signature-wall {
-  /* 向下排列 */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -274,42 +339,35 @@ export default {
   height: 100vh;
   overflow: hidden;
 }
-
 .playful {
   color: var(--red);
   font-size: 40px;
 }
-
 .printer {
   color: var(--darkBlue);
-  background: var(--translucent);
+  background: var(--background);
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }
-
-/* 光标 */
 .cursor {
   margin-left: 1px;
   animation: hideToShow 0.7s infinite;
   font-weight: 200;
 }
-
 .el-icon-arrow-down {
   font-size: 40px;
   font-weight: bold;
-  color: white;
+  color: var(--white);
   position: absolute;
   bottom: 60px;
   animation: my-shake 1.5s ease-out infinite;
   z-index: 15;
 }
-
 .page-container-wrap {
   background: var(--background);
   position: relative;
 }
-
 .page-container {
   display: flex;
   justify-content: center;
@@ -318,11 +376,9 @@ export default {
   margin: 0 auto;
   flex-direction: row;
 }
-
 .recent-posts {
   width: 90%;
 }
-
 .announcement {
   padding: 22px;
   border: 1px dashed var(--red);
@@ -331,21 +387,18 @@ export default {
   display: flex;
   max-width: 1080px;
   margin: 40px auto 40px;
+  i {
+    color: var(--red);
+    font-size: 22px;
+    margin: auto 0;
+    animation: scale 0.8s ease-in-out infinite;
+  }
+  div div {
+    width: 100%;
+    margin-left: 20px;
+    line-height: 30px;
+  }
 }
-
-.announcement i {
-  color: var(--red);
-  font-size: 22px;
-  margin: auto 0;
-  animation: scale 0.8s ease-in-out infinite;
-}
-
-.announcement div div {
-  width: 100%;
-  margin-left: 20px;
-  line-height: 30px;
-}
-
 .aside-content {
   width: calc(30% - 40px);
   user-select: none;
@@ -354,13 +407,11 @@ export default {
   max-width: 300px;
   float: left;
 }
-
 .pagination-wrap {
   display: flex;
   justify-content: center;
   margin-top: 40px;
 }
-
 .pagination {
   padding: 13px 15px;
   border: 1px solid var(--red);
@@ -369,47 +420,12 @@ export default {
   width: 100px;
   user-select: none;
   text-align: center;
-}
-
-.pagination:hover {
-  border: 1px solid var(--blue);
-  color: orange;
-  box-shadow: 0 0 5px var(--blue);
-}
-
-@media screen and (max-width: 1100px) {
-  .recent-posts {
-    width: 100%;
-  }
-
-  .page-container {
-    width: 94%;
+  &:hover {
+    border: 1px solid var(--blue);
+    color: var(--orange);
+    box-shadow: 0 0 5px var(--blue);
   }
 }
-
-@media screen and (max-width: 1000px) {
-  .page-container {
-    /* 文章栏与侧标栏垂直排列 */
-    flex-direction: column;
-  }
-
-  .aside-content {
-    width: 90%;
-    max-width: unset;
-    float: unset;
-    margin: 40px auto 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .playful {
-    font-size: 36px;
-  }
-  h1 {
-    font-size: 35px;
-  }
-}
-
 .content {
   border-radius: 11px;
   position: relative;
@@ -419,7 +435,6 @@ export default {
   overflow-x: auto;
   overflow-y: hidden;
 }
-
 .page {
   border-radius: 12px;
   margin-left: 8px;
@@ -427,26 +442,16 @@ export default {
   height: 186px;
   flex-shrink: 0;
   border: 2px solid var(--myAsideBorderColor);
+  transition: all 1s;
+  &:hover {
+    transform: scale(0.95);
+    background-color: var(--blue);
+    transition-duration: 0.4s;
+    span {
+      color: var(--black);
+    }
+  }
 }
-
-.page::before {
-  content: '';
-  border-radius: 12px;
-  position: absolute;
-  width: 198px;
-  height: 185px;
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-.page:hover {
-  background-color: var(--blue);
-  transition-duration: 0.4s;
-}
-
-.page:hover span {
-  color: black;
-}
-
 .category_group {
   border-radius: 12px;
   flex-shrink: 0;
@@ -456,13 +461,16 @@ export default {
   width: 200px;
   height: 186px;
 }
-
 .category_item {
   overflow: hidden;
   height: 48%;
   border-radius: 12px;
+  transition: all 1s;
+  &:hover {
+    transform: scale(0.95);
+    transition-duration: 0.4s;
+  }
 }
-
 .category_button {
   text-decoration: none;
   height: 100%;
@@ -473,15 +481,25 @@ export default {
   line-height: 4em;
   font-weight: 800;
   font-size: 20px;
-  color: white;
+  color: var(--white);
   overflow: hidden;
+  &_text {
+    padding: 20px;
+    background: linear-gradient(to right, var(--red), var(--green1)) no-repeat right bottom;
+    background-size: 0px 3px;
+    transition: background-size 1300ms;
+    &:hover {
+      background-position-x: left;
+      background-size: 100% 3px;
+    }
+  }
 }
 .category_buttons::before {
   line-height: 60px;
   content: '推荐';
   position: absolute;
   z-index: 2;
-  color: rgb(255, 255, 255);
+  color: var(--white);
   top: -15px;
   letter-spacing: 3px;
   left: 140px;
@@ -490,45 +508,29 @@ export default {
   height: 50px;
   display: flex;
   justify-content: center;
-  background: linear-gradient(90deg, rgb(255, 184, 99), rgb(255, 117, 0));
+  background: linear-gradient(90deg, var(--orange), var(--orange6));
   border-radius: 0px 0px 12px 12px;
 }
-.category_button_text {
-  padding: 20px;
-  background: linear-gradient(to right, #ec695c, #61c454) no-repeat right bottom;
-  background-size: 0px 3px;
-  transition: background-size 1300ms;
-}
-
-.category_button_text:hover {
-  background-position-x: left;
-  background-size: 100% 3px;
-}
-
 .post_cover {
   width: 100%;
   height: 130px;
   position: relative;
+  > a {
+    text-decoration: none;
+    display: block;
+  }
+  img {
+    border-radius: 12px;
+    object-fit: cover;
+    width: 100%;
+    height: 130px;
+  }
 }
-
-.post_cover > a {
-  text-decoration: none;
-  display: block;
-}
-
-.post_cover img {
-  border-radius: 12px;
-  object-fit: cover;
-  width: 100%;
-  height: 130px;
-}
-
 .post_info {
   padding: 6px 9px;
 }
-
 .article-title {
-  color: var(--maxLightRed);
+  color: var(--fontColor);
   -webkit-line-clamp: 2;
   overflow: hidden;
   display: -webkit-box;
@@ -536,5 +538,38 @@ export default {
   line-height: 1.4;
   font-size: 15px;
   padding: 0;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+@media screen and (max-width: 1100px) {
+  .recent-posts {
+    width: 100%;
+  }
+  .page-container {
+    width: 94%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .page-container {
+    /* 文章栏与侧标栏垂直排列 */
+    flex-direction: column;
+  }
+  .aside-content {
+    width: 90%;
+    max-width: unset;
+    float: unset;
+    margin: 40px auto 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .playful {
+    font-size: 30px;
+  }
 }
 </style>

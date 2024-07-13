@@ -26,6 +26,7 @@ class LoginView(APIView):
     def post(self, request):
         username = request.data.get("account", "")
         password = request.data.get("password")
+        p = request.data.get("province")
         str = r'^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
         if re.match(str, username):
             client = Client.objects.get(email=username)
@@ -54,7 +55,11 @@ class LoginView(APIView):
                     avatar_a = client.avatar
             else:
                 avatar_a = client.avatar
-
+            # 找到，没有的话就province
+            client = Client.objects.get(user_id=user.id)
+            if client.province is None:
+                client.province = p
+                client.save()
             data.append(
                 {
                     "accessToken": token.key,

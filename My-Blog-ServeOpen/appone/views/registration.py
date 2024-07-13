@@ -24,14 +24,15 @@ class RegisterView(APIView):
         password = data['password']
         email = data['email']
         code = data['code']
-
+        p = data["province"]
         if not (username and password):
             return Response({'error': 'Please provide both username and password.'}, status=400)
 
         user_exists = User.objects.filter(username=username).exists()
+        email_exists = Client.objects.filter(email=email).exists()
 
-        if user_exists:
-            return Response({'error': 'Username already exists.'}, status=400)
+        if user_exists or email_exists:
+            return Response({'error': '用户名或者邮箱已存在'}, status=400)
         if not email or not code:
             return Response({
                 'result': "邮箱或验证码不能为空"
@@ -43,7 +44,7 @@ class RegisterView(APIView):
             if newly_log.create_time.replace(tzinfo=None) >= time:
                 if newly_log.code == code:
                     user = User.objects.create_user(username=username, password=password)
-                    Client.objects.create(user=user, username=username, email=email)
+                    Client.objects.create(user=user, username=username, email=email, province=p)
                     token, created = Token.objects.get_or_create(user=user)
                     user = User.objects.filter(username=username).first()
                     client = Client.objects.get(user_id=user.id)

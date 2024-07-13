@@ -66,11 +66,11 @@ a {
   height: 0px;
 }
 ::-webkit-scrollbar-track {
-  background-color: rgba(73, 177, 245, 0.2);
+  background-color: var(--toolbarBackground);
 }
 ::-webkit-scrollbar-thumb {
   background-color: var(--red);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, var(--whiteMask) 25%, transparent 25%, transparent 50%, var(--whiteMask) 50%, var(--whiteMask) 75%, transparent 75%, transparent);
   border-radius: 1em;
 }
 .el-select-dropdown.el-popper ::-webkit-scrollbar {
@@ -78,8 +78,8 @@ a {
 }
 /* 选中样式 */
 ::selection {
-  background: var(--lightBlue);
-  color: black;
+  background: var(--green2);
+  color: var(--black);
 }
 /* 居中 */
 .myCenter {
@@ -112,8 +112,8 @@ a {
 }
 .el-pagination.is-background .btn-next:hover,
 .el-pagination.is-background .btn-prev:hover {
-  background: rgba(29, 191, 255, 0.945);
-  color: #fff;
+  background: var(--blue25);
+  color: var(--white);
   transition: all 0.2s;
 }
 /* el弹出框样式 */
@@ -122,18 +122,18 @@ a {
   border: 0;
 }
 .el-message * {
-  color: var(--darkBlue) !important;
+  color: var(--fontColor) !important;
   font-weight: 400;
   font-size: 18px;
 }
 .el-message--success {
-  background: var(--pink);
+  background: var(--favoriteBg);
 }
 .el-message--warning {
-  background: var(--pink);
+  background: var(--favoriteBg);
 }
 .el-message--error {
-  background: var(--pink);
+  background: var(--favoriteBg);
 }
 /* 图标旋转 */
 .iconRotate {
@@ -184,7 +184,7 @@ a {
 .el-tooltip__popper.is-light {
   background: var(--gradientAnimation);
   border-radius: 10px;
-  color: white;
+  color: var(--white);
   padding: 12px 20px;
   letter-spacing: 1px;
   font-weight: 600;
@@ -193,8 +193,8 @@ a {
   border: unset;
 }
 .el-button--primary {
-  background-color: #ee7752 !important;
-  border-color: #ee7752 !important;
+  background-color: var(--red) !important;
+  border-color: var(--red) !important;
 }
 .el-select .el-input__inner,
 .el-select .el-input .el-select__caret,
@@ -231,8 +231,9 @@ a {
   border-style: unset;
 }
 .el-popover {
+  min-width: 110px;
   opacity: 0.8;
-  background: #00c4b6;
+  background: var(--green2);
   border: none;
 }
 .markdown-body pre code {

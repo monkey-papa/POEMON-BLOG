@@ -213,15 +213,21 @@ export default {
           false
         )
         .then(res => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '保存成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -257,9 +263,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -268,9 +277,12 @@ export default {
         if (valid) {
           this.updateWebInfo(this.webInfo)
         } else {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: '请完善必填项！',
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         }
       })
@@ -373,39 +385,48 @@ export default {
           this.$http
             .post(this.$constant.baseURL + '/admin/webInfo/updateAdminWebInfo/', value, true, false)
             .then(res => {
-              this.$message({
+              this.$notify({
+                title: '可以啦🍨',
                 message: '保存成功！',
-                type: 'success'
+                type: 'success',
+                offset: 50,
+                position: 'top-left'
               })
             })
             .catch(error => {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: error.message,
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             })
         })
         .catch(() => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消保存！',
             type: 'success',
-            message: '已取消保存!'
+            offset: 50,
+            position: 'top-left'
           })
         })
     }
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .my-tag {
   margin-bottom: 20px !important;
   width: 100%;
   text-align: left;
-  background: var(--lightBlue);
+  background: var(--green2);
   border: none;
   height: 40px;
   line-height: 40px;
   font-size: 16px;
-  color: black;
+  color: var(--black);
 }
 .el-tag {
   margin: 10px;

@@ -42,7 +42,7 @@
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
             <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button type="text" icon="el-icon-delete" style="color: var(--orangeRed)" @click="handleDelete(scope.row)">
+            <el-button type="text" icon="el-icon-delete" style="color: var(--red)" @click="handleDelete(scope.row)">
               删除
             </el-button>
           </template>
@@ -174,9 +174,12 @@ export default {
         return
       }
       if (!['funny'].includes(this.resourcePath.type)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请选择有效资源类型！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -187,9 +190,12 @@ export default {
         return
       }
       if (this.$common.isEmpty(this.resourcePath.type)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请选择资源类型！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -197,27 +203,36 @@ export default {
     },
     addResourcePath() {
       if (this.$common.isEmpty(this.resourcePath.title) || this.$common.isEmpty(this.resourcePath.type)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '标题和资源类型不能为空！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       this.$http
         .post(this.$constant.baseURL + (this.isUpdate ? '/webInfo/updateResourcePath/' : '/webInfo/saveResourcePath/'), this.resourcePath, true)
         .then(res => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '保存成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
           this.addResourcePathDialog = false
           this.clearDialog()
           this.search(this.pagination.current)
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -236,9 +251,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -246,15 +264,21 @@ export default {
       this.$http
         .post(this.$constant.baseURL + '/webInfo/updateResourcePath/', item, true)
         .then(res => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '修改成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -274,22 +298,31 @@ export default {
             .get(this.$constant.baseURL + '/webInfo/deleteResourcePath/', { id: item.id }, true)
             .then(res => {
               this.search(this.pagination.current)
-              this.$message({
+              this.$notify({
+                title: '可以啦🍨',
                 message: '删除成功！',
-                type: 'success'
+                type: 'success',
+                offset: 50,
+                position: 'top-left'
               })
             })
             .catch(error => {
-              this.$message({
+              this.$notify({
+                type: 'error',
+                title: '可恶🤬',
                 message: error.message,
-                type: 'error'
+                position: 'top-left',
+                offset: 50
               })
             })
         })
         .catch(() => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
+            message: '已取消删除！',
             type: 'success',
-            message: '已取消删除!'
+            offset: 50,
+            position: 'top-left'
           })
         })
     },
@@ -319,37 +352,31 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .handle-box {
   margin-bottom: 20px;
 }
-
 .handle-select {
   width: 200px;
 }
-
 .table {
   width: 100%;
   font-size: 14px;
 }
-
 .mrb10 {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-
 .table-td-thumb {
   display: block;
   margin: auto;
   width: 40px;
   height: 40px;
 }
-
 .pagination {
   margin: 20px 0;
   text-align: right;
 }
-
 .el-switch {
   margin: 5px;
 }

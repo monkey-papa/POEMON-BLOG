@@ -9,28 +9,27 @@ export default {
   props: {
     info: {
       type: String,
-      default: "一只小毛驴",
+      default: 'monkey-papa'
     },
     color: {
-      type: String,
-    },
+      type: String
+    }
   },
   data() {
     return {
-      bg: { background: this.color },
-    };
-  },
-};
+      bg: { background: this.color }
+    }
+  }
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .myTag {
-  color: white;
+  color: var(--white);
   border-radius: 5px;
   padding: 8px;
-}
-
-.myTag:hover {
-  background: var(--gradualRed) !important;
+  &:hover {
+    background: var(--gradualRed) !important;
+  }
 }
 </style>

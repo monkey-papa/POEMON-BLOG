@@ -70,9 +70,12 @@ export default {
   methods: {
     openPicture() {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请先登录！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -93,9 +96,12 @@ export default {
     },
     showGraffiti() {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请先登录！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -104,16 +110,22 @@ export default {
     },
     submitComment() {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '请先登录！',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
       if (this.commentContent.trim() === '') {
-        this.$message({
+        this.$notify({
+          type: 'warning',
+          title: '淘气👻',
           message: '你还没写呢~',
-          type: 'warning'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -124,16 +136,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .comment-textarea {
-  border: 2px solid var(--lightGray);
+  border: 2px solid var(--gray15);
   width: 100%;
   font-size: 14px;
   padding: 15px;
   min-height: 180px;
-  /* 不改变大小 */
   resize: none;
-  /* 不改变边框 */
   outline: none;
   border-radius: 4px;
   background-image: var(--comment1URL), var(--comment2URL);
@@ -141,39 +151,35 @@ export default {
   background-repeat: no-repeat, no-repeat;
   background-size: 25%, 30%;
   margin-bottom: 10px;
-}
-
-.comment-textarea:focus {
-  border-color: orange;
-}
-.comment-textarea::placeholder {
-  color: var(--darkBlue);
+  &:focus {
+    border-color: var(--orange);
+  }
+  &::placeholder {
+    color: var(--darkBlue);
+  }
 }
 .myEmoji {
   font-size: 18px;
   transition: all 0.5s;
   margin-right: 12px;
+  &:hover {
+    transform: rotate(360deg);
+    font-size: 22px;
+  }
 }
-
-.myEmoji:hover {
-  transform: rotate(360deg);
-  font-size: 22px;
-}
-
 .myPicture {
   font-size: 18px;
 }
-
 .emoji-active {
   color: var(--red);
 }
 ::v-deep .dialog {
   border-radius: 14px;
   overflow: scroll;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px var(--mask), 0 10px 10px var(--miniMask);
   height: 300px;
-}
-::v-deep .dialog::-webkit-scrollbar {
-  width: 0px;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 }
 </style>

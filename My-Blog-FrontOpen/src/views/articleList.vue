@@ -60,7 +60,7 @@
               <div slot="error" class="image-slot myCenter">
                 <img class="error-img img" :class="{ 'error-img__active': !activeIcon }" :src="$store.state.webInfo.randomCover[0]" alt="" />
                 <div class="error-text">
-                  <div style="color: wheat">肥肠抱歉，图片跑掉了┮﹏┭</div>
+                  <div style="color: var(--wheat)">肥肠抱歉，图片跑掉了┮﹏┭</div>
                 </div>
               </div>
             </el-image>
@@ -223,12 +223,14 @@ export default {
     handleChangeIcon() {
       this.allLoadIndex = 0
       this.loading = !this.loading
+      const cParent = document.querySelector('#container')
       setTimeout(() => {
         this.loading = !this.loading
         this.activeIcon = !this.activeIcon
         if (!this.activeIcon) {
-          const cParent = document.querySelector('#container')
           cParent.style.opacity = 0
+        } else {
+          cParent.style.height = 'auto'
         }
       }, 1000)
     },
@@ -295,7 +297,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .article-first {
   height: 38px;
   color: var(--red);
@@ -313,20 +315,19 @@ export default {
 .el-icon-menu,
 .el-icon-s-operation {
   font-size: 20px;
+  &.active {
+    color: var(--orange);
+  }
 }
 .el-icon-s-operation {
   margin-right: 10px;
 }
-.el-icon-s-operation.active,
-.el-icon-menu.active {
-  color: #ffa500;
-}
 .recent-post-container {
   max-width: 1080px;
   margin: auto;
-}
-.recent-post-container .recent-post-item:not(:last-child) {
-  margin-bottom: 40px;
+  .recent-post-item:not(:last-child) {
+    margin-bottom: 40px;
+  }
 }
 .recent-post-item {
   height: 300px;
@@ -337,109 +338,111 @@ export default {
   overflow: hidden;
   border-radius: 10px;
   animation: hideToShow 1s ease-in-out;
-}
-.recent-post-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200%;
-  background: linear-gradient(to right, transparent, white, transparent);
-  transform: translateX(-200%);
-  transition: transform 0.5s linear;
-  z-index: 1;
-}
-.recent-post-item:hover::before {
-  transform: translateX(100%) skewX(-60deg);
-}
-.recent-post-item-image {
-  width: 50%;
-  height: 100%;
-}
-.recent-post-item-image >>> .el-image__inner {
-  transition: all 1s;
-}
-.recent-post-item-image >>> .el-image__inner:hover {
-  transform: scale(1.2);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(to right, transparent, var(--white), transparent);
+    transform: translateX(-200%);
+    transition: transform 0.5s linear;
+    z-index: 1;
+  }
+  &:hover::before {
+    transform: translateX(100%) skewX(-60deg);
+  }
+  &-image {
+    width: 50%;
+    height: 100%;
+    ::v-deep .el-image__inner {
+      transition: all 1s;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+  &-post {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    h3 {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    &.waterfallImage {
+      padding: 10px 15px;
+    }
+  }
 }
 .leftImage {
   position: absolute;
   left: 0;
+  .sort-label {
+    position: absolute;
+    bottom: 20px;
+    height: 20px;
+    display: flex;
+  }
 }
 .rightImage {
   position: absolute;
   right: 0;
   text-align: right;
-}
-.recent-post-item-post {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-.recent-post-item-post h3 {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  .sort-label {
+    position: absolute;
+    bottom: 20px;
+    right: 35px;
+    height: 20px;
+    display: flex;
+  }
 }
 .post-meta {
   font-size: 14px;
   color: var(--red);
-}
-.post-meta i {
-  font-size: 15px;
-}
-.post-meta span:not(:last-child) {
-  margin-right: 10px;
+  i {
+    font-size: 15px;
+  }
+  span:not(:last-child) {
+    margin-right: 10px;
+  }
 }
 .recent-post-desc {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
-  /* 超出3行就... */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.leftImage .sort-label {
-  position: absolute;
-  bottom: 20px;
-  height: 20px;
-  display: flex;
-}
-.rightImage .sort-label {
-  position: absolute;
-  bottom: 20px;
-  right: 35px;
-  height: 20px;
-  display: flex;
-}
 .sort-label .sort-label--item {
   display: flex;
   align-items: center;
   padding: 3px 10px;
-  background-color: var(--maxLightGray);
+  background-color: var(--white);
   border-radius: 3px;
   font-size: 14px;
   color: var(--red);
   transition: all 0.3s;
   user-select: none;
-}
-.sort-label .sort-label--item:hover {
-  background: var(--gradientAnimation);
-  color: white;
+  &:hover {
+    background: var(--gradientAnimation);
+    color: var(--white);
+  }
 }
 .img-loading {
   object-fit: cover;
   height: 300px;
   width: 540px;
-}
-.img-loading__active {
-  width: 100%;
+  &__active {
+    width: 100%;
+  }
 }
 .error-img {
   position: relative;
@@ -447,10 +450,10 @@ export default {
   object-fit: cover;
   height: 300px;
   width: 100%;
-}
-.error-img__active {
-  height: 240px;
-  width: 100%;
+  &__active {
+    height: 240px;
+    width: 100%;
+  }
 }
 .error-text {
   z-index: 2;
@@ -458,7 +461,6 @@ export default {
   font-size: 16px;
   line-height: 1.8;
   letter-spacing: 8px;
-  color: rgb(193, 27, 126);
 }
 .display-flex {
   display: flex;
@@ -473,27 +475,24 @@ export default {
   margin-right: 2%;
   display: flex;
   flex-direction: column;
-}
-.waterfall.recent-post-item:not(:last-child) {
-  margin-bottom: unset;
+  &.recent-post-item:not(:last-child) {
+    margin-bottom: unset;
+  }
 }
 .waterfallImage {
   width: 100%;
   position: unset;
   text-align: unset;
-}
-.recent-post-item-post.waterfallImage {
-  padding: 10px 15px;
-}
-.waterfallImage .sort-label {
-  position: unset;
-  margin-top: 8px;
-}
-.waterfallImage .post-meta {
-  margin-bottom: 8px !important;
-}
-.waterfallImage .el-tooltip {
-  margin: 10px 0;
+  .sort-label {
+    position: unset;
+    margin-top: 8px;
+  }
+  .post-meta {
+    margin-bottom: 8px;
+  }
+  .el-tooltip {
+    margin: 10px 0;
+  }
 }
 .SortLabelName {
   max-width: 110px;
@@ -506,61 +505,50 @@ export default {
   width: 180px;
   height: 90px;
   text-align: center;
+  > div {
+    height: 100px;
+    width: 18px;
+    display: inline-block;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  }
+  .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+  .rect3 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+  }
+  .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+  .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+  .rect6 {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+  }
+  .rect7 {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+  }
+  .rect8 {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+  }
+  .rect9 {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+  }
+  .rect10 {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+  }
 }
-
-.spinner > div {
-  height: 100px;
-  width: 18px;
-  display: inline-block;
-  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  animation: sk-stretchdelay 1.2s infinite ease-in-out;
-}
-
-.spinner .rect2 {
-  -webkit-animation-delay: -1.1s;
-  animation-delay: -1.1s;
-}
-
-.spinner .rect3 {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-}
-
-.spinner .rect4 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-
-.spinner .rect5 {
-  -webkit-animation-delay: -0.8s;
-  animation-delay: -0.8s;
-}
-
-.spinner .rect6 {
-  -webkit-animation-delay: -0.7s;
-  animation-delay: -0.7s;
-}
-
-.spinner .rect7 {
-  -webkit-animation-delay: -0.6s;
-  animation-delay: -0.6s;
-}
-
-.spinner .rect8 {
-  -webkit-animation-delay: -0.5s;
-  animation-delay: -0.5s;
-}
-
-.spinner .rect9 {
-  -webkit-animation-delay: -0.4s;
-  animation-delay: -0.4s;
-}
-
-.spinner .rect10 {
-  -webkit-animation-delay: -0.3s;
-  animation-delay: -0.3s;
-}
-
 @-webkit-keyframes sk-stretchdelay {
   0%,
   40%,
@@ -571,7 +559,6 @@ export default {
     -webkit-transform: scaleY(1);
   }
 }
-
 @keyframes sk-stretchdelay {
   0%,
   40%,

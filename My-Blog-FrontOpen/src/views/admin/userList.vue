@@ -23,6 +23,7 @@
         <el-table-column prop="username" label="用户名" align="center"></el-table-column>
         <el-table-column prop="phoneNumber" label="手机号" align="center"></el-table-column>
         <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
+        <el-table-column prop="province" label="注册地址" align="center"></el-table-column>
         <el-table-column label="赞赏" width="100" align="center">
           <template slot-scope="scope">
             <el-input size="medium" maxlength="30" v-model="scope.row.admire" @blur="changeUserAdmire(scope.row)"></el-input>
@@ -138,9 +139,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -156,15 +160,21 @@ export default {
           false
         )
         .then(res => {
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '修改成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -188,22 +198,31 @@ export default {
                 false
               )
               .then(res => {
-                this.$message({
+                this.$notify({
+                  title: '可以啦🍨',
                   message: '修改成功！',
-                  type: 'success'
+                  type: 'success',
+                  offset: 50,
+                  position: 'top-left'
                 })
               })
               .catch(error => {
-                this.$message({
+                this.$notify({
+                  type: 'error',
+                  title: '可恶🤬',
                   message: error.message,
-                  type: 'error'
+                  position: 'top-left',
+                  offset: 50
                 })
               })
           })
           .catch(() => {
-            this.$message({
+            this.$notify({
+              title: '可以啦🍨',
+              message: '已取消保存！',
               type: 'success',
-              message: '已取消保存!'
+              offset: 50,
+              position: 'top-left'
             })
           })
       }
@@ -212,9 +231,12 @@ export default {
       this.changeUser.id = user.id
       this.changeUser.userType = user.userType
       if (this.changeUser.userType === 0) {
-        this.$message({
+        this.$notify({
+          type: 'error',
+          title: '可恶🤬',
           message: '禁止修改Boss用户',
-          type: 'error'
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -222,9 +244,12 @@ export default {
     },
     handlePageChange(val) {
       if (this.pagination.userType == 0 || this.pagination.userType == 1 || this.pagination.userType == 2 || this.pagination.userStatus == true || this.pagination.userStatus == false || this.pagination.searchKey) {
-        this.$message({
+        this.$notify({
           type: 'error',
-          message: '请清除查询参数再进行操作!'
+          title: '可恶🤬',
+          message: '请清除查询参数再进行操作！',
+          position: 'top-left',
+          offset: 50
         })
         return
       }
@@ -257,15 +282,21 @@ export default {
         .then(res => {
           this.handleClose()
           this.getUsers()
-          this.$message({
+          this.$notify({
+            title: '可以啦🍨',
             message: '修改成功！',
-            type: 'success'
+            type: 'success',
+            offset: 50,
+            position: 'top-left'
           })
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -280,51 +311,42 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .handle-box {
   margin-bottom: 20px;
 }
-
 .handle-select {
   width: 120px;
 }
-
 .handle-input {
   width: 180px;
   display: inline-block;
 }
-
 .table {
   width: 100%;
   font-size: 14px;
 }
-
 .mrb10 {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-
 .table-td-thumb {
   display: block;
   margin: auto;
   width: 40px;
   height: 40px;
 }
-
 .pagination {
   margin: 20px 0;
   text-align: right;
 }
-
 .el-switch {
   margin: 5px;
 }
-
 .boy,
 .manager {
-  color: #23a6d5;
+  color: var(--blue25);
 }
-
 .girl,
 .boss {
   color: var(--red);

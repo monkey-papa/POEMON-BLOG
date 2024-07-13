@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="travel-container">
+    <div class="travel-container" style="background: var(--background);">
       <!-- 背景图片 -->
       <div style="animation: header-effect 2s;" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
       <div class="travel-top">
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div v-if="!$common.mobile() && !mobile" class="travel-header-right" style="
-            background-image: url(https://www.qiniuyun.gif);
+            background-image: url(https://www.qiniuyun.zjh2002.icu/gif/%E7%BA%A2%E5%AD%A9%E5%84%BF.gif);
           ">
           <div class="card-content">
             <div class="author-content-item-tips">┗|｀O′|┛ 嗷～～</div>
@@ -59,19 +59,15 @@
         </div>
       </div>
     </div>
-    <!-- 页脚 -->
-    <myFooter></myFooter>
   </div>
 </template>
 <script>
-const myFooter = () => import('./common/myFooter')
 const photo = () => import('./common/photo')
 const proTag = () => import('./common/proTag')
 export default {
   components: {
     photo,
-    proTag,
-    myFooter
+    proTag
   },
   data() {
     return {
@@ -117,9 +113,12 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     },
@@ -150,16 +149,19 @@ export default {
           }
         })
         .catch(error => {
-          this.$message({
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: 'error'
+            position: 'top-left',
+            offset: 50
           })
         })
     }
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .travel-header {
   margin: 60px 10px 30px;
   height: 300px;
@@ -168,6 +170,22 @@ export default {
   width: 1130px;
   color: var(--red);
   user-select: none;
+  &-right {
+    right: 0;
+    margin: 60px 10px 30px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+    width: 270px;
+    color: var(--red);
+    user-select: none;
+    position: relative;
+    background-color: var(--brown);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    color: var(--red);
+  }
 }
 .index-video {
   width: 100%;
@@ -203,38 +221,23 @@ export default {
   margin-top: 40px;
 }
 .pagination {
+  margin-bottom: 8px;
   padding: 13px 15px;
-  border: 1px solid var(--lightGray);
+  border: 1px solid var(--red);
   border-radius: 3rem;
-  color: var(--greyFont);
+  color: var(--red);
   width: 100px;
   user-select: none;
   text-align: center;
-}
-@media screen and (max-width: 1150px) {
-  .photo-title-warp {
-    max-width: 780px;
+  &:hover {
+    border: 1px solid var(--blue);
+    color: var(--orange);
+    box-shadow: 0 0 5px var(--blue);
   }
 }
 .travel-top {
   display: flex;
   justify-content: center;
-}
-.travel-header-right {
-  right: 0;
-  margin: 60px 10px 30px;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 20px;
-  width: 270px;
-  color: var(--red);
-  user-select: none;
-  position: relative;
-  background-color: brown;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  color: var(--red);
 }
 .card-content {
   position: absolute;
@@ -261,11 +264,16 @@ export default {
   height: 2rem;
   width: 6rem;
   border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--favoriteBg);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   outline: none;
+}
+@media screen and (max-width: 1150px) {
+  .photo-title-warp {
+    max-width: 780px;
+  }
 }
 </style>

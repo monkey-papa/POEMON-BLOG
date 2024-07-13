@@ -1,6 +1,10 @@
 <template>
   <div id="app" @contextmenu.prevent="openMenu($event,item)">
     <router-view />
+    <!-- 页脚 -->
+    <div class="sf-my__footer" v-if="!['/love','/backendMain','/webEdit','/userList','/postList','/sortList','/commentList','/treeHoleList','/resourceList','/resourcePathList','/loveList','/prohibitedWordsList','/verifyLogin'].includes($route.path)">
+      <myFooter></myFooter>
+    </div>
     <aplayer></aplayer>
     <div v-if="$store.state.isShowLoading" class="loading">
       <div class="author-box">
@@ -56,11 +60,13 @@
   </div>
 </template>
 <script>
+const myFooter = () => import('./views/common/footer.vue')
 const aplayer = () => import('./views/common/aplayer.vue')
 export default {
   name: 'App',
   components: {
-    aplayer
+    aplayer,
+    myFooter
   },
   data() {
     return {
@@ -195,7 +201,7 @@ color: rgb(30,152,255);
         message: '本博主的微信已经到你的剪贴板啦，快加入我们吧~~🎉',
         type: 'success',
         offset: 50,
-        duration: 0
+        position: 'top-left'
       })
     },
     // 美化设置
@@ -225,30 +231,30 @@ color: rgb(30,152,255);
   }
 }
 </script>
-<style>
-#nprogress .bar {
-  background: linear-gradient(to right, #61c454, #ec695c) no-repeat !important;
-  height: 5px !important;
-}
-
-#nprogress .peg {
-  box-shadow: 0 0 10px #dd181800, 0 0 5px #c2282800 !important;
+<style lang="scss">
+#nprogress {
+  .bar {
+    background: linear-gradient(to right, var(--green1), var(--red)) no-repeat !important;
+    height: 5px !important;
+  }
+  .peg {
+    box-shadow: 0 0 10px var(--transparent), 0 0 5px var(--transparent) !important;
+  }
 }
 </style>
-
-<style scoped>
+<style lang="scss" scoped>
 .contextmenu {
   margin: 0;
-  background: white;
+  background: var(--white);
   z-index: 3000;
   position: absolute;
   width: 9rem;
   height: fit-content;
   border-radius: 12px;
-  border: 1px solid #e3e8f7;
+  border: 1px solid var(--favoriteBg);
   font-size: 12px;
   font-weight: 700;
-  color: #353535;
+  color: var(--black5);
   transition: 0.3s;
   padding: 0 0.25rem;
 }
@@ -256,52 +262,52 @@ color: rgb(30,152,255);
   padding: 0.35rem 0.3rem;
   display: flex;
   justify-content: space-between;
-}
-.rightMenu-group:not(:nth-last-child(1)) {
-  border-bottom: 1px dashed #4259ef23;
-}
-.rightMenu-group .rightMenu-item {
-  border-radius: 8px;
-  transition: 0.3s;
-}
-.rightMenu-group .rightMenu-item i {
-  font-size: 15px;
-  display: inline-block;
-  text-align: center;
-  line-height: 1.5rem;
-  font-weight: 900;
-  width: 1.5rem;
-  padding: 0 0.25rem;
+  &:not(:nth-last-child(1)) {
+    border-bottom: 1px dashed var(--miniMask);
+  }
+  .rightMenu-item {
+    border-radius: 8px;
+    transition: 0.3s;
+    i {
+      font-size: 15px;
+      display: inline-block;
+      text-align: center;
+      line-height: 1.5rem;
+      font-weight: 900;
+      width: 1.5rem;
+      padding: 0 0.25rem;
+    }
+    &:hover {
+      background-color: var(--blue25);
+      color: var(--white);
+      box-shadow: 0 8px 12px -3px var(--miniMask);
+    }
+  }
 }
 .rightMenu-line {
   display: block;
-}
-.rightMenu-line .rightMenu-item {
-  margin: 0.25rem 0;
-  padding: 0.25rem 0;
-  display: flex;
-  font-size: 15px;
-}
-.rightMenu-line .rightMenu-item i {
-  margin: 0 0.25rem;
-}
-.rightMenu-line .rightMenu-item span {
-  line-height: 1.5rem;
-  font-weight: 500;
+  .rightMenu-item {
+    margin: 0.25rem 0;
+    padding: 0.25rem 0;
+    display: flex;
+    font-size: 15px;
+    i {
+      margin: 0 0.25rem;
+    }
+    span {
+      line-height: 1.5rem;
+      font-weight: 500;
+    }
+  }
 }
 a.rightMenu-item {
-  color: #353535;
+  color: var(--black5);
   text-decoration: none;
-}
-.rightMenu-group .rightMenu-item:hover {
-  background-color: #1dbffff1;
-  color: white;
-  box-shadow: 0 8px 12px -3px #4259ef23;
 }
 .loading {
   width: 100%;
   height: 100%;
-  background: linear-gradient(55deg, #0095c2 21%, #64e1c8 100%);
+  background: linear-gradient(55deg, var(--blue1) 21%, var(--green6) 100%);
   position: absolute;
   top: 0px;
   left: 0px;
@@ -311,56 +317,40 @@ a.rightMenu-item {
   align-items: center;
   font-size: 30px;
 }
-
 .author-box {
   position: relative;
   width: 159px;
   height: 159px;
-  background: rgba(253, 253, 253, 0.8);
   border-radius: 50%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.author-box::before {
-  content: '';
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, #8758ff);
-  animation: animate 2s linear infinite;
-  animation-delay: -1s;
-}
-
-.author-box::after {
-  content: '';
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, #5cb8e4);
-  animation: animate 2s linear infinite;
-}
-
-@keyframes animate {
-  0% {
-    transform: rotate(0);
+  &::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-image: conic-gradient(transparent, transparent, transparent, var(--purple1));
+    animation: animate 2s linear infinite;
+    animation-delay: -1s;
   }
-
-  100% {
-    transform: rotate(360deg);
+  &::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background-image: conic-gradient(transparent, transparent, transparent, var(--blue));
+    animation: animate 2s linear infinite;
+  }
+  span {
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: var(--favoriteBg);
+    z-index: 1;
   }
 }
-
-.author-box span {
-  position: absolute;
-  inset: 5px;
-  border-radius: 50%;
-  background: rgba(253, 253, 253, 0.8);
-  z-index: 1;
-}
-
 .author-img {
   margin: auto;
   border-radius: 50%;
@@ -368,35 +358,37 @@ a.rightMenu-item {
   width: 150px;
   height: 150px;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.67);
+  background: var(--maxMaxWhiteMask);
+  img {
+    border-radius: 11px;
+    margin-right: 4px;
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    animation: breath 700ms ease-in-out infinite;
+  }
 }
-
-.author-img img {
-  border-radius: 11px;
-  margin-right: 4px;
-  display: block;
-  margin: 0 auto 20px;
-  max-width: 100%;
-  animation: breath 700ms ease-in-out infinite;
+@keyframes animate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 @keyframes breath {
   from {
     opacity: 0.7;
   }
-
   25% {
     opacity: 0.9;
   }
-
   50% {
     opacity: 1;
   }
-
   75% {
     opacity: 0.9;
   }
-
   to {
     opacity: 0.7;
   }

@@ -17,6 +17,7 @@ import "./assets/css/tocbot.css";
 import "./assets/css/color.css";
 import "./assets/css/markdown-highlight.css";
 import "mavon-editor/dist/css/index.css";
+import "./assets/css/icon.css";
 //图标引入
 import "./assets/css/font-awesome.min.css";
 //图片跳动

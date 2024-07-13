@@ -3,45 +3,27 @@
     <ul class="page-content">
       <li class="page-item" v-if="current !== 1" @click="toPage(-1)">👈</li>
       <template v-if="current === 1">
-        <li
-          class="page-item"
-          :style="{
+        <li class="page-item" :style="{
             background: index === 1 ? color : '',
-            color: index === 1 ? 'white' : '',
-          }"
-          v-for="index of realButtonSize"
-          :key="index"
-          @click="toPage(index)"
-        >
+            color: index === 1 ? 'var(--white)' : '',
+          }" v-for="index of realButtonSize" :key="index" @click="toPage(index)">
           {{ index }}
         </li>
       </template>
       <template v-else-if="current === totalSize">
-        <li
-          class="page-item"
-          :style="{
+        <li class="page-item" :style="{
             background: index === realButtonSize ? color : '',
-            color: index === realButtonSize ? 'white' : '',
-          }"
-          v-for="index of realButtonSize"
-          :key="index"
-          @click="toPage(current - (realButtonSize - index))"
-        >
+            color: index === realButtonSize ? 'var(--white)' : '',
+          }" v-for="index of realButtonSize" :key="index" @click="toPage(current - (realButtonSize - index))">
           {{ current - (realButtonSize - index) }}
         </li>
       </template>
       <template v-else>
-        <li
-          class="page-item"
-          :style="{
+        <li class="page-item" :style="{
             background:
               Math.ceil(realButtonSize / 2) - index === 0 ? color : '',
-            color: Math.ceil(realButtonSize / 2) - index === 0 ? 'white' : '',
-          }"
-          v-for="index of realButtonSize"
-          :key="index"
-          @click="toPage(current - (Math.ceil(realButtonSize / 2) - index))"
-        >
+            color: Math.ceil(realButtonSize / 2) - index === 0 ? 'var(--white)' : '',
+          }" v-for="index of realButtonSize" :key="index" @click="toPage(current - (Math.ceil(realButtonSize / 2) - index))">
           {{ current - (Math.ceil(realButtonSize / 2) - index) }}
         </li>
       </template>
@@ -57,79 +39,75 @@ export default {
   props: {
     current: {
       type: Number,
-      default: 1,
+      default: 1
     },
     size: {
       type: Number,
-      default: 10,
+      default: 10
     },
     total: {
       type: Number,
-      default: 0,
+      default: 0
     },
     buttonSize: {
       type: Number,
-      default: 3,
+      default: 3
     },
     color: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   data() {
     return {
       totalSize: 0,
-      realButtonSize: 0,
-    };
+      realButtonSize: 0
+    }
   },
   watch: {
     total(newVal) {
-      this.totalSize = Math.ceil(this.total / this.size);
-      this.realButtonSize =
-        this.buttonSize < this.totalSize ? this.buttonSize : this.totalSize;
-    },
+      this.totalSize = Math.ceil(this.total / this.size)
+      this.realButtonSize = this.buttonSize < this.totalSize ? this.buttonSize : this.totalSize
+    }
   },
   created() {
-    this.totalSize = Math.ceil(this.total / this.size);
-    this.realButtonSize =
-      this.buttonSize < this.totalSize ? this.buttonSize : this.totalSize;
+    this.totalSize = Math.ceil(this.total / this.size)
+    this.realButtonSize = this.buttonSize < this.totalSize ? this.buttonSize : this.totalSize
   },
   methods: {
     toPage(flag) {
       if (flag === -1) {
-        this.$emit("toPage", this.current - 1);
+        this.$emit('toPage', this.current - 1)
       } else if (flag === -2) {
-        this.$emit("toPage", this.current + 1);
+        this.$emit('toPage', this.current + 1)
       } else {
-        this.$emit("toPage", flag);
+        this.$emit('toPage', flag)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .page-content {
   display: flex;
   padding: 0;
   margin: 30px 0;
 }
-
 .page-item {
   margin: 0 10px;
   list-style: none;
-  border: 1px solid var(--lightGray);
+  border: 1px solid var(--gray15);
   width: 40px;
   height: 40px;
   line-height: 38px;
   text-align: center;
   border-radius: 50%;
-  color: black;
+  color: var(--black);
   font-size: 14px;
-}
-
-.page-item:hover {
-  border: 1px solid var(--red);
-  box-shadow: 0 0 5px var(--red);
+  &:hover {
+    border: 1px solid var(--red);
+    box-shadow: 0 0 5px var(--red);
+  }
 }
 </style>

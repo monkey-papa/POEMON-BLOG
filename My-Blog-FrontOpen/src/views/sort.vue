@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div style="animation: header-effect 2s;" :style="{ background: `${$store.state.changeBg}` }"
-      class="background-image background-image-changeBg"></div>
+    <div style="animation: header-effect 2s;" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
     <!-- 两句诗 -->
     <div class="my-animation-slide-top">
       <twoPoem></twoPoem>
@@ -13,8 +12,7 @@
           isActive:
             !$common.isEmpty(labelId) && parseInt(labelId) === label.id,
         }" @click="toggleLabel(label)">
-          <proTag :info="label.labelName + ' ' + label.countOfLabel"
-            :color="$constant.before_color_list[Math.floor(Math.random() * 6)]" style="margin: 12px">
+          <proTag :info="label.labelName + ' ' + label.countOfLabel" :color="$constant.before_color_list[Math.floor(Math.random() * 6)]" style="margin: 12px">
           </proTag>
         </div>
       </div>
@@ -29,24 +27,20 @@
           <div v-else style="user-select: none;color: var(--red);">~~到底啦~~</div>
         </div>
       </div>
-      <!-- 页脚 -->
-      <myFooter></myFooter>
     </div>
   </div>
 </template>
 
 <script>
-const twoPoem = () => import("./common/twoPoem");
-const proTag = () => import("./common/proTag");
-const articleList = () => import("./articleList");
-const myFooter = () => import("./common/myFooter");
+const twoPoem = () => import('./common/twoPoem')
+const proTag = () => import('./common/proTag')
+const articleList = () => import('./articleList')
 
 export default {
   components: {
     twoPoem,
     proTag,
-    articleList,
-    myFooter,
+    articleList
   },
   data() {
     return {
@@ -57,30 +51,30 @@ export default {
         current: 1,
         size: 10,
         total: 0,
-        searchKey: "",
+        searchKey: '',
         sortId: this.$route.query.sortId,
-        labelId: this.$route.query.labelId,
+        labelId: this.$route.query.labelId
       },
-      articles: [],
-    };
+      articles: []
+    }
   },
   created() {
-    this.getSort();
-    this.getArticles();
+    this.getSort()
+    this.getArticles()
   },
   methods: {
     pageArticles() {
-      this.pagination.current = this.pagination.current + 1;
-      this.getArticles();
+      this.pagination.current = this.pagination.current + 1
+      this.getArticles()
     },
     getSort() {
-      let sortInfo = this.$store.state.sortInfo;
+      let sortInfo = this.$store.state.sortInfo
       if (!this.$common.isEmpty(sortInfo)) {
-        let sortArray = sortInfo.filter((f) => {
-          return f.id === parseInt(this.sortId);
-        });
+        let sortArray = sortInfo.filter(f => {
+          return f.id === parseInt(this.sortId)
+        })
         if (!this.$common.isEmpty(sortArray)) {
-          this.sort = sortArray[0];
+          this.sort = sortArray[0]
         }
       }
     },
@@ -91,42 +85,45 @@ export default {
       this.articles = []
       this.$router.push({
         path: '/sort',
-        query: { sortId: this.sortId, labelId: label.id },
+        query: { sortId: this.sortId, labelId: label.id }
       })
-      this.labelId = label.id;
+      this.labelId = label.id
       this.pagination = {
         current: 1,
         size: 10,
         total: 0,
-        searchKey: "",
+        searchKey: '',
         sortId: this.$route.query.sortId,
-        labelId: label.id,
-      };
+        labelId: label.id
+      }
       this.$nextTick(() => {
-        this.getArticles();
-      });
+        this.getArticles()
+      })
     },
     getArticles() {
       this.$http
-        .post(this.$constant.baseURL + "/article/listArticle", this.pagination)
-        .then((res) => {
+        .post(this.$constant.baseURL + '/article/listArticle', this.pagination)
+        .then(res => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.articles = this.articles.concat(res.result[0].records);
-            this.pagination.total = res.result[0].total;
+            this.articles = this.articles.concat(res.result[0].records)
+            this.pagination.total = res.result[0].total
           }
         })
-        .catch((error) => {
-          this.$message({
+        .catch(error => {
+          this.$notify({
+            type: 'error',
+            title: '可恶🤬',
             message: error.message,
-            type: "error",
-          });
-        });
-    },
-  },
-};
+            position: 'top-left',
+            offset: 50
+          })
+        })
+    }
+  }
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .sort-warp {
   width: 70%;
   max-width: 780px;
@@ -136,44 +133,38 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
-
 .article-wrap {
   width: 70%;
-  margin: 40px auto;
+  margin: 40px auto 0;
   min-height: 600px;
 }
-
 .isActive {
   animation: scale 1.5s ease-in-out infinite;
 }
-
 .pagination-wrap {
   display: flex;
   justify-content: center;
   margin-top: 40px;
 }
-
 .pagination {
   padding: 13px 15px;
-  border: 1px solid var(--lightGray);
+  border: 1px solid var(--red);
   border-radius: 3rem;
-  color: var(--greyFont);
+  color: var(--red);
   width: 100px;
   user-select: none;
   text-align: center;
-}
-
-.pagination:hover {
-  border: 1px solid orange;
-  color: orange;
-  box-shadow: 0 0 5px orange;
+  &:hover {
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    box-shadow: 0 0 5px var(--orange);
+  }
 }
 
 @media screen and (max-width: 900px) {
   .sort-warp {
     width: 90%;
   }
-
   .article-wrap {
     width: 90%;
   }

@@ -17,31 +17,31 @@ export default {
   favoriteVideo: "https://www.monkey-papa.mp4", // 自己替换一个视频外链
   //标签颜色
   before_color_list: [
-    "#ff4b2b",
-    "#EF794F",
-    "#67C23A",
-    "orange",
-    "rgb(131, 123, 199)",
-    "#23d5ab",
+    "var(--lightRed)",
+    "var(--darkBlue)",
+    "var(--green1)",
+    "var(--orange)",
+    "var(--purple1)",
+    "var(--lightRed)",
   ],
   //微言颜色
   tree_hole_color: [
-    "#ee7752",
-    "#e73c7e",
-    "#23a6d5",
-    "#23d5ab",
-    "rgb(131, 123, 199)",
-    "#23d5ab",
+    "var(--lightRed)",
+    "var(--darkBlue)",
+    "var(--green1)",
+    "var(--orange)",
+    "var(--purple1)",
+    "var(--lightRed)",
   ],
   //按钮颜色
-  before_color_1: "#74bdf0",
-  after_color_1: "linear-gradient(45deg, #f43f3b, #ec008c)",
-  before_color_2: "rgb(131, 123, 199)",
-  after_color_2: "linear-gradient(45deg, #f43f3b, #ec008c)",
+  before_color_1: "var(--blue)",
+  after_color_1: "linear-gradient(45deg, var(--red), var(--purple1))",
+  before_color_2: "var(--blue8)",
+  after_color_2: "linear-gradient(45deg, var(--red), var(--purple1))",
   //分页颜色
-  pageColor: "#ee7752",
-  commentPageColor: "#23d5ab",
-  userId: 9, // 博客主人的用户id也就是boss的id，我这里是9，你们可以替换成自己的
+  pageColor: "var(--orange6)",
+  commentPageColor: "var(--green6)",
+  userId: 9, // userId: 9, // 博客主人的用户id也就是后台管理boss的id，我这里是9，你们可以替换成自己的
   //emoji含义
   emojiList: [
     "衰",

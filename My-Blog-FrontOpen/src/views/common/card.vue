@@ -5,7 +5,7 @@
         <el-image class="my-el-image" v-once lazy :src="resourcePath.cover" fit="cover">
           <div slot="error" class="image-slot myCenter" style="background: var(--gradualRed)">
             <div class="error-text">
-              <div style="color:wheat;">肥肠抱歉，图片跑掉了</div>
+              <div style="color:var(--wheat);">肥肠抱歉，图片跑掉了</div>
             </div>
           </div>
         </el-image>
@@ -13,7 +13,7 @@
       <div class="card-body">
         <div class="card-title">
           <el-image style="width: 32px;height: 32px;margin-right: 4px;border-radius: 11px;" v-once lazy :src="resourcePath.friendAvatar" fit="cover">
-            <div slot="error" class="image-slot myCenter" style="height:32px;width:32px;background-image: url('https://www.qiniuyun');background-size: cover;">
+            <div slot="error" class="image-slot myCenter" style="height:32px;width:32px;background-image: url('https://www.qiniuyun.zjh2002.icu/images/avatar');background-size: cover;">
             </div>
           </el-image>
           {{ resourcePath.title }}
@@ -47,7 +47,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -55,23 +55,23 @@ export default {
 .card-item {
   position: relative;
   border-radius: 10px;
-  background: rgba(188, 233, 236, 0.6);
+  background: var(--gray2);
   overflow: hidden;
   margin: 10px;
   height: 300px;
   flex-shrink: 0;
-  width: calc(100% / 3 - 20px);
+  width: calc(100% / 4 - 20px);
   animation: zoomIn 0.8s ease-in-out;
 }
 .card-image {
   width: 100%;
   height: 180px;
-}
-.card-image >>> .el-image__inner {
-  transition: all 1s;
-}
-.card-image >>> .el-image__inner:hover {
-  transform: scale(1.2);
+  ::v-deep .el-image__inner {
+    transition: all 1s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 }
 .card-body {
   padding: 10px 20px;
@@ -85,9 +85,9 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
-}
-.card-title:hover {
-  color: var(--darkBlue);
+  &:hover {
+    color: var(--darkBlue);
+  }
 }
 .card-desc {
   color: var(--darkBlue);
@@ -102,16 +102,21 @@ export default {
 }
 .card-time {
   position: absolute;
-  bottom: 10px;
+  bottom: 4px;
   font-size: 12px;
   color: var(--bigRed);
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1100px) {
+  .card-item {
+    width: calc(100% / 3 - 20px);
+  }
+}
+@media screen and (max-width: 900px) {
   .card-item {
     width: calc(100% / 2 - 20px);
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .card-item {
     width: calc(100% - 20px);
   }
