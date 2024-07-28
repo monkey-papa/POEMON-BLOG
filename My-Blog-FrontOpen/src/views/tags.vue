@@ -39,7 +39,7 @@
                   <div slot="error" class="image-slot myCenter">
                     <img class="error-img" :src="$store.state.webInfo.randomCover[0]" style="object-fit: cover; width: 100%; height: 100%" />
                     <div class="error-text">
-                      <div style="color: var(--wheat)">ya，图片跑丢了┮﹏┭</div>
+                      <div style="color: var(--wheat1)">ya，图片跑丢了┮﹏┭</div>
                     </div>
                   </div>
                 </el-image>
@@ -78,7 +78,7 @@
               </div>
             </div>
           </div>
-          <div v-else class="myCenter" style="flex: 1;color: var(--darkBlue)">
+          <div v-else class="myCenter" style="flex: 1; color: var(--darkBlue)">
             <h3>主人偷懒了，这个标签还没有文章噢~</h3>
           </div>
           <!-- 分页器 -->
@@ -222,7 +222,7 @@ div #tag {
   padding: 0.5em 0.4em 0.5em;
   font-weight: 400;
   border-radius: 0.5rem;
-  color: var(--red);
+  color: var(--red1);
   line-height: 1.5rem;
 }
 .catalog-list-item:hover a {
@@ -256,6 +256,10 @@ div #tag {
     padding: 8px;
     width: calc(50% - 7.5px);
     background: var(--myAsideColor);
+    border: 1px solid var(--gray1);
+    &:hover {
+      border-color: var(--gray4);
+    }
     &-img {
       overflow: hidden;
       width: 160px;
@@ -285,7 +289,7 @@ div #tag {
     }
     &-title {
       width: 90%;
-      color: var(--bigRed);
+      color: var(--bigRed1);
       font-size: 17px;
       transition: all 0.3s;
       font-weight: 500;
@@ -314,7 +318,7 @@ div #tag {
     &-categories,
     &-tags {
       margin: 5px;
-      color: var(--purple1);
+      color: var(--purple4);
       font-size: 14px;
       font-weight: 400;
       display: -webkit-box;
@@ -325,7 +329,7 @@ div #tag {
       text-overflow: ellipsis;
       &:hover {
         transition: all 0.4s;
-        color: var(--darkBlue);
+        color: var(--darkBlue1);
       }
     }
   }

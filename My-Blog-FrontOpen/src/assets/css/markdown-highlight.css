@@ -11,7 +11,7 @@
 }
 
 .entry-content blockquote:before {
-  content: "\f10d";
+  content: '\f10d';
   font-size: 1.5rem;
   position: absolute;
   top: 0;
@@ -21,7 +21,7 @@
 }
 
 .entry-content blockquote:after {
-  content: "\f10e";
+  content: '\f10e';
   font-size: 1.5rem;
   position: absolute;
   bottom: 0;
@@ -70,7 +70,7 @@
 .entry-content h2,
 .entry-content h3,
 .entry-content h4 {
-  color: var(--bigRed);
+  color: var(--bigRed1);
   font-weight: 400;
   margin-top: 30px;
   margin-bottom: 20px;
@@ -96,7 +96,7 @@
 }
 
 .entry-content h2:before {
-  content: "🍁";
+  content: '🍁';
   position: absolute;
   left: 0;
   font-size: 1.03em;
@@ -104,7 +104,7 @@
 }
 
 .entry-content h3:before {
-  content: "🐌";
+  content: '🐌';
   left: -10px;
   position: absolute;
   margin-top: 2px;
@@ -112,14 +112,14 @@
 }
 
 .entry-content h4:before {
-  content: "🦔";
+  content: '🦔';
   left: -8px;
   position: absolute;
   color: var(--red);
 }
 
 .entry-content h5:before {
-  content: "🐤";
+  content: '🐤';
   left: 0;
   position: absolute;
 }
@@ -135,7 +135,7 @@
 }
 
 .entry-content a:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -144,7 +144,7 @@
   left: 0;
   background-color: var(--orange);
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.3s ease;
 }
 
 .entry-content a:hover:after {
@@ -175,7 +175,7 @@
   position: relative;
   background: var(--borderColor);
   border-radius: 5px;
-  font: 15px/22px "Microsoft YaHei", "Arial";
+  font: 15px/22px 'Microsoft YaHei', 'Arial';
   line-height: 1.6;
   margin-bottom: 1.6em;
   width: 100%;
@@ -184,7 +184,7 @@
 }
 
 .highlight-wrap:before {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 50%;
   background: var(--red);
@@ -265,7 +265,7 @@
 }
 
 .hljs-ln-line.hljs-ln-code:hover {
-  background-color: var(--toolbarBackground);
+  background-color: var(--toolbarBackground1);
 }
 
 .hljs-ln-line.hljs-ln-numbers {
@@ -377,7 +377,7 @@
 }
 
 .table-wrapper > table tbody > tr {
-  transition: all 0.28s ease;
+  transition: all 0.3s ease;
 }
 
 .table-wrapper > table tbody > tr:hover {

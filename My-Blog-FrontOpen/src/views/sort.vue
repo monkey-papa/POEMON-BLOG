@@ -12,7 +12,7 @@
           isActive:
             !$common.isEmpty(labelId) && parseInt(labelId) === label.id,
         }" @click="toggleLabel(label)">
-          <proTag :info="label.labelName + ' ' + label.countOfLabel" :color="$constant.before_color_list[Math.floor(Math.random() * 6)]" style="margin: 12px">
+          <proTag :info="label.labelName + ' ' + label.countOfLabel" :color="$constant.tree_hole_color[Math.floor(Math.random() * 6)]" style="margin: 12px">
           </proTag>
         </div>
       </div>
@@ -24,7 +24,7 @@
           <div @click="pageArticles()" class="pagination" v-if="pagination.total !== articles.length">
             下一页
           </div>
-          <div v-else style="user-select: none;color: var(--red);">~~到底啦~~</div>
+          <div v-else style="user-select: none;color: var(--red);">~~( •̀ ω •́ )y 到底啦~~</div>
         </div>
       </div>
     </div>
@@ -148,16 +148,16 @@ export default {
 }
 .pagination {
   padding: 13px 15px;
-  border: 1px solid var(--red);
+  border: 1px solid var(--red2);
   border-radius: 3rem;
-  color: var(--red);
+  color: var(--red1);
   width: 100px;
   user-select: none;
   text-align: center;
   &:hover {
-    border: 1px solid var(--orange);
-    color: var(--orange);
-    box-shadow: 0 0 5px var(--orange);
+    border: 1px solid var(--blue2);
+    color: var(--orange2);
+    box-shadow: 0 0 5px var(--blue2);
   }
 }
 

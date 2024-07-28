@@ -14,34 +14,13 @@ export default {
   //表情地址,md图片地址
   qiniuUploadEntrance: "http://www.monkey-papa.com/", // 你的七牛云存储空间的外链域名
   //视频地址
-  favoriteVideo: "https://www.monkey-papa.mp4", // 自己替换一个视频外链
-  //标签颜色
-  before_color_list: [
-    "var(--lightRed)",
-    "var(--darkBlue)",
-    "var(--green1)",
-    "var(--orange)",
-    "var(--purple1)",
-    "var(--lightRed)",
-  ],
-  //微言颜色
-  tree_hole_color: [
-    "var(--lightRed)",
-    "var(--darkBlue)",
-    "var(--green1)",
-    "var(--orange)",
-    "var(--purple1)",
-    "var(--lightRed)",
-  ],
+  favoriteVideo: "https://www.qiniuyun.monke-papa.icu/avatar/nahida.mp4",
   //按钮颜色
-  before_color_1: "var(--blue)",
+  before_color_1: "var(--blue13)",
   after_color_1: "linear-gradient(45deg, var(--red), var(--purple1))",
-  before_color_2: "var(--blue8)",
-  after_color_2: "linear-gradient(45deg, var(--red), var(--purple1))",
-  //分页颜色
-  pageColor: "var(--orange6)",
+  //评论分页颜色 微言分页颜色
   commentPageColor: "var(--green6)",
-  userId: 9, // userId: 9, // 博客主人的用户id也就是后台管理boss的id，我这里是9，你们可以替换成自己的
+  userId: 9, // 博客主任的用户id
   //emoji含义
   emojiList: [
     "衰",
@@ -105,35 +84,34 @@ export default {
     "25deg, #3e47d1, #8b5fb8, #ba7b9d, #df9980",
     "25deg, #0e5c71, #15828f, #19a9ae, #1ad3ce",
   ],
-  // 图片都替换为自己的
   about: [
     {
-      img: "https://www.qiniuyun.jpg",
+      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA1.jpg",
       tit: "女帝",
       sub: "巾帼女帝，新生红衣😍",
     },
     {
-      img: "https://www.qiniuyun.jpg",
+      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA2.jpg",
       tit: "新不良帅",
       sub: "弃天道，择霸道🥱",
     },
     {
-      img: "https://www.qiniuyun.jpg",
+      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA3.jpg",
       tit: "四大尸祖",
       sub: "搞笑女+搞笑男😅",
     },
     {
-      img: "https://www.qiniuyun.png",
+      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA4.png",
       tit: "这俩货",
       sub: "导致我每集片头都不跳过😋",
     },
     {
-      img: "https://www.qiniuyun.jpg",
+      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA6.jpg",
       tit: "奥姑",
       sub: "好腿，只能说被打的真惨🤣",
     },
     {
-      img: "https://www.qiniuyun.jpg",
+      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA7.jpg",
       tit: "随心",
       sub: "(*^▽^*)",
     },
@@ -172,4 +150,17 @@ export default {
       style: "solid",
     },
   ],
+  //随机 微言颜色 标签颜色
+  tree_hole_color: (function () {
+    function getRandomColor() {
+      return `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
+        Math.random() * 255
+      })`;
+    }
+    const colors = [];
+    for (let i = 0; i < 6; i++) {
+      colors.push(getRandomColor());
+    }
+    return colors;
+  })(),
 };

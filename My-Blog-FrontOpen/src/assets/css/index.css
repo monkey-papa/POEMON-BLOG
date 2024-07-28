@@ -4,8 +4,8 @@
 }
 body {
   color: var(--fontColor);
-  /* font-family: var(--globalFont), serif; */
-  font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", sans-serif;
+  /* font-family: zjh, serif; */
+  font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', sans-serif;
   font-weight: 700;
   word-break: break-word;
 }
@@ -17,11 +17,6 @@ a {
   src: url(https://sourcebucket.s3.bitiful.net/fonts/甜甜圈海报字体.woff2);
   font-display: swap;
 } */
-/* 展示小火箭 */
-@font-face {
-  font-family: "iconfont";
-  src: url("//at.alicdn.com/t/c/font_3811949_2u7pl2i964k.woff2?t=1691744017355") format("woff2"), url("//at.alicdn.com/t/c/font_3811949_2u7pl2i964k.woff?t=1691744017355") format("woff"), url("//at.alicdn.com/t/c/font_3811949_2u7pl2i964k.ttf?t=1691744017355") format("truetype");
-}
 /* 图片 */
 .background-image {
   width: 100vw;
@@ -54,7 +49,7 @@ a {
   height: 100%;
 }
 .user-avatar {
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   user-select: none;
 }
 .user-avatar:hover {
@@ -114,7 +109,7 @@ a {
 .el-pagination.is-background .btn-prev:hover {
   background: var(--blue25);
   color: var(--white);
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 /* el弹出框样式 */
 .el-message {
@@ -135,9 +130,31 @@ a {
 .el-message--error {
   background: var(--favoriteBg);
 }
+.el-input__inner:focus {
+  border-color: var(--red) !important;
+}
+.el-dialog__title {
+  color: var(--black5);
+}
+.el-dialog__headerbtn:hover .el-dialog__close {
+  color: var(--red);
+}
+.el-button--success {
+  background-color: var(--green8);
+  border-color: var(--green8);
+}
 /* 图标旋转 */
 .iconRotate {
-  animation: rotate 2s linear infinite;
+  animation: rotateAnimation 1s linear infinite;
+  transform-origin: center; /* 确保元素围绕中心旋转 */
+}
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 /* 树洞留言 */
 .baberrage-item .baberrage-msg {
@@ -162,7 +179,7 @@ a {
   letter-spacing: 3px;
 }
 .small-menu {
-  padding-left: 25px;
+  padding: 15px;
   margin: 0;
   color: var(--blue);
   font-size: 20px;
@@ -255,17 +272,17 @@ a {
   }
 }
 @property --c1 {
-  syntax: "<color>";
+  syntax: '<color>';
   initial-value: transparent;
   inherits: false;
 }
 @property --c2 {
-  syntax: "<color>";
+  syntax: '<color>';
   initial-value: transparent;
   inherits: false;
 }
 @property --c3 {
-  syntax: "<color>";
+  syntax: '<color>';
   initial-value: transparent;
   inherits: false;
 }

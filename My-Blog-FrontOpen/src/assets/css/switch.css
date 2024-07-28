@@ -1,0 +1,15 @@
+:root {
+  /* Switch固定颜色 */
+  --slide-ease: cubic-bezier(0.4, -0.3, 0.6, 1.3);
+  --easing: var(--slide-ease);
+  --speed: 0.5s;
+  --width: clamp(200px, 45vmin, 500px);
+  --ar: 8 / 3;
+  --ray: hsl(0 0% 100% / 0.5);
+  --sun: hsl(47, 91%, 58%);
+  --moon: hsl(212, 13%, 82%);
+  --crater: hsl(221, 16%, 68%);
+  --bg: hsl(219, 30%, 88%);
+  --bear-speed: 10s;
+  --color: hsl(219 30% 20%);
+}

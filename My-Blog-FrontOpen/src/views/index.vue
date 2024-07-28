@@ -1,11 +1,19 @@
 <template>
   <div>
     <!-- 首页图片 -->
-    <div style="animation: header-effect 2s" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
+    <div
+      style="animation: header-effect 2s"
+      :style="{ background: `${$store.state.changeBg}` }"
+      class="background-image background-image-changeBg"
+    ></div>
     <!-- 首页文字 -->
     <div class="signature-wall myCenter my-animation-hideToShow">
       <h1 class="playful">
-        <span v-for="(a, index) in $store.state.webInfo.webTitle" :key="index">{{ a }}</span>
+        <span
+          v-for="(a, index) in $store.state.webInfo.webTitle"
+          :key="index"
+          >{{ a }}</span
+        >
       </h1>
       <div class="printer" @click="getGuShi()">
         <printer :printerInfo="printerInfo">
@@ -14,9 +22,20 @@
           </template>
         </printer>
       </div>
-      <section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <section class="main-hero-waves-area waves-area">
+        <svg
+          class="waves-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28"
+          preserveAspectRatio="none"
+          shape-rendering="auto"
+        >
           <defs>
-            <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+            <path
+              id="gentle-wave"
+              d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"
+            ></path>
           </defs>
           <g class="parallax">
             <use href="#gentle-wave" x="48" y="0"></use>
@@ -24,19 +43,26 @@
             <use href="#gentle-wave" x="48" y="5"></use>
             <use href="#gentle-wave" x="48" y="7"></use>
           </g>
-        </svg></section>
-      <i class="el-icon-arrow-down" @click="navigation('.page-container-wrap')"></i>
+        </svg>
+      </section>
+      <i
+        class="el-icon-arrow-down"
+        @click="navigation('.page-container-wrap')"
+      ></i>
     </div>
     <!-- 首页内容 -->
     <div class="page-container-wrap">
       <div class="page-container">
         <!-- 内容页面 -->
         <div class="recent-posts">
-          <!-- 视频介绍框 -->
+          <!-- 提示框 -->
           <div class="announcement">
             <i class="el-icon-s-opportunity" aria-hidden="true"></i>
             <div>
-              <div v-for="(notice, index) in $store.state.webInfo.notices" :key="index">
+              <div
+                v-for="(notice, index) in $store.state.webInfo.notices"
+                :key="index"
+              >
                 {{ notice }}
               </div>
             </div>
@@ -45,24 +71,31 @@
           <div>
             <div class="content">
               <div class="category_group">
-                <div class="category_item" style="
-                    background: linear-gradient(to right, var(--blue22), var(--blue9));
-                  ">
-                  <a href="https://www.zjh2002.icu/" class="category_button category_buttons">
+                <div class="category_item item">
+                  <a
+                    href="https://www.zjh2002.icu/"
+                    class="category_button category_buttons"
+                  >
                     <span class="category_button_text">云音乐</span>
                   </a>
                 </div>
-                <div @click="$router.push({ path: '/map' })" class="category_item" style="
-                    background: linear-gradient(to right, var(--blue24), var(--blue25));
-                  ">
+                <div
+                  @click="$router.push({ path: '/map' })"
+                  class="category_item"
+                >
                   <a href="javascript:;" class="category_button">
                     <span class="category_button_text">四海之内</span>
                   </a>
                 </div>
               </div>
-              <div v-for="(article, index) in recommendArticles" :key="index" @click="
+              <div
+                v-for="(article, index) in recommendArticles"
+                :key="index"
+                @click="
                   $router.push({ path: '/article', query: { id: article.id } })
-                " class="page">
+                "
+                class="page"
+              >
                 <div class="post_cover">
                   <a href="javascript:;">
                     <img :src="article.articleCover" />
@@ -79,14 +112,21 @@
             <myAside @selectSort="selectSort"></myAside>
           </div>
           <!-- 文章列表 -->
-          <articleList :articleList="articles" :parentLoadingMark="parentLoadingMark"></articleList>
+          <articleList
+            :articleList="articles"
+            :parentLoadingMark="parentLoadingMark"
+          ></articleList>
           <!-- 底部 -->
           <div class="pagination-wrap">
-            <div @click="pageArticles()" class="pagination" v-if="pagination.total !== articles.length">
+            <div
+              @click="pageArticles()"
+              class="pagination"
+              v-if="pagination.total !== articles.length"
+            >
               下一页
             </div>
             <div v-else style="user-select: none; color: var(--red)">
-              ~~到底啦~~
+              ~~( •̀ ω •́ )y 到底啦~~
             </div>
           </div>
         </div>
@@ -96,72 +136,78 @@
         </div>
       </div>
       <!-- live2d -->
-      <live2d class="live2d" :style="style" :model="['Potion-Maker/Pio', 'school-2017-costume-yellow']" :direction="direction" :size="this.$common.mobile() ? 140 : size"></live2d>
+      <live2d
+        class="live2d"
+        :style="style"
+        :model="['Potion-Maker/Pio', 'school-2017-costume-yellow']"
+        :direction="direction"
+        :size="this.$common.mobile() ? 140 : size"
+      ></live2d>
     </div>
   </div>
 </template>
 <script>
 // 在组件中引入
-import live2d from 'vue-live2d'
-const printer = () => import('./common/printer')
-const articleList = () => import('./articleList')
-const myAside = () => import('./myAside')
+import live2d from "vue-live2d";
+const printer = () => import("./common/printer");
+const articleList = () => import("./articleList");
+const myAside = () => import("./myAside");
 export default {
   components: {
     printer,
     articleList,
     myAside,
-    live2d
+    live2d,
   },
   data() {
     return {
       loading: false,
-      printerInfo: '咦，这个地方是用来干什么的？',
+      printerInfo: "咦，这个地方是用来干什么的？",
       pagination: {
         current: 1,
         size: 10,
         total: 0,
-        searchKey: '',
-        sortId: null
+        searchKey: "",
+        sortId: null,
       },
       guShi: {
-        content: '',
-        origin: '',
-        author: '',
-        category: ''
+        content: "",
+        origin: "",
+        author: "",
+        category: "",
       },
       articles: [],
       recommendArticles: [],
-      direction: 'right',
-      style: '',
+      direction: "right",
+      style: "",
       size: 210,
       tips: {
         mouseover: [
           {
-            selector: '.vue-live2d',
-            texts: []
-          }
-        ]
+            selector: ".vue-live2d",
+            texts: [],
+          },
+        ],
       },
-      parentLoadingMark: false
-    }
+      parentLoadingMark: false,
+    };
   },
   beforeRouteEnter(to, from, next) {
-    if (from.path === '/') {
-      next(vm => {
-        vm.parentLoadingMark = true
-      })
+    if (from.path === "/") {
+      next((vm) => {
+        vm.parentLoadingMark = true;
+      });
     } else {
-      next()
+      next();
     }
   },
   created() {
-    this.getGuShi()
-    this.getArticles()
+    this.getGuShi();
+    this.getArticles();
   },
   mounted() {
-    this.scrollTo()
-    this.getRecommendArticles()
+    this.scrollTo();
+    this.getRecommendArticles();
   },
   methods: {
     async selectSort(sort) {
@@ -169,104 +215,104 @@ export default {
         current: 1,
         size: 10,
         total: 0,
-        searchKey: '',
+        searchKey: "",
         sortId: sort.id,
-        deltaY: 0
-      }
-      this.articles = []
-      await this.getArticles()
+        deltaY: 0,
+      };
+      this.articles = [];
+      await this.getArticles();
       this.$nextTick(() => {
-        document.querySelector('.recent-posts').scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest'
-        })
-      })
+        document.querySelector(".recent-posts").scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      });
     },
     pageArticles() {
-      this.pagination.current = this.pagination.current + 1
-      this.getArticles()
+      this.pagination.current = this.pagination.current + 1;
+      this.getArticles();
     },
     getArticles() {
       this.$http
-        .post(this.$constant.baseURL + '/article/listArticle', this.pagination)
-        .then(res => {
+        .post(this.$constant.baseURL + "/article/listArticle", this.pagination)
+        .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.articles = this.articles.concat(res.result[0].records)
-            this.pagination.total = res.result[0].total
-            this.$store.commit('articleTotal', res.result[0].total)
-            this.$store.commit('newArticles', this.articles.slice(0, 4))
+            this.articles = this.articles.concat(res.result[0].records);
+            this.pagination.total = res.result[0].total;
+            this.$store.commit("articleTotal", res.result[0].total);
+            this.$store.commit("newArticles", this.articles.slice(0, 4));
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
+            type: "error",
+            title: "可恶🤬",
             message: error.message,
-            position: 'top-left',
-            offset: 50
-          })
-        })
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     getRecommendArticles() {
       const pagination = {
         current: 1,
         size: 10,
-        recommendStatus: true
-      }
+        recommendStatus: true,
+      };
       this.$http
-        .post(this.$constant.baseURL + '/article/listArticle', pagination)
-        .then(res => {
+        .post(this.$constant.baseURL + "/article/listArticle", pagination)
+        .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            let formatRecommendArticles = res.result[0].records
-            const myBlog = formatRecommendArticles.filter(item => {
-              return item.id === 20
-            })
-            const notMyBlog = formatRecommendArticles.filter(item => {
-              return item.id !== 20
-            })
-            const recommendArticles = myBlog.concat(notMyBlog)
-            this.recommendArticles = recommendArticles
+            let formatRecommendArticles = res.result[0].records;
+            const myBlog = formatRecommendArticles.filter((item) => {
+              return item.id === 20;
+            });
+            const notMyBlog = formatRecommendArticles.filter((item) => {
+              return item.id !== 20;
+            });
+            const recommendArticles = myBlog.concat(notMyBlog);
+            this.recommendArticles = recommendArticles;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
+            type: "error",
+            title: "可恶🤬",
             message: error.message,
-            position: 'top-left',
-            offset: 50
-          })
-        })
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     navigation(selector) {
-      let pageId = document.querySelector(selector)
+      let pageId = document.querySelector(selector);
       window.scrollTo({
         top: pageId.offsetTop,
-        behavior: 'smooth'
-      })
+        behavior: "smooth",
+      });
     },
     getGuShi() {
-      let that = this
-      let xhr = new XMLHttpRequest()
-      xhr.open('get', this.$constant.jinrishici)
+      let that = this;
+      let xhr = new XMLHttpRequest();
+      xhr.open("get", this.$constant.jinrishici);
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-          that.guShi = JSON.parse(xhr.responseText)
-          that.printerInfo = that.guShi.content
+          that.guShi = JSON.parse(xhr.responseText);
+          that.printerInfo = that.guShi.content;
         }
-      }
-      xhr.send()
+      };
+      xhr.send();
     },
     scrollTo() {
-      let content = document.querySelector('.content')
-      content.addEventListener('wheel', event => {
-        event.preventDefault()
-        content.scrollLeft += event.deltaY
-      })
-    }
-  }
-}
+      let content = document.querySelector(".content");
+      content.addEventListener("wheel", (event) => {
+        event.preventDefault();
+        content.scrollLeft += event.deltaY;
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -301,25 +347,25 @@ export default {
     .parallax > use:nth-child(1) {
       animation-delay: -2s;
       animation-duration: 7s;
-      fill: var(--favoriteBg);
+      fill: var(--background);
       opacity: 0.5;
     }
     .parallax > use:nth-child(2) {
       animation-delay: -3s;
       animation-duration: 10s;
-      fill: var(--favoriteBg);
+      fill: var(--background);
       opacity: 0.6;
     }
     .parallax > use:nth-child(3) {
       animation-delay: -4s;
       animation-duration: 13s;
-      fill: var(--favoriteBg);
+      fill: var(--background);
       opacity: 0.7;
     }
     .parallax > use:nth-child(4) {
       animation-delay: -5s;
       animation-duration: 20s;
-      fill: var(--favoriteBg);
+      fill: var(--background);
     }
     .parallax > use {
       animation: move-forever 30s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
@@ -371,18 +417,17 @@ export default {
 .page-container {
   display: flex;
   justify-content: center;
-  width: 98%;
-  padding: 0 0px 40px 0px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 130px 40px 130px;
   flex-direction: row;
 }
 .recent-posts {
-  width: 90%;
+  width: calc(100% - 310px);
 }
 .announcement {
   padding: 22px;
   border: 1px dashed var(--red);
-  color: var(--bigRed);
+  color: var(--bigRed1);
   border-radius: 10px;
   display: flex;
   max-width: 1080px;
@@ -400,11 +445,10 @@ export default {
   }
 }
 .aside-content {
-  width: calc(30% - 40px);
   user-select: none;
   margin-top: 40px;
-  margin-left: 20px;
-  max-width: 300px;
+  margin-left: 10px;
+  width: 300px;
   float: left;
 }
 .pagination-wrap {
@@ -414,16 +458,16 @@ export default {
 }
 .pagination {
   padding: 13px 15px;
-  border: 1px solid var(--red);
+  border: 1px solid var(--red2);
   border-radius: 3rem;
-  color: var(--red);
+  color: var(--red1);
   width: 100px;
   user-select: none;
   text-align: center;
   &:hover {
-    border: 1px solid var(--blue);
-    color: var(--orange);
-    box-shadow: 0 0 5px var(--blue);
+    border: 1px solid var(--blue2);
+    color: var(--orange2);
+    box-shadow: 0 0 5px var(--blue2);
   }
 }
 .content {
@@ -447,8 +491,9 @@ export default {
     transform: scale(0.95);
     background-color: var(--blue);
     transition-duration: 0.4s;
+    border-color: var(--myAsideBorderColor1);
     span {
-      color: var(--black);
+      color: var(--black1);
     }
   }
 }
@@ -462,6 +507,7 @@ export default {
   height: 186px;
 }
 .category_item {
+  background: linear-gradient(to right, var(--blue24), var(--blue11));
   overflow: hidden;
   height: 48%;
   border-radius: 12px;
@@ -469,6 +515,9 @@ export default {
   &:hover {
     transform: scale(0.95);
     transition-duration: 0.4s;
+  }
+  &.item {
+    background: linear-gradient(to right, var(--blue22), var(--blue12));
   }
 }
 .category_button {
@@ -485,7 +534,8 @@ export default {
   overflow: hidden;
   &_text {
     padding: 20px;
-    background: linear-gradient(to right, var(--red), var(--green1)) no-repeat right bottom;
+    background: linear-gradient(to right, var(--red), var(--green1)) no-repeat
+      right bottom;
     background-size: 0px 3px;
     transition: background-size 1300ms;
     &:hover {
@@ -496,7 +546,7 @@ export default {
 }
 .category_buttons::before {
   line-height: 60px;
-  content: '推荐';
+  content: "推荐";
   position: absolute;
   z-index: 2;
   color: var(--white);
@@ -547,12 +597,14 @@ export default {
     transform: translate3d(85px, 0, 0);
   }
 }
-@media screen and (max-width: 1100px) {
-  .recent-posts {
-    width: 100%;
-  }
+@media screen and (max-width: 1278px) {
   .page-container {
-    width: 94%;
+    padding: 0 40px 40px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .page-container {
+    padding: 0 40px 40px;
   }
 }
 @media screen and (max-width: 1000px) {
@@ -560,8 +612,11 @@ export default {
     /* 文章栏与侧标栏垂直排列 */
     flex-direction: column;
   }
+  .recent-posts {
+    width: 100%;
+  }
   .aside-content {
-    width: 90%;
+    width: 100%;
     max-width: unset;
     float: unset;
     margin: 40px auto 0;

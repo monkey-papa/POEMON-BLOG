@@ -1,8 +1,29 @@
 <template>
-  <div id="app" @contextmenu.prevent="openMenu($event,item)">
+  <div id="app" @contextmenu.prevent="openMenu($event, item)">
     <router-view />
     <!-- 页脚 -->
-    <div class="sf-my__footer" v-if="!['/love','/backendMain','/webEdit','/userList','/postList','/sortList','/commentList','/treeHoleList','/resourceList','/resourcePathList','/loveList','/prohibitedWordsList','/verifyLogin'].includes($route.path)">
+    <div
+      class="sf-my__footer"
+      v-if="
+        ![
+          '/user',
+          '/love',
+          '/backendMain',
+          '/webEdit',
+          '/userList',
+          '/postList',
+          '/sortList',
+          '/commentList',
+          '/treeHoleList',
+          '/resourceList',
+          '/resourcePathList',
+          '/loveList',
+          '/prohibitedWordsList',
+          '/verifyLogin',
+          '/postEdit',
+        ].includes($route.path)
+      "
+    >
       <myFooter></myFooter>
     </div>
     <aplayer></aplayer>
@@ -10,12 +31,17 @@
       <div class="author-box">
         <span></span>
         <div class="author-img">
-          <img src="./assets/file/avatar.jpg" alt="">
+          <img src="./assets/file/avatar.jpg" alt="" />
         </div>
       </div>
+      <div class="image-dot"></div>
     </div>
     <!-- 右键菜单部分 -->
-    <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
+    <ul
+      v-show="visible"
+      :style="{ left: left + 'px', top: top + 'px' }"
+      class="contextmenu"
+    >
       <div class="rightMenu-group">
         <div class="rightMenu-item">
           <i class="fa fa-arrow-left" @click="backAndForward('2')"></i>
@@ -60,40 +86,71 @@
   </div>
 </template>
 <script>
-const myFooter = () => import('./views/common/footer.vue')
-const aplayer = () => import('./views/common/aplayer.vue')
+const myFooter = () => import("./views/common/footer.vue");
+const aplayer = () => import("./views/common/aplayer.vue");
 export default {
-  name: 'App',
+  name: "App",
   components: {
     aplayer,
-    myFooter
+    myFooter,
   },
   data() {
     return {
       coorY: 0,
-      rightClickItem: '',
+      rightClickItem: "",
       visible: false, // 是否展示右键菜单
       top: 0,
       left: 0,
-      copyContent: 'z15523692545'
+      copyContent: "z15523692545",
+    };
+  },
+  created() {
+    // 黑夜
+    if (localStorage.getItem("theme") == "false") {
+      document.documentElement.dataset.theme = localStorage.getItem(
+        "themeColor"
+      )
+        ? "theme2-dark"
+        : "dark";
+      if (document.documentElement.dataset.theme === "theme2-dark") {
+        const root = document.querySelector(":root");
+        root.style.setProperty(
+          "--themeColor",
+          localStorage.getItem("themeColor")
+        );
+        this.$common.getThemeRgb();
+      }
+    } else {
+      if (localStorage.getItem("themeColor")) {
+        const root = document.querySelector(":root");
+        root.style.setProperty(
+          "--themeColor",
+          localStorage.getItem("themeColor")
+        );
+        this.$common.getThemeRgb();
+        document.documentElement.dataset.theme = "theme2";
+      } else {
+        document.documentElement.dataset.theme = "light";
+      }
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll) // 监听滚动条事件
-    window.addEventListener('beforeunload', this.handleBeforeUnload)
+    window.addEventListener("scroll", this.handleScroll); // 监听滚动条事件
+    window.addEventListener("beforeunload", this.handleBeforeUnload);
     let styleTitle1 = `
 font-size: 20px;
 font-weight: 600;
 color: rgb(244,167,89);
-`
+`;
     let styleTitle2 = `
 font-size:12px;
 color: #425AEF;
-`
+`;
     let styleContent = `
 color: rgb(30,152,255);
-`
-    let title1 = 'ZJHの主页 被我发现了吧，既然你已经破解了，转发、拿东西记得标明出处喔~~'
+`;
+    let title1 =
+      "ZJHの主页 被我发现了吧，既然你已经破解了，转发、拿东西记得标明出处喔~~";
     let title2 = `
     く__,.ヘヽ.        /  ,ー､ 〉
            ＼ ', !-─‐-i  /  /´
@@ -118,7 +175,7 @@ color: rgb(30,152,255);
 ██╔══██╗  ╚██╔╝  ║██╔═══╗
 ██████╔╝   ██║   ║██████║
 ╚═════╝    ╚═╝   ╚══════╝(wx:z15523692545)OVO
-`
+`;
     let content = `
 誰もが信じ崇めてる
 まさに最強で無敵のアイドル
@@ -129,107 +186,118 @@ color: rgb(30,152,255);
 唯一無二じゃなくちゃイヤイヤ
 それこそ本物のアイ
   ⌜IDOL⌟
-`
+`;
     console.log(
       `%c${title1} %c${title2}
 %c${content}`,
       styleTitle1,
       styleTitle2,
       styleContent
-    )
+    );
     this.$nextTick(() => {
       //禁止右键
-      document.oncontextmenu = new Function('event.returnValue=false')
-    })
+      document.oncontextmenu = new Function("event.returnValue=false");
+    });
   },
   beforeDestroy() {
-    window.removeEventListener('beforeunload', this.handleBeforeUnload)
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener("beforeunload", this.handleBeforeUnload);
+    window.removeEventListener("scroll", this.handleScroll);
   },
   watch: {
+    "$store.state.isShowLoading": {
+      handler(value) {
+        if (value) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "auto";
+        }
+      },
+    },
     // 监听 visible，来触发关闭右键菜单，调用关闭菜单的方法
     visible(value) {
       if (value) {
-        document.body.addEventListener('click', this.closeMenu)
+        document.body.addEventListener("click", this.closeMenu);
       } else {
-        document.body.removeEventListener('click', this.closeMenu)
+        document.body.removeEventListener("click", this.closeMenu);
       }
-    }
+    },
   },
   methods: {
     // 打开右键菜单
     openMenu(e, item) {
-      this.visible = true
-      this.top = e.pageY
-      this.left = e.pageX
-      this.rightClickItem = item
+      this.visible = true;
+      this.top = e.pageY;
+      this.left = e.pageX;
+      this.rightClickItem = item;
     },
     // 关闭右键菜单
     closeMenu() {
-      this.visible = false
+      this.visible = false;
     },
     // 音乐跳转
     musicHandle() {
-      window.open('https://www.zjh2002.icu/#/discover/recommend')
+      window.open("https://www.zjh2002.icu/#/discover/recommend");
     },
     // 路由跳转
     backAndForward(val) {
-      if (val === '1') {
-        window.history.forward()
+      if (val === "1") {
+        window.history.forward();
       } else {
-        window.history.back()
+        window.history.back();
       }
     },
     // 刷新
     refresh() {
-      location.reload()
+      location.reload();
     },
     // 昼夜切换
     dayAndNight() {
-      document.getElementById('changeColorRef').click()
+      document.getElementById("changeColorRef").click();
     },
     // 加入我们
     onCopy() {
-      let input = document.createElement('input') // 直接构建input
-      input.value = this.copyContent // 设置内容
-      document.body.appendChild(input) // 添加临时实例
-      input.select() // 选择实例内容
-      document.execCommand('Copy') // 执行复制
-      document.body.removeChild(input) // 删除临时实例
+      let input = document.createElement("input"); // 直接构建input
+      input.value = this.copyContent; // 设置内容
+      document.body.appendChild(input); // 添加临时实例
+      input.select(); // 选择实例内容
+      document.execCommand("Copy"); // 执行复制
+      document.body.removeChild(input); // 删除临时实例
       this.$notify({
-        title: '可以啦🍨',
-        message: '本博主的微信已经到你的剪贴板啦，快加入我们吧~~🎉',
-        type: 'success',
+        title: "可以啦🍨",
+        message: "本博主的微信已经到你的剪贴板啦，快加入我们吧~~🎉",
+        type: "success",
         offset: 50,
-        position: 'top-left'
-      })
+        position: "top-left",
+      });
     },
     // 美化设置
     changeTheme() {
-      document.getElementById('changeThemeRef').click()
+      document.getElementById("changeThemeRef").click();
     },
     handleScroll() {
       // 屏幕剩余的高度
-      let surplus = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      let surplus =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
       // 当前滑动高度
-      let scrollY = document.documentElement.scrollTop
+      let scrollY = document.documentElement.scrollTop;
       if (scrollY < 0) {
-        scrollY = 0
+        scrollY = 0;
       }
       if (scrollY > 0) {
-        this.visible = false
+        this.visible = false;
       }
       // 当前位置百分比小数
-      this.coorY = scrollY / surplus
-      this.$store.commit('topPercentage', Math.floor(this.coorY * 100))
+      this.coorY = scrollY / surplus;
+      this.$store.commit("topPercentage", Math.floor(this.coorY * 100));
       // 设置导航栏，这里使用NProgress.set() 动态更改进度条
-      NProgress.set(this.coorY)
+      NProgress.set(this.coorY);
     },
     handleBeforeUnload() {
-      this.$store.commit('topPercentage', 0)
-    }
-  }
-}
+      this.$store.commit("topPercentage", 0);
+    },
+  },
+};
 </script>
 <style lang="scss">
 #nprogress {
@@ -255,7 +323,7 @@ color: rgb(30,152,255);
   font-size: 12px;
   font-weight: 700;
   color: var(--black5);
-  transition: 0.3s;
+  transition: 0.3s ease;
   padding: 0 0.25rem;
 }
 .rightMenu-group {
@@ -267,7 +335,7 @@ color: rgb(30,152,255);
   }
   .rightMenu-item {
     border-radius: 8px;
-    transition: 0.3s;
+    transition: 0.3s ease;
     i {
       font-size: 15px;
       display: inline-block;
@@ -307,7 +375,7 @@ a.rightMenu-item {
 .loading {
   width: 100%;
   height: 100%;
-  background: linear-gradient(55deg, var(--blue1) 21%, var(--green6) 100%);
+  background: linear-gradient(55deg, var(--blue1) 20%, var(--green6) 100%);
   position: absolute;
   top: 0px;
   left: 0px;
@@ -327,20 +395,30 @@ a.rightMenu-item {
   align-items: center;
   justify-content: center;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 500px;
     height: 500px;
-    background-image: conic-gradient(transparent, transparent, transparent, var(--purple1));
+    background-image: conic-gradient(
+      transparent,
+      transparent,
+      transparent,
+      var(--purple1)
+    );
     animation: animate 2s linear infinite;
     animation-delay: -1s;
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 500px;
     height: 500px;
-    background-image: conic-gradient(transparent, transparent, transparent, var(--blue));
+    background-image: conic-gradient(
+      transparent,
+      transparent,
+      transparent,
+      var(--blue2)
+    );
     animation: animate 2s linear infinite;
   }
   span {
@@ -350,23 +428,33 @@ a.rightMenu-item {
     background: var(--favoriteBg);
     z-index: 1;
   }
-}
-.author-img {
-  margin: auto;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 150px;
-  height: 150px;
-  z-index: 10;
-  background: var(--maxMaxWhiteMask);
-  img {
-    border-radius: 11px;
-    margin-right: 4px;
-    display: block;
-    margin: 0 auto 20px;
-    max-width: 100%;
-    animation: breath 700ms ease-in-out infinite;
+  .author-img {
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    z-index: 10;
+    background: var(--maxMaxWhiteMask);
+    img {
+      border-radius: 11px;
+      margin-right: 4px;
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 100%;
+      animation: breath 700ms ease-in-out infinite;
+    }
   }
+}
+.image-dot {
+  width: 25px;
+  height: 25px;
+  background: var(--green1);
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid var(--favoriteBg);
+  z-index: 20;
+  transform: translate(51px, 54px);
 }
 @keyframes animate {
   0% {

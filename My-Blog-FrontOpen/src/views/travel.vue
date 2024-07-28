@@ -1,32 +1,49 @@
 <template>
   <div>
-    <div class="travel-container" style="background: var(--background);">
+    <div class="travel-container" style="background: var(--background)">
       <!-- 背景图片 -->
-      <div style="animation: header-effect 2s;" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
+      <div
+        style="animation: header-effect 2s"
+        :style="{ background: `${$store.state.changeBg}` }"
+        class="background-image background-image-changeBg"
+      ></div>
       <div class="travel-top">
-        <div class="travel-header my-animation-slide-top">
+        <div class="travel-header shadow-box my-animation-slide-top">
           <!-- 顶部视频 -->
-          <video class="index-video" autoplay muted loop playsinline webkit-playsinline :src="$constant.favoriteVideo"></video>
+          <video
+            class="index-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            webkit-playsinline
+            :src="$constant.favoriteVideo"
+          ></video>
           <div style="position: absolute; left: 20px; top: 20px">
             <!-- 标题 -->
             <div>
-              <div style="text-indent: 2em;">旅拍集</div>
-              <div class="travel-introduce" style="
-                  font-size: 36px;
-                  font-weight: 400;
-                  line-height: 1.5;
-                ">
+              <div style="text-indent: 2em">旅拍集</div>
+              <div
+                class="travel-introduce"
+                style="font-size: 36px; font-weight: 400; line-height: 1.5"
+              >
                 这里是相册分类集
               </div>
             </div>
           </div>
-          <div style="position: absolute; left: 20px; bottom: 40px; margin: 10px">
+          <div
+            style="position: absolute; left: 20px; bottom: 40px; margin: 10px"
+          >
             生活中的小确幸。
           </div>
         </div>
-        <div v-if="!$common.mobile() && !mobile" class="travel-header-right" style="
-            background-image: url(https://www.qiniuyun.zjh2002.icu/gif/%E7%BA%A2%E5%AD%A9%E5%84%BF.gif);
-          ">
+        <div
+          v-if="!$common.mobile() && !mobile"
+          class="shadow-box travel-header-right"
+          style="
+            background-image: url(https://www.qiniuyun.monke-papa.icu/gif/%E7%BA%A2%E5%AD%A9%E5%84%BF.gif);
+          "
+        >
           <div class="card-content">
             <div class="author-content-item-tips">┗|｀O′|┛ 嗷～～</div>
             <span class="author-content-item-title">cat</span>
@@ -41,9 +58,17 @@
       <div class="travel-content my-animation-slide-bottom">
         <!-- 标签 -->
         <div class="photo-title-warp" v-if="!$common.isEmpty(photoTitleList)">
-          <div v-for="(item, index) in photoTitleList" :key="index" :class="{ isActive: photoPagination.classify === item.classify }" @click="changePhotoTitle(item.classify)">
-            <proTag :info="item.classify + ' ' + item.count" :color="$constant.before_color_list[Math.floor(Math.random() * 6)]
-              " style="margin: 12px">
+          <div
+            v-for="(item, index) in photoTitleList"
+            :key="index"
+            :class="{ isActive: photoPagination.classify === item.classify }"
+            @click="changePhotoTitle(item.classify)"
+          >
+            <proTag
+              :info="item.classify + ' ' + item.count"
+              :color="$constant.tree_hole_color[Math.floor(Math.random() * 6)]"
+              style="margin: 12px"
+            >
             </proTag>
           </div>
         </div>
@@ -52,22 +77,28 @@
         </div>
         <photo :resourcePathList="photoList"></photo>
         <div class="pagination-wrap">
-          <div @click="pagePhotos()" class="pagination" v-if="photoPagination.total !== photoList.length">
+          <div
+            @click="pagePhotos()"
+            class="pagination"
+            v-if="photoPagination.total !== photoList.length"
+          >
             下一页
           </div>
-          <div v-else style="user-select: none;color: var(--red);">~~到底啦~~</div>
+          <div v-else style="user-select: none; color: var(--red)">
+            ~~( •̀ ω •́ )y 到底啦~~
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-const photo = () => import('./common/photo')
-const proTag = () => import('./common/proTag')
+const photo = () => import("./common/photo");
+const proTag = () => import("./common/proTag");
 export default {
   components: {
     photo,
-    proTag
+    proTag,
   },
   data() {
     return {
@@ -75,52 +106,54 @@ export default {
         current: 1,
         size: 10,
         total: 0,
-        resourceType: 'lovePhoto',
-        classify: ''
+        resourceType: "lovePhoto",
+        classify: "",
       },
       photoTitleList: [],
       photoList: [],
-      mobile: false
-    }
+      mobile: false,
+    };
   },
   created() {
-    this.getPhotoTitles()
-    this.mobile = document.body.clientWidth < 780
-    window.addEventListener('resize', () => {
-      let docWidth = document.body.clientWidth
+    this.getPhotoTitles();
+    this.mobile = document.body.clientWidth < 780;
+    window.addEventListener("resize", () => {
+      let docWidth = document.body.clientWidth;
       if (docWidth < 780) {
-        this.mobile = true
+        this.mobile = true;
       } else {
-        this.mobile = false
+        this.mobile = false;
       }
-    })
+    });
   },
   methods: {
     getPhotoTitles() {
       this.$http
-        .get(this.$constant.baseURL + '/webInfo/getClassifyList/', { type: 'lovePhoto' })
-        .then(res => {
+        .get(this.$constant.baseURL + "/webInfo/getClassifyList/", {
+          type: "lovePhoto",
+        })
+        .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.photoTitleList = res.result[0].data
+            this.photoTitleList = res.result[0].data;
             this.photoPagination = {
               current: 1,
               size: 10,
               total: 0,
-              resourceType: 'lovePhoto',
-              classify: this.photoTitleList[0].classify
-            }
-            this.changePhoto()
+              resourceType: "lovePhoto",
+              classify: this.photoTitleList[0].classify,
+            };
+            this.changePhoto();
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
+            type: "error",
+            title: "可恶🤬",
             message: error.message,
-            position: 'top-left',
-            offset: 50
-          })
-        })
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     changePhotoTitle(classify) {
       if (classify !== this.photoPagination.classify) {
@@ -128,38 +161,41 @@ export default {
           current: 1,
           size: 10,
           total: 0,
-          resourceType: 'lovePhoto',
-          classify: classify
-        }
-        this.photoList = []
-        this.changePhoto()
+          resourceType: "lovePhoto",
+          classify: classify,
+        };
+        this.photoList = [];
+        this.changePhoto();
       }
     },
     pagePhotos() {
-      this.photoPagination.current = this.photoPagination.current + 1
-      this.changePhoto()
+      this.photoPagination.current = this.photoPagination.current + 1;
+      this.changePhoto();
     },
     changePhoto() {
       this.$http
-        .post(this.$constant.baseURL + '/webInfo/clistResourcePath/', this.photoPagination)
-        .then(res => {
+        .post(
+          this.$constant.baseURL + "/webInfo/clistResourcePath/",
+          this.photoPagination
+        )
+        .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.photoList = this.photoList.concat(res.result[0].records)
-            this.photoPagination.total = res.result[0].total
+            this.photoList = this.photoList.concat(res.result[0].records);
+            this.photoPagination.total = res.result[0].total;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
+            type: "error",
+            title: "可恶🤬",
             message: error.message,
-            position: 'top-left',
-            offset: 50
-          })
-        })
-    }
-  }
-}
+            position: "top-left",
+            offset: 50,
+          });
+        });
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .travel-header {
@@ -168,8 +204,14 @@ export default {
   overflow: hidden;
   border-radius: 20px;
   width: 1130px;
-  color: var(--red);
+  color: var(--red1);
   user-select: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray1);
+  &:hover {
+    color: var(--red);
+    border-color: var(--gray4);
+  }
   &-right {
     right: 0;
     margin: 60px 10px 30px;
@@ -184,7 +226,13 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    color: var(--red);
+    color: var(--red1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray1);
+    &:hover {
+      color: var(--red);
+      border-color: var(--gray4);
+    }
   }
 }
 .index-video {
@@ -260,7 +308,7 @@ export default {
   right: 0.5rem;
 }
 .banner-button {
-  color: var(--red);
+  color: var(--red1);
   height: 2rem;
   width: 6rem;
   border-radius: 1.2rem;
@@ -270,6 +318,11 @@ export default {
   justify-content: center;
   text-decoration: none;
   outline: none;
+  transition: all 0.3s ease;
+  &:hover {
+    color: var(--red3);
+    background: var(--themeColor);
+  }
 }
 @media screen and (max-width: 1150px) {
   .photo-title-warp {

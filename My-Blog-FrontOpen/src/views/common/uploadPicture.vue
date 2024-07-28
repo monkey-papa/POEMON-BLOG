@@ -59,7 +59,7 @@ export default {
     },
     // 文件上传成功时的钩子
     handleSuccess(response, file) {
-      let id = this.$store.state.currentAdmin.id
+      let id = this.$store.state.currentUser.id
       //存取资源接口
       this.$common.saveResource(this, file.raw.type, response.url, file.size, this.ResourceType, id, true)
       if (response.url) {

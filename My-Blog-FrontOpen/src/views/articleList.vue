@@ -1,10 +1,11 @@
 <template>
   <div v-if="!$common.isEmpty(articleList)" class="recent-post-container">
-    <smokeLoading v-show="loadingMark && !this.$common.mobile()" :loadingText="loadingText" />
+    <smokeLoading
+      v-show="loadingMark && !this.$common.mobile()"
+      :loadingText="loadingText"
+    />
     <div class="article-first">
-      <div>
-        <img style="vertical-align: -2px" src="../assets/svg/planet.svg" /> 发现
-      </div>
+      <div><i class="iconfont icon-ziyuan11"></i> 发现</div>
       <div class="right-icon">
         <!-- 两种切换形式 -->
         <!-- <span
@@ -17,7 +18,10 @@
           class="el-icon-menu"
           :class="{ active: !activeIcon }"
         ></span> -->
-        <switchBtn v-if="!this.$common.mobile()" @click.native="handleChangeIcon"></switchBtn>
+        <switchBtn
+          v-if="!this.$common.mobile()"
+          @click.native="handleChangeIcon"
+        ></switchBtn>
       </div>
     </div>
     <!-- 文章list -->
@@ -35,42 +39,74 @@
         <div class="rect10">🤪</div>
       </div>
       <template v-else>
-        <div class="recent-post-item shadow-box" v-for="(article, index) in articleList" :key="index" :class="{
+        <div
+          class="recent-post-item shadow-box"
+          v-for="(article, index) in articleList"
+          :key="index"
+          :class="{
             waterfall: !activeIcon,
             'my-animation-slide-top': index % 2 !== 0,
             'my-animation-slide-bottom': index % 2 === 0,
-          }" @click="$router.push({ path: '/article', query: { id: article.id } })">
+          }"
+          @click="$router.push({ path: '/article', query: { id: article.id } })"
+        >
           <!-- 封面 -->
-          <div class="recent-post-item-image" :class="{
+          <div
+            class="recent-post-item-image"
+            :class="{
               leftImage: index % 2 !== 0,
               rightImage: index % 2 === 0,
               waterfallImage: !activeIcon,
-            }">
-            <el-image class="my-el-image" @load="allLoad" :lazy="activeIcon" :src="article.articleCover" fit="cover">
+            }"
+          >
+            <el-image
+              class="my-el-image"
+              @load="allLoad"
+              :lazy="activeIcon"
+              :src="article.articleCover"
+              fit="cover"
+            >
               <!-- 懒加载图片 -->
               <div slot="placeholder">
-                <div v-if="activeIcon" :class="{
+                <div
+                  v-if="activeIcon"
+                  :class="{
                     leftImage: index % 2 !== 0 && activeIcon,
                     rightImage: index % 2 === 0 && activeIcon,
-                  }">
-                  <img class="img img-loading" :class="{ 'img-loading__active': !activeIcon }" :src="$store.state.webInfo.randomCover[1]" />
+                  }"
+                >
+                  <img
+                    class="img img-loading"
+                    :class="{ 'img-loading__active': !activeIcon }"
+                    :src="$store.state.webInfo.randomCover[1]"
+                  />
                 </div>
               </div>
               <!-- 错误图片 -->
               <div slot="error" class="image-slot myCenter">
-                <img class="error-img img" :class="{ 'error-img__active': !activeIcon }" :src="$store.state.webInfo.randomCover[0]" alt="" />
+                <img
+                  class="error-img img"
+                  :class="{ 'error-img__active': !activeIcon }"
+                  :src="$store.state.webInfo.randomCover[0]"
+                  alt=""
+                />
                 <div class="error-text">
-                  <div style="color: var(--wheat)">肥肠抱歉，图片跑掉了┮﹏┭</div>
+                  <div style="color: var(--wheat1)">
+                    肥肠抱歉，图片跑掉了┮﹏┭
+                  </div>
                 </div>
               </div>
             </el-image>
           </div>
           <!-- 内容 -->
-          <div class="recent-post-item-post" :class="{
+          <div
+            class="recent-post-item-post"
+            :class="{
               leftImage: index % 2 === 0,
               rightImage: index % 2 !== 0,
               waterfallImage: !activeIcon,
-            }">
+            }"
+          >
             <!-- 时间 -->
             <div class="post-meta">
               <img style="vertical-align: -3px" src="../assets/svg/clock.svg" />
@@ -82,17 +118,29 @@
               <h3 style="font-weight: 600">{{ article.articleTitle }}</h3>
             </el-tooltip>
             <!-- 信息 -->
-            <div class="post-meta" style="margin-bottom: 15px; color: var(--darkBlue)">
+            <div
+              class="post-meta"
+              style="margin-bottom: 15px; color: var(--darkBlue)"
+            >
               <span>
-                <img style="vertical-align: -2px" src="../assets/svg/fire2.svg" />
+                <img
+                  style="vertical-align: -2px"
+                  src="../assets/svg/fire2.svg"
+                />
                 {{ article.viewCount }} 热度
               </span>
               <span>
-                <img style="vertical-align: -2px" src="../assets/svg/comment2.svg" />
+                <img
+                  style="vertical-align: -2px"
+                  src="../assets/svg/comment2.svg"
+                />
                 {{ article.commentCount }} 条评论
               </span>
               <span>
-                <img style="vertical-align: -2px" src="../assets/svg/like.svg" />
+                <img
+                  style="vertical-align: -2px"
+                  src="../assets/svg/like.svg"
+                />
                 {{ article.likeCount }} 点赞
               </span>
             </div>
@@ -102,22 +150,35 @@
             </div>
             <!-- 分类 标签 -->
             <div class="sort-label">
-              <div class="sort-label--item" style="margin-right: 12px" @click.stop="
+              <div
+                class="sort-label--item"
+                style="margin-right: 12px"
+                @click.stop="
                   $router.push({
                     path: '/sort',
                     query: { sortId: article.sortId },
                   })
-                ">
-                <img style="vertical-align: -3px; margin-right: 5px" src="../assets/svg/sort2.svg" />
+                "
+              >
+                <img
+                  style="vertical-align: -3px; margin-right: 5px"
+                  src="../assets/svg/sort2.svg"
+                />
                 <div class="SortLabelName">{{ article.sort[0].sortName }}</div>
               </div>
-              <div class="sort-label--item" @click.stop="
+              <div
+                class="sort-label--item"
+                @click.stop="
                   $router.push({
                     path: '/sort',
                     query: { sortId: article.sortId, labelId: article.labelId },
                   })
-                ">
-                <img style="vertical-align: -3px; margin-right: 5px" src="../assets/svg/tag2.svg" />
+                "
+              >
+                <img
+                  style="vertical-align: -3px; margin-right: 5px"
+                  src="../assets/svg/tag2.svg"
+                />
                 <div class="SortLabelName">
                   {{ article.label[0].labelName }}
                 </div>
@@ -130,172 +191,172 @@
   </div>
 </template>
 <script>
-const switchBtn = () => import('./common/switchBtn')
-const smokeLoading = () => import('./common/smokeLoading')
+const switchBtn = () => import("./common/switchBtn");
+const smokeLoading = () => import("./common/smokeLoading");
 export default {
   components: {
     switchBtn,
-    smokeLoading
+    smokeLoading,
   },
   props: {
     articleList: {
-      type: Array
+      type: Array,
     },
     parentLoadingMark: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   data() {
     return {
       loading: false,
-      loadingText: 'Loading...',
+      loadingText: "Loading...",
       loadingMark: false,
       activeIcon: true,
       screenWidth: window.innerWidth,
-      allLoadIndex: 0 // 记录加载完成的图片数量
-    }
+      allLoadIndex: 0, // 记录加载完成的图片数量
+    };
   },
   watch: {
     parentLoadingMark: {
       immediate: true,
       handler(newVal) {
-        this.loadingMark = newVal
-        this.loadingText = 'Monkey-PaPa'
-      }
+        this.loadingMark = newVal;
+        this.loadingText = "Monkey-PaPa";
+      },
     },
     // 翻页
     articleList: {
       handler(newVal) {
         if (newVal.length > 0 && !this.activeIcon) {
-          this.loadingMark = true
-          const cParent = document.querySelector('#container')
-          cParent.style.opacity = 0
+          this.loadingMark = true;
+          const cParent = document.querySelector("#container");
+          cParent.style.opacity = 0;
         }
       },
       deep: true,
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   mounted() {
     setTimeout(() => {
-      this.loadingMark = false
-    }, 3500)
-    window.addEventListener('resize', this.updateColumns)
+      this.loadingMark = false;
+    }, 3500);
+    window.addEventListener("resize", this.updateColumns);
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.updateColumns)
+    window.removeEventListener("resize", this.updateColumns);
   },
   methods: {
     updateColumns() {
       // tip：媒体查询行不通
-      this.screenWidth = window.innerWidth
+      this.screenWidth = window.innerWidth;
       if (this.screenWidth > 958) {
-        document.querySelectorAll('.waterfall').forEach((item, i) => {
+        document.querySelectorAll(".waterfall").forEach((item, i) => {
           // 以下控制一排3个盒子
           if ((i + 1) % 3 === 0) {
-            item.style.width = '32%'
-            item.style.marginRight = '0'
+            item.style.width = "32%";
+            item.style.marginRight = "0";
           } else {
-            item.style.width = '32%'
-            item.style.marginRight = '2%'
+            item.style.width = "32%";
+            item.style.marginRight = "2%";
           }
-        })
+        });
       }
       if (this.screenWidth <= 958) {
-        document.querySelectorAll('.waterfall').forEach((item, i) => {
+        document.querySelectorAll(".waterfall").forEach((item, i) => {
           if ((i + 1) % 2 === 0) {
-            item.style.width = '49%'
-            item.style.marginRight = '0'
+            item.style.width = "49%";
+            item.style.marginRight = "0";
           } else {
-            item.style.width = '49%'
-            item.style.marginRight = '2%'
+            item.style.width = "49%";
+            item.style.marginRight = "2%";
           }
-        })
+        });
       }
       if (this.screenWidth <= 545) {
-        document.querySelectorAll('.waterfall').forEach((item, i) => {
-          item.style.width = '100%'
-          item.style.marginRight = '0'
-        })
+        document.querySelectorAll(".waterfall").forEach((item, i) => {
+          item.style.width = "100%";
+          item.style.marginRight = "0";
+        });
       }
-      this.imgLocation()
+      this.imgLocation();
     },
     handleChangeIcon() {
-      this.allLoadIndex = 0
-      this.loading = !this.loading
-      const cParent = document.querySelector('#container')
+      this.allLoadIndex = 0;
+      this.loading = !this.loading;
+      const cParent = document.querySelector("#container");
       setTimeout(() => {
-        this.loading = !this.loading
-        this.activeIcon = !this.activeIcon
+        this.loading = !this.loading;
+        this.activeIcon = !this.activeIcon;
         if (!this.activeIcon) {
-          cParent.style.opacity = 0
+          cParent.style.opacity = 0;
         } else {
-          cParent.style.height = 'auto'
+          cParent.style.height = "auto";
         }
-      }, 1000)
+      }, 1000);
     },
     allLoad() {
-      if (this.activeIcon) return
-      this.allLoadIndex++
+      if (this.activeIcon) return;
+      this.allLoadIndex++;
       if (this.allLoadIndex === this.articleList.length) {
-        this.imgLocation()
+        this.imgLocation();
       }
     },
     imgLocation() {
-      if (this.activeIcon) return
-      const cParent = document.querySelector('#container')
-      const cChild = cParent && cParent.querySelectorAll('.waterfall')
+      if (this.activeIcon) return;
+      const cParent = document.querySelector("#container");
+      const cChild = cParent && cParent.querySelectorAll(".waterfall");
       // 父盒子宽度
-      const screenWidth = cParent && cParent.offsetWidth
+      const screenWidth = cParent && cParent.offsetWidth;
       // 子盒子宽度
-      const imgWidth = cChild.length > 0 && cChild[0].offsetWidth
+      const imgWidth = cChild.length > 0 && cChild[0].offsetWidth;
       // 列数 = 父盒子宽度 / 子盒子宽度
-      const num = Math.floor(screenWidth / imgWidth) || 0
+      const num = Math.floor(screenWidth / imgWidth) || 0;
       // 图片间隔
-      const gap = (screenWidth - num * imgWidth) / (num - 1)
+      const gap = (screenWidth - num * imgWidth) / (num - 1);
       // 下边距
-      const marginBottom = 25
+      const marginBottom = 10;
       //操作第num+1张图
-      const boxHeightArr = new Array(num)
-      boxHeightArr.fill(0)
+      const boxHeightArr = new Array(num);
+      boxHeightArr.fill(0);
       for (let i = 0; i < cChild.length; i++) {
         if (i < num) {
           //摆放图片
-          cChild[i].style.position = 'absolute'
-          cChild[i].style.top = '0px'
-          cChild[i].style.left = i * imgWidth + i * gap + 'px'
-          boxHeightArr[i] = cChild[i].offsetHeight
+          cChild[i].style.position = "absolute";
+          cChild[i].style.top = "0px";
+          cChild[i].style.left = i * imgWidth + i * gap + "px";
+          boxHeightArr[i] = cChild[i].offsetHeight;
         } else {
           //找数组最小值
-          const minHeight = Math.min(...boxHeightArr)
-          const minIndex = boxHeightArr.indexOf(minHeight)
+          const minHeight = Math.min(...boxHeightArr);
+          const minIndex = boxHeightArr.indexOf(minHeight);
           //摆放图片
-          cChild[i].style.position = 'absolute'
-          cChild[i].style.top = minHeight + marginBottom + 'px'
-          cChild[i].style.left = cChild[minIndex].offsetLeft + 'px'
+          cChild[i].style.position = "absolute";
+          cChild[i].style.top = minHeight + marginBottom + "px";
+          cChild[i].style.left = cChild[minIndex].offsetLeft + "px";
           //更新高度数组
-          boxHeightArr[minIndex] += cChild[i].offsetHeight + marginBottom
+          boxHeightArr[minIndex] += cChild[i].offsetHeight + marginBottom;
         }
       }
       //找数组最大值
-      const maxIndex = Math.max(...boxHeightArr)
-      cParent.style.height = maxIndex + 'px'
-      cParent.style.opacity = 1
-      this.loadingMark = false
-    }
+      const maxIndex = Math.max(...boxHeightArr);
+      cParent.style.height = maxIndex + "px";
+      cParent.style.opacity = 1;
+      this.loadingMark = false;
+    },
   },
   filters: {
     formatter(row) {
-      const day = row.split('.')[0].split('T')[0]
-      const time = row.split('.')[0].split('T')[1]
-      return `${day} 日 ${time}`
+      const day = row.split(".")[0].split("T")[0];
+      const time = row.split(".")[0].split("T")[1];
+      return `${day} 日 ${time}`;
     },
     remove(row) {
       // 去除字符串中所有#和*
-      return row.replace(/[#*]/g, '')
-    }
-  }
-}
+      return row.replace(/[#*]/g, "");
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .article-first {
@@ -326,7 +387,7 @@ export default {
   max-width: 1080px;
   margin: auto;
   .recent-post-item:not(:last-child) {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
   }
 }
 .recent-post-item {
@@ -338,14 +399,23 @@ export default {
   overflow: hidden;
   border-radius: 10px;
   animation: hideToShow 1s ease-in-out;
+  border: 1px solid var(--gray1);
+  &:hover {
+    border-color: var(--gray4);
+  }
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 200%;
-    background: linear-gradient(to right, transparent, var(--white), transparent);
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--white),
+      transparent
+    );
     transform: translateX(-200%);
     transition: transform 0.5s linear;
     z-index: 1;
@@ -403,7 +473,7 @@ export default {
 }
 .post-meta {
   font-size: 14px;
-  color: var(--red);
+  color: var(--red1);
   i {
     font-size: 15px;
   }
@@ -428,12 +498,13 @@ export default {
   background-color: var(--white);
   border-radius: 3px;
   font-size: 14px;
-  color: var(--red);
-  transition: all 0.3s;
+  color: var(--red5);
   user-select: none;
+  border: 1px solid var(--gray1);
   &:hover {
+    border-color: var(--gray4);
     background: var(--gradientAnimation);
-    color: var(--white);
+    color: var(--white2);
   }
 }
 .img-loading {

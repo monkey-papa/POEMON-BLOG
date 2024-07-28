@@ -426,7 +426,7 @@ export default {
   height: 40px;
   line-height: 40px;
   font-size: 16px;
-  color: var(--black);
+  color: var(--favoriteBg);
 }
 .el-tag {
   margin: 10px;

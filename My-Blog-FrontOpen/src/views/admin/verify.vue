@@ -1,81 +1,113 @@
 <template>
   <div class="content">
     <div class="left">
-      <img src="https://www.qiniuyun.zjh2002.icu/avatar/verify2.png" class="people p-animtion" alt="people" />
-      <img src="https://www.qiniuyun.zjh2002.icu/avatar/verify1.png" class="sphere s-animtion" alt="sphere" />
+      <img
+        src="https://www.qiniuyun.monke-papa.icu/avatar/verify2.png"
+        class="people p-animtion"
+        alt="people"
+      />
+      <img
+        src="https://www.qiniuyun.monke-papa.icu/avatar/verify1.png"
+        class="sphere s-animtion"
+        alt="sphere"
+      />
     </div>
     <div class="right">
       <div class="top">
         <div class="top-item">
-          <span class="top-text" @click="$router.push({ path: '/' })">首页</span>
+          <span class="top-text" @click="$router.push({ path: '/' })"
+            >首页</span
+          >
         </div>
         <div class="top-item">
-          <span class="top-text" @click="$router.push({ path: '/user' })">前台用户登录</span>
+          <span class="top-text" @click="$router.push({ path: '/user' })"
+            >前台用户登录</span
+          >
         </div>
       </div>
       <div class="form-wrappepr">
-        <h1>私生活后台</h1>
-        <input type="text" class="inputs user" v-model="account" placeholder="请输入账号" />
-        <input type="password" class="inputs pwd" v-model="password" @keyup.enter="login()" placeholder="请输入密码" />
-        <proButton :info="'提交'" @click.native="login()" :before="$constant.before_color_2" :after="$constant.after_color_2">
+        <h1 style="color: var(--black5)">私生活后台</h1>
+        <input
+          type="text"
+          class="inputs user"
+          v-model="account"
+          placeholder="请输入账号"
+        />
+        <input
+          type="password"
+          class="inputs pwd"
+          v-model="password"
+          @keyup.enter="login()"
+          placeholder="请输入密码"
+        />
+        <proButton
+          :info="'提交'"
+          @click.native="login()"
+          :before="$constant.before_color_1"
+          :after="$constant.after_color_1"
+        >
         </proButton>
       </div>
     </div>
   </div>
 </template>
 <script>
-const proButton = () => import('../common/proButton')
+const proButton = () => import("../common/proButton");
 export default {
   components: {
-    proButton
+    proButton,
   },
   data() {
     return {
       redirect: this.$route.query.redirect,
-      account: '',
-      password: ''
-    }
+      account: "",
+      password: "",
+    };
   },
   methods: {
     login() {
-      if (this.$common.isEmpty(this.account) || this.$common.isEmpty(this.password)) {
+      if (
+        this.$common.isEmpty(this.account) ||
+        this.$common.isEmpty(this.password)
+      ) {
         this.$notify({
-          type: 'error',
-          title: '可恶🤬',
-          message: '请输入账号或密码！',
-          position: 'top-left',
-          offset: 50
-        })
-        return
+          type: "error",
+          title: "可恶🤬",
+          message: "请输入账号或密码！",
+          position: "top-left",
+          offset: 50,
+        });
+        return;
       }
       let user = {
         account: this.account.trim(),
         password: this.$common.encrypt(this.password.trim()),
-        isAdmin: true
-      }
+        isAdmin: true,
+      };
       this.$http
-        .post(this.$constant.baseURL + '/user/login/', user, true, false)
-        .then(res => {
+        .post(this.$constant.baseURL + "/user/login/", user, true, false)
+        .then((res) => {
           if (!this.$common.isEmpty(res.data)) {
-            localStorage.setItem('adminToken', res.data.accessToken)
-            this.$store.commit('loadCurrentAdmin', res.data)
-            this.account = ''
-            this.password = ''
-            this.$router.push({ path: this.redirect })
+            localStorage.setItem("adminToken", res.data.accessToken);
+            this.$store.commit("loadCurrentAdmin", res.data);
+            this.account = "";
+            this.password = "";
+            this.$router.push({ path: this.redirect });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
-            message: '账号异常，可能由于您不是管理员或者是账号密码错误，请重新输入！',
-            position: 'top-left',
-            offset: 50
-          })
-        })
-    }
-  }
-}
+            type: "error",
+            title: "可恶🤬",
+            message:
+              "账号异常，可能由于您不是管理员或者是账号密码错误，请重新输入！",
+            position: "top-left",
+            offset: 50,
+          });
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -86,14 +118,23 @@ body {
   margin: 0;
   min-height: 100vh;
   background-color: #abc6f8;
-  background-image: radial-gradient(closest-side, rgb(255, 255, 255), rgba(235, 105, 78, 0)), radial-gradient(closest-side, rgb(250, 203, 203), rgba(243, 11, 164, 0)), radial-gradient(closest-side, rgb(237, 252, 202), rgba(254, 234, 131, 0)),
-    radial-gradient(closest-side, rgb(197, 248, 241), rgba(170, 142, 245, 0)), radial-gradient(closest-side, rgb(206, 200, 243), rgba(248, 192, 147, 0));
-  background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax, 110vmax 110vmax, 90vmax 90vmax;
-  background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax, -30vmax -10vmax, 50vmax 50vmax;
+  background-image: radial-gradient(
+      closest-side,
+      rgb(255, 255, 255),
+      rgba(235, 105, 78, 0)
+    ),
+    radial-gradient(closest-side, rgb(250, 203, 203), rgba(243, 11, 164, 0)),
+    radial-gradient(closest-side, rgb(237, 252, 202), rgba(254, 234, 131, 0)),
+    radial-gradient(closest-side, rgb(197, 248, 241), rgba(170, 142, 245, 0)),
+    radial-gradient(closest-side, rgb(206, 200, 243), rgba(248, 192, 147, 0));
+  background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax,
+    110vmax 110vmax, 90vmax 90vmax;
+  background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax,
+    -30vmax -10vmax, 50vmax 50vmax;
   background-repeat: no-repeat;
   animation: 10s movement linear infinite;
   &::after {
-    content: '';
+    content: "";
     display: block;
     position: fixed;
     width: 100%;
@@ -175,7 +216,7 @@ body {
       top: 5%;
       transform: translate(-50%, 0);
       .top-item {
-        color: var(--blue);
+        color: var(--blue2);
         float: left;
         width: 150px;
         height: 40px;
@@ -296,20 +337,28 @@ body {
 @keyframes movement {
   0%,
   100% {
-    background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax, 110vmax 110vmax, 90vmax 90vmax;
-    background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax, -30vmax -10vmax, 50vmax 50vmax;
+    background-size: 130vmax 130vmax, 80vmax 80vmax, 90vmax 90vmax,
+      110vmax 110vmax, 90vmax 90vmax;
+    background-position: -80vmax -80vmax, 60vmax -30vmax, 10vmax 10vmax,
+      -30vmax -10vmax, 50vmax 50vmax;
   }
   25% {
-    background-size: 100vmax 100vmax, 90vmax 90vmax, 100vmax 100vmax, 90vmax 90vmax, 60vmax 60vmax;
-    background-position: -60vmax -90vmax, 50vmax -40vmax, 0vmax -20vmax, -40vmax -20vmax, 40vmax 60vmax;
+    background-size: 100vmax 100vmax, 90vmax 90vmax, 100vmax 100vmax,
+      90vmax 90vmax, 60vmax 60vmax;
+    background-position: -60vmax -90vmax, 50vmax -40vmax, 0vmax -20vmax,
+      -40vmax -20vmax, 40vmax 60vmax;
   }
   50% {
-    background-size: 80vmax 80vmax, 110vmax 110vmax, 80vmax 80vmax, 60vmax 60vmax, 80vmax 80vmax;
-    background-position: -50vmax -70vmax, 40vmax -30vmax, 10vmax 0vmax, 20vmax 10vmax, 30vmax 70vmax;
+    background-size: 80vmax 80vmax, 110vmax 110vmax, 80vmax 80vmax,
+      60vmax 60vmax, 80vmax 80vmax;
+    background-position: -50vmax -70vmax, 40vmax -30vmax, 10vmax 0vmax,
+      20vmax 10vmax, 30vmax 70vmax;
   }
   75% {
-    background-size: 90vmax 90vmax, 90vmax 90vmax, 100vmax 100vmax, 90vmax 90vmax, 70vmax 70vmax;
-    background-position: -50vmax -40vmax, 50vmax -30vmax, 20vmax 0vmax, -10vmax 10vmax, 40vmax 60vmax;
+    background-size: 90vmax 90vmax, 90vmax 90vmax, 100vmax 100vmax,
+      90vmax 90vmax, 70vmax 70vmax;
+    background-position: -50vmax -40vmax, 50vmax -30vmax, 20vmax 0vmax,
+      -10vmax 10vmax, 40vmax 60vmax;
   }
 }
 @keyframes sphereAnimation {

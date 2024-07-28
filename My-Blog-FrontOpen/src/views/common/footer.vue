@@ -16,7 +16,7 @@
           </i>
         </a>
       </div>
-      <img class="footer_logo entered loaded" :src="$store.state.webInfo.randomCover[12]" data-lazy-src="$store.state.webInfo.randomCover[12]" data-ll-status="loaded" />
+      <img class="footer_logo entered loaded" :src="require('../../../public/title.jpg')" data-lazy-src="../../../public/title.jpg" data-ll-status="loaded" />
       <div>
         <a class="icon_link" target="_blank" rel="noopener" href="https://github.com/monkey-papa/POEMON-BLOG" title="Github主页">
           <i class="iconfont icon-github"></i>
@@ -160,6 +160,10 @@ export default {
     margin: 0 1rem;
     filter: drop-shadow(0 0 12px var(--blue22)) !important;
     transition: all 0.25s;
+    &:hover {
+      transform: scale(1.1);
+      transition-duration: 0.4s;
+    }
   }
   a {
     text-decoration: none;

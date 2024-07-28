@@ -22,12 +22,13 @@ export default new Vuex.Store({
       avatar: "",
       randomCover: [],
     },
-    changeBg: "url(https://www.qiniuyun.zjh2002.icu/images/changeBg3)",
+    changeBg: "url(https://www.qiniuyun.monke-papa.icu/images/changeBg3)",
     isShowLoading: false,
     top: 0,
     pageView: {},
     newArticles: [],
     articleTotal: 0,
+    userList: [],
   },
   getters: {
     articleTotal: (state) => {
@@ -63,6 +64,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    userList(state, userList) {
+      state.userList = userList;
+    },
     articleTotal(state, articleTotal) {
       state.articleTotal = articleTotal;
     },

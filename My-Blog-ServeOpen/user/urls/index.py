@@ -14,6 +14,7 @@ from user.views.client.changeUserType import ChangeUserTypeView
 from user.views.client.client import ClientView
 from user.views.client.updateUser import UpdateUserView
 from user.views.code.code import CodeView
+from user.views.code.codeComment import CodeCommentView
 from user.views.comment.add import AddCommentView
 from user.views.comment.client_list import ListClientComView
 from user.views.comment.delete import DeleteCommentView
@@ -137,6 +138,7 @@ urlpatterns = [
     path("api/weiYan/changepublic/", ChangeWeiYanView.as_view(), name="updateLabel"),
     path("api/webInfo/allWebBackgroundImage/", ListResourcePreBGView.as_view(), name="updateLabel"),
     path("api/code/", CodeView.as_view(), name="updateLabel"),
+    path("api/codeComment/", CodeCommentView.as_view(), name="updateLabel"),
     path("api/webInfo/listCollect/", ListCollectView.as_view(), name="updateLabel"),
     path("api/article/articleLike/", LikeView.as_view(), name="updateLabel"),
     path("api/user/updateUserInfo/", UpdateUserView.as_view(), name="updateLabel"),

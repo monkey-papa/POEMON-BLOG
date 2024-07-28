@@ -3,6 +3,41 @@ import CryptoJS from "crypto-js";
 import axios from "axios";
 
 export default {
+  getThemeRgb() {
+    const createRgb = (r, g, b, opacity) => {
+      const newR = Math.min(Math.round(r * opacity), 255);
+      const newG = Math.min(Math.round(g * opacity), 255);
+      const newB = Math.min(Math.round(b * opacity), 255);
+      return `${newR}, ${newG}, ${newB}`;
+    };
+    const rgbToHex = (rgb) => {
+      const [r, g, b] = rgb.split(",").map((num) => parseInt(num, 10));
+      const toHex = (c) => {
+        const hex = c.toString(16);
+        return hex.length == 1 ? "0" + hex : hex;
+      };
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    };
+    // 转化为rgb值
+    const root = document.querySelector(":root");
+    const style = getComputedStyle(root);
+    const theme = style.getPropertyValue("--themeColor");
+    let str = theme.replace("#", "");
+    let count = str.length / 3;
+    let power = 6 / str.length;
+    let r = parseInt("0x" + str.substring(0 * count, 1 * count)) ** power;
+    let g = parseInt("0x" + str.substring(1 * count, 2 * count)) ** power;
+    let b = parseInt("0x" + str.substring(2 * count)) ** power;
+    const rgb = `${r}, ${g}, ${b}`;
+    const rgbDark = createRgb(r, g, b, 0.8);
+    const rgbLight = createRgb(r, g, b, 1.2);
+    const rgbLight1 = createRgb(r, g, b, 2);
+    const hexRgbaLight = rgbToHex(rgbLight1);
+    root.style.setProperty("--themeColorRgb", rgb);
+    root.style.setProperty("--themeColorRgbDark", rgbDark);
+    root.style.setProperty("--themeColorRgbLight", rgbLight);
+    root.style.setProperty("--themeColorHexLight", hexRgbaLight);
+  },
   // 判断url是否有效
   async isValidHttpUrl(string) {
     try {
@@ -216,7 +251,6 @@ export default {
         .then(async (res) => {
           if (!that.$common.isEmpty(res.result[0].data[0].ip)) {
             const ip = res.result[0].data[0].ip;
-            console.log(ip);
             if (ip === "127.0.0.1") return;
             //高德
             const result1 = await axios.get(

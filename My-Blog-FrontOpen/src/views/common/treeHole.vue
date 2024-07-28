@@ -1,42 +1,69 @@
 <template>
   <div class="tree-hole-container">
-    <h3 class="my-center" style="color: var(--bigRed)">哔哔~~~</h3>
+    <h3 class="my-center" style="color: var(--bigRed1)">哔哔~~~</h3>
     <ol class="tree-hole-list" v-if="!$common.isEmpty(treeHoleList)">
-      <li class="tree-hole-li" v-for="(treeHole, index) in treeHoleList" :key="index">
-        <div class="tree-hole-content" :class="{
+      <li
+        class="tree-hole-li"
+        v-for="(treeHole, index) in treeHoleList"
+        :key="index"
+      >
+        <div
+          class="tree-hole-content"
+          :class="{
             leftTreeHole: index % 2 === 0 && !$common.mobile(),
             rightTreeHole: index % 2 !== 0 || $common.mobile(),
-          }">
-          <el-avatar shape="square" class="avatar-img" :size="36" :src="avatar"></el-avatar>
-          <div class="tree-hole-box" :style="{
+          }"
+        >
+          <el-avatar
+            shape="square"
+            class="avatar-img"
+            :size="36"
+            :src="avatar"
+          ></el-avatar>
+          <div
+            class="tree-hole-box shadow-box"
+            :style="{
               background:
                 $constant.tree_hole_color[
                   index % $constant.tree_hole_color.length
                 ],
-            }">
-            <div class="box-tag" v-if="index % 2 === 0 && !$common.mobile()" :style="{
+            }"
+          >
+            <div
+              class="box-tag"
+              v-if="index % 2 === 0 && !$common.mobile()"
+              :style="{
                 'border-color':
                   'transparent transparent transparent ' +
                   $constant.tree_hole_color[
                     index % $constant.tree_hole_color.length
                   ],
-              }"></div>
-            <div class="box-tag" v-if="index % 2 !== 0 || $common.mobile()" :style="{
+              }"
+            ></div>
+            <div
+              class="box-tag"
+              v-if="index % 2 !== 0 || $common.mobile()"
+              :style="{
                 'border-color':
                   'transparent ' +
                   $constant.tree_hole_color[
                     index % $constant.tree_hole_color.length
                   ] +
                   ' transparent transparent',
-              }"></div>
+              }"
+            ></div>
             <div class="my-content" v-html="treeHole.content"></div>
             <div style="display: flex; justify-content: space-between">
               <div>😃 {{ treeHole.createTime | formatter }}</div>
-              <div @click="deleteTreeHole(treeHole.id)" class="tree-hole-delete" v-if="
+              <div
+                @click="deleteTreeHole(treeHole.id)"
+                class="tree-hole-delete"
+                v-if="
                   !$common.isEmpty($store.state.currentUser) &&
                   $store.state.currentUser.id === treeHole.userId
-                ">
-                <img style="vertical-align: -2px; width: 18px; height: 18px" src="../../assets/svg/trash.svg" />
+                "
+              >
+                <i class="iconfont icon-shanchu"></i>
               </div>
             </div>
           </div>
@@ -53,28 +80,28 @@
 export default {
   props: {
     treeHoleList: {
-      type: Array
+      type: Array,
     },
     avatar: {
-      type: String
-    }
+      type: String,
+    },
   },
   methods: {
     launch() {
-      this.$emit('launch')
+      this.$emit("launch");
     },
     deleteTreeHole(id) {
-      this.$emit('deleteTreeHole', id)
-    }
+      this.$emit("deleteTreeHole", id);
+    },
   },
   filters: {
     formatter(row) {
-      const day = row.split('.')[0].split('T')[0]
-      const time = row.split('.')[0].split('T')[1]
-      return `${day} 日 ${time}`
-    }
-  }
-}
+      const day = row.split(".")[0].split("T")[0];
+      const time = row.split(".")[0].split("T")[1];
+      return `${day} 日 ${time}`;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -88,7 +115,7 @@ export default {
   position: relative;
   list-style: none;
   &:before {
-    content: '';
+    content: "";
     width: 4px;
     border-radius: 50%;
     position: absolute;
@@ -96,10 +123,10 @@ export default {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--orange);
+    background-color: var(--orange2);
   }
   &:after {
-    content: '';
+    content: "";
     width: 12px;
     height: 12px;
     border: 4px solid var(--maxLightRed);
@@ -119,10 +146,10 @@ export default {
   position: relative;
   width: 50%;
   &:before {
-    content: '';
+    content: "";
     width: 12px;
     height: 12px;
-    border: 4px solid var(--blue);
+    border: 4px solid var(--blue2);
     border-radius: 50%;
     position: absolute;
     top: 10px;
@@ -137,6 +164,11 @@ export default {
   }
   .avatar-img {
     right: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray1);
+    &:hover {
+      border-color: var(--gray4);
+    }
   }
   .tree-hole-box {
     margin-right: 90px;
@@ -166,7 +198,11 @@ export default {
 .avatar-img {
   position: absolute;
   top: 0;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray1);
+  &:hover {
+    border-color: var(--gray4);
+  }
 }
 .tree-hole-box {
   font-size: 16px;
@@ -176,7 +212,7 @@ export default {
   position: relative;
   letter-spacing: 0.1em;
   font-weight: 400;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
   color: var(--black);
   text-align: left;
   display: inline-block;
@@ -193,7 +229,7 @@ export default {
   box-shadow: 0 0 16px 3px var(--miniMask);
 }
 .box-tag {
-  content: '';
+  content: "";
   position: absolute;
   border-style: solid;
 }
@@ -202,7 +238,7 @@ export default {
   line-height: 30px;
 }
 .tree-hole-go {
-  color: var(--blue);
+  color: var(--blue2);
   font-weight: 700;
   font-size: 25px;
   margin: 20px auto;
@@ -213,6 +249,14 @@ export default {
 }
 .tree-hole-delete {
   font-size: 14px;
+  transition: all 0.3s ease;
+  i {
+    color: var(--brown1);
+    vertical-align: -2px;
+  }
+  &:hover i {
+    color: var(--brown2);
+  }
 }
 @media screen and (max-width: 1000px) {
   .tree-hole-box {

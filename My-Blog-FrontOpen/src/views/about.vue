@@ -1,7 +1,11 @@
 <template>
-  <div style="background: var(--background);">
+  <div style="background: var(--background)">
     <!-- 首页图片 -->
-    <div style="animation: header-effect 2s" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
+    <div
+      style="animation: header-effect 2s"
+      :style="{ background: `${$store.state.changeBg}` }"
+      class="background-image background-image-changeBg"
+    ></div>
     <!-- 标签区域 -->
     <div class="main">
       <div class="layout hide-aside">
@@ -89,19 +93,31 @@
               <div class="author-content-item selfInfo single">
                 <div>
                   <span class="selfInfo-title">生于</span>
-                  <span class="selfInfo-content" style="color: var(--blue1); font-family: 'Microsoft YaHei'">2002</span>
+                  <span
+                    class="selfInfo-content"
+                    style="color: var(--blue1); font-family: 'Microsoft YaHei'"
+                    >2002</span
+                  >
                 </div>
                 <div>
                   <span class="selfInfo-title">内蒙古科技大学</span>
-                  <span class="selfInfo-content" style="color: var(--orange1)">软件工程</span>
+                  <span class="selfInfo-content" style="color: var(--orange1)"
+                    >软件工程</span
+                  >
                 </div>
                 <div>
                   <span class="selfInfo-title">职业（2023年）</span>
-                  <span class="selfInfo-content" style="color: var(--purple1)">大三学生 👨‍🎓</span>
+                  <span class="selfInfo-content" style="color: var(--purple1)"
+                    >大三学生 👨‍🎓</span
+                  >
                 </div>
                 <div>
                   <span class="selfInfo-title">工作</span>
-                  <span class="selfInfo-content" style="color: var(--red); font-size: 16px">金山前端打工人 🧑‍💻</span>
+                  <span
+                    class="selfInfo-content"
+                    style="color: var(--red); font-size: 16px"
+                    >金山前端打工人 🧑‍💻</span
+                  >
                 </div>
               </div>
             </div>
@@ -121,7 +137,14 @@
           <div class="author-content accordion">
             <div class="author-content-item chuckle-img">
               <div class="container">
-                <div v-for="(item, i) in images" :key="i" class="item" @click="btnClick(i)" :class="{ active: current == i }" :style="{ backgroundImage: `url(${item.img})` }">
+                <div
+                  v-for="(item, i) in images"
+                  :key="i"
+                  class="item"
+                  @click="btnClick(i)"
+                  :class="{ active: current == i }"
+                  :style="{ backgroundImage: `url(${item.img})` }"
+                >
                   <div class="shadow"></div>
                   <div class="content">
                     <div class="icon">
@@ -170,7 +193,9 @@
               <div class="card-content">
                 <div class="author-content-item-tips">音乐偏好</div>
                 <span class="author-content-item-title">Rap、华语流行</span>
-                <span class="author-content-item-changjian">关注 Jay、马思唯、法老……</span>
+                <span class="author-content-item-changjian"
+                  >关注 Jay、马思唯、法老……</span
+                >
                 <div class="content-bottom">
                   <div class="tips music-tips">
                     和 {{ $store.state.webInfo.webName }} 一起欣赏更多音乐
@@ -210,7 +235,9 @@
           </div>
           <div style="color: var(--darkBlue)" class="author-content">
             <div class="create-site-post author-content-item single">
-              <span class="author-content-item-title" style="font-size: 25px">🤷‍♀️免责声明</span>
+              <span class="author-content-item-title" style="font-size: 25px"
+                >🤷‍♀️免责声明</span
+              >
               <br /><br />
               <p>
                 本站以分享互联网经验、学习知识为目的，所有文章所涉及使用的工具、资源等均来自互联网，
@@ -238,17 +265,17 @@ export default {
       yesterday_sum: this.$store.state.pageView.yesterday_sum,
       today_sum: this.$store.state.pageView.today_sum,
       user_today: this.$store.state.pageView.data.user_today.length,
-      last_user: this.$store.state.pageView.data.last_user.length
-    }
+      last_user: this.$store.state.pageView.data.last_user.length,
+    };
   },
   methods: {
     btnClick(i) {
-      this.current = i
-    }
-  }
-}
+      this.current = i;
+    },
+  },
+};
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .banner-button-text {
   color: var(--orange1);
 }
@@ -295,20 +322,30 @@ export default {
   justify-content: center;
 }
 .author-box::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 500px;
   height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, var(--purple1));
+  background-image: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    var(--purple1)
+  );
   animation: animate 4s linear infinite;
   animation-delay: -2s;
 }
 .author-box::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 500px;
   height: 500px;
-  background-image: conic-gradient(transparent, transparent, transparent, var(--blue));
+  background-image: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    var(--blue2)
+  );
   animation: animate 4s linear infinite;
 }
 @keyframes animate {
@@ -401,6 +438,11 @@ export default {
   font-size: 14px;
   font-weight: 400;
   animation: floating 6s ease-in-out 0s infinite normal none running;
+  border: 1px solid var(--gray1);
+  &:hover {
+    color: var(--black8);
+    border-color: var(--gray4);
+  }
 }
 @keyframes floating {
   0% {
@@ -426,11 +468,18 @@ export default {
   font-weight: 700;
   letter-spacing: 6px;
   -webkit-background-clip: text;
-  background-image: linear-gradient(90deg, var(--blue), var(--blue1) 24%, var(--purple1) 45%, var(--red) 80%, var(--bigRed));
+  background-image: linear-gradient(
+    90deg,
+    var(--blue2),
+    var(--blue1) 24%,
+    var(--purple5) 45%,
+    var(--red4) 80%,
+    var(--bigRed4)
+  );
   display: inline-block;
   text-align: center;
   color: transparent;
-  -webkit-text-stroke: 1px var(--blue7);
+  -webkit-text-stroke: 1px var(--blue10);
 }
 .author-content {
   display: flex;
@@ -468,7 +517,7 @@ export default {
   font-weight: 700;
   line-height: 1.1;
   margin: 0.5rem 0;
-  font-family: STZhongsong, 'Microsoft YaHei';
+  font-family: STZhongsong, "Microsoft YaHei";
 }
 .inline-word {
   word-break: keep-all;
@@ -504,7 +553,8 @@ export default {
 .about-statistic {
   min-height: 380px;
   width: 39%;
-  background: url(https://bu.dusays.com/2022/11/18/63765da00f149.png) no-repeat top;
+  background: url(https://bu.dusays.com/2022/11/18/63765da00f149.png) no-repeat
+    top;
   background-size: cover;
   color: var(--favoriteBg);
   overflow: hidden;
@@ -525,7 +575,7 @@ export default {
   font-size: 36px;
   font-weight: 700;
   line-height: 1;
-  font-family: STZhongsong, 'Microsoft YaHei';
+  font-family: STZhongsong, "Microsoft YaHei";
 }
 #statisticc {
   font-size: 16px;
@@ -589,7 +639,8 @@ export default {
   width: 100%;
 }
 .author-content-item.map {
-  background: url(https://www.qiniuyun.zjh2002.icu/avatar/map.png) no-repeat center;
+  background: url(https://www.qiniuyun.monke-papa.icu/avatar/map.png) no-repeat
+    center;
   min-height: 200px;
   max-height: 400px;
   position: relative;
@@ -665,7 +716,8 @@ export default {
   line-height: 1.1;
   display: flex;
   color: var(--favoriteBg);
-  background: url(https://www.qiniuyun.zjh2002.icu/avatar/about1.jpg) no-repeat;
+  background: url(https://www.qiniuyun.monke-papa.icu/avatar/about1.jpg)
+    no-repeat;
   background-size: cover;
   align-items: flex-start;
   flex-direction: column;
@@ -675,10 +727,11 @@ export default {
 .author-content-item.maxim .maxim-title {
   display: flex;
   flex-direction: column;
-  font-family: STZhongsong, 'Microsoft YaHei';
+  font-family: STZhongsong, "Microsoft YaHei";
 }
 .author-content-item.myphoto {
-  background: url(https://www.qiniuyun.zjh2002.icu/avatar/about2.webp) no-repeat;
+  background: url(https://www.qiniuyun.monke-papa.icu/avatar/about2.webp)
+    no-repeat;
   height: 60%;
   background-size: 100%;
   transition: 2s ease-in-out;
@@ -708,7 +761,11 @@ sup {
   width: 100%;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top center, var(--black6), var(--black7));
+  background: radial-gradient(
+    circle at top center,
+    var(--black6),
+    var(--black7)
+  );
 }
 .chuckle-img .container {
   display: flex;
@@ -768,19 +825,19 @@ sup {
   font-size: 16px;
 }
 .chuckle-img .item:nth-child(1) .fa {
-  color: var(--red);
+  color: var(--red4);
 }
 .chuckle-img .item:nth-child(2) .fa {
-  color: var(--yellow3);
+  color: var(--yellow7);
 }
 .chuckle-img .item:nth-child(3) .fa {
-  color: var(--green1);
+  color: var(--green5);
 }
 .chuckle-img .item:nth-child(4) .fa {
-  color: var(--blue);
+  color: var(--blue4);
 }
 .chuckle-img .item:nth-child(5) .fa {
-  color: var(--purple1);
+  color: var(--purple5);
 }
 .chuckle-img .item:nth-child(6) .fa {
   color: var(--black);
@@ -813,7 +870,8 @@ sup {
   transition-delay: 0.1s;
 }
 .author-content-item.game-lol {
-  background: url(https://www.qiniuyun.zjh2002.icu/avatar/%E9%95%9C.png) no-repeat top;
+  background: url(https://www.qiniuyun.monke-papa.icu/avatar/%E9%95%9C.png)
+    no-repeat top;
   background-size: cover;
   min-height: 300px;
   overflow: hidden;
@@ -848,7 +906,8 @@ sup {
 .author-content-item.game-wolf {
   border: 1px;
   width: 56%;
-  background: url(https://www.qiniuyun.zjh2002.icu/avatar/%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89.jpg) no-repeat top;
+  background: url(https://www.qiniuyun.monke-papa.icu/avatar/%E8%A1%8C%E5%B0%B8%E8%B5%B0%E8%82%89.jpg)
+    no-repeat top;
   background-size: cover;
   min-height: 300px;
   overflow: hidden;
@@ -856,14 +915,16 @@ sup {
 }
 .author-content-item.like-technology {
   border: 1px;
-  background: url(https://www.qiniuyun.zjh2002.icu/avatar/iphone.jpg) no-repeat;
+  background: url(https://www.qiniuyun.monke-papa.icu/avatar/iphone.jpg)
+    no-repeat;
   background-size: cover;
   min-height: 230px;
   color: var(--red);
 }
 .author-content-item.like-music {
   border: 1px;
-  background: url(https://www.qiniuyun.zjh2002.icu/avatar/Jay.webp) no-repeat top;
+  background: url(https://www.qiniuyun.monke-papa.icu/avatar/Jay.webp) no-repeat
+    top;
   background-size: cover;
   min-height: 400px;
   color: var(--orange1);
@@ -892,7 +953,7 @@ sup {
 }
 .banner-button-group .banner-button:hover {
   text-decoration: none;
-  background: linear-gradient(to bottom right, var(--blue1), var(--blue));
+  background: linear-gradient(to bottom right, var(--blue5), var(--blue2));
 }
 p {
   line-height: 1.7;

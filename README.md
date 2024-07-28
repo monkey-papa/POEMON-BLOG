@@ -408,7 +408,7 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 - 可以上传文件过后，选择外链，就能在浏览器直接打开看了，别人也能看到，当然如果不想让别人使用这个链接，那就最好设置个防盗链
 - ![image-20240530204438268](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530204438268.png)
 
-### 运行项目
+### 本地运行项目
 
 #### 后端项目
 

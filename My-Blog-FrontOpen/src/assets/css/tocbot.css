@@ -11,7 +11,7 @@
   transition: all 1s;
 }
 .toc::before {
-  content: "🎪 目录";
+  content: '🎪 目录';
   font-size: 24px;
   line-height: 40px;
   margin-left: 70.5px;
@@ -65,7 +65,7 @@
 
 .toc .toc-link::before {
   background-color: var(--favoriteBg);
-  content: "";
+  content: '';
   display: inline-block;
   height: inherit;
   left: 0;
@@ -75,7 +75,7 @@
 }
 
 .toc .is-active-link::before {
-  content: "\e673";
+  content: '\e673';
   font-family: iconfont;
   color: var(--red);
   font-size: 20px;

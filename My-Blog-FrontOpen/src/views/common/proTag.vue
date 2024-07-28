@@ -9,18 +9,18 @@ export default {
   props: {
     info: {
       type: String,
-      default: 'monkey-papa'
+      default: "monkey-papa",
     },
     color: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
-      bg: { background: this.color }
-    }
-  }
-}
+      bg: { background: this.color },
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

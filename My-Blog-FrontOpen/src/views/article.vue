@@ -1,7 +1,11 @@
 <template>
   <div v-if="!$common.isEmpty(article)">
     <!-- 首页图片 -->
-    <div style="animation: header-effect 2s" :style="{ background: `${$store.state.changeBg}` }" class="background-image background-image-changeBg"></div>
+    <div
+      style="animation: header-effect 2s"
+      :style="{ background: `${$store.state.changeBg}` }"
+      class="background-image background-image-changeBg"
+    ></div>
     <!-- 顶部 -->
     <div class="article-head my-animation-slide-top">
       <!-- 文章信息 -->
@@ -24,23 +28,30 @@
           <span>&nbsp;{{ article.likeCount }}</span>
         </div>
       </div>
-      <div class="article-info-news" @click="weiYanDialogVisible = true" v-if="
+      <div
+        class="article-info-news"
+        @click="weiYanDialogVisible = true"
+        v-if="
           !$common.isEmpty($store.state.currentUser) &&
           $store.state.currentUser.id === article.userId
-        ">
+        "
+      >
         <img src="../assets/svg/plus.svg" />
       </div>
     </div>
     <!-- 文章 -->
     <div style="background: var(--background)" class="article-background">
-      <div style="display: flex;justify-content: space-between;max-width:1400px;">
-        <div class="article-container my-animation-slide-bottom">
-          <div>{{ chatContent}}</div>
+      <div style="display: flex; justify-content: space-between">
+        <div class="article-container my-animation-slide-bottom shadow-box">
+          <div>{{ chatContent }}</div>
           <!-- 最新进展 -->
           <div v-if="!$common.isEmpty(treeHoleList)" class="process-wrap">
             <el-collapse accordion value="1">
               <el-collapse-item title="最新进展" name="1">
-                <process :treeHoleList="treeHoleList" @deleteTreeHole="deleteTreeHole"></process>
+                <process
+                  :treeHoleList="treeHoleList"
+                  @deleteTreeHole="deleteTreeHole"
+                ></process>
               </el-collapse-item>
             </el-collapse>
             <hr />
@@ -53,14 +64,17 @@
           </div>
           <!-- 分类 -->
           <div class="article-sort">
-            <span @click="
-              $router.push({
-                path: '/sort',
-                query: { sortId: article.sortId, labelId: article.labelId },
-              })
-            ">{{
-              article.sort[0].sortName + " ▶ " + article.label[0].labelName
-            }}</span>
+            <span
+              @click="
+                $router.push({
+                  path: '/sort',
+                  query: { sortId: article.sortId, labelId: article.labelId },
+                })
+              "
+              >{{
+                article.sort[0].sortName + " ▶ " + article.label[0].labelName
+              }}</span
+            >
           </div>
           <!-- 作者信息 -->
           <blockquote>
@@ -69,7 +83,11 @@
           </blockquote>
           <!-- 点赞 -->
           <div class="myCenter" id="article-like" style="color: var(--bigRed)">
-            <i @click="articleLike" class="el-icon-thumb article-like-icon" :class="{ 'article-like': article.articleLikeStatus === 1 }"></i>
+            <i
+              @click="articleLike"
+              class="el-icon-thumb article-like-icon"
+              :class="{ 'article-like': article.articleLikeStatus === 1 }"
+            ></i>
             点个赞再走叭~~
           </div>
           <!-- 评论 -->
@@ -82,15 +100,33 @@
           <myAside @selectSort="selectSort"></myAside>
         </div>
       </div>
-      <div v-show="!this.$common.mobile() && !mobile" id="toc" class="toc"></div>
+      <div
+        v-show="!this.$common.mobile() && !mobile"
+        id="toc"
+        class="toc"
+      ></div>
     </div>
     <div id="toc-button" @click="clickTocButton()">
       <i class="fa fa-align-justify" aria-hidden="true"></i>
     </div>
-    <el-dialog title="最新进展" :visible.sync="weiYanDialogVisible" width="40%" :append-to-body="true" destroy-on-close custom-class="dialog" center>
+    <el-dialog
+      title="最新进展"
+      :visible.sync="weiYanDialogVisible"
+      width="40%"
+      :append-to-body="true"
+      destroy-on-close
+      custom-class="dialog"
+      center
+    >
       <div>
         <div class="myCenter" style="margin-bottom: 20px">
-          <el-date-picker v-model="newsTime" value-format="yyyy-MM-dd HH:mm:ss" type="datetime" align="center" placeholder="选择日期时间">
+          <el-date-picker
+            v-model="newsTime"
+            value-format="yyyy-MM-dd HH:mm:ss"
+            type="datetime"
+            align="center"
+            placeholder="选择日期时间"
+          >
           </el-date-picker>
         </div>
         <commentBox :disableGraffiti="true" @submitComment="submitWeiYan">
@@ -101,372 +137,392 @@
 </template>
 
 <script>
-const comment = () => import('./common/comment')
-const process = () => import('./common/process')
-const commentBox = () => import('./common/commentBox')
-const myAside = () => import('./myAside')
-import MarkdownIt from 'markdown-it'
+const comment = () => import("./common/comment");
+const process = () => import("./common/process");
+const commentBox = () => import("./common/commentBox");
+const myAside = () => import("./myAside");
+import MarkdownIt from "markdown-it";
 export default {
   components: {
     comment,
     commentBox,
     process,
-    myAside
+    myAside,
   },
   data() {
     return {
       id: this.$route.query.id,
       article: {},
-      articleContentHtml: '',
+      articleContentHtml: "",
       treeHoleList: [],
       weiYanDialogVisible: false,
-      newsTime: '',
+      newsTime: "",
       mobile: false,
       tocbotDom: null,
-      chatContent: ''
-    }
+      chatContent: "",
+    };
   },
   created() {
-    this.getArticle()
-    this.mobile = document.body.clientWidth < 500
-    window.addEventListener('resize', () => {
-      let docWidth = document.body.clientWidth
+    this.getArticle();
+    this.mobile = document.body.clientWidth < 500;
+    window.addEventListener("resize", () => {
+      let docWidth = document.body.clientWidth;
       if (docWidth < 500) {
-        this.mobile = true
+        this.mobile = true;
       } else {
-        this.mobile = false
+        this.mobile = false;
       }
-    })
+    });
   },
   mounted() {
     if (!this.mobile) {
-      window.addEventListener('scroll', this.onScrollPage)
+      window.addEventListener("scroll", this.onScrollPage);
     }
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.onScrollPage)
+    window.removeEventListener("scroll", this.onScrollPage);
   },
   filters: {
     formatter(row) {
-      const day = row.split('.')[0].split('T')[0]
-      const time = row.split('.')[0].split('T')[1]
-      return `${day} 日 ${time}`
-    }
+      const day = row.split(".")[0].split("T")[0];
+      const time = row.split(".")[0].split("T")[1];
+      return `${day} 日 ${time}`;
+    },
   },
   methods: {
     async sendRequest() {
-      const person = {}
+      const person = {};
       // 添加属性
-      person.model = 'gpt-4o' //gpt-4-all gpt-4-vision-preview gpt-4o
+      person.model = "gpt-4o"; //gpt-4-all gpt-4-vision-preview gpt-4o
       person.messages = [
         {
-          role: 'user',
-          content: '请帮我概况以下文字的主要内容：' + this.article.articleContent
-        }
-      ]
+          role: "user",
+          content:
+            "请帮我概况以下文字的主要内容：" + this.article.articleContent,
+        },
+      ];
       $.ajax({
         headers: {
-          Authorization: 'Bearer sk-6qnukFHOVeE4AHn6907a9065133445F08e7cCcD6290dF33f'
+          Authorization:
+            "Bearer sk-6qnukFHOVeE4AHn6907a9065133445F08e7cCcD6290dF33f",
         },
-        url: 'https://qyapi.superrabit.com/v1/chat/completions', //请求路径
+        url: "https://qyapi.superrabit.com/v1/chat/completions", //请求路径
         data: JSON.stringify(person), //请求参数，将对象转json字符串
-        type: 'POST', //请求类型
-        contentType: 'application/json;charset=UTF-8', //请求数据类型
-        dataType: 'json', //返回数据类型 如果后端返回一个消息对象 这里为json
+        type: "POST", //请求类型
+        contentType: "application/json;charset=UTF-8", //请求数据类型
+        dataType: "json", //返回数据类型 如果后端返回一个消息对象 这里为json
         success: function (result) {
-          this.chatContent = result.choices[0].message.content
-          console.log(this.chatContent)
+          this.chatContent = result.choices[0].message.content;
+          console.log(this.chatContent);
         },
         error: function (err) {
-          console.log(err)
-        }
-      })
+          console.log(err);
+        },
+      });
     },
     clickTocButton() {
-      let display = $('.toc')
-      if ('none' === display.css('display') || !display.length) {
-        const articleDom = $('.article-background')
-        articleDom.append(this.tocbotDom)
+      let display = $(".toc");
+      if ("none" === display.css("display") || !display.length) {
+        const articleDom = $(".article-background");
+        articleDom.append(this.tocbotDom);
       } else {
-        this.tocbotDom = display
-        display.remove()
+        this.tocbotDom = display;
+        display.remove();
       }
     },
     deleteTreeHole(id) {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
         this.$notify({
-          type: 'error',
-          title: '可恶🤬',
-          message: '请先登录！',
-          position: 'top-left',
-          offset: 50
-        })
-        return
+          type: "error",
+          title: "可恶🤬",
+          message: "请先登录！",
+          position: "top-left",
+          offset: 50,
+        });
+        return;
       }
-      this.$confirm('确认删除？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-        center: true
+      this.$confirm("确认删除？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        center: true,
       })
         .then(() => {
           this.$http
-            .get(this.$constant.baseURL + '/weiYan/deleteWeiYan/', { id: id })
-            .then(res => {
+            .get(this.$constant.baseURL + "/weiYan/deleteWeiYan/", { id: id })
+            .then((res) => {
               this.$notify({
-                type: 'success',
-                title: '可以啦🍨',
-                message: '删除成功!',
-                position: 'top-left',
-                offset: 50
-              })
-              this.getNews()
+                type: "success",
+                title: "可以啦🍨",
+                message: "删除成功!",
+                position: "top-left",
+                offset: 50,
+              });
+              this.getNews();
             })
-            .catch(error => {
+            .catch((error) => {
               this.$notify({
-                type: 'error',
-                title: '可恶🤬',
+                type: "error",
+                title: "可恶🤬",
                 message: error.message,
-                position: 'top-left',
-                offset: 50
-              })
-            })
+                position: "top-left",
+                offset: 50,
+              });
+            });
         })
         .catch(() => {
           this.$notify({
-            type: 'success',
-            title: '可以啦🍨',
-            message: '已取消删除!',
-            position: 'top-left',
-            offset: 50
-          })
-        })
+            type: "success",
+            title: "可以啦🍨",
+            message: "已取消删除!",
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     submitWeiYan(content) {
       let weiYan = {
         content: content,
         createTime: this.newsTime,
         source: this.article.id,
-        userId: this.$store.state.currentUser.id
-      }
+        userId: this.$store.state.currentUser.id,
+      };
       this.$http
-        .post(this.$constant.baseURL + '/weiYan/saveNews/', weiYan)
-        .then(res => {
+        .post(this.$constant.baseURL + "/weiYan/saveNews/", weiYan)
+        .then((res) => {
           this.$notify({
-            title: '可以啦🍨',
-            message: '添加进展成功!',
-            type: 'success',
+            title: "可以啦🍨",
+            message: "添加进展成功!",
+            type: "success",
             offset: 50,
-            position: 'top-left'
-          })
-          this.weiYanDialogVisible = false
-          this.newsTime = ''
-          this.getNews()
+            position: "top-left",
+          });
+          this.weiYanDialogVisible = false;
+          this.newsTime = "";
+          this.getNews();
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
+            type: "error",
+            title: "可恶🤬",
             message: error.message,
-            position: 'top-left',
-            offset: 50
-          })
-        })
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     getNews() {
       this.$http
-        .post(this.$constant.baseURL + '/weiYan/listNews/', {
+        .post(this.$constant.baseURL + "/weiYan/listNews/", {
           current: 1,
           size: 9999,
-          source: this.article.id
+          source: this.article.id,
         })
-        .then(res => {
+        .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            res.result[0].records.forEach(c => {
-              c.content = c.content.replace(/\n{2,}/g, '<div style="height: 12px"></div>')
-              c.content = c.content.replace(/\n/g, '<br/>')
-              c.content = this.$common.faceReg(c.content)
-              c.content = this.$common.pictureReg(c.content)
-            })
-            this.treeHoleList = res.result[0].records
+            res.result[0].records.forEach((c) => {
+              c.content = c.content.replace(
+                /\n{2,}/g,
+                '<div style="height: 12px"></div>'
+              );
+              c.content = c.content.replace(/\n/g, "<br/>");
+              c.content = this.$common.faceReg(c.content);
+              c.content = this.$common.pictureReg(c.content);
+            });
+            this.treeHoleList = res.result[0].records;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
+            type: "error",
+            title: "可恶🤬",
             message: error.message,
-            position: 'top-left',
-            offset: 50
-          })
-        })
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     onScrollPage() {
-      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
       if (scrollTop < window.innerHeight / 4) {
-        $('.toc').css('top', window.innerHeight / 2)
-        $('.toc').css('display', 'unset')
-      } else if (scrollTop > window.innerHeight / 4 && scrollTop < $('#article-like').offset().top - window.innerHeight) {
-        $('.toc').css('top', '100px')
-        $('.toc').css('display', 'unset')
+        $(".toc").css("top", window.innerHeight / 2);
+        $(".toc").css("display", "unset");
+      } else if (
+        scrollTop > window.innerHeight / 4 &&
+        scrollTop < $("#article-like").offset().top - window.innerHeight
+      ) {
+        $(".toc").css("top", "100px");
+        $(".toc").css("display", "unset");
       } else {
-        $('.toc').css('display', 'none')
+        $(".toc").css("display", "none");
       }
     },
     getTocbot() {
-      let script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = this.$constant.tocbot
-      document.getElementsByTagName('head')[0].appendChild(script)
+      let script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = this.$constant.tocbot;
+      document.getElementsByTagName("head")[0].appendChild(script);
       // 引入成功
       script.onload = function () {
         tocbot.init({
-          tocSelector: '#toc',
-          contentSelector: '.entry-content',
-          headingSelector: 'h1, h2, h3, h4, h5, h6',
+          tocSelector: "#toc",
+          contentSelector: ".entry-content",
+          headingSelector: "h1, h2, h3, h4, h5, h6",
           scrollSmooth: true,
-          fixedSidebarOffset: 'auto',
+          fixedSidebarOffset: "auto",
           scrollSmoothOffset: -100,
-          hasInnerContainers: true
-        })
-      }
+          hasInnerContainers: true,
+        });
+      };
     },
     addId() {
-      let headings = $('.entry-content').find('h1, h2, h3, h4, h5, h6')
-      headings.attr('id', (i, id) => id || 'toc-' + i)
+      let headings = $(".entry-content").find("h1, h2, h3, h4, h5, h6");
+      headings.attr("id", (i, id) => id || "toc-" + i);
     },
     getArticle() {
       this.$http
-        .get(this.$constant.baseURL + '/article/getArticleById/', {
+        .get(this.$constant.baseURL + "/article/getArticleById/", {
           id: this.id,
           flag: true,
-          userId: this.$store.state.currentUser.id
+          userId: this.$store.state.currentUser.id,
         })
-        .then(res => {
+        .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.article = res.result[0].data[0]
-            this.getNews()
-            const md = new MarkdownIt({ breaks: true })
-            this.articleContentHtml = md.render(this.article.articleContent)
+            this.article = res.result[0].data[0];
+            this.getNews();
+            const md = new MarkdownIt({ breaks: true });
+            this.articleContentHtml = md.render(this.article.articleContent);
             // this.sendRequest()
             this.$nextTick(() => {
-              this.highlight()
-              this.addId()
-              this.getTocbot()
-            })
+              this.highlight();
+              this.addId();
+              this.getTocbot();
+            });
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.$notify({
-            type: 'error',
-            title: '可恶🤬',
+            type: "error",
+            title: "可恶🤬",
             message: error.message,
-            position: 'top-left',
-            offset: 50
-          })
-        })
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     highlight() {
       let attributes = {
-        autocomplete: 'off',
-        autocorrect: 'off',
-        autocapitalize: 'off',
-        spellcheck: 'false',
-        contenteditable: 'false'
-      }
-      $('pre').each(function (i, item) {
-        let preCode = $(item).children('code')
-        let classNameStr = preCode[0].className
-        let classNameArr = classNameStr.split(' ')
-        let lang = ''
+        autocomplete: "off",
+        autocorrect: "off",
+        autocapitalize: "off",
+        spellcheck: "false",
+        contenteditable: "false",
+      };
+      $("pre").each(function (i, item) {
+        let preCode = $(item).children("code");
+        let classNameStr = preCode[0].className;
+        let classNameArr = classNameStr.split(" ");
+        let lang = "";
         classNameArr.some(function (className) {
-          if (className.indexOf('language-') > -1) {
-            lang = className.substring(className.indexOf('-') + 1, className.length)
-            return true
+          if (className.indexOf("language-") > -1) {
+            lang = className.substring(
+              className.indexOf("-") + 1,
+              className.length
+            );
+            return true;
           }
-        })
+        });
         // 检测语言是否存在，不存在则自动检测
-        let language = hljs.getLanguage(lang.toLowerCase())
+        let language = hljs.getLanguage(lang.toLowerCase());
         if (language === undefined) {
           // 启用自动检测
-          let autoLanguage = hljs.highlightAuto(preCode.text())
-          preCode.removeClass('language-' + lang)
-          lang = autoLanguage.language
+          let autoLanguage = hljs.highlightAuto(preCode.text());
+          preCode.removeClass("language-" + lang);
+          lang = autoLanguage.language;
           if (lang === undefined) {
-            lang = 'javascript'
+            lang = "javascript";
           }
-          preCode.addClass('language-' + lang)
+          preCode.addClass("language-" + lang);
         } else {
-          lang = language.name
+          lang = language.name;
         }
-        $(item).addClass('highlight-wrap')
-        $(item).attr(attributes)
-        preCode.attr('data-rel', lang.toUpperCase()).addClass(lang.toLowerCase())
+        $(item).addClass("highlight-wrap");
+        $(item).attr(attributes);
+        preCode
+          .attr("data-rel", lang.toUpperCase())
+          .addClass(lang.toLowerCase());
         // 启用代码高亮
-        hljs.highlightBlock(preCode[0])
+        hljs.highlightBlock(preCode[0]);
         // 启用代码行号
-        hljs.lineNumbersBlock(preCode[0])
-      })
-      $('pre code').each(function (i, block) {
+        hljs.lineNumbersBlock(preCode[0]);
+      });
+      $("pre code").each(function (i, block) {
         $(block).attr({
-          id: 'hljs-' + i
-        })
-        $(block).after('<a class="copy-code" href="javascript:" data-clipboard-target="#hljs-' + i + '"><i class="fa fa-clipboard" aria-hidden="true"></i></a>')
-        new ClipboardJS('.copy-code')
-      })
-      if ($('.entry-content').children('table').length > 0) {
-        $('.entry-content').children('table').wrap("<div class='table-wrapper'></div>")
+          id: "hljs-" + i,
+        });
+        $(block).after(
+          '<a class="copy-code" href="javascript:" data-clipboard-target="#hljs-' +
+            i +
+            '"><i class="fa fa-clipboard" aria-hidden="true"></i></a>'
+        );
+        new ClipboardJS(".copy-code");
+      });
+      if ($(".entry-content").children("table").length > 0) {
+        $(".entry-content")
+          .children("table")
+          .wrap("<div class='table-wrapper'></div>");
       }
     },
     articleLike() {
       if (this.$common.isEmpty(this.$store.state.currentUser)) {
         this.$notify({
-          type: 'error',
-          title: '可恶🤬',
-          message: '请先登录！',
-          position: 'top-left',
-          offset: 50
-        })
-        return
+          type: "error",
+          title: "可恶🤬",
+          message: "请先登录！",
+          position: "top-left",
+          offset: 50,
+        });
+        return;
       }
       if (!this.article.articleLikeStatus) {
         this.$http
-          .post(this.$constant.baseURL + '/article/articleLike/', {
+          .post(this.$constant.baseURL + "/article/articleLike/", {
             userId: this.$store.state.currentUser.id,
             articleLikeStatus: true,
-            id: this.id
+            id: this.id,
           })
-          .then(res => {
-            this.article.articleLikeStatus = 1
+          .then((res) => {
+            this.article.articleLikeStatus = 1;
             this.$notify({
-              title: '可以啦🍨',
-              message: '感谢您的点赞！',
-              type: 'success',
+              title: "可以啦🍨",
+              message: "感谢您的点赞！",
+              type: "success",
               offset: 50,
-              position: 'top-left'
-            })
+              position: "top-left",
+            });
           })
-          .catch(error => {
+          .catch((error) => {
             this.$notify({
-              type: 'error',
-              title: '可恶🤬',
+              type: "error",
+              title: "可恶🤬",
               message: error.message,
-              position: 'top-left',
-              offset: 50
-            })
-          })
+              position: "top-left",
+              offset: 50,
+            });
+          });
       } else {
         this.$notify({
-          type: 'warning',
-          title: '淘气👻',
-          message: '你已经点过赞啦！',
-          position: 'top-left',
-          offset: 50
-        })
+          type: "warning",
+          title: "淘气👻",
+          message: "你已经点过赞啦！",
+          position: "top-left",
+          offset: 50,
+        });
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -499,7 +555,7 @@ export default {
   position: relative;
   padding: 10px 130px 0;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -532,6 +588,7 @@ export default {
 .article-info {
   font-size: 14px;
   user-select: none;
+  color: var(--bigRed5);
   span:not(:last-child) {
     margin-right: 5px;
   }
@@ -542,8 +599,12 @@ export default {
 .article-container {
   padding: 40px 20px;
   border-radius: 8px;
-  border: 2px dashed var(--blue9);
+  border: 2px dashed var(--gray1);
   width: calc(100% - 310px);
+  transition: all 0.3s ease;
+  &:hover {
+    border-color: var(--red);
+  }
 }
 .article-update-time {
   color: var(--red);
@@ -598,21 +659,23 @@ blockquote {
   padding: 0 8px;
 }
 ::v-deep .timeline-item-time {
-  color: var(--bigRed);
+  display: flex;
+  color: var(--bigRed1);
+  align-items: center;
 }
 .process-wrap {
   margin: 0 0 40px;
   hr {
     position: relative;
     margin: 20px auto 60px;
-    border: 2px dashed var(--blue);
+    border: 2px dashed var(--blue2);
     overflow: visible;
     &:before {
       position: absolute;
       top: -20px;
       left: 5%;
       color: var(--red);
-      content: '\e673';
+      content: "\e673";
       font-size: 40px;
       line-height: 1;
       transition: all 1s ease-in-out;
@@ -639,6 +702,11 @@ blockquote {
   }
   ::v-deep .el-collapse-item__wrap {
     border-bottom: unset;
+  }
+}
+@media screen and (max-width: 1278px) {
+  .article-background {
+    padding: 10px 40px 0;
   }
 }
 @media screen and (max-width: 1200px) {

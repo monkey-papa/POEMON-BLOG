@@ -126,7 +126,7 @@ export default {
   p {
     width: 100%;
     max-width: 800px;
-    color: var(--darkBlue);
+    color: var(--darkBlue1);
     &.poem {
       margin: 40px auto;
       font-size: 1.5em;

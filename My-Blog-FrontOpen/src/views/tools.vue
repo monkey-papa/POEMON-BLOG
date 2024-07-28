@@ -16,7 +16,7 @@
           </div>
           <div class="card-container">
             <!-- 收藏夹 -->
-            <div @click="changeFavorite(1)" class="card-item">
+            <div @click="changeFavorite(1)" class="card-item shadow-box card-item__contain">
               <div class="tools-image"></div>
               <div style="
                   position: absolute;
@@ -118,6 +118,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin-top: 60px;
+  .card-item__contain {
+    border: 1px solid var(--gray1);
+    &:hover {
+      color: var(--black8);
+      border-color: var(--gray4);
+    }
+  }
 }
 .card-item {
   transition: all 0.3s;
@@ -167,7 +174,7 @@ export default {
   margin-left: -10px;
 }
 .tools-item {
-  color: var(--bigRed);
+  color: var(--bigRed1);
   transition: all 0.3s;
   border-radius: 12px;
   box-shadow: 0 8px 16px -4px var(--mask);
@@ -179,9 +186,12 @@ export default {
   overflow: hidden;
   padding: 15px;
   margin: 10px;
+  border: 1px solid var(--gray1);
+  transition: all 0.3s ease;
   &:hover {
+    border-color: var(--gray4);
     background: var(--blue);
-    color: var(--white);
+    color: var(--white1);
     .tools-item-image {
       transition: all 0.6s;
       width: 0 !important;
