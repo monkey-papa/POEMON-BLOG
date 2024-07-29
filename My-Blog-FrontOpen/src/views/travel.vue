@@ -140,7 +140,7 @@ export default {
               size: 10,
               total: 0,
               resourceType: "lovePhoto",
-              classify: this.photoTitleList[0].classify,
+              classify: this.photoTitleList[0]?.classify,
             };
             this.changePhoto();
           }

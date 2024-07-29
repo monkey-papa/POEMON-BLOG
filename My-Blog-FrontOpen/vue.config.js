@@ -14,10 +14,10 @@ module.exports = {
     port: 81,
   },
   configureWebpack: {
-    plugins: [
-      // 依赖大小分析工具
-      new BundleAnalyzerPlugin(),
-    ],
+    // plugins: [
+    //   // 依赖大小分析工具
+    //   new BundleAnalyzerPlugin(),
+    // ],
     //这就是在告诉Webpack：请不要将这个模块注入编译后的JS文件里，对于我源代码里出现的任何import/require这个模块的语句，请将它保留。
     externals: {
       vue: "Vue",
