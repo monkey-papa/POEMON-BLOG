@@ -9,24 +9,20 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
-
-
+import os
 from pathlib import Path
-
-
+from dotenv import load_dotenv
 import logging
-
-
+load_dotenv()
 # 邮箱服务 start
-from_address = 'monkey-papa@qq.com' # 你的邮箱
-wand = "monkey-papa" # 邮箱秘钥
+from_address = os.getenv("email_address")  # 你的邮箱
+wand = os.getenv("email_secret")  # 邮箱秘钥
 # 邮箱服务 end
 
 
-QINIU_ACCESS_KEY = 'monkey-papa' # 七牛云秘钥
-QINIU_SECRET_KEY = 'monkey-papa' # 七牛云秘钥
-QINIU_BUCKET_NAME = 'monkey-papa' # 七牛云空间名称
+QINIU_ACCESS_KEY = 'monkey-papa'  # 七牛云秘钥
+QINIU_SECRET_KEY = 'monkey-papa'  # 七牛云秘钥
+QINIU_BUCKET_NAME = 'monkey-papa'  # 七牛云空间名称
 QINIU_DOMAIN = 'https://www.monkey-papa.com/'  # 用于生成访问图片的 URL 地址
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@-4cc$)_$_&protcmr1&&n8-zs!uhk3kdlr^zegw78)m!htq1*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # 如果要部署要改为False
+DEBUG = os.getenv('DEBUG') == 'True'  # 如果要部署要改为False
 
 # ALLOWED_HOSTS = [https://www.monkey-papa.com] # 如果部署换为这个，后端地址，没有域名就是ip＋端口号
 ALLOWED_HOSTS = []
@@ -98,7 +94,6 @@ REST_FRAMEWORK = {
     ]
 }
 
-
 WSGI_APPLICATION = 'luntan.wsgi.application'
 
 # Database
@@ -107,11 +102,11 @@ WSGI_APPLICATION = 'luntan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'monkey-papa',  # 数据库名
-        'USER': 'monkey-papa',
-        'PASSWORD': 'monkey-papa', # 密码
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+        'NAME': os.getenv("DB_NAME"),  # 数据库名
+        'USER': os.getenv("DB_USER_NAME"),
+        'PASSWORD': os.getenv("DB_USER_PASSWORD"),  # 密码
     }
 }
 

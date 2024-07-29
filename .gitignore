@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+# Editor-based HTTP Client requests
+/httpRequests/
+
+**/.idea
+**/__pycache__
+**/*.log
+**/logs

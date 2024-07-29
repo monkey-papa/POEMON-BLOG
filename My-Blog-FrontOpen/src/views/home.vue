@@ -1134,11 +1134,11 @@ export default {
       const dom = document.querySelector(".background-image-changeBg");
       dom.setAttribute(
         "style",
-        "background-image: url(https://www.qiniuyun.monke-papa.icu/images/changeBg3);background-size: cover;background-attachment: local;background-position: center;width: 100%;height: 100%;"
+        "background-image: url(./images/changeBg3.png);background-size: cover;background-attachment: local;background-position: center;width: 100%;height: 100%;"
       );
       this.$store.commit(
         "changeBgBox",
-        "url(https://www.qiniuyun.monke-papa.icu/images/changeBg3)"
+        "url(./images/changeBg3.png)"
       );
     },
     handleChangeBg(val, i) {

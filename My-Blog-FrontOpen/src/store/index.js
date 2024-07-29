@@ -15,14 +15,14 @@ export default new Vuex.Store({
     currentAdmin: {},
     webInfo: {
       webName: "",
-      webTitle: [],
+      webTitle: ["米酿小屋"],
       notices: [],
       footer: "",
       backgroundImage: "",
       avatar: "",
       randomCover: [],
     },
-    changeBg: "url(https://www.qiniuyun.monke-papa.icu/images/changeBg3)",
+    changeBg: "url(./images/changeBg3.png)",
     isShowLoading: false,
     top: 0,
     pageView: {},
@@ -91,7 +91,7 @@ export default new Vuex.Store({
       state.currentAdmin = user;
     },
     loadWebInfo(state, webInfo) {
-      webInfo.webTitle = webInfo.webTitle.split("");
+      webInfo.webTitle = webInfo.webTitle?.split("");
       webInfo.notices = JSON.parse(webInfo.notices);
       webInfo.randomCover = JSON.parse(webInfo.randomCover);
       state.webInfo = webInfo;

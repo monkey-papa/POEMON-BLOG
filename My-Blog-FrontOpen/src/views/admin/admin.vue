@@ -13,7 +13,7 @@
 <script>
 import myHeader from '../common/myHeader.vue'
 import sidebar from '../common/sidebar.vue'
-
+console.log("admin....")
 export default {
   components: {
     myHeader,
