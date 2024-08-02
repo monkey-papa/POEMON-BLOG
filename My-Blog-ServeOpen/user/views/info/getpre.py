@@ -33,8 +33,8 @@ class GWebInfoPreView(APIView):
                 if avatar_a_r.exists():
                     if avatar_a_r[0].status:
                         avatar_a = webinfo.avatar
-                # else:
-                #     avatar_a = webinfo.avatar
+                else:
+                    avatar_a = webinfo.avatar # 兼容空数据库并且开源的情况，由于resource库没有七牛云链接时会触发
 
                 if backgroundImage_a_r.exists():
                     if backgroundImage_a_r[0].status:

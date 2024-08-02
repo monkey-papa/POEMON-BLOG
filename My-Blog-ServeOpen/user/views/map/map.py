@@ -18,6 +18,6 @@ class MapView(APIView):
     authentication_classes = [TokenAuthentication]
 
     def get(self, request):
-        with open('../static/map.json', 'r', encoding='utf-8') as file:
+        with open('static/map.json', 'r', encoding='utf-8') as file:
             data = json.load(file)
         return Response(data)

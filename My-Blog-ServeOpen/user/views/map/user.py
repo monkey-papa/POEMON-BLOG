@@ -21,7 +21,7 @@ class UserView(APIView):
     authentication_classes = [TokenAuthentication]
 
     def get(self, request):
-        with open("../static/user.json", "r", encoding="utf-8") as file:
+        with open("static/user.json", "r", encoding="utf-8") as file:
             data = json.load(file)
         queryset = Client.objects.filter(province__isnull=False).values('province').annotate(
             b=Count('*')).order_by('province')

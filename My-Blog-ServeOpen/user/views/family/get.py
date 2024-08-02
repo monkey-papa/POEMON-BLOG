@@ -75,5 +75,5 @@ class GetFamilyView(APIView):
 
         except Exception as error:
             return Response({
-                'result': "failure {0}".format(error)
+                'result': dataall
             })

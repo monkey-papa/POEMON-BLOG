@@ -456,7 +456,7 @@ export default {
         .get(this.$constant.baseURL + "/list/ip/")
         .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.total_sum = res.result[0].total_sum;
+            this.total_sum = res.result[0].total_sum || 0;
             this.$store.commit("pageView", res.result[0]);
           }
         })

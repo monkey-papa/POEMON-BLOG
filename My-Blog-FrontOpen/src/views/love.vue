@@ -787,7 +787,7 @@ export default {
               size: 10,
               total: 0,
               resourceType: "lovePhoto",
-              classify: this.photoTitleList[0].classify,
+              classify: this.photoTitleList[0]?.classify,
             };
             this.changePhoto(val);
           }
@@ -806,7 +806,7 @@ export default {
       this.$http
         .get(this.$constant.baseURL + "/family/getAdminFamily/")
         .then((res) => {
-          if (!this.$common.isEmpty(res.result[0].data[0])) {
+          if (!this.$common.isEmpty(res.result[0]?.data[0])) {
             this.love = res.result[0].data[0];
             this.adminLove = res.result[0].data[0];
             this.getLove();

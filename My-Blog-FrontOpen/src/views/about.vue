@@ -261,7 +261,7 @@ export default {
       current: 0,
       images: this.$constant.about,
       historyInfo: this.$store.state.pageView.data,
-      total_sum: this.$store.state.pageView.total_sum,
+      total_sum: this.$store.state.pageView.total_sum || 0,
       yesterday_sum: this.$store.state.pageView.yesterday_sum,
       today_sum: this.$store.state.pageView.today_sum,
       user_today: this.$store.state.pageView.data.user_today.length,
