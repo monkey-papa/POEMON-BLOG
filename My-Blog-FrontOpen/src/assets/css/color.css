@@ -61,6 +61,7 @@ html[data-theme="theme2"] {
   --blue7: var(--themeColor);
   --blue8: var(--opacityThemeColor1);
   --blue9: var(--themeColor);
+  --blue22: var(--themeColor);
   --blue25: var(--themeColor);
   --green1: var(--themeColor);
   --green2: var(--themeColor);
@@ -138,6 +139,7 @@ html[data-theme="theme2-dark"] {
   --blue7: var(--themeColor);
   --blue8: var(--opacityThemeColor1);
   --blue9: var(--themeColor);
+  --blue22: var(--themeColor);
   --blue25: var(--themeColor);
   --green1: var(--themeColor);
   --green2: var(--themeColor);

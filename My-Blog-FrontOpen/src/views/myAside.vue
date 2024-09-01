@@ -473,7 +473,7 @@ export default {
     getUsers() {
       this.$http
         .post(
-          this.$constant.baseURL + "/admin/user/list/",
+          this.$constant.baseURL + "/user/list/",
           this.userPagination,
           true,
           false

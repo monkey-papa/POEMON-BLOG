@@ -26,6 +26,9 @@ import "./assets/css/animation.css";
 import { vueBaberrage } from "vue-baberrage";
 //樱花
 import "./utils/sakura.js";
+//权限
+import directive from "./directive"; // directive
+Vue.use(directive);
 Vue.use(ElementUI);
 Vue.use(vueBaberrage);
 Vue.use(mavonEditor);

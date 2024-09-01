@@ -22,7 +22,7 @@ export default new Vuex.Store({
       avatar: "",
       randomCover: [],
     },
-    changeBg: "url(https://www.qiniuyun.monke-papa.icu/images/changeBg3)",
+    changeBg: "url(https://www.qiniuyun.monkey-papa.icu/images/changeBg3)",
     isShowLoading: false,
     top: 0,
     pageView: {},
@@ -31,6 +31,10 @@ export default new Vuex.Store({
     userList: [],
   },
   getters: {
+    // 访客禁用按钮权限
+    permissions: (state) => {
+      return state.currentAdmin.userType === 3 ? [] : ["user:visit:read"];
+    },
     articleTotal: (state) => {
       if (state.sortInfo !== null && state.sortInfo.length !== 0) {
         if (state.sortInfo.length === 1) {

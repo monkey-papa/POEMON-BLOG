@@ -167,7 +167,7 @@ export default {
           createTime: "2023-08-13T16:14:40.021946",
           introduction: " 这是一个 Vue2 Vue3 与 SpringBoot 结合的产物～ ",
           cover:
-            "https://www.qiniuyun.monke-papa.icu/images/1d3561c80ada1e007ff1325c81ba96e.png",
+            "https://www.qiniuyun.monkey-papa.icu/images/1d3561c80ada1e007ff1325c81ba96e.png",
           friendAvatar: "https://s1.ax1x.com/2022/11/10/z9E7X4.jpg",
           title: "生活倒影",
           url: "https://poetize.cn/",
@@ -176,7 +176,7 @@ export default {
           createTime: "2023-08-13T16:16:50.021946",
           introduction: " 宁静致远,倾尘轻笑 ",
           cover:
-            "https://www.qiniuyun.monke-papa.icu/images/9869f45ff9ae65e6371c2d89bd09ce3.png",
+            "https://www.qiniuyun.monkey-papa.icu/images/9869f45ff9ae65e6371c2d89bd09ce3.png",
           friendAvatar: "https://cdn.chuckle.top/img/head.webp",
           title: " 轻笑Chuckle ",
           url: "https://www.qcqx.cn/",
@@ -277,7 +277,10 @@ export default {
       this.$http
         .post(
           this.$constant.baseURL + "/webInfo/saveResourcePath/",
-          this.friend
+          this.friend,
+          false,
+          true,
+          true
         )
         .then((res) => {
           $(".form-wrap").css({ height: "447px", top: "0" });

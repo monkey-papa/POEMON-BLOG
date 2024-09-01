@@ -228,7 +228,9 @@ export default {
       .post(
         that.$constant.baseURL + "/resource/saveResource/",
         resource,
-        isAdmin
+        isAdmin,
+        true,
+        true
       )
       .catch((error) => {
         that.$notify({

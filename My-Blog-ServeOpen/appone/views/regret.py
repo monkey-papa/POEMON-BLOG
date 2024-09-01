@@ -1,15 +1,10 @@
-from django.shortcuts import render
 from datetime import timedelta, datetime
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
-
 from django.contrib.auth.models import User
-# Create your views here.
-from appone.models.client import Client
 from appone.models.code import Code
 
 

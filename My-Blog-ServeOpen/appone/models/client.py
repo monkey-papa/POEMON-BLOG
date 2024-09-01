@@ -22,6 +22,7 @@ class Client(models.Model):
         (0, 'Boss'),
         (1, '管理员'),
         (2, '普通用户'),
+        (3, '访客'),
     )
     user_type = models.SmallIntegerField(choices=user_type_choice, default=2, verbose_name='用户类型')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
@@ -29,6 +30,10 @@ class Client(models.Model):
     update_by = models.CharField(max_length=32, null=True, blank=True, verbose_name='最终修改人')
     deleted = models.BooleanField(default=False, verbose_name='是否删除')
     province = models.CharField(max_length=20, null=True, blank=True, verbose_name="省")
+    qiniu_domain = models.CharField(max_length=128, null=True, blank=True, verbose_name='七牛云域名')
+    qiniu_bucket_name = models.CharField(max_length=128, null=True, blank=True, verbose_name='七牛云bucket')
+    qiniu_secret_key = models.CharField(max_length=128, null=True, blank=True, verbose_name='七牛云secret_key')
+    qiniu_access_key = models.CharField(max_length=128, null=True, blank=True, verbose_name='七牛云access_key')
     class Meta:
         db_table = 'user'
         verbose_name = '用户信息表'

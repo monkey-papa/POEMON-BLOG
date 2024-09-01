@@ -3,7 +3,6 @@ import constant from "./constant";
 //处理url参数
 import qs from "qs";
 import store from "../store";
-
 let loadingCount = 0;
 const addLoading = () => {
   // 路由跳转时loading都是-2
@@ -15,7 +14,7 @@ const addLoading = () => {
   loadingCount++;
   // 如果已有loading就取消添加
   if (store.state.isShowLoading) {
-    return
+    return;
   }
   store.commit("SET_SHOWLOADING", true);
 };
@@ -28,7 +27,6 @@ const isCloseLoading = () => {
     store.commit("SET_SHOWLOADING", false);
   }
 };
-
 axios.defaults.baseURL = constant.baseURL;
 // 添加请求拦截器
 axios.interceptors.request.use(
@@ -43,7 +41,6 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
 // 添加响应拦截器
 axios.interceptors.response.use(
   function (response) {
@@ -72,16 +69,18 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 // 当data为URLSearchParams对象时设置为application/x-www-form-urlencoded;charset=utf-8
 // 当data为普通对象时，会被设置为application/json;charset=utf-8
-
 export default {
-  post(url, params = {}, isAdmin = false, json = true) {
+  post(url, params = {}, isAdmin = false, json = true, authorization = false) {
     let config;
     if (isAdmin) {
       config = {
-        headers: { Authorization: localStorage.getItem("adminToken") },
+        headers: {
+          Authorization: authorization
+            ? "Token " + localStorage.getItem("adminToken")
+            : localStorage.getItem("adminToken"),
+        },
       };
     } else {
       config = {
@@ -92,7 +91,6 @@ export default {
         },
       };
     }
-
     return new Promise((resolve, reject) => {
       axios
         .post(url, json ? params : qs.stringify(params), config)
@@ -104,15 +102,21 @@ export default {
         });
     });
   },
-
-  get(url, params = {}, isAdmin = false) {
+  get(url, params = {}, isAdmin = false, authorization = false) {
     let headers;
     if (isAdmin) {
-      headers = { Authorization: localStorage.getItem("adminToken") };
+      headers = {
+        Authorization: authorization
+          ? "Token " + localStorage.getItem("adminToken")
+          : localStorage.getItem("adminToken"),
+      };
     } else {
-      headers = { Authorization: localStorage.getItem("userToken") };
+      headers = {
+        Authorization: authorization
+          ? "Token " + localStorage.getItem("userToken")
+          : localStorage.getItem("userToken"),
+      };
     }
-
     return new Promise((resolve, reject) => {
       axios
         .get(url, {
@@ -127,36 +131,6 @@ export default {
         });
     });
   },
-
-  upload(url, param, isAdmin = false) {
-    let config;
-    if (isAdmin) {
-      config = {
-        headers: {
-          Authorization: localStorage.getItem("adminToken"),
-          "Content-Type": "multipart/form-data",
-        },
-      };
-    } else {
-      config = {
-        headers: {
-          Authorization: localStorage.getItem("userToken"),
-          "Content-Type": "multipart/form-data",
-        },
-      };
-    }
-    return new Promise((resolve, reject) => {
-      axios
-        .post(url, param, config)
-        .then((res) => {
-          resolve(res.data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  },
-
   uploadQiniu(url, param) {
     let config = {
       headers: { "Content-Type": "multipart/form-data" },

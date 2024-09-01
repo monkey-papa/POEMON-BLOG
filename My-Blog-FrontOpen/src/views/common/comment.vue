@@ -228,7 +228,7 @@ export default {
     getUsers() {
       this.$http
         .post(
-          this.$constant.baseURL + "/admin/user/list/",
+          this.$constant.baseURL + "/user/list/",
           this.userPagination,
           true,
           false
@@ -378,16 +378,25 @@ export default {
       this.$http
         .post(
           this.$constant.baseURL + "/admin/comment/boss/addComment/",
-          comment
+          comment,
+          false,
+          true,
+          true
         )
         .then((res) => {
           // 评论博客主人
           this.$http
-            .post(this.$constant.baseURL + "/codeComment/", {
-              email: "1816298537@qq.com",
-              comment: commentContent,
-              name: this.$store.state.currentUser.username,
-            })
+            .post(
+              this.$constant.baseURL + "/codeComment/",
+              {
+                email: "1816298537@qq.com",
+                comment: commentContent,
+                name: this.$store.state.currentUser.username,
+              },
+              false,
+              true,
+              true
+            )
             .then((res) => {
               this.$notify({
                 type: "success",
@@ -475,16 +484,25 @@ export default {
       this.$http
         .post(
           this.$constant.baseURL + "/admin/comment/boss/addComment/",
-          comment
+          comment,
+          false,
+          true,
+          true
         )
         .then((res) => {
           // 回复时发邮件
           this.$http
-            .post(this.$constant.baseURL + "/codeComment/", {
-              email,
-              comment: commentContent,
-              name,
-            })
+            .post(
+              this.$constant.baseURL + "/codeComment/",
+              {
+                email,
+                comment: commentContent,
+                name,
+              },
+              false,
+              true,
+              true
+            )
             .then((res) => {
               this.$notify({
                 type: "success",
@@ -545,6 +563,8 @@ export default {
             total: 0,
             searchKey: "",
           },
+          true,
+          true,
           true
         )
         .then((res) => {

@@ -10,24 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-
-
 from pathlib import Path
-
-
 import logging
-
 
 # 邮箱服务 start
 from_address = 'monkey-papa@qq.com' # 你的邮箱
 wand = "monkey-papa" # 邮箱秘钥
 # 邮箱服务 end
-
-
-QINIU_ACCESS_KEY = 'monkey-papa' # 七牛云秘钥
-QINIU_SECRET_KEY = 'monkey-papa' # 七牛云秘钥
-QINIU_BUCKET_NAME = 'monkey-papa' # 七牛云空间名称
-QINIU_DOMAIN = 'https://www.monkey-papa.com/'  # 用于生成访问图片的 URL 地址
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

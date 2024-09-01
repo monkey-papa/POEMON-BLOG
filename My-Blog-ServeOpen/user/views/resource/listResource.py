@@ -1,12 +1,9 @@
-# Create your views here.
 import time
-
 from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
-
 from appone.models.resource import Resource
 
 

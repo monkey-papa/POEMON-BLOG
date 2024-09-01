@@ -247,7 +247,7 @@
               </span>
             </div>
             <div
-              class="family-bottom"
+              class="family-bottom shadow-box"
               style="background-color: var(--blue)"
               @click="loveDialog()"
             >
@@ -617,6 +617,8 @@ export default {
         .post(
           this.$constant.baseURL + "/webInfo/saveResourcePath/",
           this.resourcePath,
+          true,
+          true,
           true
         )
         .then((res) => {
@@ -736,7 +738,13 @@ export default {
         return;
       }
       this.$http
-        .post(this.$constant.baseURL + "/family/addFamily/", this.userLove)
+        .post(
+          this.$constant.baseURL + "/family/addFamily/",
+          this.userLove,
+          false,
+          true,
+          true
+        )
         .then((res) => {
           this.$notify({
             title: "可以啦🍨",
@@ -1001,7 +1009,12 @@ export default {
       })
         .then(() => {
           this.$http
-            .get(this.$constant.baseURL + "/weiYan/deleteWeiYan/", { id: id })
+            .get(
+              this.$constant.baseURL + "/weiYan/deleteWeiYan/",
+              { id: id },
+              false,
+              true
+            )
             .then((res) => {
               this.$notify({
                 title: "可以啦🍨",
@@ -1305,6 +1318,10 @@ export default {
   margin: 20px;
   transition: all 0.3s;
   user-select: none;
+  border: 1px solid var(--gray1);
+  &:hover {
+    border-color: var(--gray4);
+  }
 }
 .family-avatar {
   border: var(--whiteMask) 4px solid;
@@ -1330,12 +1347,12 @@ export default {
   height: 60px;
 }
 .family-bottom-wrap {
+  padding-bottom: 40px;
   display: flex;
   justify-content: space-around;
-  margin: 0 0 40px;
 }
 .family-bottom {
-  color: var(--white);
+  color: var(--white1);
   border-radius: 3rem;
   width: 150px;
   text-align: center;

@@ -158,10 +158,15 @@ export default {
       }
       treeHole.avatar =
         this.$store.state.currentUser.avatar ||
-        "https://www.qiniuyun.monke-papa.icu/images/avatar";
+        "https://www.qiniuyun.monkey-papa.icu/images/avatar";
       treeHole.username = this.$store.state.currentUser.username;
       this.$http
-        .post(this.$constant.baseURL + "/webInfo/saveTreeHole/", treeHole)
+        .post(
+          this.$constant.baseURL + "/webInfo/saveTreeHole/",
+          treeHole,
+          true,
+          true
+        )
         .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
             this.$notify({

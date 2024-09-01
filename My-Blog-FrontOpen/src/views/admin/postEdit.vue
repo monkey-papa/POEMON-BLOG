@@ -75,6 +75,7 @@
         <div style="display: flex">
           <el-input v-model="article.articleCover"></el-input>
           <el-image
+            v-if="article.articleCover"
             class="table-td-thumb"
             lazy
             style="margin-left: 10px"
@@ -193,6 +194,10 @@ export default {
     imgAdd(pos, file) {
       let fd = new FormData();
       fd.append("image", file);
+      fd.append(
+        "userId",
+        this.$store.state.currentAdmin.id
+      );
       //上传md文档的图片到七牛云
       this.$http
         .uploadQiniu(this.$constant.qiniuUploadImages, fd)
@@ -248,7 +253,9 @@ export default {
       this.$http
         .post(
           this.$constant.baseURL + "/delArticleImage/",
-          { url: this.url },
+          { url: this.url, userId: this.$store.state.currentAdmin.id },
+          true,
+          true,
           true
         )
         .then((res) => {
@@ -275,10 +282,17 @@ export default {
     },
     getSortAndLabel() {
       this.$http
-        .get(this.$constant.baseURL + "/webInfo/listSortAndLabel/")
+        .get(
+          this.$constant.baseURL + "/webInfo/listSortAndLabel/",
+          {},
+          true,
+          true
+        )
         .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.sorts = res.result[0].data[0].sorts;
+            this.sorts = res.result[0].data[0].sorts.filter(
+              (item) => item.sortName !== "未定义"
+            );
             this.labels = res.result[0].data[0].labels;
             if (!this.$common.isEmpty(this.id)) {
               this.editArticle();
@@ -300,6 +314,7 @@ export default {
         .get(
           this.$constant.baseURL + "/admin/article/getArticleById/",
           { id: parseInt(this.id) },
+          true,
           true
         )
         .then((res) => {
@@ -366,7 +381,7 @@ export default {
       })
         .then(() => {
           this.$http
-            .post(this.$constant.baseURL + url, value, true)
+            .post(this.$constant.baseURL + url, value, true, true, true)
             .then((res) => {
               this.$notify({
                 title: "可以啦🍨",

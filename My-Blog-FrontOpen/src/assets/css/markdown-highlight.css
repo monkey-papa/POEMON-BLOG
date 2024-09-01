@@ -11,7 +11,7 @@
 }
 
 .entry-content blockquote:before {
-  content: '\f10d';
+  content: "\f10d";
   font-size: 1.5rem;
   position: absolute;
   top: 0;
@@ -21,7 +21,7 @@
 }
 
 .entry-content blockquote:after {
-  content: '\f10e';
+  content: "\f10e";
   font-size: 1.5rem;
   position: absolute;
   bottom: 0;
@@ -62,7 +62,7 @@
 
 .entry-content h3 {
   padding-bottom: 8px;
-  border-bottom: 3px dashed var(--blue);
+  border-bottom: 3px dashed var(--blue2);
 }
 
 .entry-content h1,
@@ -96,7 +96,7 @@
 }
 
 .entry-content h2:before {
-  content: '🍁';
+  content: "🍁";
   position: absolute;
   left: 0;
   font-size: 1.03em;
@@ -104,7 +104,7 @@
 }
 
 .entry-content h3:before {
-  content: '🐌';
+  content: "🐌";
   left: -10px;
   position: absolute;
   margin-top: 2px;
@@ -112,14 +112,14 @@
 }
 
 .entry-content h4:before {
-  content: '🦔';
+  content: "🦔";
   left: -8px;
   position: absolute;
   color: var(--red);
 }
 
 .entry-content h5:before {
-  content: '🐤';
+  content: "🐤";
   left: 0;
   position: absolute;
 }
@@ -132,24 +132,6 @@
 
 .entry-content a:hover {
   color: var(--orange);
-}
-
-.entry-content a:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 1.5px;
-  bottom: -2px;
-  left: 0;
-  background-color: var(--orange);
-  transform-origin: bottom right;
-  transition: transform 0.3s ease;
-}
-
-.entry-content a:hover:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
 }
 
 .entry-content p {
@@ -175,7 +157,7 @@
   position: relative;
   background: var(--borderColor);
   border-radius: 5px;
-  font: 15px/22px 'Microsoft YaHei', 'Arial';
+  font: 15px/22px "Microsoft YaHei", "Arial";
   line-height: 1.6;
   margin-bottom: 1.6em;
   width: 100%;
@@ -184,15 +166,15 @@
 }
 
 .highlight-wrap:before {
-  content: '';
+  content: "";
   position: absolute;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--red4);
   width: 12px;
   height: 12px;
   left: 12px;
   margin-top: -18px;
-  box-shadow: 20px 0 var(--yellow3), 40px 0 var(--green1);
+  box-shadow: 20px 0 var(--yellow7), 40px 0 var(--green5);
   z-index: 2;
 }
 
@@ -206,7 +188,7 @@
 }
 
 .highlight-wrap .copy-code:hover {
-  color: var(--whiteMask);
+  color: var(--maxMaxWhiteMask);
 }
 
 .highlight-wrap code::-webkit-scrollbar {
@@ -241,7 +223,7 @@
 }
 
 .hljs {
-  color: var(--maxMaxWhiteMask);
+  color: var(--fontColor);
   background: var(--favoriteBg);
   display: block;
   overflow-x: auto;
@@ -306,7 +288,7 @@
 .hljs-meta-string,
 .hljs-regexp,
 .hljs-string {
-  color: var(--blue1);
+  color: var(--blue5);
 }
 
 .hljs-built_in,
@@ -331,7 +313,7 @@
 .hljs-selector-id,
 .hljs-symbol,
 .hljs-title {
-  color: var(--blue);
+  color: var(--fontColor);
 }
 
 .hljs-emphasis {

@@ -3,8 +3,8 @@
     <!-- 首页图片 -->
     <div
       style="animation: header-effect 2s"
-      :style="{ background: `${$store.state.changeBg}` }"
-      class="background-image background-image-changeBg"
+      :style="{ background: `url(${article.articleCover})` }"
+      class="background-image background-image-changeBg blur-filter"
     ></div>
     <!-- 顶部 -->
     <div class="article-head my-animation-slide-top">
@@ -78,8 +78,8 @@
           </div>
           <!-- 作者信息 -->
           <blockquote>
-            <div style="color: var(--blue)">作者：{{ article.username }}</div>
-            <div style="color: var(--blue)">版权声明：转载请注明文章出处</div>
+            <div style="color: var(--blue2)">作者：{{ article.username }}</div>
+            <div style="color: var(--blue2)">版权声明：转载请注明文章出处</div>
           </blockquote>
           <!-- 点赞 -->
           <div class="myCenter" id="article-like" style="color: var(--bigRed)">
@@ -142,6 +142,7 @@ const process = () => import("./common/process");
 const commentBox = () => import("./common/commentBox");
 const myAside = () => import("./myAside");
 import MarkdownIt from "markdown-it";
+import ColorThief from "colorthief";
 export default {
   components: {
     comment,
@@ -188,6 +189,12 @@ export default {
       const time = row.split(".")[0].split("T")[1];
       return `${day} 日 ${time}`;
     },
+  },
+  beforeRouteLeave(to, from, next) {
+    const root = document.querySelector(":root");
+    root.style.setProperty("--themeColor", localStorage.getItem("themeColor"));
+    this.$common.getThemeRgb();
+    next();
   },
   methods: {
     async sendRequest() {
@@ -249,7 +256,12 @@ export default {
       })
         .then(() => {
           this.$http
-            .get(this.$constant.baseURL + "/weiYan/deleteWeiYan/", { id: id })
+            .get(
+              this.$constant.baseURL + "/weiYan/deleteWeiYan/",
+              { id: id },
+              false,
+              true
+            )
             .then((res) => {
               this.$notify({
                 type: "success",
@@ -288,7 +300,13 @@ export default {
         userId: this.$store.state.currentUser.id,
       };
       this.$http
-        .post(this.$constant.baseURL + "/weiYan/saveNews/", weiYan)
+        .post(
+          this.$constant.baseURL + "/weiYan/saveNews/",
+          weiYan,
+          false,
+          true,
+          true
+        )
         .then((res) => {
           this.$notify({
             title: "可以啦🍨",
@@ -380,6 +398,33 @@ export default {
       let headings = $(".entry-content").find("h1, h2, h3, h4, h5, h6");
       headings.attr("id", (i, id) => id || "toc-" + i);
     },
+    getColorFromImage(articleCover) {
+      // 创建一个新的img元素
+      const img = document.createElement("img");
+      img.src = articleCover;
+      img.setAttribute("crossOrigin", "");
+      // 创建一个ColorThief实例
+      const colorThief = new ColorThief();
+      // 当图片加载完成后，提取颜色
+      img.onload = () => {
+        // 提取主色
+        const dominantColor = colorThief.getColor(img);
+        const root = document.querySelector(":root");
+        const rgbToHex = (rgb) => {
+          const [r, g, b] = rgb.map((num) => parseInt(num, 10));
+          const toHex = (c) => {
+            const hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+          };
+          return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+        };
+        const color = rgbToHex(dominantColor);
+        root.style.setProperty("--themeColor", color);
+        this.$common.getThemeRgb();
+        // 销毁img元素
+        img.remove();
+      };
+    },
     getArticle() {
       this.$http
         .get(this.$constant.baseURL + "/article/getArticleById/", {
@@ -390,6 +435,7 @@ export default {
         .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
             this.article = res.result[0].data[0];
+            this.getColorFromImage(this.article.articleCover);
             this.getNews();
             const md = new MarkdownIt({ breaks: true });
             this.articleContentHtml = md.render(this.article.articleContent);
@@ -487,11 +533,17 @@ export default {
       }
       if (!this.article.articleLikeStatus) {
         this.$http
-          .post(this.$constant.baseURL + "/article/articleLike/", {
-            userId: this.$store.state.currentUser.id,
-            articleLikeStatus: true,
-            id: this.id,
-          })
+          .post(
+            this.$constant.baseURL + "/article/articleLike/",
+            {
+              userId: this.$store.state.currentUser.id,
+              articleLikeStatus: true,
+              id: this.id,
+            },
+            false,
+            true,
+            true
+          )
           .then((res) => {
             this.article.articleLikeStatus = 1;
             this.$notify({
@@ -526,6 +578,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.blur-filter {
+  filter: blur(30px);
+}
 #toc-button {
   position: fixed;
   right: 4vh;
@@ -539,13 +594,6 @@ export default {
   text-align: center;
   &:hover {
     color: var(--green2);
-  }
-}
-@media screen and (max-width: 500px) {
-  #toc-button {
-    right: 36px;
-    bottom: 13vh;
-    color: var(--red);
   }
 }
 .aside-content {
@@ -631,10 +679,11 @@ blockquote {
     background-color: var(--blue);
     border-radius: 5px;
     font-size: 14px;
-    color: var(--white);
+    color: var(--white1);
     margin-right: 25px;
     user-select: none;
     &:hover {
+      color: var(--white2);
       background: var(--gradualRed);
     }
   }
@@ -702,6 +751,13 @@ blockquote {
   }
   ::v-deep .el-collapse-item__wrap {
     border-bottom: unset;
+  }
+}
+@media screen and (max-width: 500px) {
+  #toc-button {
+    right: 36px;
+    bottom: 13vh;
+    color: var(--red);
   }
 }
 @media screen and (max-width: 1278px) {

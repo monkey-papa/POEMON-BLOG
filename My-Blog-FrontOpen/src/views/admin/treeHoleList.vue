@@ -46,6 +46,7 @@
       <el-table-column label="操作" width="180" align="center">
         <template slot-scope="scope">
           <el-button
+            v-hasPermi="['user:visit:read']"
             type="text"
             icon="el-icon-circle-plus"
             style="color: var(--green6)"
@@ -54,6 +55,7 @@
             添加违禁词
           </el-button>
           <el-button
+            v-hasPermi="['user:visit:read']"
             type="text"
             icon="el-icon-delete"
             style="color: var(--red)"
@@ -146,6 +148,7 @@ export default {
         .get(
           this.$constant.baseURL + "/webInfo/deleteTreeHole/",
           { id: item.id },
+          true,
           true
         )
         .then((res) => {
@@ -184,6 +187,8 @@ export default {
               username: item.username,
               avatar: item.avatar,
             },
+            true,
+            true,
             true
           )
           .then((res) => {

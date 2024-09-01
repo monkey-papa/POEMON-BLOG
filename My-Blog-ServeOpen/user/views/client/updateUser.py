@@ -1,20 +1,17 @@
-# Create your views here.
 import time
 from datetime import timedelta, datetime
-
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import AllowAny
-
+from rest_framework.permissions import IsAdminUser
 from appone.models.client import Client
 from appone.models.code import Code
 from appone.models.resource import Resource
 
 
 class UpdateUserView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdminUser]
     authentication_classes = [TokenAuthentication]
 
     def post(self, request):
@@ -28,6 +25,10 @@ class UpdateUserView(APIView):
             email = data.get('email', '')
             avatar = data.get('avatar', '')
             code = data.get('code', '')
+            qiniuDomain = data.get('qiniuDomain', '')
+            qiniuAccessKey = data.get('qiniuAccessKey', '')
+            qiniuSecretKey = data.get('qiniuSecretKey', '')
+            qiniuBucketName = data.get('qiniuBucketName', '')
             client = Client.objects.filter(user_id=id)
             if client.exists():
                 if username and username != client[0].username:
@@ -40,6 +41,14 @@ class UpdateUserView(APIView):
                     client.update(gender=gender)
                 if introduction:
                     client.update(introduction=introduction)
+                if qiniuDomain:
+                    client.update(qiniu_domain=qiniuDomain)
+                if qiniuAccessKey:
+                    client.update(qiniu_access_key=qiniuAccessKey)
+                if qiniuSecretKey:
+                    client.update(qiniu_secret_key=qiniuSecretKey)
+                if qiniuBucketName:
+                    client.update(qiniu_bucket_name=qiniuBucketName)
                 if phoneNumber:
                     client.update(phone_number=phoneNumber)
                 if email:
@@ -55,7 +64,6 @@ class UpdateUserView(APIView):
             ct = Client.objects.get(user_id=id)
             data = []
             dataall = []
-
             avatar_a = ''
             r = Resource.objects.filter(path=ct.avatar)
             if r.exists():
@@ -63,7 +71,6 @@ class UpdateUserView(APIView):
                     avatar_a = ct.avatar
             # else:
             #     avatar_a = ct.avatar
-
             data.append({
                 'id': ct.user_id,
                 'username': ct.username,
@@ -76,8 +83,11 @@ class UpdateUserView(APIView):
                 'introduction': ct.introduction,
                 'userType': ct.user_type,
                 'createTime': ct.create_time,
+                'qiniuDomain': ct.qiniu_domain,
+                'qiniuBucketName': ct.qiniu_bucket_name,
+                'qiniuSecretKey': ct.qiniu_secret_key,
+                'qiniuAccessKey': ct.qiniu_access_key,
             })
-
             dataall.append({
                 'code': 200,
                 'message': "null",

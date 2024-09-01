@@ -14,13 +14,13 @@ export default {
   //表情地址,md图片地址
   qiniuUploadEntrance: "http://www.monkey-papa.com/", // 你的七牛云存储空间的外链域名
   //视频地址
-  favoriteVideo: "https://www.qiniuyun.monke-papa.icu/avatar/nahida.mp4",
+  favoriteVideo: "https://www.qiniuyun.monkey-papa.icu/avatar/nahida.mp4",
   //按钮颜色
   before_color_1: "var(--blue13)",
   after_color_1: "linear-gradient(45deg, var(--red), var(--purple1))",
   //评论分页颜色 微言分页颜色
   commentPageColor: "var(--green6)",
-  userId: 9, // 博客主任的用户id
+  userId: 9, // 博客主人的用户id
   //emoji含义
   emojiList: [
     "衰",
@@ -86,32 +86,32 @@ export default {
   ],
   about: [
     {
-      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA1.jpg",
+      img: "https://www.qiniuyun.monkey-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA1.jpg",
       tit: "女帝",
       sub: "巾帼女帝，新生红衣😍",
     },
     {
-      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA2.jpg",
+      img: "https://www.qiniuyun.monkey-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA2.jpg",
       tit: "新不良帅",
       sub: "弃天道，择霸道🥱",
     },
     {
-      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA3.jpg",
+      img: "https://www.qiniuyun.monkey-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA3.jpg",
       tit: "四大尸祖",
       sub: "搞笑女+搞笑男😅",
     },
     {
-      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA4.png",
+      img: "https://www.qiniuyun.monkey-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA4.png",
       tit: "这俩货",
       sub: "导致我每集片头都不跳过😋",
     },
     {
-      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA6.jpg",
+      img: "https://www.qiniuyun.monkey-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA6.jpg",
       tit: "奥姑",
       sub: "好腿，只能说被打的真惨🤣",
     },
     {
-      img: "https://www.qiniuyun.monke-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA7.jpg",
+      img: "https://www.qiniuyun.monkey-papa.icu/avatar/%E4%B8%8D%E8%89%AF%E4%BA%BA7.jpg",
       tit: "随心",
       sub: "(*^▽^*)",
     },

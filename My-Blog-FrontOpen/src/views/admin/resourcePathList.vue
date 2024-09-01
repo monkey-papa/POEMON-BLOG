@@ -30,7 +30,10 @@
         <el-button type="primary" icon="el-icon-search" @click="search()"
           >搜索</el-button
         >
-        <el-button type="primary" @click="addResourcePathDialog = true"
+        <el-button
+          v-hasPermi="['user:visit:read']"
+          type="primary"
+          @click="addResourcePathDialog = true"
           >新增资源路径</el-button
         >
       </div>
@@ -94,6 +97,7 @@
               {{ scope.row.status === false ? "禁用" : "启用" }}
             </el-tag>
             <el-switch
+              v-hasPermi="['user:visit:read']"
               @click.native="changeStatus(scope.row)"
               v-model="scope.row.status"
             ></el-switch>
@@ -119,12 +123,14 @@
         <el-table-column label="操作" width="180" align="center">
           <template slot-scope="scope">
             <el-button
+              v-hasPermi="['user:visit:read']"
               type="text"
               icon="el-icon-edit"
               @click="handleEdit(scope.row)"
               >编辑</el-button
             >
             <el-button
+              v-hasPermi="['user:visit:read']"
               type="text"
               icon="el-icon-delete"
               style="color: var(--red)"
@@ -396,6 +402,8 @@ export default {
               ? "/webInfo/updateResourcePath/"
               : "/webInfo/saveResourcePath/"),
           this.resourcePath,
+          true,
+          true,
           true
         )
         .then((res) => {
@@ -430,6 +438,8 @@ export default {
         .post(
           this.$constant.baseURL + "/webInfo/listResourcePath/",
           this.pagination,
+          true,
+          true,
           true
         )
         .then((res) => {
@@ -453,6 +463,8 @@ export default {
         .post(
           this.$constant.baseURL + "/webInfo/updateResourcePath/",
           item,
+          true,
+          true,
           true
         )
         .then((res) => {
@@ -490,6 +502,7 @@ export default {
             .get(
               this.$constant.baseURL + "/webInfo/deleteResourcePath/",
               { id: item.id },
+              true,
               true
             )
             .then((res) => {

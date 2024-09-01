@@ -1,21 +1,12 @@
 import time
 import re
-
-from django.shortcuts import render
-
-# Create your views here.
-from datetime import timedelta, datetime
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
-
 from django.contrib.auth.models import User
-
 from appone.models.client import Client
-from appone.models.ip import Ip
 from appone.models.resource import Resource
 
 
@@ -38,16 +29,12 @@ class LoginView(APIView):
         else:
             user = User.objects.filter(username=username).first()
             client = Client.objects.get(user_id=user.id)
-
-
         if client.user_status is False or client.deleted is True:
             return Response({"result": "The account is disabled or deleted"})
-
         if user and user.check_password(password):
             token, created = Token.objects.get_or_create(user=user)
             data = []
             dataall = []
-
             avatar_a = ""
             r = Resource.objects.filter(path=client.avatar)
             if r.exists():
@@ -74,9 +61,12 @@ class LoginView(APIView):
                     "introduction": client.introduction,
                     "userType": client.user_type,
                     "createTime": client.create_time,
+                    'qiniuDomain': client.qiniu_domain,
+                    'qiniuBucketName': client.qiniu_bucket_name,
+                    'qiniuSecretKey': client.qiniu_secret_key,
+                    'qiniuAccessKey': client.qiniu_access_key,
                 }
             )
-
             dataall.append(
                 {
                     "code": 200,
@@ -87,4 +77,4 @@ class LoginView(APIView):
             )
             return Response({"result": dataall})
         else:
-            return Response({"error": "Username or password is incorrect."}, status=400)
+            return Response({"error": "用户名或密码错误"}, status=400)

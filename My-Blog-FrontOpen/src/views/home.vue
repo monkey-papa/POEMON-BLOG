@@ -926,13 +926,13 @@ export default {
     },
     handleSakura() {
       if (this.sakuraFlag) {
-        window.test();
+        window.startSakura();
         this.sakuraFlag = false;
       } else {
         const dom = document.querySelector("#canvas_sakura");
+        this.sakuraFlag = true;
         if (dom) {
           dom.remove();
-          this.sakuraFlag = true;
         }
       }
     },
@@ -1022,7 +1022,7 @@ export default {
         if (document.documentElement.dataset.theme === "theme2-dark") {
           const root = document.querySelector(":root");
           root.style.setProperty("--themeColor", "var(--sYellow)");
-          localStorage.setItem("themeColor", "var(--sYellow)");
+          localStorage.setItem("themeColor", "#ffc848");
           this.$common.getThemeRgb();
         }
         this.$notify({
@@ -1041,7 +1041,7 @@ export default {
         if (document.documentElement.dataset.theme !== "theme2-dark") {
           const root = document.querySelector(":root");
           root.style.setProperty("--themeColor", "var(--sBlue)");
-          localStorage.setItem("themeColor", "var(--sBlue)");
+          localStorage.setItem("themeColor", "#425aef");
           this.$common.getThemeRgb();
         }
       }
@@ -1134,11 +1134,11 @@ export default {
       const dom = document.querySelector(".background-image-changeBg");
       dom.setAttribute(
         "style",
-        "background-image: url(https://www.qiniuyun.monke-papa.icu/images/changeBg3);background-size: cover;background-attachment: local;background-position: center;width: 100%;height: 100%;"
+        "background-image: url(https://www.qiniuyun.monkey-papa.icu/images/changeBg3);background-size: cover;background-attachment: local;background-position: center;width: 100%;height: 100%;"
       );
       this.$store.commit(
         "changeBgBox",
-        "url(https://www.qiniuyun.monke-papa.icu/images/changeBg3)"
+        "url(https://www.qiniuyun.monkey-papa.icu/images/changeBg3)"
       );
     },
     handleChangeBg(val, i) {
@@ -1695,6 +1695,7 @@ hr {
   }
   .el-dialog__header {
     top: 0;
+    z-index: 999;
     position: sticky;
     overflow: hidden;
     padding: 5px 20px 10px;

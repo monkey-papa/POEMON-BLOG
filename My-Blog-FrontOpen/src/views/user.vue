@@ -97,6 +97,18 @@
               <div>邮箱：</div>
               <div>性别：</div>
               <div>简介：</div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                七牛云域名：
+              </div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                七牛云访问密钥：
+              </div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                七牛云秘密秘钥：
+              </div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                七牛云文件夹：
+              </div>
             </div>
             <div class="user-content">
               <div>
@@ -108,7 +120,7 @@
               <div>
                 <div style="width: 100%">
                   <el-input
-                    maxlength="30"
+                    maxlength="11"
                     v-model="currentUser.phoneNumber"
                   ></el-input>
                 </div>
@@ -144,6 +156,30 @@
                   maxlength="60"
                   type="textarea"
                   show-word-limit
+                ></el-input>
+              </div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                <el-input
+                  v-model="currentUser.qiniuDomain"
+                  maxlength="128"
+                ></el-input>
+              </div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                <el-input
+                  v-model="currentUser.qiniuAccessKey"
+                  maxlength="128"
+                ></el-input>
+              </div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                <el-input
+                  v-model="currentUser.qiniuSecretKey"
+                  maxlength="128"
+                ></el-input>
+              </div>
+              <div v-if="$store.state.currentUser.userType !== 2">
+                <el-input
+                  v-model="currentUser.qiniuBucketName"
+                  maxlength="128"
                 ></el-input>
               </div>
             </div>
@@ -278,7 +314,7 @@ export default {
   },
   mounted() {
     this.postProvinceAndCity();
-    this.currentUser = JSON.parse(localStorage.getItem("vuex")).currentUser;
+    this.currentUser = this.$store.state.currentUser;
   },
   methods: {
     addPicture(res) {
@@ -513,6 +549,33 @@ export default {
       if (!this.$common.isEmpty(this.currentUser.introduction)) {
         user.introduction = this.currentUser.introduction.trim();
       }
+      const allQiniuFieldsEmpty =
+        this.$common.isEmpty(this.currentUser.qiniuDomain) &&
+        this.$common.isEmpty(this.currentUser.qiniuAccessKey) &&
+        this.$common.isEmpty(this.currentUser.qiniuSecretKey) &&
+        this.$common.isEmpty(this.currentUser.qiniuBucketName);
+      const allQiniuFieldsFilled =
+        !this.$common.isEmpty(this.currentUser.qiniuDomain) &&
+        !this.$common.isEmpty(this.currentUser.qiniuAccessKey) &&
+        !this.$common.isEmpty(this.currentUser.qiniuSecretKey) &&
+        !this.$common.isEmpty(this.currentUser.qiniuBucketName);
+      if (allQiniuFieldsEmpty || allQiniuFieldsFilled) {
+        if (allQiniuFieldsFilled) {
+          user.qiniuDomain = this.currentUser.qiniuDomain.trim();
+          user.qiniuAccessKey = this.currentUser.qiniuAccessKey.trim();
+          user.qiniuSecretKey = this.currentUser.qiniuSecretKey.trim();
+          user.qiniuBucketName = this.currentUser.qiniuBucketName.trim();
+        }
+      } else {
+        this.$notify({
+          title: "淘气👻",
+          message: "请将四项七牛云信息填写完整，或者四项全部留空！",
+          type: "warning",
+          offset: 50,
+          position: "top-left",
+        });
+        return;
+      }
       this.$confirm("确认保存？", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -521,7 +584,13 @@ export default {
       })
         .then(() => {
           this.$http
-            .post(this.$constant.baseURL + "/user/updateUserInfo/", user)
+            .post(
+              this.$constant.baseURL + "/user/updateUserInfo/",
+              user,
+              false,
+              true,
+              true
+            )
             .then((res) => {
               if (!this.$common.isEmpty(res.result[0])) {
                 this.$store.commit("loadCurrentUser", res.result[0].data[0]);
@@ -668,7 +737,13 @@ export default {
             userId: this.$store.state.currentUser.id,
           };
           this.$http
-            .post(this.$constant.baseURL + "/user/updateUserInfo/", user)
+            .post(
+              this.$constant.baseURL + "/user/updateUserInfo/",
+              user,
+              false,
+              true,
+              true
+            )
             .then((res) => {
               if (!this.$common.isEmpty(res.result[0])) {
                 this.$store.commit("loadCurrentUser", res.result[0].data[0]);
@@ -788,7 +863,8 @@ export default {
             this.$constant.baseURL + "/user/updateUserInfo/",
             params,
             false,
-            false
+            false,
+            true
           )
           .then((res) => {
             if (!this.$common.isEmpty(res.result[0])) {
@@ -1042,10 +1118,10 @@ export default {
   text-align: right;
   user-select: none;
   div {
+    text-align: right;
     color: var(--black5);
     height: 55px;
     line-height: 55px;
-    text-align: center;
   }
 }
 .user-content {
@@ -1084,7 +1160,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 940px) {
   .user-info {
     width: 90%;
   }

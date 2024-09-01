@@ -118,7 +118,13 @@ export default {
         userId: this.$store.state.currentUser.id,
       };
       this.$http
-        .post(this.$constant.baseURL + "/weiYan/saveWeiYan/", weiYan)
+        .post(
+          this.$constant.baseURL + "/weiYan/saveWeiYan/",
+          weiYan,
+          false,
+          true,
+          true
+        )
         .then((res) => {
           this.getWeiYan();
         })
@@ -152,7 +158,12 @@ export default {
       })
         .then(() => {
           this.$http
-            .get(this.$constant.baseURL + "/weiYan/deleteWeiYan/", { id: id })
+            .get(
+              this.$constant.baseURL + "/weiYan/deleteWeiYan/",
+              { id: id },
+              false,
+              true
+            )
             .then((res) => {
               this.$notify({
                 title: "可以啦🍨",
