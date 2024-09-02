@@ -3,15 +3,15 @@
 
  Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 80028 (8.0.28)
+ Source Server Version : 80035 (8.0.35)
  Source Host           : localhost:3306
- Source Schema         : open-blog
+ Source Schema         : myblog-open
 
  Target Server Type    : MySQL
- Target Server Version : 80028 (8.0.28)
+ Target Server Version : 80035 (8.0.35)
  File Encoding         : 65001
 
- Date: 02/08/2024 22:32:38
+ Date: 02/09/2024 10:36:16
 */
 
 SET NAMES utf8mb4;
@@ -23,11 +23,11 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `appone_code`;
 CREATE TABLE `appone_code`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `email` varchar(254) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `code` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(254) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `code` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `create_time` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 159 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 159 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of appone_code
@@ -39,18 +39,18 @@ CREATE TABLE `appone_code`  (
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `article_cover` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `article_title` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `article_content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `article_cover` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `article_title` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `article_content` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `view_count` int NOT NULL,
   `like_count` int NOT NULL,
   `view_status` tinyint(1) NOT NULL,
-  `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(128) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `recommend_status` tinyint(1) NOT NULL,
   `comment_status` tinyint(1) NOT NULL,
   `create_time` datetime(6) NOT NULL,
   `update_time` datetime(6) NOT NULL,
-  `update_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `update_by` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL,
   `label_id` int NOT NULL,
   `sort_id` int NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `article`  (
   INDEX `article_label_id_id_2af2b7f7_fk_label_id`(`label_id` ASC) USING BTREE,
   INDEX `article_sort_id_id_5870156c_fk_sort_id`(`sort_id` ASC) USING BTREE,
   INDEX `article_user_id_id_19d49033_fk_auth_user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of article
@@ -71,10 +71,10 @@ CREATE TABLE `article`  (
 DROP TABLE IF EXISTS `auth_group`;
 CREATE TABLE `auth_group`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auth_group
@@ -93,7 +93,7 @@ CREATE TABLE `auth_group_permissions`  (
   INDEX `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm`(`permission_id` ASC) USING BTREE,
   CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auth_group_permissions
@@ -105,13 +105,13 @@ CREATE TABLE `auth_group_permissions`  (
 DROP TABLE IF EXISTS `auth_permission`;
 CREATE TABLE `auth_permission`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `content_type_id` int NOT NULL,
-  `codename` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `codename` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `auth_permission_content_type_id_codename_01ab375a_uniq`(`content_type_id` ASC, `codename` ASC) USING BTREE,
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auth_permission
@@ -215,19 +215,19 @@ INSERT INTO `auth_permission` VALUES (92, 'Can view 点赞', 23, 'view_article_l
 DROP TABLE IF EXISTS `auth_user`;
 CREATE TABLE `auth_user`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(128) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `last_login` datetime(6) NULL DEFAULT NULL,
   `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `first_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `last_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `email` varchar(254) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `username` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `first_name` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `last_name` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `email` varchar(254) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 84 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 84 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auth_user
@@ -247,7 +247,7 @@ CREATE TABLE `auth_user_groups`  (
   INDEX `auth_user_groups_group_id_97559544_fk_auth_group_id`(`group_id` ASC) USING BTREE,
   CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auth_user_groups
@@ -266,7 +266,7 @@ CREATE TABLE `auth_user_user_permissions`  (
   INDEX `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm`(`permission_id` ASC) USING BTREE,
   CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auth_user_user_permissions
@@ -277,13 +277,13 @@ CREATE TABLE `auth_user_user_permissions`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `authtoken_token`;
 CREATE TABLE `authtoken_token`  (
-  `key` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `key` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `created` datetime(6) NOT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`key`) USING BTREE,
   UNIQUE INDEX `user_id`(`user_id` ASC) USING BTREE,
   CONSTRAINT `authtoken_token_user_id_35299eff_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of authtoken_token
@@ -297,18 +297,18 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `source` int NOT NULL,
-  `type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `type` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `parent_comment_id` int NULL DEFAULT NULL,
   `user_id` int NOT NULL,
   `floor_comment_id` int NULL DEFAULT NULL,
   `parent_user_id` int NULL DEFAULT NULL,
   `like_count` int NOT NULL,
-  `comment_content` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `comment_info` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `comment_content` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `comment_info` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `create_time` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_comment_source`(`source` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 203 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 203 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comment
@@ -321,10 +321,10 @@ DROP TABLE IF EXISTS `django_admin_log`;
 CREATE TABLE `django_admin_log`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `action_time` datetime(6) NOT NULL,
-  `object_id` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `object_repr` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `object_id` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL,
+  `object_repr` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `action_flag` smallint UNSIGNED NOT NULL,
-  `change_message` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `change_message` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `content_type_id` int NULL DEFAULT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
@@ -332,7 +332,7 @@ CREATE TABLE `django_admin_log`  (
   INDEX `django_admin_log_user_id_c564eba6_fk_auth_user_id`(`user_id` ASC) USING BTREE,
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 251 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 251 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of django_admin_log
@@ -344,11 +344,11 @@ CREATE TABLE `django_admin_log`  (
 DROP TABLE IF EXISTS `django_content_type`;
 CREATE TABLE `django_content_type`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `app_label` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `model` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `app_label` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `model` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `django_content_type_app_label_model_76bd3d3b_uniq`(`app_label` ASC, `model` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of django_content_type
@@ -383,11 +383,11 @@ INSERT INTO `django_content_type` VALUES (6, 'sessions', 'session');
 DROP TABLE IF EXISTS `django_migrations`;
 CREATE TABLE `django_migrations`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `app` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `app` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of django_migrations
@@ -435,12 +435,12 @@ INSERT INTO `django_migrations` VALUES (37, 'appone', '0002_ip_k_time', '2023-08
 -- ----------------------------
 DROP TABLE IF EXISTS `django_session`;
 CREATE TABLE `django_session`  (
-  `session_key` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `session_data` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `session_key` varchar(40) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `session_data` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `expire_date` datetime(6) NOT NULL,
   PRIMARY KEY (`session_key`) USING BTREE,
   INDEX `django_session_expire_date_a5c62663`(`expire_date` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of django_session
@@ -467,16 +467,16 @@ INSERT INTO `django_session` VALUES ('yz8wcklon1bluj3v3nck2r78ylptcnra', '.eJxVj
 DROP TABLE IF EXISTS `family`;
 CREATE TABLE `family`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `bg_cover` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `man_cover` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `woman_cover` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `man_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `woman_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `timing` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `countdown_title` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `countdown_time` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `bg_cover` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `man_cover` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `woman_cover` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `man_name` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `woman_name` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `timing` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `countdown_title` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `countdown_time` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
-  `family_info` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `family_info` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `like_count` int NOT NULL,
   `create_time` datetime(6) NOT NULL,
   `update_time` datetime(6) NOT NULL,
@@ -484,7 +484,7 @@ CREATE TABLE `family`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `family_user_id_id_f0564d8e_fk_auth_user_id`(`user_id_id` ASC) USING BTREE,
   CONSTRAINT `family_user_id_id_f0564d8e_fk_auth_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of family
@@ -497,15 +497,15 @@ DROP TABLE IF EXISTS `ip`;
 CREATE TABLE `ip`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
-  `ip` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `province` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `city` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ip` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `province` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `city` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `create_time` datetime(6) NOT NULL,
   `k_time` datetime(6) NULL DEFAULT NULL,
   `mcount` int NOT NULL,
   `dcount` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5457 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5457 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ip
@@ -518,12 +518,12 @@ INSERT INTO `ip` VALUES (5456, 0, '127.0.0.1', NULL, NULL, '2024-08-02 21:44:43.
 DROP TABLE IF EXISTS `label`;
 CREATE TABLE `label`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `label_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `label_description` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `label_name` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `label_description` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `sort_id` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `label_sort_id_id_439e7832_fk_sort_id`(`sort_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of label
@@ -566,7 +566,7 @@ CREATE TABLE `like`  (
   INDEX `like_user_id_id_d204a180_fk_auth_user_id`(`user_id_id` ASC) USING BTREE,
   CONSTRAINT `like_article_id_id_63839db3_fk_article_id` FOREIGN KEY (`article_id_id`) REFERENCES `article` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `like_user_id_id_d204a180_fk_auth_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of like
@@ -578,17 +578,17 @@ CREATE TABLE `like`  (
 DROP TABLE IF EXISTS `resource`;
 CREATE TABLE `resource`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `path` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `type` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `path` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `size` int NULL DEFAULT NULL,
-  `mime_type` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mime_type` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   `create_time` datetime(6) NOT NULL,
   `user_id_id` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `resource_user_id_id_f8636fa7_fk_auth_user_id`(`user_id_id` ASC) USING BTREE,
   CONSTRAINT `resource_user_id_id_f8636fa7_fk_auth_user_id` FOREIGN KEY (`user_id_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 165 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 165 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of resource
@@ -600,17 +600,17 @@ CREATE TABLE `resource`  (
 DROP TABLE IF EXISTS `resource_path`;
 CREATE TABLE `resource_path`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `title` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `classify` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `cover` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `url` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `introduction` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `title` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `classify` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `cover` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `url` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `introduction` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `type` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `remark` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `remark` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL,
   `create_time` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 118 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 118 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of resource_path
@@ -622,12 +622,12 @@ CREATE TABLE `resource_path`  (
 DROP TABLE IF EXISTS `sort`;
 CREATE TABLE `sort`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `sort_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `sort_description` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sort_name` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `sort_description` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `sort_type` int NOT NULL,
   `priority` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sort
@@ -649,12 +649,12 @@ INSERT INTO `sort` VALUES (14, '美食', '饿的睡不着', 1, 9);
 DROP TABLE IF EXISTS `tree_hole`;
 CREATE TABLE `tree_hole`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `avatar` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `message` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `message` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `username` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `create_time` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tree_hole
@@ -666,32 +666,36 @@ CREATE TABLE `tree_hole`  (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `phone_number` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `email` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `username` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `phone_number` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `email` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `user_status` tinyint(1) NOT NULL,
   `gender` smallint NULL DEFAULT NULL,
-  `open_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `avatar` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `admire` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `introduction` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `open_id` varchar(128) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `admire` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `introduction` varchar(4096) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `user_type` smallint NOT NULL,
   `create_time` datetime(6) NOT NULL,
   `update_time` datetime(6) NOT NULL,
-  `update_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `update_by` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL,
   `user_id` int NOT NULL,
-  `province` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `province` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `qiniu_domain` varchar(128) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `qiniu_bucket_name` varchar(128) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `qiniu_secret_key` varchar(128) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `qiniu_access_key` varchar(128) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username` ASC) USING BTREE,
   UNIQUE INDEX `user_id`(`user_id` ASC) USING BTREE,
   CONSTRAINT `user_user_id_3ad375f5_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 81 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 81 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (7, 'monkey-papa', '15523692545', '1816298537@qq.com', 1, 0, NULL, 'https://www.qiniuyun.zjh2002.icu/images/e61a0eb0423611ee8b6500163e10317e', '0', '这里介绍不了我', 0, '2023-07-17 02:19:01.790727', '2024-07-08 00:25:17.978806', NULL, 0, 9, '湖北');
+INSERT INTO `user` VALUES (7, 'monkey-papa', '15523692545', '1816298537@qq.com', 1, 0, NULL, 'https://www.qiniuyun.zjh2002.icu/images/e61a0eb0423611ee8b6500163e10317e', '0', '这里介绍不了我', 0, '2023-07-17 02:19:01.790727', '2024-07-08 00:25:17.978806', NULL, 0, 9, '湖北', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for web_info
@@ -699,19 +703,19 @@ INSERT INTO `user` VALUES (7, 'monkey-papa', '15523692545', '1816298537@qq.com',
 DROP TABLE IF EXISTS `web_info`;
 CREATE TABLE `web_info`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `web_name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `web_title` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `notices` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `footer` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `background_image` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `avatar` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `random_avatar` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `random_name` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `random_cover` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `waifu_json` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `web_name` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `web_title` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `notices` varchar(512) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `footer` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `background_image` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `random_avatar` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL,
+  `random_name` varchar(4096) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `random_cover` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL,
+  `waifu_json` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of web_info
@@ -726,14 +730,14 @@ CREATE TABLE `wei_yan`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `like_count` int NOT NULL,
-  `content` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `content` varchar(1024) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `type` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `source` int NULL DEFAULT NULL,
   `is_public` tinyint(1) NOT NULL,
   `create_time` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `wei_yan_user_id_32c565_idx`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of wei_yan
@@ -745,12 +749,12 @@ CREATE TABLE `wei_yan`  (
 DROP TABLE IF EXISTS `word`;
 CREATE TABLE `word`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `message` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `avatar` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `message` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL,
+  `username` varchar(32) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `create_time` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of word
