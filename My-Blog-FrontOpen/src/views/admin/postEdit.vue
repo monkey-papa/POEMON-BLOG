@@ -22,7 +22,6 @@
       <el-form-item label="文章作者" prop="articleAuthor">
         <el-input maxlength="30" v-model="article.articleAuthor"></el-input>
       </el-form-item>
-
       <el-form-item label="文章内容" prop="articleContent">
         <mavon-editor
           ref="md"
@@ -32,7 +31,6 @@
         >
         </mavon-editor>
       </el-form-item>
-
       <el-form-item label="是否启用评论" prop="commentStatus">
         <el-tag
           :type="article.commentStatus === false ? 'danger' : 'success'"
@@ -42,8 +40,11 @@
         </el-tag>
         <el-switch v-model="article.commentStatus"></el-switch>
       </el-form-item>
-
-      <el-form-item label="是否推荐" prop="recommendStatus">
+      <el-form-item
+        label="是否推荐"
+        prop="recommendStatus"
+        v-hasPermi="['user:visit:read']"
+      >
         <el-tag
           :type="article.recommendStatus === false ? 'danger' : 'success'"
           disable-transitions
@@ -52,8 +53,11 @@
         </el-tag>
         <el-switch v-model="article.recommendStatus"></el-switch>
       </el-form-item>
-
-      <el-form-item label="是否可见" prop="viewStatus">
+      <el-form-item
+        label="是否可见"
+        prop="viewStatus"
+        v-hasPermi="['user:visit:read']"
+      >
         <el-tag
           :type="article.viewStatus === false ? 'danger' : 'success'"
           disable-transitions
@@ -62,15 +66,13 @@
         </el-tag>
         <el-switch v-model="article.viewStatus"></el-switch>
       </el-form-item>
-
-      <el-form-item
+      <!-- <el-form-item
         v-if="article.viewStatus === false"
         label="访问密码"
         prop="password"
       >
         <el-input maxlength="30" v-model="article.password"></el-input>
-      </el-form-item>
-
+      </el-form-item> -->
       <el-form-item label="封面" prop="articleCover">
         <div style="display: flex">
           <el-input v-model="article.articleCover"></el-input>
@@ -141,7 +143,7 @@ export default {
         articleContent: "",
         commentStatus: true,
         recommendStatus: false,
-        viewStatus: true,
+        viewStatus: false,
         password: "",
         articleCover: "",
         sortId: null,
@@ -188,16 +190,14 @@ export default {
     },
   },
   created() {
+    this.article.viewStatus = this.$store.state.currentAdmin.userType !== 3;
     this.getSortAndLabel();
   },
   methods: {
     imgAdd(pos, file) {
       let fd = new FormData();
       fd.append("image", file);
-      fd.append(
-        "userId",
-        this.$store.state.currentAdmin.id
-      );
+      fd.append("userId", this.$store.state.currentAdmin.id);
       //上传md文档的图片到七牛云
       this.$http
         .uploadQiniu(this.$constant.qiniuUploadImages, fd)
@@ -333,19 +333,19 @@ export default {
         });
     },
     submitForm(formName) {
-      if (
-        this.article.viewStatus === false &&
-        this.$common.isEmpty(this.article.password)
-      ) {
-        this.$notify({
-          type: "error",
-          title: "可恶🤬",
-          message: "文章不可见时必须输入密码！",
-          position: "top-left",
-          offset: 50,
-        });
-        return;
-      }
+      // if (
+      //   this.article.viewStatus === false &&
+      //   this.$common.isEmpty(this.article.password)
+      // ) {
+      //   this.$notify({
+      //     type: "error",
+      //     title: "可恶🤬",
+      //     message: "文章不可见时必须输入密码！",
+      //     position: "top-left",
+      //     offset: 50,
+      //   });
+      //   return;
+      // }
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.$common.isEmpty(this.id)) {
@@ -383,14 +383,42 @@ export default {
           this.$http
             .post(this.$constant.baseURL + url, value, true, true, true)
             .then((res) => {
-              this.$notify({
-                title: "可以啦🍨",
-                message: "保存成功！",
-                type: "success",
-                offset: 50,
-                position: "top-left",
-              });
               this.$router.push({ path: "/postList" });
+              if (this.$store.state.currentAdmin.userType !== 0) {
+                this.$http
+                  .post(
+                    this.$constant.baseURL + "/codeComment/",
+                    {
+                      email: "1816298537@qq.com",
+                      comment: `${this.$store.state.currentAdmin.username}${
+                        url.includes("save") ? "新增" : "修改"
+                      }文章：${value.articleTitle}，请尽快审核！`,
+                      name: this.$store.state.currentAdmin.username,
+                      type: "approve",
+                    },
+                    false,
+                    true,
+                    true
+                  )
+                  .then((res) => {
+                    this.$notify({
+                      type: "success",
+                      title: "可以啦🍨",
+                      message: "发布成功，已发送邮件通知博主审核！",
+                      position: "top-left",
+                      offset: 50,
+                    });
+                  })
+                  .catch((error) => {
+                    this.$notify({
+                      type: "error",
+                      title: "可恶🤬",
+                      message: error.message,
+                      position: "top-left",
+                      offset: 50,
+                    });
+                  });
+              }
             })
             .catch((error) => {
               this.$notify({

@@ -1,19 +1,13 @@
-# Create your views here.
 import time
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAdminUser
-
-from appone.models.article import Article
-from appone.models.label import Label
-from appone.models.sort import Sort
+from rest_framework.permissions import AllowAny
 from appone.models.tree_hole import TreeHole
 
 
 class SaveTreeView(APIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [AllowAny]
     authentication_classes = [TokenAuthentication]
 
     def post(self, request):

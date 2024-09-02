@@ -164,18 +164,41 @@ export default {
         .post(
           this.$constant.baseURL + "/webInfo/saveTreeHole/",
           treeHole,
-          true,
+          false,
           true
         )
         .then((res) => {
           if (!this.$common.isEmpty(res.result[0])) {
-            this.$notify({
-              title: "可以啦🍨",
-              message: "发射成功！",
-              type: "success",
-              offset: 50,
-              position: "top-left",
-            });
+            this.$http
+              .post(
+                this.$constant.baseURL + "/codeComment/",
+                {
+                  email: "1816298537@qq.com",
+                  comment: treeHole.message,
+                  name: this.$store.state.currentUser.username,
+                  type: "",
+                },
+                false,
+                true
+              )
+              .then((res) => {
+                this.$notify({
+                  type: "success",
+                  title: "可以啦🍨",
+                  message: "发射成功！同时也给博主发送了一封邮件~",
+                  position: "top-left",
+                  offset: 50,
+                });
+              })
+              .catch((error) => {
+                this.$notify({
+                  type: "error",
+                  title: "可恶🤬",
+                  message: error.message,
+                  position: "top-left",
+                  offset: 50,
+                });
+              });
             this.barrageList.push({
               id: res.result[0].records[0].id,
               avatar: res.result[0].records[0].avatar,

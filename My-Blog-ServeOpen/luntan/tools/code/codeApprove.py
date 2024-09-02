@@ -6,19 +6,19 @@ def send_email(to_address, content):
     message = MIMEText(content, 'html', 'utf-8')
     message['From'] = from_address
     message['To'] = to_address
-    message['subject'] = '评论'
+    message['subject'] = '文章审核'
     email = smtplib.SMTP_SSL('smtp.qq.com', 465, 'utf-8')
     email.login(from_address, wand)
     email.sendmail(from_address, to_address, message.as_string())
 
-def send_code(to_address, comment, name):
+def send_code_approve(to_address, comment, name):
     content = '''
             <div style="font-family: serif; line-height: 22px; padding: 30px">
       <div style="display: flex; justify-content: center; width: 100%; max-width: 900px; background-image: url('https://Monkey-PaPa.cn/static/assets/Monkey-PaPa11704791811464651.png'); background-size: cover; border-radius: 10px"></div>
       <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center">
         <div style="margin: 10px auto 20px; text-align: center">
-          <div style="line-height: 32px; font-size: 26px; font-weight: bold; color: #000000">嘿！你在 Monkey-PaPa 中收到一条新评论。</div>
-          <div style="font-size: 16px; font-weight: bold; color: rgba(0, 0, 0, 0.19); margin-top: 21px">你收到来自 <abc style="color: #c5343e">{0}</abc> 的评论</div>
+          <div style="line-height: 32px; font-size: 26px; font-weight: bold; color: #000000">嘿！你在 Monkey-PaPa 中收到一条文章待审核通知。</div>
+          <div style="font-size: 16px; font-weight: bold; color: rgba(0, 0, 0, 0.19); margin-top: 21px"><abc style="color: #c5343e">{0}</abc> 的文章需要你审核</div>
         </div>
         <div style="min-width: 250px; max-width: 800px; min-height: 128px; background: #f7f7f7; border-radius: 10px; padding: 32px">
           <div>

@@ -53,12 +53,7 @@
         >搜索</el-button
       >
       <el-button type="danger" @click="clearSearch()">清除参数</el-button>
-      <el-button
-        v-hasPermi="['user:visit:read']"
-        type="primary"
-        @click="handleToAddArticle"
-        >新增文章</el-button
-      >
+      <el-button type="primary" @click="handleToAddArticle">新增文章</el-button>
     </div>
     <el-table
       :data="articles"
@@ -178,7 +173,10 @@
       <el-table-column label="操作" width="135" align="center">
         <template slot-scope="scope">
           <el-button
-            v-hasPermi="['user:visit:read']"
+            v-if="
+              scope.row.userId === $store.state.currentAdmin.id ||
+              $store.state.currentAdmin.userType === 0
+            "
             type="text"
             icon="el-icon-edit"
             @click="handleEdit(scope.row)"
@@ -397,12 +395,19 @@ export default {
         )
         .then((res) => {
           if (flag === 1) {
+            // this.$notify({
+            //   type: "warning",
+            //   title: "淘气👻",
+            //   message: "修改成功！注意，文章不可见时必须设置密码才能访问！",
+            //   position: "top-left",
+            //   offset: 50,
+            // });
             this.$notify({
-              type: "warning",
-              title: "淘气👻",
-              message: "修改成功！注意，文章不可见时必须设置密码才能访问！",
-              position: "top-left",
+              title: "可以啦🍨",
+              message: "修改成功！",
+              type: "success",
               offset: 50,
+              position: "top-left",
             });
           } else {
             this.$notify({

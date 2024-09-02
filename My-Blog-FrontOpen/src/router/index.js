@@ -161,6 +161,16 @@ const routes = [
   },
 ];
 
+// 如果是访客剔除后台用户列表路由
+if (
+  store.state.currentAdmin.userType === 3 ||
+  store.state.currentUser.userType === 3
+) {
+  routes[1].children = routes[1].children.filter(
+    (item) => item.name != "userList"
+  );
+}
+
 const router = new VueRouter({
   mode: "hash",
   routes: routes,

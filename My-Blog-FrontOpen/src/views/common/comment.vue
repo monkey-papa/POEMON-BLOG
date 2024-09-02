@@ -392,9 +392,9 @@ export default {
                 email: "1816298537@qq.com",
                 comment: commentContent,
                 name: this.$store.state.currentUser.username,
+                type: "",
               },
               false,
-              true,
               true
             )
             .then((res) => {
