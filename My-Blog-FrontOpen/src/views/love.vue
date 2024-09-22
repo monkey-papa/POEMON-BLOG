@@ -619,7 +619,7 @@ export default {
           this.resourcePath,
           true,
           true,
-          true
+          false
         )
         .then((res) => {
           this.$notify({

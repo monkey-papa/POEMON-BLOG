@@ -280,7 +280,7 @@ export default {
           this.friend,
           false,
           true,
-          true
+          false
         )
         .then((res) => {
           $(".form-wrap").css({ height: "447px", top: "0" });

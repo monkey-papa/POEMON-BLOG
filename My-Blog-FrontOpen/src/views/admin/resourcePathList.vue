@@ -404,7 +404,7 @@ export default {
           this.resourcePath,
           true,
           true,
-          true
+          this.isUpdate ? true : false
         )
         .then((res) => {
           this.$notify({
