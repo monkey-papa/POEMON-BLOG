@@ -1,13 +1,10 @@
 # Create your views here.
 import time
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import AllowAny
-
 from django.contrib.auth.models import User
-
 from appone.models.article import Article
 from appone.models.article_like import Article_like
 from appone.models.comment import Comment
@@ -75,6 +72,7 @@ class GetArtPreView(APIView):
 
                     data.append({
                         'id': article.id,
+                        'summary':article.summary,
                         'userId': article.user_id,
                         'sortId': article.sort_id,
                         'labelId': article.label_id,

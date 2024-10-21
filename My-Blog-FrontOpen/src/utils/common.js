@@ -248,6 +248,7 @@ export default {
       let city = "";
       let address = "";
       let weather = "";
+      let tip = "";
       that.$http
         .get(that.$constant.baseURL + "/ip/")
         .then(async (res) => {
@@ -256,13 +257,16 @@ export default {
             if (ip === "127.0.0.1") return;
             //高德
             const result1 = await axios.get(
-              `https://restapi.amap.com/v3/ip?ip=${ip}&key=407cd13370e3e36bcb96759e9b08d958`
+              `https://api.vvhan.com/api/weather?ip=${ip}&type=week`
+            );
+            const result2 = await axios.get(
+              `https://api.vvhan.com/api/ipInfo?ip=${ip}`
             );
             let u = navigator.userAgent;
             let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             if (
-              !typeof result1.data.rectangle.split == "function" ||
-              !result1.data.rectangle ||
+              !typeof result1.data.data.split == "function" ||
+              !result1.data.data ||
               isiOS
             ) {
               that.$notify({
@@ -274,31 +278,11 @@ export default {
               });
               return;
             }
-            const pos0 = Number(
-              result1.data.rectangle.split(";")[0].split(",")[0]
-            );
-            const pos1 = Number(
-              result1.data.rectangle.split(";")[0].split(",")[1]
-            );
-            const pos2 = Number(
-              result1.data.rectangle.split(";")[1].split(",")[0]
-            );
-            const pos3 = Number(
-              result1.data.rectangle.split(";")[1].split(",")[1]
-            );
-            const pos4 = (pos0 + pos2) / 2;
-            const pos5 = (pos1 + pos3) / 2;
-            const pos = pos4 + "," + pos5;
-            const result2 = await axios.get(
-              `https://restapi.amap.com/v3/geocode/regeo?output=JSON&location=${pos}&key=407cd13370e3e36bcb96759e9b08d958&radius=0&extensions=all`
-            );
-            city = result2.data.regeocode.addressComponent.city;
-            address = result2.data.regeocode.formatted_address;
-            const result3 = await axios.get(
-              `https://restapi.amap.com/v3/weather/weatherInfo?key=407cd13370e3e36bcb96759e9b08d958&city=${city}&output=json&extensions=all`
-            );
-            weather = result3.data.forecasts[0];
-            resolve({ city, address, weather });
+            weather = result1.data.data;
+            city = result1.data.city; // 城市
+            address = result2.data.info.prov; // 省份
+            tip = result1.data.tip;
+            resolve({ city, address, weather, tip });
           } else {
             that.$notify({
               type: "error",

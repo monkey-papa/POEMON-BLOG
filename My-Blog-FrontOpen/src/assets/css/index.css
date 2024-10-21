@@ -5,7 +5,7 @@
 body {
   color: var(--fontColor);
   /* font-family: zjh, serif; */
-  font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "Segoe UI", "Helvetica Neue", Lato, Roboto, "PingFang SC", sans-serif;
   font-weight: 700;
   word-break: break-word;
 }
@@ -272,17 +272,17 @@ a {
   }
 }
 @property --c1 {
-  syntax: '<color>';
+  syntax: "<color>";
   initial-value: transparent;
   inherits: false;
 }
 @property --c2 {
-  syntax: '<color>';
+  syntax: "<color>";
   initial-value: transparent;
   inherits: false;
 }
 @property --c3 {
-  syntax: '<color>';
+  syntax: "<color>";
   initial-value: transparent;
   inherits: false;
 }

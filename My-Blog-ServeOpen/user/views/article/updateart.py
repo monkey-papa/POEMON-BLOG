@@ -1,10 +1,8 @@
 # Create your views here.
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAdminUser
-
 from appone.models.article import Article
 
 
@@ -28,6 +26,8 @@ class UpdateArtView(APIView):
             label_id = data['labelId']
             if id:
                 article = Article.objects.filter(id=id)
+                # 更新文章后，摘要清空
+                article.update(summary="")
                 if article_title is not None:
                     article.update(article_title=article_title)
                 if user_id is not None:

@@ -253,11 +253,11 @@ export default {
       const res = await this.$common.getIpAndCity(this);
       this.$http
         .post(this.$constant.baseURL + "/submit/", {
-          province: res.weather.province,
+          province: res.address,
           city: res.city,
           userId: this.$store.state.currentUser.id,
         })
-        .then((res) => {})
+        .then(() => {})
         .catch((error) => {
           this.$notify({
             type: "error",

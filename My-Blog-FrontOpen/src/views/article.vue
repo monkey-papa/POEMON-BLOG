@@ -43,7 +43,34 @@
     <div style="background: var(--background)" class="article-background">
       <div style="display: flex; justify-content: space-between">
         <div class="article-container my-animation-slide-bottom shadow-box">
-          <div>{{ chatContent }}</div>
+          <div class="post-ai">
+            <div class="ai-title">
+              <a class="ai-title-left" data-pjax-state="">
+                <div @click="getSummary" class="ai-title-text">
+                  <a class="icon"
+                    ><i class="iconfont icon-jiqirenjiankong"></i></a
+                  ><span class="text">{{
+                    article.summary || summary ? "文章摘要" : "点我生成摘要"
+                  }}</span
+                  ><i class="el-icon el-icon-arrow-right"></i></div
+              ></a>
+              <div class="ai-tag" id="ai-tag">续写</div>
+            </div>
+            <div v-if="article.summary || summary" class="ai-explanation">
+              <p class="text">{{ article.summary || summary }}</p>
+              <p class="cover">
+                <span class="text cover-text">
+                  {{ article.summary || summary }}</span
+                >
+              </p>
+            </div>
+            <el-skeleton :rows="3" animated v-if="loading" />
+            <div class="ai-bottom">
+              <div class="ai-tips">
+                此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结
+              </div>
+            </div>
+          </div>
           <!-- 最新进展 -->
           <div v-if="!$common.isEmpty(treeHoleList)" class="process-wrap">
             <el-collapse accordion value="1">
@@ -160,7 +187,8 @@ export default {
       newsTime: "",
       mobile: false,
       tocbotDom: null,
-      chatContent: "",
+      summary: "",
+      loading: false,
     };
   },
   created() {
@@ -197,35 +225,33 @@ export default {
     next();
   },
   methods: {
-    async sendRequest() {
-      const person = {};
-      // 添加属性
-      person.model = "gpt-4o"; //gpt-4-all gpt-4-vision-preview gpt-4o
-      person.messages = [
-        {
-          role: "user",
-          content:
-            "请帮我概况以下文字的主要内容：" + this.article.articleContent,
-        },
-      ];
-      $.ajax({
-        headers: {
-          Authorization:
-            "Bearer sk-6qnukFHOVeE4AHn6907a9065133445F08e7cCcD6290dF33f",
-        },
-        url: "https://qyapi.superrabit.com/v1/chat/completions", //请求路径
-        data: JSON.stringify(person), //请求参数，将对象转json字符串
-        type: "POST", //请求类型
-        contentType: "application/json;charset=UTF-8", //请求数据类型
-        dataType: "json", //返回数据类型 如果后端返回一个消息对象 这里为json
-        success: function (result) {
-          this.chatContent = result.choices[0].message.content;
-          console.log(this.chatContent);
-        },
-        error: function (err) {
-          console.log(err);
-        },
-      });
+    getSummary() {
+      if (this.article.summary || this.summary) {
+        return;
+      }
+      this.loading = true;
+      const message = this.article.articleContent;
+      this.$http
+        .post(
+          this.$constant.baseURL + "/summary",
+          { message, articleId: this.article.id },
+          false,
+          true,
+          false
+        )
+        .then((res) => {
+          this.summary = res.summary;
+          this.loading = false;
+        })
+        .catch((error) => {
+          this.$notify({
+            type: "error",
+            title: "可恶🤬",
+            message: error.message,
+            position: "top-left",
+            offset: 50,
+          });
+        });
     },
     clickTocButton() {
       let display = $(".toc");
@@ -439,7 +465,6 @@ export default {
             this.getNews();
             const md = new MarkdownIt({ breaks: true });
             this.articleContentHtml = md.render(this.article.articleContent);
-            // this.sendRequest()
             this.$nextTick(() => {
               this.highlight();
               this.addId();
@@ -578,6 +603,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes move-show {
+  to {
+    --p1: 100%;
+  }
+}
 .blur-filter {
   filter: blur(30px);
 }
@@ -650,6 +680,114 @@ export default {
   border: 2px dashed var(--gray1);
   width: calc(100% - 310px);
   transition: all 0.3s ease;
+  .post-ai {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 1px dashed var(--red);
+    background: var(--background);
+    padding: 12px;
+    margin-bottom: 12px;
+    .ai-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .ai-title-left {
+        display: flex;
+        align-items: center;
+        .ai-title-icon {
+          font-size: 20px;
+          color: var(--red);
+        }
+        .ai-title-text {
+          font-size: 14px;
+          color: var(--red);
+          display: flex;
+          align-items: center;
+          .el-icon-arrow-right {
+            font-size: 15px;
+          }
+          .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--red);
+            margin-right: 8px;
+            .icon-jiqirenjiankong {
+              font-size: 14px;
+              color: var(--favoriteBg);
+              transition: all 0.3s ease;
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+          }
+          .text {
+            margin-right: 4px;
+            transition: all 0.3s ease;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+        .ai-link {
+          font-size: 20px;
+          color: var(--red);
+        }
+      }
+      .ai-tag {
+        padding: 6px 8px;
+        background-color: var(--red);
+        color: var(--white);
+        border-radius: 12px;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    .ai-explanation {
+      padding: 8px 12px;
+      font-size: 15px;
+      margin-top: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--myAsideBorderColor);
+      color: var(--fontColor);
+      background: var(--white3);
+      font-size: 14px;
+      line-height: 1.4;
+      position: relative;
+      .text {
+        margin: 0;
+      }
+      .cover {
+        position: absolute;
+        top: 8px;
+        left: 12px;
+        padding-right: 12px;
+        margin: 0;
+      }
+      .cover-text {
+        --p1: 0%;
+        background: linear-gradient(
+          to right,
+          var(--black2) var(--p1),
+          var(--white3) calc(var(--p1) + 20px)
+        );
+        color: transparent;
+        animation: move-show 8s linear forwards;
+      }
+    }
+    .ai-bottom {
+      padding: 0 12px;
+      font-size: 12px;
+      margin-top: 12px;
+    }
+  }
   &:hover {
     border-color: var(--red);
   }
@@ -693,7 +831,7 @@ blockquote {
   &-icon {
     font-size: 60px;
     color: var(--fontColor);
-    transition: all 0.5s;
+    transition: all 0.5s ease;
     border-radius: 50%;
     margin-bottom: 20px;
     &:hover {
@@ -727,7 +865,7 @@ blockquote {
       content: "\e673";
       font-size: 40px;
       line-height: 1;
-      transition: all 1s ease-in-out;
+      transition: all 1s ease;
       font-family: iconfont;
     }
     &:hover:before {

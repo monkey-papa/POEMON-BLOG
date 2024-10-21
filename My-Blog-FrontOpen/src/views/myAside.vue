@@ -81,27 +81,86 @@
       <div
         style="line-height: 25px; word-break: break-all; color: var(--darkBlue)"
       >
-        <div style="margin-bottom: 8px">
-          欢迎来自<span style="color: var(--bigRed)">{{
-            city || "五湖四海"
-          }}</span
-          >的小伙伴，让我们嗨起来叭！
-        </div>
-        <div>{{ city }}</div>
-        <div>
-          <span style="color: var(--bigRed)"
-            >今天（周{{ weather.week }}）: {{ weather.nighttemp }}℃~{{
-              weather.daytemp
-            }}℃ {{ weather.dayweather }} 🎈</span
-          >
-        </div>
-        <div>{{ city }}</div>
-        <div>
-          <span style="color: var(--bigRed)"
-            >明天（周{{ tomWeather.week }}）: {{ tomWeather.nighttemp }}℃~{{
-              tomWeather.daytemp
-            }}℃ {{ tomWeather.dayweather }} 🎈</span
-          >
+        <div style="padding: 0 8px">
+          <div class="mk-address">
+            <div class="city">{{ city }}</div>
+          </div>
+          <div class="mk-Today_weather">
+            <div class="left">
+              <div class="weather-icon">
+                <img
+                  v-if="weather.type"
+                  class="iconfont"
+                  :src="
+                    require(`../assets/svg/${weatherIcon(weather.type)}.svg`)
+                  "
+                />
+              </div>
+              <div class="temp">
+                <div class="number">
+                  {{ weather.low + "~" + weather.high }}
+                </div>
+                <div class="weather">
+                  <span>{{ weather.type }}</span>
+                  <span style="margin: 0 4px; color: var(--red)">|</span>
+                  <span>风力：{{ weather.fengli }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="right">{{ weather.fengxiang }}</div>
+          </div>
+          <div class="mk-week_weather">
+            <div class="tomorrow">
+              <div class="text">明天</div>
+              <div class="icon">
+                <img
+                  v-if="tomWeather.type"
+                  class="iconfont"
+                  :src="
+                    require(`../assets/svg/${weatherIcon(tomWeather.type)}.svg`)
+                  "
+                />
+              </div>
+              <div class="temp">
+                {{ tomWeather.low + "~" + tomWeather.high }}
+              </div>
+            </div>
+            <div class="afterTomorrow">
+              <div class="text">后天</div>
+              <div class="icon">
+                <img
+                  v-if="afterTomWeather.type"
+                  class="iconfont"
+                  :src="
+                    require(`../assets/svg/${weatherIcon(
+                      afterTomWeather.type
+                    )}.svg`)
+                  "
+                />
+              </div>
+              <div class="temp">
+                {{ afterTomWeather.low + "~" + afterTomWeather.high }}
+              </div>
+            </div>
+            <div class="afterAfterTomWeather">
+              <div class="text">{{ afterAfterTomWeather.week }}</div>
+              <div class="icon">
+                <img
+                  v-if="afterAfterTomWeather.type"
+                  class="iconfont"
+                  :src="
+                    require(`../assets/svg/${weatherIcon(
+                      afterAfterTomWeather.type
+                    )}.svg`)
+                  "
+                />
+              </div>
+              <div class="temp">
+                {{ afterAfterTomWeather.low + "~" + afterAfterTomWeather.high }}
+              </div>
+            </div>
+          </div>
+          <div class="weather-tip">Tip：{{ tip }}</div>
         </div>
       </div>
     </div>
@@ -354,6 +413,9 @@ export default {
       city: "",
       weather: {},
       tomWeather: {},
+      afterTomWeather: {},
+      afterAfterTomWeather: {},
+      tip: "",
       week: "",
       total_sum: 0,
       userPagination: {
@@ -366,6 +428,74 @@ export default {
       },
       users: [],
       weekDay: "",
+      iconWeatherMap: {
+        "icon-dafeng": [
+          "有风",
+          "平静",
+          "微风",
+          "和风",
+          "清风",
+          "强风/劲风",
+          "疾风",
+          "大风",
+          "烈风",
+          "风暴",
+          "狂爆风",
+          "飓风",
+          "热带风暴",
+          "龙卷风",
+        ],
+        "icon-duoyunzhuanqing": ["少云", "晴间多云", "多云"],
+        "icon-jiangxue": [
+          "雪",
+          "阵雪",
+          "小雪",
+          "中雪",
+          "大雪",
+          "暴雪",
+          "小雪-中雪",
+          "中雪-大雪",
+          "大雪-暴雪",
+          "冷",
+        ],
+        "icon-zhongwu": [
+          "浮尘",
+          "扬沙",
+          "沙尘暴",
+          "强沙尘暴",
+          "雾",
+          "浓雾",
+          "强浓雾",
+          "轻雾",
+          "大雾",
+          "特强浓雾",
+        ],
+        "icon-qingtian": ["晴", "热"],
+        "icon-yujiaxue": ["雨雪天气", "雨夹雪", "阵雨夹雪"],
+        "icon-xiaoyu": [
+          "阵雨",
+          "雷阵雨",
+          "雷阵雨并伴有冰雹",
+          "小雨",
+          "中雨",
+          "大雨",
+          "暴雨",
+          "大暴雨",
+          "特大暴雨",
+          "强阵雨",
+          "强雷阵雨",
+          "极端降雨",
+          "毛毛雨/细雨",
+          "雨",
+          "小雨-中雨",
+          "中雨-大雨",
+          "大雨-暴雨",
+          "暴雨-大暴雨",
+          "大暴雨-特大暴雨",
+          "冻雨",
+        ],
+        "icon-yintian": ["阴", "霾", "中度霾", "重度霾", "严重霾", "未知"],
+      },
     };
   },
   computed: {
@@ -403,6 +533,16 @@ export default {
     },
   },
   methods: {
+    weatherIcon(dayWeather) {
+      // 找到包含天气的图标
+      let key2 = "";
+      for (const key in this.iconWeatherMap) {
+        if (this.iconWeatherMap[key].includes(dayWeather)) {
+          key2 = key;
+        }
+      }
+      return key2;
+    },
     getWeek() {
       const week = ["日", "一", "二", "三", "四", "五", "六"];
       this.weekDay = new Date().getDay();
@@ -432,11 +572,14 @@ export default {
     async postProvinceAndCity() {
       const res = await this.$common.getIpAndCity(this);
       this.city = res.city;
-      this.weather = res.weather.casts[0];
-      this.tomWeather = res.weather.casts[1];
+      this.weather = res.weather[0];
+      this.tomWeather = res.weather[1];
+      this.afterTomWeather = res.weather[2];
+      this.afterAfterTomWeather = res.weather[3];
+      this.tip = res.tip;
       this.$http
         .post(this.$constant.baseURL + "/submit/", {
-          province: res.weather.province,
+          province: res.address,
           city: res.city,
           userId: this.$store.state.currentUser.id,
         })
@@ -818,6 +961,71 @@ export default {
     background-color: var(--blue);
     transition-duration: 0.4s;
     border-color: var(--myAsideBorderColor1);
+  }
+  .weather-tip {
+    font-size: 12px;
+    color: var(--fontColor);
+  }
+  .mk-address {
+    .city {
+      font-size: 14px;
+      color: var(--fontColor);
+    }
+  }
+  .mk-Today_weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .left {
+      display: flex;
+      .temp {
+        margin-left: 5px;
+        .number {
+          font-size: 20px;
+          color: var(--fontColor);
+        }
+        .weather {
+          color: var(--fontColor);
+          display: flex;
+          justify-content: space-between;
+          font-size: 14px;
+        }
+      }
+    }
+    .right {
+      background: var(--red);
+      color: var(--favoriteBg);
+      font-size: 12px;
+      border-radius: 25px;
+      padding: 1px 12px;
+      text-align: center;
+    }
+    .iconfont {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .mk-week_weather {
+    display: flex;
+    justify-content: space-between;
+    .tomorrow,
+    .afterTomorrow,
+    .afterAfterTomWeather {
+      color: var(--fontColor);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .text {
+        font-size: 13px;
+      }
+      .iconfont {
+        width: 30px;
+        height: 30px;
+      }
+      .temp {
+        font-size: 12px;
+      }
+    }
   }
 }
 .admire-box {

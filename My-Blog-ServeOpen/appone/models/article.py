@@ -11,6 +11,7 @@ class Article(models.Model):
     article_cover = models.URLField(max_length=256, null=True, blank=True, verbose_name='封面')
     article_title = models.CharField(max_length=32, verbose_name='博文标题')
     article_content = models.TextField(verbose_name='博文内容')
+    summary = models.TextField(verbose_name='博文摘要')
     view_count = models.IntegerField(default=0, verbose_name='浏览量')
     like_count = models.IntegerField(default=0, verbose_name='点赞数')
     view_status = models.BooleanField(default=True, verbose_name='是否可见')

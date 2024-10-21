@@ -3,6 +3,7 @@ from django.urls import path
 from user.views.article.delete import DeleteArtView
 from user.views.article.get import GetArtView
 from user.views.article.getpre import GetArtPreView
+from user.views.article.summary import GetArticleSummaryView
 from user.views.article.list import ListView
 from user.views.article.listpre import ListPreView
 from user.views.article.saveart import SaveArtView
@@ -135,6 +136,7 @@ urlpatterns = [
     path("api/webInfo/getWebInfo", GWebInfoPreView.as_view(), name="getWebInfo"),
     path("api/article/listArticle", ListPreView.as_view(), name="listArticle"),
     path("api/article/getArticleById/", GetArtPreView.as_view(), name="getArticleById"),
+    path("api/summary", GetArticleSummaryView.as_view(), name="getArticleSummaryView"),
     path("api/weiYan/listNews/", WeiYanPreView.as_view(), name="listNews"),
     path("api/weiYan/saveNews/", AddWeiYanPreView.as_view(), name="saveNews"),
     path("api/weiYan/changepublic/", ChangeWeiYanView.as_view(), name="changepublic"),

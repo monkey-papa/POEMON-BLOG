@@ -105,6 +105,12 @@ export default {
     };
   },
   created() {
+    window.CSS.registerProperty({
+      name: "--p1",
+      syntax: "<percentage>",
+      inherits: false,
+      initialValue: "0%",
+    });
     // 黑夜
     if (localStorage.getItem("theme") == "false") {
       document.documentElement.dataset.theme = localStorage.getItem(

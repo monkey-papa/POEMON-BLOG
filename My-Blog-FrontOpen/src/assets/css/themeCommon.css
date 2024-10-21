@@ -9,6 +9,7 @@
   --mask: rgba(0, 0, 0, 0.3);
   --black: black;
   --black1: black;
+  --black2: #0000;
   --black5: #363636;
   --black8: #363636;
   --black9: #363636;
@@ -29,6 +30,7 @@
   --white: #fff;
   --white1: #fff;
   --white2: #f7f7fa;
+  --white3: #f7f7fa;
   --noneWhite: none;
   --wheat: wheat;
   --wheat1: wheat;

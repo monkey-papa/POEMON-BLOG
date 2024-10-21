@@ -330,7 +330,7 @@ export default {
     async postProvinceAndCity() {
       this.province = "";
       const res = await this.$common.getIpAndCity(this);
-      this.province = res.weather.province;
+      this.province = res.address;
     },
     login() {
       if (

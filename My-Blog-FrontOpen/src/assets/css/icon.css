@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'iconfont'; /* Project id 4619530 */
-  src: url('//at.alicdn.com/t/c/font_4619530_lcyiixlq8e.woff2?t=1721223754648') format('woff2'), url('//at.alicdn.com/t/c/font_4619530_lcyiixlq8e.woff?t=1721223754648') format('woff'), url('//at.alicdn.com/t/c/font_4619530_lcyiixlq8e.ttf?t=1721223754648') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_4619530_5nxdspyd0e7.woff2?t=1729499251827') format('woff2');
 }
 
 .iconfont {
@@ -9,6 +9,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jiqirenjiankong:before {
+  content: '\e63e';
+}
+
+.icon-qingtian:before {
+  content: '\e607';
+}
+
+.icon-yintian:before {
+  content: '\e608';
+}
+
+.icon-duoyunzhuanqing:before {
+  content: '\e609';
+}
+
+.icon-jiangxue:before {
+  content: '\e60b';
+}
+
+.icon-zhongwu:before {
+  content: '\e60e';
+}
+
+.icon-dafeng:before {
+  content: '\e611';
+}
+
+.icon-yujiaxue:before {
+  content: '\e612';
+}
+
+.icon-xiaoyu:before {
+  content: '\e615';
 }
 
 .icon-wangyiyunyinle:before {

@@ -17,6 +17,7 @@ html[data-theme="dark"] {
   --favoriteBg: #1e1e1e;
   --fontColor: #f7f7fa;
   --borderColor: #4f4f4f;
+  --white3: black;
   --borderHoverColor: black;
 }
 /* 主题2 */
@@ -84,6 +85,7 @@ html[data-theme="theme2"] {
   --noneWhite: var(--favoriteBg);
   --white1: var(--themeColor);
   --white2: #f7f7fa;
+  --white3: #f7f7fa;
   --whiteMask1: var(--themeColor);
   --purple1: var(--themeColor);
   --purple3: var(--mask);
@@ -162,6 +164,7 @@ html[data-theme="theme2-dark"] {
   --noneWhite: var(--favoriteBg);
   --white1: var(--themeColor);
   --white2: var(--favoriteBg);
+  --white3: black;
   --whiteMask1: var(--themeColor);
   --purple1: var(--themeColor);
   --purple3: var(--mask);

@@ -18,6 +18,10 @@ from_address = 'monkey-papa@qq.com' # 你的邮箱
 wand = "monkey-papa" # 邮箱秘钥
 # 邮箱服务 end
 
+# ai摘要
+summary_url = "http://monkey-papa.com"
+summary_authorization = "application-12345678"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
