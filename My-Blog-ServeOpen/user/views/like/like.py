@@ -5,14 +5,14 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import AllowAny
 
 from appone.models.article import Article
 from appone.models.article_like import Article_like
 
 
 class LikeView(APIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [AllowAny]
     authentication_classes = [TokenAuthentication]
 
     def post(self, request):

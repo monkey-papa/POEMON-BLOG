@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import AllowAny
 from appone.models.client import Client
 from appone.models.code import Code
 from appone.models.resource import Resource
 
 
 class UpdateUserView(APIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [AllowAny]
     authentication_classes = [TokenAuthentication]
 
     def post(self, request):
