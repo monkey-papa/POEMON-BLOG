@@ -589,7 +589,7 @@ export default {
               user,
               false,
               true,
-              true
+              false
             )
             .then((res) => {
               if (!this.$common.isEmpty(res.result[0])) {
@@ -742,7 +742,7 @@ export default {
               user,
               false,
               true,
-              true
+              false
             )
             .then((res) => {
               if (!this.$common.isEmpty(res.result[0])) {
@@ -864,7 +864,7 @@ export default {
             params,
             false,
             false,
-            true
+            false
           )
           .then((res) => {
             if (!this.$common.isEmpty(res.result[0])) {
