@@ -567,7 +567,7 @@ export default {
             },
             false,
             true,
-            true
+            false
           )
           .then((res) => {
             this.article.articleLikeStatus = 1;

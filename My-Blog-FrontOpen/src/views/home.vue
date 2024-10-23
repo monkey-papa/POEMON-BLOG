@@ -221,7 +221,10 @@
                 style="transform: scale(0.16); width: 70px; height: 0"
                 class="my-menu"
               >
-                <switchBtn @click.native="changeColor"></switchBtn>
+                <switchBtn
+                  id="changeColorRef"
+                  @click.native="changeColor"
+                ></switchBtn>
               </li>
               <!-- 个人中心 -->
               <li>
@@ -315,24 +318,6 @@
         </div>
         <!-- 关灯 -->
         <div class="my-setting">
-          <el-tooltip placement="top" effect="light">
-            <div slot="content">(*^▽^*)关灯咯！</div>
-            <div>
-              <!-- 太阳按钮 -->
-              <i
-                v-if="!isDark"
-                class="el-icon-sunny iconRotate"
-                @click="changeColor"
-              ></i>
-              <!-- 月亮按钮 -->
-              <i
-                v-else
-                class="fa fa-moon-o"
-                aria-hidden="true"
-                @click="changeColor"
-              ></i>
-            </div>
-          </el-tooltip>
           <el-tooltip placement="top" effect="light">
             <!-- 雪花片 -->
             <div slot="content">想看雪花吗？(◕ᴗ◕✿)</div>
@@ -1134,11 +1119,11 @@ export default {
       const dom = document.querySelector(".background-image-changeBg");
       dom.setAttribute(
         "style",
-        "background-image: url(https://www.qiniuyun.monkey-papa.icu/images/changeBg3);background-size: cover;background-attachment: local;background-position: center;width: 100%;height: 100%;"
+        "background-image: url(https://www.qiniuyun.zjh2002.icu/images/changeBg3);background-size: cover;background-attachment: local;background-position: center;width: 100%;height: 100%;"
       );
       this.$store.commit(
         "changeBgBox",
-        "url(https://www.qiniuyun.monkey-papa.icu/images/changeBg3)"
+        "url(https://www.qiniuyun.zjh2002.icu/images/changeBg3)"
       );
     },
     handleChangeBg(val, i) {
