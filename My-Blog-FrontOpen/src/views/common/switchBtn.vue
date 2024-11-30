@@ -1,6 +1,6 @@
 <template>
   <dev>
-    <input type="checkbox" />
+    <input id="switchBtnRef" type="checkbox" />
     <button>
       <div class="🌞">
         <div class="🌛">
@@ -41,14 +41,14 @@
 
 <script>
 export default {
-  name: '',
+  name: "",
   data() {
-    return {}
+    return {};
   },
   computed: {},
   watch: {},
-  methods: {}
-}
+  methods: {},
+};
 </script>
 
 <style scoped>
@@ -68,8 +68,13 @@ button {
   width: 390px;
   height: 146px;
   transform: translateX(-50%);
-  box-shadow: calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 100% / 0.95), calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01) calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
-    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0 hsl(210 10% 100% / 0.15);
+  box-shadow: calc(var(--width) * 0) calc(var(--width) * 0.02)
+      calc(var(--width) * 0.01) calc(var(--width) * -0.0025)
+      hsl(210 10% 100% / 0.95),
+    calc(var(--width) * 0) calc(var(--width) * -0.02) calc(var(--width) * 0.01)
+      calc(var(--width) * -0.0025) hsl(210 10% 10% / 0.2),
+    calc(var(--width) * 0) calc(var(--width) * 0.02) calc(var(--width) * 0.5) 0
+      hsl(210 10% 100% / 0.15);
   border-radius: 146px;
   border: 0;
   padding: 12px;
@@ -77,10 +82,13 @@ button {
   overflow: hidden;
 }
 button::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  box-shadow: calc(var(--width) * 0) calc(var(--width) * -0.025) calc(var(--width) * 0.025) 0 #17191c26 inset, calc(var(--width) * 0) calc(var(--width) * 0.025) calc(var(--width) * 0.025) 0 hsl(210 10% 10% / 0.65) inset;
+  box-shadow: calc(var(--width) * 0) calc(var(--width) * -0.025)
+      calc(var(--width) * 0.025) 0 #17191c26 inset,
+    calc(var(--width) * 0) calc(var(--width) * 0.025) calc(var(--width) * 0.025)
+      0 hsl(210 10% 10% / 0.65) inset;
   border-radius: 100vh;
 }
 input:not(:checked) + button {
@@ -98,7 +106,8 @@ button .🌞 {
   border-radius: 50%;
   z-index: 10;
   background-color: rgb(243, 203, 43);
-  box-shadow: 0 5px 5px 0 rgb(215, 222, 234) inset, 0 -5px 5px 0 rgb(175, 156, 80) inset, 0 5px 6px 0 rgb(109, 106, 98);
+  box-shadow: 0 5px 5px 0 rgb(215, 222, 234) inset,
+    0 -5px 5px 0 rgb(175, 156, 80) inset, 0 5px 6px 0 rgb(109, 106, 98);
 }
 button .🌞 > .🌛 {
   position: absolute;
@@ -108,7 +117,8 @@ button .🌞 > .🌛 {
   border-radius: 50%;
   z-index: 10;
   background-color: rgb(202, 207, 214);
-  box-shadow: 0 5px 5px 0 rgb(215, 222, 234) inset, 0 -5px 5px 0 rgb(131, 131, 131) inset, 0 5px 6px 0 rgb(109, 106, 98);
+  box-shadow: 0 5px 5px 0 rgb(215, 222, 234) inset,
+    0 -5px 5px 0 rgb(131, 131, 131) inset, 0 5px 6px 0 rgb(109, 106, 98);
 }
 button .🌞 > .🌛 > .🌕 {
   position: absolute;
@@ -167,7 +177,7 @@ button > .⭕️ {
 }
 button > .⭕️::before {
   position: absolute;
-  content: '';
+  content: "";
   top: -50px;
   left: -50px;
   height: 320px;
@@ -177,7 +187,7 @@ button > .⭕️::before {
 }
 button > .⭕️::after {
   position: absolute;
-  content: '';
+  content: "";
   top: -100px;
   left: -100px;
   height: 420px;

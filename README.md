@@ -1,4 +1,4 @@
-# Monkey-PaPa博客
+# Monkey-PaPa 博客
 
 **POETIZE + MonkeyPapa = POEMON：诗歌**
 
@@ -7,7 +7,7 @@
 站点名称：Blog | Monkey-PaPa
 站点地址：http://www.blog.zjh2002.icu
 头像链接：https://www.qiniuyun.zjh2002.icu/images/e61a0eb0423611ee8b6500163e10317e
-站点描述：采用前端vue2和后端Python技术实现的个人博客前后台系统（适配移动端）
+站点描述：采用前端 vue2 和后端 Python 技术实现的个人博客前后台系统（适配移动端）
 站点截图：https://www.qiniuyun.zjh2002.icu/images/Snipaste_2023-08-25_11-59-34.png
 
 ## Star
@@ -20,19 +20,23 @@
 
 相信各位同仁看到下面的项目介绍一定会心动的，心想`怎么没有早点遇到这么漂亮的博客项目`。在搭建这个美丽的网站同时，何不`Star`，为这个项目点赞呢！”
 
+## 迭代
+
+
+
 ## 介绍
 
 ### 技术实现
 
-- 后端Python+Django
-- 前端Vue2：博客前台+后台系统（均移动端适配）
+- 后端 Python+Django
+- 前端 Vue2：博客前台+后台系统（均移动端适配）
 - 博客系统：具有登录，文章，评论留言，友链，工具导航，爱链，幻音坊，时间线，后台管理等众多功能。
 
 本网站搭建于阿里云服务器，采用前后端分离进行实现，前端采用宝塔部署。为了美观，本网站大量使用图片，因此对网络具有一定要求。为了提高浏览体验，图片均存储在<font color='orange'>七牛云</font>。
 
 ### 首页
 
-本网站以诗词为基底，通过随机诗句API，每次进入都会有一句诗映入眼帘。以及首页展示了看板娘小姐姐来守护本网站，如果你想听音乐可以点击<font color='orange'>左侧音乐组件</font>进行播放也可以去往<font color='orange'>幻音坊页面</font>。
+本网站以诗词为基底，通过随机诗句 API，每次进入都会有一句诗映入眼帘。以及首页展示了看板娘小姐姐来守护本网站，如果你想听音乐可以点击<font color='orange'>左侧音乐组件</font>进行播放也可以去往<font color='orange'>幻音坊页面</font>。
 
 ![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/8aadc5b2ad14bccc7cd4be48586686e.png)
 
@@ -40,7 +44,7 @@
 
 ### 文章功能
 
-作为本网站主要功能之一，文章阅览页面具有热度、推荐文章、文章评论量、文章点赞量、文章目录等功能的实现，并且对文章采用Markdown风格展示，文章在后台使用MarkDown编写，充满了神秘色彩，通过解析生成不同的标签，达到自定义美化效果。
+作为本网站主要功能之一，文章阅览页面具有热度、推荐文章、文章评论量、文章点赞量、文章目录等功能的实现，并且对文章采用 Markdown 风格展示，文章在后台使用 MarkDown 编写，充满了神秘色彩，通过解析生成不同的标签，达到自定义美化效果。
 
 ![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/97cbc13a0446ece4eee4bf69d57a685.png)
 
@@ -94,13 +98,13 @@
 
 想必啰嗦了这么多，你们早已饥渴难耐了吧，下面就是手把手教程~~
 
-本教程<font color='red'>最新更新时间: 2024年5月22日~</font>
+本教程<font color='red'>最新更新时间: 2024 年 5 月 22 日~</font>
 
 ## 本地运行
 
-### Pycharm、vscode编译器下载
+### Pycharm、vscode 编译器下载
 
-#### 下载安装并破解pycharm
+#### 下载安装并破解 pycharm
 
 - <font color='orange'>PyCharm 2024.1 最新激活码,破解版安装教程：此方法能破解一年时间</font>
 
@@ -128,7 +132,7 @@ https://www.jetbrains.com/pycharm/download
 
 - 等待安装完成后，<font color='red'>先别打开，回到桌面，下载咱们的破解包</font>
 
-链接：https://pan.baidu.com/s/1yrwTjGVIqXfsjFdIEuwZ9g?pwd=papa 
+链接：https://pan.baidu.com/s/1yrwTjGVIqXfsjFdIEuwZ9g?pwd=papa
 提取码：papa
 
 ![image-20240522232434103](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522232434103.png)
@@ -165,7 +169,7 @@ sudo bash install.sh
 
 ![image-20240522233014299](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522233014299.png)
 
-如果提示：“*<font color='purple'>Operation not permitted while System Integrity Protection is engaged</font>*”，请先赋予权限，再重新执行。
+如果提示：“_<font color='purple'>Operation not permitted while System Integrity Protection is engaged</font>_”，请先赋予权限，再重新执行。
 
 ```ABAP
 chmod 755 install.sh
@@ -196,9 +200,9 @@ export LC_CTYPE='C'
 
 **<font color='orange'>到这一步总算是把破解包弄好了，接下来开始破解！！！！！！！</font>**
 
-1. 打开pycharm
+1. 打开 pycharm
 
-2. 进入这个页面填入指定的破解码，点击activate按钮：
+2. 进入这个页面填入指定的破解码，点击 activate 按钮：
 
    ```ABAP
    EUWT4EE9X2-eyJsaWNlbnNlSWQiOiJFVVdUNEVFOVgyIiwibGljZW5zZWVOYW1lIjoic2lnbnVwIHNjb290ZXIiLCJhc3NpZ25lZU5hbWUiOiIiLCJhc3NpZ25lZUVtYWlsIjoiIiwibGljZW5zZVJlc3RyaWN0aW9uIjoiIiwiY2hlY2tDb25jdXJyZW50VXNlIjpmYWxzZSwicHJvZHVjdHMiOlt7ImNvZGUiOiJQU0kiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBDIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUFBDIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQV1MiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBDV01QIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfV0sIm1ldGFkYXRhIjoiMDEyMDIyMDkwMlBTQU4wMDAwMDUiLCJoYXNoIjoiVFJJQUw6MzUzOTQ0NTE3IiwiZ3JhY2VQZXJpb2REYXlzIjo3LCJhdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlLCJpc0F1dG9Qcm9sb25nYXRlZCI6ZmFsc2V9-FT9l1nyyF9EyNmlelrLP9rGtugZ6sEs3CkYIKqGgSi608LIamge623nLLjI8f6O4EdbCfjJcPXLxklUe1O/5ASO3JnbPFUBYUEebCWZPgPfIdjw7hfA1PsGUdw1SBvh4BEWCMVVJWVtc9ktE+gQ8ldugYjXs0s34xaWjjfolJn2V4f4lnnCv0pikF7Ig/Bsyd/8bsySBJ54Uy9dkEsBUFJzqYSfR7Z/xsrACGFgq96ZsifnAnnOvfGbRX8Q8IIu0zDbNh7smxOwrz2odmL72UaU51A5YaOcPSXRM9uyqCnSp/ENLzkQa/B9RNO+VA7kCsj3MlJWJp5Sotn5spyV+gA==-MIIETDCCAjSgAwIBAgIBDTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTIwMTAxOTA5MDU1M1oXDTIyMTAyMTA5MDU1M1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyMDEwMTkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCUlaUFc1wf+CfY9wzFWEL2euKQ5nswqb57V8QZG7d7RoR6rwYUIXseTOAFq210oMEe++LCjzKDuqwDfsyhgDNTgZBPAaC4vUU2oy+XR+Fq8nBixWIsH668HeOnRK6RRhsr0rJzRB95aZ3EAPzBuQ2qPaNGm17pAX0Rd6MPRgjp75IWwI9eA6aMEdPQEVN7uyOtM5zSsjoj79Lbu1fjShOnQZuJcsV8tqnayeFkNzv2LTOlofU/Tbx502Ro073gGjoeRzNvrynAP03pL486P3KCAyiNPhDs2z8/COMrxRlZW5mfzo0xsK0dQGNH3UoG/9RVwHG4eS8LFpMTR9oetHZBAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUJNoRIpb1hUHAk0foMSNM9MCEAv8wSAYDVR0jBEEwP4AUo562SGdCEjZBvW3gubSgUouX8bOhHKQaMBgxFjAUBgNVBAMMDUpldFByb2ZpbGUgQ0GCCQDSbLGDsoN54TATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBaAwDQYJKoZIhvcNAQELBQADggIBABqRoNGxAQct9dQUFK8xqhiZaYPd30TlmCmSAaGJ0eBpvkVeqA2jGYhAQRqFiAlFC63JKvWvRZO1iRuWCEfUMkdqQ9VQPXziE/BlsOIgrL6RlJfuFcEZ8TK3syIfIGQZNCxYhLLUuet2HE6LJYPQ5c0jH4kDooRpcVZ4rBxNwddpctUO2te9UU5/FjhioZQsPvd92qOTsV+8Cyl2fvNhNKD1Uu9ff5AkVIQn4JU23ozdB/R5oUlebwaTE6WZNBs+TA/qPj+5/we9NH71WRB0hqUoLI2AKKyiPw++FtN4Su1vsdDlrAzDj9ILjpjJKA1ImuVcG329/WTYIKysZ1CWK3zATg9BeCUPAV1pQy8ToXOq+RSYen6winZ2OO93eyHv2Iw5kbn1dqfBw1BuTE29V2FJKicJSu8iEOpfoafwJISXmz1wnnWL3V/0NxTulfWsXugOoLfv0ZIBP1xH9kmf22jjQ2JiHhQZP7ZDsreRrOeIQ/c4yR8IQvMLfC0WKQqrHu5ZzXTH4NO3CwGWSlTY74kE91zXB5mwWAx1jig+UXYc2w4RkVhy0//lOmVya/PEepuuTTI4+UJwC7qbVlh5zfhj8oTNUXgN0AOc+Q0/WFPl1aw5VV/VrO8FCoB15lFVlpKaQ1Yh+DVU8ke+rt9Th0BCHXe0uZOEmH0nOnH/0onD
@@ -226,7 +230,7 @@ export LC_CTYPE='C'
 
    此情况博主在 电脑上安装 IDEA 就亲身踩坑了，因为 IDEA 没卸载干净，导致无法激活成功，彻底卸载 IDEA 后，再重新按教程来就激活成功了
 
-3. 确认激活脚本是否在提示Done.过后执行成功？
+3. 确认激活脚本是否在提示 Done.过后执行成功？
 
    执行脚本后，会添加相关环境变量，比如 IDEA 会添加 `IDEA_VM_OPTIONS`, 如下图所示：
 
@@ -252,16 +256,16 @@ export LC_CTYPE='C'
 
 上文中说到，执行脚本后会添加环境变量，变量值对应了你放置补丁位置的路径，删除掉或者移动，再打开 Pycharm 就找不到对应文件了，激活也就失效了。放着吃灰就行，别动它。
 
-**<font color='green'>谢天协调，写到这想必各位已经解决问题了，写到这里我已是焦头烂额了，有点想弃耕了🖐~~~</font>**
+**<font color='green'>谢天协调，写到这想必各位已经解决问题了，写到这里我已是焦头烂额了，有点想弃耕了 🖐~~~</font>**
 
-#### 下载vscode编译器
+#### 下载 vscode 编译器
 
 **官方网站：**
 https://code.visualstudio.com/Download
 
-选择Windows下载
-推荐选择System Installer，然后根据自己电脑的操作系统选择
-64位下载x64，32位下载x86
+选择 Windows 下载
+推荐选择 System Installer，然后根据自己电脑的操作系统选择
+64 位下载 x64，32 位下载 x86
 
 ![image-20240523221433346](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523221433346.png)
 
@@ -281,7 +285,7 @@ https://az764295.vo.msecnd.net/stable/441438abd1ac652551dbe4d408dfcec8a499b8bf/V
 
 ![image-20240523222108039](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523222108039.png)
 
-第一次打开的时候全是英文（我这里没截图），为了方便使用，建议还是下一个中文插件。点击最右边被框选起来的图标(Extensions)，搜索chinese，然后install。下载成功后点击右下角Restart即可。
+第一次打开的时候全是英文（我这里没截图），为了方便使用，建议还是下一个中文插件。点击最右边被框选起来的图标(Extensions)，搜索 chinese，然后 install。下载成功后点击右下角 Restart 即可。
 
 ![image-20240523221733724](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523221733724.png)
 
@@ -289,38 +293,38 @@ https://az764295.vo.msecnd.net/stable/441438abd1ac652551dbe4d408dfcec8a499b8bf/V
 
 ![image-20240523221801848](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523221801848.png)
 
-另外推荐一个vue的一个插件：
+另外推荐一个 vue 的一个插件：
 
 ![image-20240523222015101](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523222015101.png)
 
-#### 下载nvm配置node环境
+#### 下载 nvm 配置 node 环境
 
 NVM 是干什么？大家进入 NVM 官网后就知道了 https://nvm.uihtm.com/
 
 ![image-20240523222750739](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523222750739.png)
 
-**<font color='orange'>nvm下载地址（我用的是这个，如果嫌弃博主的，可以自己去找🤬）</font>**
+**<font color='orange'>nvm 下载地址（我用的是这个，如果嫌弃博主的，可以自己去找 🤬）</font>**
 
-链接：https://pan.baidu.com/s/1WotYaillphHhjyJJ_K_2Zg?pwd=papa 
+链接：https://pan.baidu.com/s/1WotYaillphHhjyJJ_K_2Zg?pwd=papa
 提取码：papa
 
-谁叫我这么善良，诺拿去🥱，其他版本下载地址：**GitHub 下载地址**https://github.com/coreybutler/nvm-windows/releases
+谁叫我这么善良，诺拿去 🥱，其他版本下载地址：**GitHub 下载地址**https://github.com/coreybutler/nvm-windows/releases
 
 ![image-20240523223233764](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223233764.png)
 
-**好，回到这里，将你从网盘里或者其他女人手里拿到的nvm-setup文件拖到桌面然后双击它**
+**好，回到这里，将你从网盘里或者其他女人手里拿到的 nvm-setup 文件拖到桌面然后双击它**
 
 ![image-20240523223415838](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223415838.png)
 
-- **选择 NVM 安装路径最好c盘，如果c盘不行那就d盘，路径最后不要带中文、空格等符号，点击 Next**
+- **选择 NVM 安装路径最好 c 盘，如果 c 盘不行那就 d 盘，路径最后不要带中文、空格等符号，点击 Next**
 
 ![image-20240523223543673](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223543673.png)
 
-- **选择 NodeJS 安装路径，点击Next**
+- **选择 NodeJS 安装路径，点击 Next**
 
 ![image-20240523223611752](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223611752.png)
 
-- **然后点击 Install 安装，安装完成之后点击 Finshed，至此 NVM就安装成功了**
+- **然后点击 Install 安装，安装完成之后点击 Finshed，至此 NVM 就安装成功了**
 
 ![image-20240523223635687](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223635687.png)
 
@@ -333,29 +337,29 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 
 ![image-20240523223819325](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223819325.png)
 
-**<font color='orange'>安装Node</font>**
+**<font color='orange'>安装 Node</font>**
 
-- 使用 NVM 下载 NodeJS，以管理员身份运行 cmd，然后输入`nvm list available` ，查看所有可下载的Node版本
+- 使用 NVM 下载 NodeJS，以管理员身份运行 cmd，然后输入`nvm list available` ，查看所有可下载的 Node 版本
 
 ![image-20240523224002464](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224002464.png)
 
-**<font color='red'>下载指定版本的 NodeJS</font> `nvm install 14.19.1`<font color='red'>，你也可以下载16.16.0或者14.18.0都可以</font>**
+**<font color='red'>下载指定版本的 NodeJS</font> `nvm install 14.19.1`<font color='red'>，你也可以下载 16.16.0 或者 14.18.0 都可以</font>**
 
 ![image-20240523224049700](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224049700.png)
 
-- 查看下载的所有node版本 `nvm ls`
+- 查看下载的所有 node 版本 `nvm ls`
 
 ![image-20240523224205535](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224205535.png)
 
-- 使用版本14.19.1 `nvm use 14.19.1`
+- 使用版本 14.19.1 `nvm use 14.19.1`
 
 ![image-20240523224222021](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224222021.png)
 
-- 然后使用`node -v` 和 `npm -v` 命令查看node是否安装和使用成功
+- 然后使用`node -v` 和 `npm -v` 命令查看 node 是否安装和使用成功
 
 ![image-20240523224239477](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224239477.png)
 
-**<font color='green'>至此，安装node完成🎉</font>**
+**<font color='green'>至此，安装 node 完成 🎉</font>**
 
 ### 七牛云配置
 
@@ -377,7 +381,7 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 - ![image-20240530201259163](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201259163.png)
 - ![image-20240530201426423](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201426423.png)
 - ![image-20240530201343515](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201343515.png)
-- 输入一个未使用的二级域名，按照下方配置选中。https 是收费的，后续源码里面就使用 HTTP 链接地址即可，我这么高贵当然得用https，用着就是痛啊，各位省着点刷，真废流量o(╥﹏╥)o。或者我们使用本地存储。
+- 输入一个未使用的二级域名，按照下方配置选中。https 是收费的，后续源码里面就使用 HTTP 链接地址即可，我这么高贵当然得用 https，用着就是痛啊，各位省着点刷，真废流量 o(╥﹏╥)o。或者我们使用本地存储。
 - ![image-20240530201601778](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201601778.png)
 - 往下滑动，下方使用推荐配置
 - ![image-20240530202001922](F:/Roaming/Typora/typora-user-images/image-20240530202001922.png)
@@ -385,7 +389,7 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 - ![image-20240530202027212](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202027212.png)
 - 创建完成会进入下方窗口，我们点击锁链标志，显示链接以后点击复制，将此链接复制到服务器二级域名解析 DNS 解析。
 - ![image-20240530202133179](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202133179.png)
-- 给大家看看我https配了哪些：
+- 给大家看看我 https 配了哪些：
 - ![image-20240530201804438](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201804438.png)
 - ![image-20240530201832230](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201832230.png)
 - ![image-20240530201908992](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201908992.png)
@@ -412,9 +416,9 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 
 #### 后端项目
 
-- **<font color='orange'>数据库处理：将代码中的.sql文件用Navicat或者其他编译器打开并运行创建数据库，这里不过多介绍这个😊</font>**
+- **<font color='orange'>数据库处理：将代码中的.sql 文件用 Navicat 或者其他编译器打开并运行创建数据库，这里不过多介绍这个 😊</font>**
 
-- 将源码项目文件夹用pycharm打开，然后**<font color='orange'>点击右上角编辑配置</font>**
+- 将源码项目文件夹用 pycharm 打开，然后**<font color='orange'>点击右上角编辑配置</font>**
 
 - ![image-20240702194037719](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702194037719.png)
 
@@ -422,7 +426,7 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 
 - ![image-20240702194127878](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702194127878.png)
 
-- 你可以默认使用编译器的安装包<font color='orange'>（一打开项目顶部会有提示让你安装依赖）</font>也可以在终端使用pip install -r requirements.txt安装所有包，如果报错，请单独使用whl安装，见[python安装各种程序包常用方法，解决找不到包的问题（完美答案）_python 安装xls2png 没找到-CSDN博客](https://blog.csdn.net/qq_51269815/article/details/121942445?ops_request_misc=%7B%22request%5Fid%22%3A%22171284150916800225546007%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fall.%22%7D&request_id=171284150916800225546007&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-121942445-null-null.142^v100^pc_search_result_base5&utm_term=在pypl中下载了一个包的.tar.gz文件，如何把这个包添加到项目里&spm=1018.2226.3001.4187)
+- 你可以默认使用编译器的安装包<font color='orange'>（一打开项目顶部会有提示让你安装依赖）</font>也可以在终端使用 pip install -r requirements.txt 安装所有包，如果报错，请单独使用 whl 安装，见[python 安装各种程序包常用方法，解决找不到包的问题（完美答案）\_python 安装 xls2png 没找到-CSDN 博客](https://blog.csdn.net/qq_51269815/article/details/121942445?ops_request_misc=%7B%22request%5Fid%22%3A%22171284150916800225546007%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fall.%22%7D&request_id=171284150916800225546007&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-121942445-null-null.142^v100^pc_search_result_base5&utm_term=在pypl中下载了一个包的.tar.gz文件，如何把这个包添加到项目里&spm=1018.2226.3001.4187)
 
 - 替换邮箱、七牛云、数据库配置：
 
@@ -438,7 +442,7 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 
 #### 前端项目
 
-- 首先把我们亲爱的前端源码文件夹拖进vscode，然后vscode就会自动打开项目
+- 首先把我们亲爱的前端源码文件夹拖进 vscode，然后 vscode 就会自动打开项目
 
 ![image-20240525184145000](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525184145000.png)
 
@@ -448,7 +452,7 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 
   ![image-20240525184310686](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525184310686.png)
 
-- 输入命令行查看前端生效的node和npm的版本：
+- 输入命令行查看前端生效的 node 和 npm 的版本：
 
   ```ABAP
   npm -v
@@ -457,25 +461,25 @@ npm_mirror: http://registry.npmmirror.com/mirrors/npm/
 
   ![image-20240525184417452](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525184417452.png)
 
-- 安装前面的步骤不出意外你是能得到他们的版本号的，也不一定非得跟我一样，**<font color='orange'>node版本建议14.18.1或者16.16.0</font>**，博主只用过这2个版本号，亲测是没问题的，如果遇到问题，由于问题的可能性很多，这里就不一一列举了，**<font color='red'>遇到问题丢群里或者网上搜索报错提示，都会有答案！！！</font>**。那么咱们就开始启动命令开始安装node_modules，上面的图可能比你们多了一些文件夹，但是不用担心，我会慢慢的教你们，让你们的变得跟我一样
+- 安装前面的步骤不出意外你是能得到他们的版本号的，也不一定非得跟我一样，**<font color='orange'>node 版本建议 14.18.1 或者 16.16.0</font>**，博主只用过这 2 个版本号，亲测是没问题的，如果遇到问题，由于问题的可能性很多，这里就不一一列举了，**<font color='red'>遇到问题丢群里或者网上搜索报错提示，都会有答案！！！</font>**。那么咱们就开始启动命令开始安装 node_modules，上面的图可能比你们多了一些文件夹，但是不用担心，我会慢慢的教你们，让你们的变得跟我一样
 
-- 前提条件：全局搜索qiniuyun，因为使用我的图片会导致流量问题，所以<font color='red'>劳烦大佬们花点时间把图片地址都替换为自己的</font>，想必不一样的图片，层现出来的效果肯定都不同，搜出来的每一个记录，你都要替换为自己的外链，也就是26个：
+- 前提条件：全局搜索 qiniuyun，因为使用我的图片会导致流量问题，所以<font color='red'>劳烦大佬们花点时间把图片地址都替换为自己的</font>，想必不一样的图片，层现出来的效果肯定都不同，搜出来的每一个记录，你都要替换为自己的外链，也就是 26 个：
 
   ![image-20240702201140111](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702201140111.png)
 
   ![image-20240702201843223](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702201843223.png)
 
-- 第一步：输入命令 npm i，等待安装node_modules包，可能也会遇到问题，由于问题的可能性很多，这里就不一一列举了，**<font color='red'>遇到问题丢群里或者网上搜索报错提示，同样都会有答案！！！</font>**
+- 第一步：输入命令 npm i，等待安装 node_modules 包，可能也会遇到问题，由于问题的可能性很多，这里就不一一列举了，**<font color='red'>遇到问题丢群里或者网上搜索报错提示，同样都会有答案！！！</font>**
 
-- 第二步：输入命令npm run serve运行，出现这个链接就代表成功了：
+- 第二步：输入命令 npm run serve 运行，出现这个链接就代表成功了：
 
   ![image-20240525185613377](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525185613377.png)
 
-- **<font color='orange'>复制这个链接到浏览器打开就大功告成了😚！！！</font>**
+- **<font color='orange'>复制这个链接到浏览器打开就大功告成了 😚！！！</font>**
 
 ## 博主联系方式
 
-B站搜索**monkey-papa**：[哔哩哔哩弹幕视频网 - ( ゜- ゜)つロ 乾杯~ - bilibili](https://account.bilibili.com/account/home?spm_id_from=333.1296.0.0)![image-20240702211853655](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702211853655.png)
+B 站搜索**monkey-papa**：[哔哩哔哩弹幕视频网 - ( ゜- ゜)つロ 乾杯~ - bilibili](https://account.bilibili.com/account/home?spm_id_from=333.1296.0.0)![image-20240702211853655](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702211853655.png)
 
 掘金：[monkey_papa 的个人主页 - 动态 - 掘金 (juejin.cn)](https://juejin.cn/user/3204412407287917)
 
@@ -485,7 +489,7 @@ Github：[monkey-papa (github.com)](https://github.com/monkey-papa)
 
 ## 加入我们
 
-本人vx：z15523692545，或者上面的途径都可以找到我。
+本人 vx：z-poemon，或者上面的途径都可以找到我。
 
 ## 打赏
 

@@ -37,7 +37,7 @@ def send_code(to_address):
             <span style="color: #db214b">查看详情</span>
           </a>
         </div>
-        <div style="margin-top: 20px; font-size: 12px; color: black">此邮件由 Monkey-PaPa 自动发出，直接回复无效，有问题请联系站长vx：z15523692545。</div>
+        <div style="margin-top: 20px; font-size: 12px; color: black">此邮件由 Monkey-PaPa 自动发出，直接回复无效，有问题请联系站长vx：z-poemon。</div>
       </div>
     </div>
         '''.format(code)

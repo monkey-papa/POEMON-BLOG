@@ -101,7 +101,7 @@ export default {
       visible: false, // 是否展示右键菜单
       top: 0,
       left: 0,
-      copyContent: "z15523692545",
+      copyContent: "z-poemon",
     };
   },
   created() {
@@ -180,7 +180,7 @@ color: rgb(30,152,255);
 ██████╔╝ ╚████╔╝ ║██████║
 ██╔══██╗  ╚██╔╝  ║██╔═══╗
 ██████╔╝   ██║   ║██████║
-╚═════╝    ╚═╝   ╚══════╝(wx:z15523692545)OVO
+╚═════╝    ╚═╝   ╚══════╝(wx:z-poemon)OVO
 `;
     let content = `
 誰もが信じ崇めてる
@@ -259,6 +259,8 @@ color: rgb(30,152,255);
     // 昼夜切换
     dayAndNight() {
       document.getElementById("changeColorRef").click();
+      document.getElementById("switchBtnRef").checked =
+        !document.getElementById("switchBtnRef").checked;
     },
     // 加入我们
     onCopy() {
