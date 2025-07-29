@@ -4,9 +4,9 @@ const BundleAnalyzerPlugin =
 const cdn = {
   js: [
     "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.11/vue.min.js",
-    "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vuex/3.6.2/vuex.min.js",
-    "https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-router/3.2.0/vue-router.min.js",
-    "https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js",
+    // "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vuex/3.6.2/vuex.min.js",
+    "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-router/3.2.0/vue-router.min.js",
+    "https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.21.1/axios.min.js",
   ],
 };
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
     externals: {
       vue: "Vue",
       "vue-router": "VueRouter",
-      vuex: "Vuex",
+      // vuex: "Vuex",
       axios: "axios",
       echarts: "echarts", // 配置使用CDN
     },
