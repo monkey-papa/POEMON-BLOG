@@ -490,11 +490,3 @@ Github：[monkey-papa (github.com)](https://github.com/monkey-papa)
 ## 加入我们
 
 本人 vx：z-poemon，或者上面的途径都可以找到我。
-
-## 打赏
-
-如果您觉得满意，欢迎加入我们。辛苦，感谢，再会。
-
-![image-20240702212317268](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702212317268.png)
-
-![image-20240702212327104](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702212327104.png)
