@@ -1,4 +1,4 @@
-注意：已在2025年12月10日发布2.0版本，https://github.com/monkey-papa/POEMON-BLOG-v2.0
+注意：已在2025年12月10日发布2.0版本，https://github.com/monkey-papa/POEMON-BLOG-v2.0，给个star呀，后续将重构后端为go，你的点赞是我的动力
 
 # Monkey-PaPa 博客
 
