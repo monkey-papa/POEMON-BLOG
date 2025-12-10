@@ -1,3 +1,5 @@
+注意：已在2025年12月10日发布2.0版本，https://github.com/monkey-papa/POEMON-BLOG-v2.0
+
 # Monkey-PaPa 博客
 
 **POETIZE + MonkeyPapa = POEMON：诗歌**
