@@ -287,7 +287,7 @@ func LoveList(c *gin.Context) {
 	}
 
 	var results []Result
-	query.Group("classify").Scan(&results)
+	query.Group("classify").Order("MAX(create_time) DESC").Scan(&results)
 
 	data := make([]map[string]interface{}, 0, len(results))
 	for _, r := range results {
