@@ -1,0 +1,59 @@
+# Air 热重载配置文件
+# 文档: https://github.com/air-verse/air
+
+root = "."
+tmp_dir = "tmp"
+
+[build]
+# 编译命令
+cmd = "go build -o ./tmp/blog-server ."
+# 入口点（新版 air 使用 entrypoint 替代 bin）
+entrypoint = "./tmp/blog-server"
+# 监听到变化后延迟执行的时间（毫秒）
+delay = 1000
+# 监听的文件扩展名
+include_ext = ["go", "tpl", "tmpl", "html"]
+# 排除的目录
+exclude_dir = ["tmp", "docs", "vendor"]
+# 排除的文件
+exclude_file = []
+# 排除正则匹配的文件
+exclude_regex = ["_test.go"]
+# 排除不变的目录
+exclude_unchanged = true
+# 监听软链接目录
+follow_symlink = false
+# 日志文件
+log = "air.log"
+# 是否在控制台显示日志
+poll = false
+poll_interval = 0
+# 在发送中断信号前等待的时间
+send_interrupt = true
+stop_on_error = true
+# 发送中断信号后等待的时间（秒）
+kill_delay = 500
+
+[log]
+# 显示日志时间
+time = true
+# 只显示主日志
+main_only = false
+
+[color]
+# 自定义颜色
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+# 退出时删除临时目录
+clean_on_exit = true
+
+[screen]
+# 重新构建时清屏
+clear_on_rebuild = true
+# 保留滚动位置
+keep_scroll = true
+

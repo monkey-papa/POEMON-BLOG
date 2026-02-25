@@ -1,0 +1,7 @@
+.el-popover {
+  min-width: 110px !important;
+  width: auto !important;
+  opacity: 0.8;
+  background: var(--green2);
+  border: none;
+}

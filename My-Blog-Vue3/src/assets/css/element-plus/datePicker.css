@@ -1,0 +1,3 @@
+.el-date-editor.is-focus .el-input__wrapper {
+  box-shadow: 0 0 0 1px var(--red) inset;
+}

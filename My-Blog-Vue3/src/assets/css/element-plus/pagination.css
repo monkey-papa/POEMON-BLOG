@@ -1,0 +1,15 @@
+.el-pagination.is-background .btn-next:hover,
+.el-pagination.is-background .btn-prev:hover {
+  background-color: var(--blue25) !important;
+  color: var(--white) !important;
+  transition: all 0.3s ease;
+
+  .el-icon {
+    color: var(--white);
+  }
+}
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+  border-radius: 8px;
+}

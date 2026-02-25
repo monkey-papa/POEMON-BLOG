@@ -1,0 +1,13 @@
+.el-upload.el-upload--picture,
+.el-upload.el-upload--text {
+  width: 100%;
+}
+.el-upload-dragger {
+  width: 100% !important;
+}
+.el-upload-dragger:hover {
+  border-color: var(--red);
+}
+.el-upload:focus .el-upload-dragger {
+  border-color: var(--red);
+}

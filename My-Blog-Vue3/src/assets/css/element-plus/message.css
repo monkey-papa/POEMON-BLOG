@@ -1,0 +1,18 @@
+.el-message {
+  top: 80px !important;
+  border: 0;
+}
+.el-message * {
+  color: var(--fontColor) !important;
+  font-weight: 400;
+  font-size: 18px;
+}
+.el-message--success {
+  background: var(--favoriteBg);
+}
+.el-message--warning {
+  background: var(--favoriteBg);
+}
+.el-message--error {
+  background: var(--favoriteBg);
+}

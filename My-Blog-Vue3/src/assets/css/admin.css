@@ -1,0 +1,45 @@
+/* 后台管理搜索区下拉框和输入框样式 */
+.header-search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  .el-select {
+    width: 130px;
+  }
+  .el-input {
+    width: 180px;
+    display: inline-block;
+    .el-input__wrapper {
+      width: 100%;
+    }
+  }
+}
+/* 后台管理表格样式 */
+.admin-table {
+  width: 100%;
+  font-size: 14px;
+}
+/* 后台图片样式 */
+.admin-image-thumb {
+  display: block;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+}
+.admin-title-tag {
+  width: 100%;
+  background: var(--green2);
+  border: none;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  color: var(--favoriteBg);
+  margin: 10px 0;
+}
+.admin-pagination {
+  margin: 20px 0;
+}
+.admin-switch {
+  margin: 5px;
+}

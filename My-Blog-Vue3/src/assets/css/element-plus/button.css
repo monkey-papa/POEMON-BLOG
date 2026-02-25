@@ -1,0 +1,38 @@
+.el-button--primary {
+  background-color: var(--red);
+  border-color: var(--red);
+
+  &:hover {
+    background-color: var(--red);
+    border-color: var(--red);
+    opacity: 0.8;
+  }
+
+  &:active {
+    background-color: var(--red);
+    border-color: var(--red);
+    opacity: 1;
+  }
+}
+
+.el-button span .el-icon {
+  margin-right: 5px;
+}
+
+.el-button--success {
+  background-color: var(--green8);
+  border-color: var(--green8);
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    background-color: var(--green8);
+    border-color: var(--green8);
+    opacity: 0.8;
+  }
+
+  &:active {
+    background-color: var(--green8);
+    border-color: var(--green8);
+    opacity: 1;
+  }
+}

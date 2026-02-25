@@ -1,0 +1,31 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment & secrets
+*.env.local
+.env
+*.env
+!.env.example
+!.env.production
+
+# Database dumps (may contain user data)
+*.sql
+!My-Blog-Go/database/schema.sql
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node
+node_modules/
+
+# Build output
+dist/
+My-Blog-Go/blog-server
+My-Blog-Go/server
+
+# API docs (local reference)
+api.txt

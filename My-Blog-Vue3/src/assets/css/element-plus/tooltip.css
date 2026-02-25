@@ -1,0 +1,17 @@
+.el-tooltip.el-popper.is-light:not(.el-select__popper, .el-picker__popper, .user-avatar-dropdown) {
+  background: var(--gradientAnimation);
+  border-radius: 10px;
+  color: var(--white);
+  padding: 12px 20px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 1.2rem;
+  border: unset;
+  /* 顶部tabbar */
+  &.mk-popper {
+    border-radius: 100px;
+    padding: 6px 4px;
+    background: var(--blue);
+  }
+}

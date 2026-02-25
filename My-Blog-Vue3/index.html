@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/title.jpg" sizes="16x16" />
+    <title>My Blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <style>
+      body {
+        margin: 0;
+      }
+      * {
+        cursor: url(/normal.png) 1 1, auto;
+      }
+      #loading-box .loading-left-bg,
+      #loading-box .loading-right-bg {
+        position: fixed;
+        z-index: 999998;
+        width: 50%;
+        height: 100%;
+        transition: all 0.7s cubic-bezier(0.42, 0, 0, 1.01);
+        backdrop-filter: blur(10px);
+      }
+      #loading-box .loading-left-bg {
+        background: linear-gradient(to right, #0095c2, #1dabc4) no-repeat;
+      }
+      #loading-box .loading-right-bg {
+        right: 0;
+        background: linear-gradient(to right, #1dabc4, #64e1c8) no-repeat;
+      }
+      #loading-box > .spinner-box {
+        position: fixed;
+        z-index: 999999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+      }
+      #loading-box .spinner-box .loading-word {
+        position: absolute;
+        color: #ffffff;
+        font-size: 1.2rem;
+        transform: translateY(64px);
+        text-align: center;
+      }
+      p.loading-title {
+        font-size: 1.5rem;
+        margin: 20px 10px 4px 10px;
+      }
+      div.loaded div.loading-left-bg {
+        transform: translate(-100%, 0);
+      }
+      div.loaded div.loading-right-bg {
+        transform: translate(100%, 0);
+      }
+      div.loaded div.spinner-box {
+        display: none !important;
+      }
+      .loader {
+        position: absolute;
+        top: calc(50% - 32px);
+        left: calc(50% - 32px);
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        perspective: 800px;
+        transition: all 0.7s cubic-bezier(0.42, 0, 0, 1.01);
+      }
+      .inner {
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+      .inner.one {
+        left: 0%;
+        top: 0%;
+        animation: rotate-one 1s linear infinite;
+        border-bottom: 4px solid #ec695c;
+      }
+      .inner.two {
+        right: 0%;
+        top: 0%;
+        animation: rotate-two 1s linear infinite;
+        border-right: 4px solid #67c23a;
+      }
+      .inner.three {
+        right: 0%;
+        bottom: 0%;
+        animation: rotate-three 1s linear infinite;
+        border-top: 4px solid #74bdf0;
+      }
+      @keyframes rotate-one {
+        0% {
+          transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+        }
+        100% {
+          transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+        }
+      }
+      @keyframes rotate-two {
+        0% {
+          transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+        }
+        100% {
+          transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+        }
+      }
+      @keyframes rotate-three {
+        0% {
+          transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+        }
+        100% {
+          transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!--加载动画-->
+      <div id="loading-box">
+        <div class="loading-left-bg"></div>
+        <div class="loading-right-bg"></div>
+        <div class="spinner-box">
+          <div class="loader">
+            <div class="inner one"></div>
+            <div class="inner two"></div>
+            <div class="inner three"></div>
+          </div>
+          <div class="loading-word">
+            <p class="loading-title" id="loading-title">My Blog</p>
+            <span id="loading-text">Loading...&nbsp;┭┮﹏┭┮</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+  <script>
+    // 延迟隐藏 loading-box，等待 Vue loading 准备好
+    let hideLoadingBox = function () {
+      if (window.$) {
+        window.$('#loading-box').attr('class', 'loaded')
+      }
+    }
+
+    // 暴露全局函数，供 Vue 应用调用
+    window.hideInitialLoading = hideLoadingBox
+
+    // 加载完成后执行（但不立即隐藏 loading-box）
+    window.addEventListener(
+      'load',
+      function () {
+        // 不立即隐藏 loading-box，等待 Vue 应用准备好
+        // 动画特效 - 等待 WOW 初始化完成
+        if (window.WOW) {
+          new window.WOW().init()
+        }
+      },
+      false
+    )
+    // 鼠标动画 - 优化：限制同时存在的动画元素数量，避免 DOM 累积
+    let activeAnimations = 0
+    const MAX_ANIMATIONS = 10 // 最多同时存在 10 个动画元素
+    document.querySelector('body').addEventListener('click', mouseAnimation)
+    function mouseAnimation(e) {
+      // 限制同时存在的动画数量
+      if (activeAnimations >= MAX_ANIMATIONS) {
+        return
+      }
+      let idx = Math.floor(Math.random() * 12) // 修复：数组只有 12 个元素，索引应该是 0-11
+      let list = ['富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善']
+      let span = $('<span>').text(list[idx])
+      let x = e.pageX,
+        y = e.pageY
+      span.css({
+        'z-index': 1000,
+        top: y - 20,
+        left: x,
+        position: 'absolute',
+        'pointer-events': 'none',
+        'font-weight': 'bold',
+        color: 'var(--red)'
+      })
+      $('body').append(span)
+      activeAnimations++
+      span.animate({ top: y - 180, opacity: 0 }, 1500, function () {
+        span.remove()
+        activeAnimations--
+      })
+    }
+    //禁用开发者工具F12
+    // document.onkeydown =
+    //   document.onkeyup =
+    //   document.onkeypress =
+    //     function (event) {
+    //       let e = event || window.event || arguments.callee.caller.arguments[0]
+    //       if (e && e.keyCode == 123) {
+    //         e.returnValue = false
+    //         return false
+    //       }
+    //     }
+  </script>
+</html>

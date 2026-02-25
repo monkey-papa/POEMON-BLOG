@@ -1,0 +1,10 @@
+:root {
+  --bossAvatar: url(/title.jpg);
+  --defaultAvatar: url(../file/avatar.jpg);
+  --joinImage: url(../file/QR-code.jpg);
+  --comment1URL: url(../file/comment1.png);
+  --comment2URL: url(../file/comment2.png);
+  --toTop: url(../file/top.jpg);
+  --toolbar: url(../file/bg.jpg);
+  --rural: url(../file/rural.jpg);
+}

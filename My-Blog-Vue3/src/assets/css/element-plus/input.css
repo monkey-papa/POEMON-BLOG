@@ -1,0 +1,9 @@
+.el-input__inner:focus {
+  border-color: var(--red) !important;
+}
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px var(--red) inset;
+}
+input::-webkit-inner-spin-button {
+  appearance: none;
+}

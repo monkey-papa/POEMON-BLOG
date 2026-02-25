@@ -1,0 +1,21 @@
+.el-dialog__title {
+  color: var(--black5);
+}
+.el-dialog__headerbtn:hover .el-dialog__close {
+  color: var(--red);
+}
+@media screen and (max-width: 800px) {
+  .el-dialog {
+    width: 70% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .el-dialog {
+    width: 80% !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .el-dialog {
+    width: 90% !important;
+  }
+}

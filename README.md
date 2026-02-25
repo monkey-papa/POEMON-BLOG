@@ -1,495 +1,368 @@
-注意：已在2025年12月10日发布2.0版本，https://github.com/monkey-papa/POEMON-BLOG-v2.0
-给个star呀，后续将重构后端为go，你的点赞是我的动力
-
-# Monkey-PaPa 博客
-
-**POETIZE + MonkeyPapa = POEMON：诗歌**
-
-## 网站友链
-
-站点名称：Blog | Monkey-PaPa
-站点地址：http://www.blog.zjh2002.icu
-头像链接：https://www.qiniuyun.zjh2002.icu/images/e61a0eb0423611ee8b6500163e10317e
-站点描述：采用前端 vue2 和后端 Python 技术实现的个人博客前后台系统（适配移动端）
-站点截图：https://www.qiniuyun.zjh2002.icu/images/Snipaste_2023-08-25_11-59-34.png
-
-## Star
-
-此项目为公益项目不收取任何费用。
-
-“虽然我知道，大部分人都是来了直接下载源代码后就潇洒的离开。
-
-虽然我知道现实就是如此的残酷，但我还是要以我萤虫之力对各位到来的同仁发出一声诚挚的嘶吼：`Star`，`Star`，`Star`。
-
-相信各位同仁看到下面的项目介绍一定会心动的，心想`怎么没有早点遇到这么漂亮的博客项目`。在搭建这个美丽的网站同时，何不`Star`，为这个项目点赞呢！”
-
-## 迭代
-
-
-
-## 介绍
-
-### 技术实现
-
-- 后端 Python+Django
-- 前端 Vue2：博客前台+后台系统（均移动端适配）
-- 博客系统：具有登录，文章，评论留言，友链，工具导航，爱链，幻音坊，时间线，后台管理等众多功能。
-
-本网站搭建于阿里云服务器，采用前后端分离进行实现，前端采用宝塔部署。为了美观，本网站大量使用图片，因此对网络具有一定要求。为了提高浏览体验，图片均存储在<font color='orange'>七牛云</font>。
-
-### 首页
-
-本网站以诗词为基底，通过随机诗句 API，每次进入都会有一句诗映入眼帘。以及首页展示了看板娘小姐姐来守护本网站，如果你想听音乐可以点击<font color='orange'>左侧音乐组件</font>进行播放也可以去往<font color='orange'>幻音坊页面</font>。
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/8aadc5b2ad14bccc7cd4be48586686e.png)
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/1a437e7fb6f2890ab2dc5955633a2c1.png)
-
-### 文章功能
-
-作为本网站主要功能之一，文章阅览页面具有热度、推荐文章、文章评论量、文章点赞量、文章目录等功能的实现，并且对文章采用 Markdown 风格展示，文章在后台使用 MarkDown 编写，充满了神秘色彩，通过解析生成不同的标签，达到自定义美化效果。
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/97cbc13a0446ece4eee4bf69d57a685.png)
-
-文章具有分类和标签，分类作为一级目录，分类下面可以有多个标签。
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/e8441736be3b295b9cbe96795432464.png)
-
-文章可以进行多级评论，必须登录才能评论喔。评论还加入了稀奇古怪的表情功能，快去试试吧。
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/b61973e35ddc04b0020a986b3b70da8.png)
-
-### 爱链和照片墙功能
-
-你有向往的爱情吗？你有没抓住的回忆吗？
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/29a6d6c65aed0b6e5b4c594e83481c2.png)
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/f70f0225ac7e28a2e6c05e1f1488c93.png)
-
-### 幻音坊功能
-
-来欣赏下我们的音乐厅吧，想听更多音乐吗，请去往博主的另一个开源项目网易云音乐:www.zjh2002.icu
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/953d9e02115850769e7439076201785.png)
-
-### 留言功能
-
-留言分为访客和登录用户，对于访客而言，只能在大屏发弹幕，登录用户可以在弹幕下方留言。
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/3b073c4bc6484d9f2f4bb38179cd732.png)
-
-### 黑夜模式
-
-博客可以在右下角或者顶部导航栏进行设置，将风格改为黑夜模式。
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/e270a4c01e146269afa7f0e1e487d51.png)
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/55be1bbb0e1cd2ee905770cf3e1661b.png)
-
-### 文章标签的归档
-
-清晰的看见这一年的成果~~~
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/8b7156385742b734c1336c3a3d2c945.png)
-
-### 娱乐
-
-学累了就玩会游戏吧
-
-![image](https://www.qiniuyun.zjh2002.icu/articleContentImg/1dee29c073b2b0b6cf10bfafd73d2b5.png)
-
-想必啰嗦了这么多，你们早已饥渴难耐了吧，下面就是手把手教程~~
-
-本教程<font color='red'>最新更新时间: 2024 年 5 月 22 日~</font>
-
-## 本地运行
-
-### Pycharm、vscode 编译器下载
-
-#### 下载安装并破解 pycharm
-
-- <font color='orange'>PyCharm 2024.1 最新激活码,破解版安装教程：此方法能破解一年时间</font>
-
-访问 Pycharm 官网，下载 Pycharm 2024.1 版本的安装包，下载链接如下 :
-
-https://www.jetbrains.com/pycharm/download
-
-![image-20240522224202538](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522224202538.png)
-
-打开页面后，点击 `Download` 按钮, 等待 Pycharm 专业版下载完毕。
-
-- 如果电脑之前有安装老版本 Pycharm， 需要先卸载。卸载完成后，双击刚刚下载好的 Pycharm `2024.1`.1 版本安装包。弹框会提示选择安装路径，我这里直接选择的默认安装路径
-
-`C:\Program Files\JetBrains\Pycharm 2024.1` , 然后点击 `Next` 按钮：
-
-![image-20240522224419049](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522224419049.png)
-
-- 勾选<font color='red'>全部</font>，再点击 `Next` 按钮 :
-
-![image-20240522224623756](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522224623756.png)
-
-- 点击 `Install` 按钮，开始安装：
-
-![image-20240522230501045](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522230501045.png)
-
-- 等待安装完成后，<font color='red'>先别打开，回到桌面，下载咱们的破解包</font>
-
-链接：https://pan.baidu.com/s/1yrwTjGVIqXfsjFdIEuwZ9g?pwd=papa
-提取码：papa
-
-![image-20240522232434103](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522232434103.png)
-
-- ### <font color='red'>Windows 系统</font>
-
-  将上面图示的补丁的所属文件夹 `/jetbra` 复制电脑某个位置，博主这里放置到了 `D:/` 盘根目录下:
-
-![image-20240522232624948](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522232624948.png)
-
-- 点击进入 `/jetbra` 补丁目录，再点击进入 `/scripts` 文件夹，双击执行 `install-current-user.vbs` 破解脚本：
-
-![image-20240522232713655](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522232713655.png)
-
-<font color='red'>注意：</font>**<font color='orange'>如果执行脚本被安全软件提示有风险拦截，允许执行即可。</font>**
-
-![image-20240522232749567](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522232749567.png)
-
-- 会提示安装补丁需要等待数秒。点击【**确定**】按钮后，过程大概 10 - 30 秒，如看到弹框提示 `Done` 时，表示激活破解成功：
-
-![image-20240522232818992](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522232818992.png)
-
-- ### <font color='red'>Mac / Linux 系统</font>
-
-Mac / Linux 系统与上面 Windows 系统一样，需将补丁所属文件 `/jetbra` 复制到某个路径，且**路径不能包含空格与中文**。
-
-之后，打开终端，进入到 `/jetbra/scripts` 文件夹， 执行 `install.sh` 脚本, 命令如下：
-
-```ABAP
-sudo bash install.sh
+# POEMON-BLOG
+
+一个基于 **Vue 3 + Go (Gin)** 的全栈个人博客系统，前后端分离，功能丰富，界面美观。
+
+## 预览
+
+> 在线演示站点：https://blog.zjh2002.icu
+
+## 技术栈
+
+| 层级   | 技术                                               |
+| ------ | -------------------------------------------------- |
+| 前端   | Vue 3 + TypeScript + Vite + Element Plus + Pinia   |
+| 后端   | Go 1.24 + Gin + GORM                               |
+| 数据库 | MySQL 5.7+                                         |
+| 其他   | APlayer 音乐播放器、Live2D 看板娘、Markdown 编辑器 |
+
+## 功能特性
+
+- 文章管理（发布、编辑、分类、标签、搜索）
+- Markdown 编辑器，支持代码高亮
+- 评论系统（支持表情、回复）
+- 用户系统（注册、登录、个人主页）
+- 树洞 / 微言（匿名留言板）
+- 表白墙
+- 友链管理
+- 旅行日记
+- 背景主题切换（图片、渐变色、纯色）
+- APlayer 音乐播放器
+- Live2D 看板娘
+- AI 文章摘要生成（支持 DeepSeek / OpenAI 兼容接口）
+- 天气信息展示
+- 后台管理面板
+- 响应式设计，适配移动端
+- JWT 认证 + 三级权限体系
+
+## 项目结构
+
+```
+POEMON-BLOG/
+├── My-Blog-Vue3/          # 前端项目
+│   ├── src/
+│   │   ├── views/         # 页面组件
+│   │   ├── utils/         # 工具函数 & 常量配置
+│   │   ├── stores/        # Pinia 状态管理
+│   │   ├── router/        # 路由配置
+│   │   ├── assets/        # 静态资源
+│   │   └── types/         # TypeScript 类型
+│   ├── .env.production    # 生产环境变量
+│   └── vite.config.ts     # Vite 配置
+│
+├── My-Blog-Go/            # 后端项目
+│   ├── config/            # 配置（数据库、应用配置）
+│   ├── handlers/          # API 接口处理
+│   ├── middleware/        # 中间件（认证、CORS、限流）
+│   ├── models/            # 数据模型
+│   ├── routes/            # 路由注册
+│   ├── utils/             # 工具函数
+│   ├── database/          # 数据库初始化脚本
+│   ├── static/            # 上传文件存储
+│   ├── API.md             # API 接口文档
+│   └── main.go            # 入口文件
+│
+├── .env.example           # 环境变量模板
+└── README.md
 ```
 
-看到提示 `Done` , 表示激活成功。
+## 快速开始
 
-![image-20240522233014299](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522233014299.png)
+### 环境要求
 
-如果提示：“_<font color='purple'>Operation not permitted while System Integrity Protection is engaged</font>_”，请先赋予权限，再重新执行。
+- **Node.js** >= 20
+- **Go** >= 1.24
+- **MySQL** >= 5.7
 
-```ABAP
-chmod 755 install.sh
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/your-username/POEMON-BLOG.git
+cd POEMON-BLOG
 ```
 
-部分小伙伴 Mac/Linux 系统执行脚本遇到如下错误：
+### 2. 初始化数据库
 
-![image-20240522233124998](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522233124998.png)
+创建 MySQL 数据库并导入表结构：
 
-**<font color='orange'>解决方法：</font>**
-
-可先执行如下命令，再执行脚本：
-
-```ABAP
-export LC_COLLATE='C'
-export LC_CTYPE='C'
+```bash
+mysql -u root -p -e "CREATE DATABASE myblog CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+mysql -u root -p myblog < My-Blog-Go/database/schema.sql
 ```
 
-**<font color='orange'>执行脚本，都干了些啥？</font>**
+> 初始管理员账号：`admin` / `admin123`（登录后请及时修改密码）
 
-- Windows 用户执行脚本后，脚本会自动在环境变量 -> 用户变量下添加了 `Pycharm_VM_OPTIONS` 变量，变量值为 `/jetbra` 文件夹下的 `.vmoptions` 参数文件绝对路径。
+### 3. 配置后端
 
-然后，脚本在 `pycharm.vmoptions` 文件中引用了破解补丁 ：
+```bash
+cd My-Blog-Go
 
-![image-20240522233318365](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522233318365.png)
+# 复制环境变量模板
+cp ../.env.example .env
 
-- Mac / Linux 用户执行脚本后，脚本会自动在当期用户环境变量文件中添加了相关参数文件，Mac / Linux 需重启系统，以确保环境变量生效。
-
-**<font color='orange'>到这一步总算是把破解包弄好了，接下来开始破解！！！！！！！</font>**
-
-1. 打开 pycharm
-
-2. 进入这个页面填入指定的破解码，点击 activate 按钮：
-
-   ```ABAP
-   EUWT4EE9X2-eyJsaWNlbnNlSWQiOiJFVVdUNEVFOVgyIiwibGljZW5zZWVOYW1lIjoic2lnbnVwIHNjb290ZXIiLCJhc3NpZ25lZU5hbWUiOiIiLCJhc3NpZ25lZUVtYWlsIjoiIiwibGljZW5zZVJlc3RyaWN0aW9uIjoiIiwiY2hlY2tDb25jdXJyZW50VXNlIjpmYWxzZSwicHJvZHVjdHMiOlt7ImNvZGUiOiJQU0kiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBDIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUFBDIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQV1MiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBDV01QIiwiZmFsbGJhY2tEYXRlIjoiMjAyNS0wOC0wMSIsInBhaWRVcFRvIjoiMjAyNS0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfV0sIm1ldGFkYXRhIjoiMDEyMDIyMDkwMlBTQU4wMDAwMDUiLCJoYXNoIjoiVFJJQUw6MzUzOTQ0NTE3IiwiZ3JhY2VQZXJpb2REYXlzIjo3LCJhdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlLCJpc0F1dG9Qcm9sb25nYXRlZCI6ZmFsc2V9-FT9l1nyyF9EyNmlelrLP9rGtugZ6sEs3CkYIKqGgSi608LIamge623nLLjI8f6O4EdbCfjJcPXLxklUe1O/5ASO3JnbPFUBYUEebCWZPgPfIdjw7hfA1PsGUdw1SBvh4BEWCMVVJWVtc9ktE+gQ8ldugYjXs0s34xaWjjfolJn2V4f4lnnCv0pikF7Ig/Bsyd/8bsySBJ54Uy9dkEsBUFJzqYSfR7Z/xsrACGFgq96ZsifnAnnOvfGbRX8Q8IIu0zDbNh7smxOwrz2odmL72UaU51A5YaOcPSXRM9uyqCnSp/ENLzkQa/B9RNO+VA7kCsj3MlJWJp5Sotn5spyV+gA==-MIIETDCCAjSgAwIBAgIBDTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTIwMTAxOTA5MDU1M1oXDTIyMTAyMTA5MDU1M1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyMDEwMTkwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCUlaUFc1wf+CfY9wzFWEL2euKQ5nswqb57V8QZG7d7RoR6rwYUIXseTOAFq210oMEe++LCjzKDuqwDfsyhgDNTgZBPAaC4vUU2oy+XR+Fq8nBixWIsH668HeOnRK6RRhsr0rJzRB95aZ3EAPzBuQ2qPaNGm17pAX0Rd6MPRgjp75IWwI9eA6aMEdPQEVN7uyOtM5zSsjoj79Lbu1fjShOnQZuJcsV8tqnayeFkNzv2LTOlofU/Tbx502Ro073gGjoeRzNvrynAP03pL486P3KCAyiNPhDs2z8/COMrxRlZW5mfzo0xsK0dQGNH3UoG/9RVwHG4eS8LFpMTR9oetHZBAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUJNoRIpb1hUHAk0foMSNM9MCEAv8wSAYDVR0jBEEwP4AUo562SGdCEjZBvW3gubSgUouX8bOhHKQaMBgxFjAUBgNVBAMMDUpldFByb2ZpbGUgQ0GCCQDSbLGDsoN54TATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBaAwDQYJKoZIhvcNAQELBQADggIBABqRoNGxAQct9dQUFK8xqhiZaYPd30TlmCmSAaGJ0eBpvkVeqA2jGYhAQRqFiAlFC63JKvWvRZO1iRuWCEfUMkdqQ9VQPXziE/BlsOIgrL6RlJfuFcEZ8TK3syIfIGQZNCxYhLLUuet2HE6LJYPQ5c0jH4kDooRpcVZ4rBxNwddpctUO2te9UU5/FjhioZQsPvd92qOTsV+8Cyl2fvNhNKD1Uu9ff5AkVIQn4JU23ozdB/R5oUlebwaTE6WZNBs+TA/qPj+5/we9NH71WRB0hqUoLI2AKKyiPw++FtN4Su1vsdDlrAzDj9ILjpjJKA1ImuVcG329/WTYIKysZ1CWK3zATg9BeCUPAV1pQy8ToXOq+RSYen6winZ2OO93eyHv2Iw5kbn1dqfBw1BuTE29V2FJKicJSu8iEOpfoafwJISXmz1wnnWL3V/0NxTulfWsXugOoLfv0ZIBP1xH9kmf22jjQ2JiHhQZP7ZDsreRrOeIQ/c4yR8IQvMLfC0WKQqrHu5ZzXTH4NO3CwGWSlTY74kE91zXB5mwWAx1jig+UXYc2w4RkVhy0//lOmVya/PEepuuTTI4+UJwC7qbVlh5zfhj8oTNUXgN0AOc+Q0/WFPl1aw5VV/VrO8FCoB15lFVlpKaQ1Yh+DVU8ke+rt9Th0BCHXe0uZOEmH0nOnH/0onD
-   ```
-
-   ![image-20240522233629000](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522233629000.png)
-
-**<font color='red'>PS: 有部分小伙伴反应，重启 Pycharm 填入激活码依然无法激活，重启系统才行，如果有小伙伴遇到这种情况，不妨试试看~</font>**
-
-**<font color='orange'>激活成功后，又可以开心的 coding 了 ~</font>**
-
-**你可能会遇到的问题**
-
-一切按照教程来，输入激活码提示 `Key is invalid`？
-
-![image-20240522234134656](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522234134656.png)
-
-输入激活码提示 `key is invalid`, 常见原因汇总到下面了，可参考对照一下：
-
-1. 破解时请勿登录 JetBrains 账号
-
-2. 安装过老版本 IDE， 但是未卸载干净
-
-   安装过老版本 IDE，但是没有卸载干净，这其中包括一些*缓存目录、注册表未删除干净*，可能会导致出现 `key is invalid`, 这里拿 IDEA 举例，其他如 Pycharm 、Webstorm 等也会出现这样的情况。
-
-   此情况博主在 电脑上安装 IDEA 就亲身踩坑了，因为 IDEA 没卸载干净，导致无法激活成功，彻底卸载 IDEA 后，再重新按教程来就激活成功了
-
-3. 确认激活脚本是否在提示 Done.过后执行成功？
-
-   执行脚本后，会添加相关环境变量，比如 IDEA 会添加 `IDEA_VM_OPTIONS`, 如下图所示：
-
-   ![image-20240522234535805](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522234535805.png)
-
-   以及在 `/jetbra/vmoptions` 文件夹中对应的 `.vmoptions` 配置文件中引入破解补丁的绝对路径，比如，你要激活的是 IDEA，那么会在对应的 `idea.vmoptions` 文件中引入补丁，如下图所示：
-
-   ![image-20240522234606966](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240522234606966.png)
-
-   所以，**上面两点都需要确认是否正确添加，成功添加了，才表示脚本执行成功了，另外，补丁路径不能包含中文以及空格等特殊字符**。
-
-4. 检查复制激活码时，是否缺漏
-
-   详细检查复制激活码的时候，是否缺漏，激活码是固定的，少一个字母都不行。
-
-**<font color='red'>需要注意的问题</font>**
-
-- ### <font color='red'>激活成功后，不要升级 Pycharm 版本</font>
-
-官方反制手段越来越严厉，这个版本能激活，新版本大概率补丁就被限制了。所以，如果打开 Pycharm 后，右下角若出现提示升级新版本，请不要升级版本。能用就行，它不香嘛！也可以手动关闭升级提示，这样就可以防止控制不住自己升级了
-
-- ### <font color='red'>激活成功后，补丁文件夹能不能删掉或者移动？</font>
-
-上文中说到，执行脚本后会添加环境变量，变量值对应了你放置补丁位置的路径，删除掉或者移动，再打开 Pycharm 就找不到对应文件了，激活也就失效了。放着吃灰就行，别动它。
-
-**<font color='green'>谢天协调，写到这想必各位已经解决问题了，写到这里我已是焦头烂额了，有点想弃耕了 🖐~~~</font>**
-
-#### 下载 vscode 编译器
-
-**官方网站：**
-https://code.visualstudio.com/Download
-
-选择 Windows 下载
-推荐选择 System Installer，然后根据自己电脑的操作系统选择
-64 位下载 x64，32 位下载 x86
-
-![image-20240523221433346](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523221433346.png)
-
-官网下载很慢，这里推荐修改下载前缀提高效率。
-
-**<font color='orange'>解决方法</font>**
-谷歌浏览器，点击下载后进入下载内容界面，右击选择复制链接地址
-
-![image-20240523221609768](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523221609768.png)
-
-例：
-https://az764295.vo.msecnd.net/stable/441438abd1ac652551dbe4d408dfcec8a499b8bf/VSCodeSetup-x64-1.75.1.exe
-将地址复制到搜索栏，接着将前面的 https://az764295.vo.msecnd.net 替换为 https://vscode.cdn.azure.cn
-使用国内镜像进行下载（很快）
-
-下载好以后，选择自己想要保存的地址进行安装即可，然后傻瓜式安装（不用改任何东西），怕找不到的记得点一个创建桌面快捷方式。
-
-![image-20240523222108039](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523222108039.png)
-
-第一次打开的时候全是英文（我这里没截图），为了方便使用，建议还是下一个中文插件。点击最右边被框选起来的图标(Extensions)，搜索 chinese，然后 install。下载成功后点击右下角 Restart 即可。
-
-![image-20240523221733724](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523221733724.png)
-
-下面就是重新打开以后的样子。
-
-![image-20240523221801848](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523221801848.png)
-
-另外推荐一个 vue 的一个插件：
-
-![image-20240523222015101](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523222015101.png)
-
-#### 下载 nvm 配置 node 环境
-
-NVM 是干什么？大家进入 NVM 官网后就知道了 https://nvm.uihtm.com/
-
-![image-20240523222750739](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523222750739.png)
-
-**<font color='orange'>nvm 下载地址（我用的是这个，如果嫌弃博主的，可以自己去找 🤬）</font>**
-
-链接：https://pan.baidu.com/s/1WotYaillphHhjyJJ_K_2Zg?pwd=papa
-提取码：papa
-
-谁叫我这么善良，诺拿去 🥱，其他版本下载地址：**GitHub 下载地址**https://github.com/coreybutler/nvm-windows/releases
-
-![image-20240523223233764](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223233764.png)
-
-**好，回到这里，将你从网盘里或者其他女人手里拿到的 nvm-setup 文件拖到桌面然后双击它**
-
-![image-20240523223415838](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223415838.png)
-
-- **选择 NVM 安装路径最好 c 盘，如果 c 盘不行那就 d 盘，路径最后不要带中文、空格等符号，点击 Next**
-
-![image-20240523223543673](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223543673.png)
-
-- **选择 NodeJS 安装路径，点击 Next**
-
-![image-20240523223611752](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223611752.png)
-
-- **然后点击 Install 安装，安装完成之后点击 Finshed，至此 NVM 就安装成功了**
-
-![image-20240523223635687](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223635687.png)
-
-- **配置一下镜像源，打开 NVM 的安装目录，找到 settings.txt 文件，在最后加入这两行内容，保存退出**
-
-```ABAP
-node_mirror: http://npmmirror.com/mirrors/node/
-npm_mirror: http://registry.npmmirror.com/mirrors/npm/
+# 编辑 .env，至少修改以下配置：
+# - DB_PASSWORD: 你的数据库密码
+# - JWT_SECRET: 改为一个随机字符串（openssl rand -base64 32）
 ```
 
-![image-20240523223819325](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523223819325.png)
+<details>
+<summary>环境变量说明</summary>
 
-**<font color='orange'>安装 Node</font>**
+| 变量                   | 必填 | 说明                               |
+| ---------------------- | ---- | ---------------------------------- |
+| `DB_HOST`              | 是   | 数据库地址，默认 `127.0.0.1`       |
+| `DB_PORT`              | 是   | 数据库端口，默认 `3306`            |
+| `DB_USER`              | 是   | 数据库用户名                       |
+| `DB_PASSWORD`          | 是   | 数据库密码                         |
+| `DB_NAME`              | 是   | 数据库名称                         |
+| `JWT_SECRET`           | 是   | JWT 密钥，**生产环境务必修改**     |
+| `EMAIL_FROM`           | 否   | 发件邮箱（用于验证码、通知）       |
+| `EMAIL_PASSWORD`       | 否   | 邮箱 SMTP 授权码                   |
+| `AI_API_KEY`           | 否   | AI 摘要服务 API Key（DeepSeek 等） |
+| `AI_API_URL`           | 否   | AI 接口地址，默认 DeepSeek         |
+| `SITE_NAME`            | 否   | 站点名称                           |
+| `SITE_URL`             | 否   | 站点地址                           |
+| `WEATHER_API_ID`       | 否   | 天气 API ID（apihz.cn）            |
+| `WEATHER_API_KEY`      | 否   | 天气 API Key                       |
+| `CORS_ALLOWED_ORIGINS` | 否   | CORS 白名单，多个用逗号分隔        |
+| `SERVER_PORT`          | 否   | 后端端口，默认 `8000`              |
+| `ENVIRONMENT`          | 否   | `development` 或 `production`      |
 
-- 使用 NVM 下载 NodeJS，以管理员身份运行 cmd，然后输入`nvm list available` ，查看所有可下载的 Node 版本
+</details>
 
-![image-20240523224002464](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224002464.png)
+### 4. 启动后端
 
-**<font color='red'>下载指定版本的 NodeJS</font> `nvm install 14.19.1`<font color='red'>，你也可以下载 16.16.0 或者 14.18.0 都可以</font>**
+```bash
+cd My-Blog-Go
 
-![image-20240523224049700](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224049700.png)
+# 安装依赖
+go mod download
 
-- 查看下载的所有 node 版本 `nvm ls`
+# 启动
+go run main.go
+```
 
-![image-20240523224205535](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224205535.png)
+后端启动后监听 `http://localhost:8000`
 
-- 使用版本 14.19.1 `nvm use 14.19.1`
+**开发模式推荐使用热重载：**
 
-![image-20240523224222021](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224222021.png)
+```bash
+# 安装 air
+go install github.com/air-verse/air@latest
 
-- 然后使用`node -v` 和 `npm -v` 命令查看 node 是否安装和使用成功
+# 启动（修改代码自动重编译重启）
+air
+```
 
-![image-20240523224239477](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240523224239477.png)
+### 5. 启动前端
 
-**<font color='green'>至此，安装 node 完成 🎉</font>**
+```bash
+cd My-Blog-Vue3
 
-### 七牛云配置
+# 安装依赖
+npm install
 
-- 打开七牛云，注册需要实名认证，注册以后进入控制台。注册实名认证还是比较简单的。教程省略。七牛云官网：https://www.qiniu.com/，注册好以后进入控制台，如下图。
-- ![image-20240530200254659](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530200254659.png)
-- 点击左上角
-- ![image-20240530200616956](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530200616956.png)
-- 选择对象存储
-- ![image-20240530200636667](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530200636667.png)
-- 选择空间管理 -> 新建空间
-- ![image-20240530200722065](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530200722065.png)
-- ![image-20240530200902455](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530200902455.png)
-- 存储空间需要英文或者数字，不能填写中文，存储区域选择国内任意一个都行，这里的存储区域需要记住，比如你是华南广东，那么源码里的云存储上传地址就要填写华南广东的地址，待会后面会讲到，这里先记住，**<font color='red'>选择私有</font>**。
+# 启动开发服务器
+npm run dev
+```
 
-- 点击确定以后弹出下方窗口，点击立即绑定自定义域名，我们到自己的服务器申请一个二级域名并解析到七牛云给出的地址。
-- ![image-20240530201114901](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201114901.png)
+前端启动后访问 `http://localhost:81`
 
-- 点击空间名称进入里面，点击绑定域名
-- ![image-20240530201259163](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201259163.png)
-- ![image-20240530201426423](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201426423.png)
-- ![image-20240530201343515](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201343515.png)
-- 输入一个未使用的二级域名，按照下方配置选中。https 是收费的，后续源码里面就使用 HTTP 链接地址即可，我这么高贵当然得用 https，用着就是痛啊，各位省着点刷，真废流量 o(╥﹏╥)o。或者我们使用本地存储。
-- ![image-20240530201601778](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201601778.png)
-- 往下滑动，下方使用推荐配置
-- ![image-20240530202001922](F:/Roaming/Typora/typora-user-images/image-20240530202001922.png)
-- 其他选项不用修改，然后创建。
-- ![image-20240530202027212](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202027212.png)
-- 创建完成会进入下方窗口，我们点击锁链标志，显示链接以后点击复制，将此链接复制到服务器二级域名解析 DNS 解析。
-- ![image-20240530202133179](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202133179.png)
-- 给大家看看我 https 配了哪些：
-- ![image-20240530201804438](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201804438.png)
-- ![image-20240530201832230](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201832230.png)
-- ![image-20240530201908992](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530201908992.png)
-- **阿里云为例：**
-- ![image-20240530204013192](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530204013192.png)
-- **以腾讯云为例**，搜索域名解析，显示界面以后，点击云解析 DNS
-- ![image-20240530202318316](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202318316.png)
-- 点击一级域名进入
-- ![image-20240530202513794](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202513794.png)
-- 添加记录
-- ![image-20240530202539075](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202539075.png)
-- 主机记录随便写，这里 api，记录类型选择 CNAME
-- ![image-20240530202651254](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202651254.png)
-- 然后将七牛云复制的地址填到记录值处。确认添加成功以后，回到七牛云。
-- ![image-20240530202721363](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202721363.png)
-- 点击返回域名管理。稍后刷新浏览器，直到域名解析配置成功，变成绿色。
-- ![image-20240530202748069](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202748069.png)
-- 如下图，变成绿色，即表示配置成功，我们就可以将这个域名复制到博客源码相对应的位置。或者你可以直接使用默认给出的域名，无需配置。
-- ![image-20240530202824012](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530202824012.png)
-- 可以上传文件过后，选择外链，就能在浏览器直接打开看了，别人也能看到，当然如果不想让别人使用这个链接，那就最好设置个防盗链
-- ![image-20240530204438268](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240530204438268.png)
+### 6. 访问博客
 
-### 本地运行项目
+- 前台首页：`http://localhost:81`
+- 后台管理：`http://localhost:81/admin`（使用 admin 账号登录）
+- API 接口：`http://localhost:8000/api/...`
 
-#### 后端项目
+## 个性化配置
 
-- **<font color='orange'>数据库处理：将代码中的.sql 文件用 Navicat 或者其他编译器打开并运行创建数据库，这里不过多介绍这个 😊</font>**
+部署前，你需要修改以下文件来定制你自己的博客：
 
-- 将源码项目文件夹用 pycharm 打开，然后**<font color='orange'>点击右上角编辑配置</font>**
+### 前端配置
 
-- ![image-20240702194037719](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702194037719.png)
+**`My-Blog-Vue3/src/utils/constant.ts`**：
 
-- 点击左上角的设置选项，打开**<font color='orange'>设置页面</font>**
+| 配置项                | 说明                         |
+| --------------------- | ---------------------------- |
+| `siteName`            | 站点名称                     |
+| `bossEmail`           | 博主邮箱                     |
+| `qqNumber`            | 博主QQ                       |
+| `wechatId`            | 博主微信                     |
+| `userId`              | 博主用户ID（注册后的用户ID） |
+| `defaultAvatar`       | 默认头像图片地址             |
+| `defaultBackground`   | 默认背景图地址               |
+| `qiniuUploadEntrance` | 图床地址（七牛云等）         |
+| `favoriteVideo`       | 收藏视频地址                 |
+| `about`               | 关于页展示图片               |
 
-- ![image-20240702194127878](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702194127878.png)
+**`My-Blog-Vue3/index.html`**：
 
-- 你可以默认使用编译器的安装包<font color='orange'>（一打开项目顶部会有提示让你安装依赖）</font>也可以在终端使用 pip install -r requirements.txt 安装所有包，如果报错，请单独使用 whl 安装，见[python 安装各种程序包常用方法，解决找不到包的问题（完美答案）\_python 安装 xls2png 没找到-CSDN 博客](https://blog.csdn.net/qq_51269815/article/details/121942445?ops_request_misc=%7B%22request%5Fid%22%3A%22171284150916800225546007%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fall.%22%7D&request_id=171284150916800225546007&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-3-121942445-null-null.142^v100^pc_search_result_base5&utm_term=在pypl中下载了一个包的.tar.gz文件，如何把这个包添加到项目里&spm=1018.2226.3001.4187)
+- 修改 `<title>` 标签为你的站点名称
+- 修改加载动画文字
 
-- 替换邮箱、七牛云、数据库配置：
+**`My-Blog-Vue3/src/views/about.vue`**：
 
-  ![image-20240702195044080](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702195044080.png)
+- 替换关于页面的背景图片
 
-  ![image-20240702195223110](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702195223110.png)
+**`My-Blog-Vue3/src/views/common/footer.vue`** 和 **`myAside.vue`**：
 
-  ![image-20240702195317292](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702195317292.png)
+- 修改 GitHub 链接为你的仓库地址
 
-  ![image-20240702195705725](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702195705725.png)
+### 后端配置
 
-  ![image-20240702195743008](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702195743008.png)
+通过 `.env` 文件配置，参见上方环境变量说明。
 
-#### 前端项目
+## 生产环境部署
 
-- 首先把我们亲爱的前端源码文件夹拖进 vscode，然后 vscode 就会自动打开项目
+### 方式一：直接部署
 
-![image-20240525184145000](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525184145000.png)
+#### 1. 构建前端
 
-![image-20240525184014011](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525184014011.png)
+```bash
+cd My-Blog-Vue3
 
-- 点击新建终端：
+# 先修改 .env.production 中的域名
+# VITE_API_BASE_URL=https://your-domain.com/api
+# VITE_WEB_URL=https://your-domain.com
+# VITE_SITE_URL=https://your-domain.com
 
-  ![image-20240525184310686](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525184310686.png)
+npm run build
+```
 
-- 输入命令行查看前端生效的 node 和 npm 的版本：
+构建产物在 `dist/` 目录。
 
-  ```ABAP
-  npm -v
-  node -v
-  ```
+#### 2. 编译后端
 
-  ![image-20240525184417452](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525184417452.png)
+```bash
+cd My-Blog-Go
 
-- 安装前面的步骤不出意外你是能得到他们的版本号的，也不一定非得跟我一样，**<font color='orange'>node 版本建议 14.18.1 或者 16.16.0</font>**，博主只用过这 2 个版本号，亲测是没问题的，如果遇到问题，由于问题的可能性很多，这里就不一一列举了，**<font color='red'>遇到问题丢群里或者网上搜索报错提示，都会有答案！！！</font>**。那么咱们就开始启动命令开始安装 node_modules，上面的图可能比你们多了一些文件夹，但是不用担心，我会慢慢的教你们，让你们的变得跟我一样
+# 交叉编译 Linux 二进制（如果服务器是 Linux）
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o server .
+```
 
-- 前提条件：全局搜索 qiniuyun，因为使用我的图片会导致流量问题，所以<font color='red'>劳烦大佬们花点时间把图片地址都替换为自己的</font>，想必不一样的图片，层现出来的效果肯定都不同，搜出来的每一个记录，你都要替换为自己的外链，也就是 26 个：
+#### 3. 上传到服务器
 
-  ![image-20240702201140111](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702201140111.png)
+```bash
+# 上传前端静态文件到 Web 服务器目录
+scp -r My-Blog-Vue3/dist/* user@your-server:/var/www/blog/
 
-  ![image-20240702201843223](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702201843223.png)
+# 上传后端二进制和配置
+scp My-Blog-Go/server user@your-server:/opt/blog/
+scp .env.example user@your-server:/opt/blog/.env
+# 登录服务器后编辑 /opt/blog/.env 填入生产环境配置
+```
 
-- 第一步：输入命令 npm i，等待安装 node_modules 包，可能也会遇到问题，由于问题的可能性很多，这里就不一一列举了，**<font color='red'>遇到问题丢群里或者网上搜索报错提示，同样都会有答案！！！</font>**
+#### 4. 服务器配置
 
-- 第二步：输入命令 npm run serve 运行，出现这个链接就代表成功了：
+**创建 systemd 服务管理后端：**
 
-  ![image-20240525185613377](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240525185613377.png)
+```bash
+sudo cat > /etc/systemd/system/my-blog.service << 'EOF'
+[Unit]
+Description=My Blog Go Backend
+After=network.target
 
-- **<font color='orange'>复制这个链接到浏览器打开就大功告成了 😚！！！</font>**
+[Service]
+Type=simple
+WorkingDirectory=/opt/blog
+ExecStart=/opt/blog/server
+Restart=on-failure
+RestartSec=5
 
-## 博主联系方式
+[Install]
+WantedBy=multi-user.target
+EOF
 
-B 站搜索**monkey-papa**：[哔哩哔哩弹幕视频网 - ( ゜- ゜)つロ 乾杯~ - bilibili](https://account.bilibili.com/account/home?spm_id_from=333.1296.0.0)![image-20240702211853655](https://gitee.com/zjh1816298537/front-end-drawing-bed/raw/master/imgs/image-20240702211853655.png)
+sudo systemctl daemon-reload
+sudo systemctl enable my-blog
+sudo systemctl start my-blog
+```
 
-掘金：[monkey_papa 的个人主页 - 动态 - 掘金 (juejin.cn)](https://juejin.cn/user/3204412407287917)
+**Nginx 配置（反向代理 + 前端静态文件）：**
 
-CSDN：[个人资料-个人中心-CSDN](https://i.csdn.net/#/user-center/profile?spm=1000.2115.3001.5111)
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
 
-Github：[monkey-papa (github.com)](https://github.com/monkey-papa)
+    # 前端静态文件
+    root /var/www/blog;
+    index index.html;
 
-## 加入我们
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
 
-本人 vx：z-poemon，或者上面的途径都可以找到我。
+    # 后端 API 反向代理
+    location /api {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 300s;
+    }
+}
+```
+
+### 方式二：Docker 部署
+
+后端提供了 Dockerfile，可以使用 Docker 部署：
+
+```bash
+cd My-Blog-Go
+
+# 构建镜像
+docker build -t poemon-blog-backend .
+
+# 运行容器
+docker run -d \
+  --name blog-backend \
+  --env-file .env \
+  -p 8000:8000 \
+  --restart unless-stopped \
+  poemon-blog-backend
+```
+
+前端构建后作为静态文件由 Nginx 提供服务。
+
+### HTTPS 配置
+
+推荐使用 **Let's Encrypt** 免费证书：
+
+```bash
+# 使用 certbot 自动申请
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d your-domain.com
+```
+
+或者通过宝塔面板一键申请 SSL 证书。
+
+## 常用命令
+
+```bash
+# 后端服务管理
+sudo systemctl status my-blog      # 查看状态
+sudo systemctl restart my-blog     # 重启
+sudo systemctl stop my-blog        # 停止
+sudo journalctl -u my-blog -f      # 实时日志
+
+# 前端本地开发
+cd My-Blog-Vue3 && npm run dev     # 启动开发服务器
+cd My-Blog-Vue3 && npm run build   # 生产构建
+
+# 后端本地开发
+cd My-Blog-Go && go run main.go    # 直接启动
+cd My-Blog-Go && air               # 热重载启动
+```
+
+## API 文档
+
+详见 [My-Blog-Go/API.md](My-Blog-Go/API.md) 和 [My-Blog-Go/README.md](My-Blog-Go/README.md)。
+
+## 许可证
+
+MIT License
+
+## 致谢
+
+如果这个项目对你有帮助，欢迎 Star 支持！
