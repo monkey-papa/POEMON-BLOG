@@ -91,7 +91,7 @@ cd POEMON-BLOG
 创建 MySQL 数据库并导入表结构：
 
 ```bash
-mysql -u root -p -e "CREATE DATABASE myblog CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+mysql -u root -p -e "CREATE DATABASE myblog CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 mysql -u root -p myblog < My-Blog-Go/database/schema.sql
 ```
 
