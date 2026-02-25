@@ -26,9 +26,9 @@
 
 | 首页 | 文章详情 |
 |:---:|:---:|
-| ![首页](<img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/1a6c378d-5e20-42e4-aa84-6ff23e718c4a" />
-) | ![文章详情](<img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/08cba9b5-9b74-4acf-9bed-72a889fea44b" />
-) |
+| <img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/1a6c378d-5e20-42e4-aa84-6ff23e718c4a" />
+ | <img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/08cba9b5-9b74-4acf-9bed-72a889fea44b" />
+ |
 
 | 后台管理 | 移动端适配 |
 |:---:|:---:|
