@@ -1,16 +1,44 @@
+<div align="center">
+
 # POEMON-BLOG
 
-一个基于 **Vue 3 + Go (Gin)** 的全栈个人博客系统，前后端分离，功能丰富，界面美观。
+**Vue 3 + Go 全栈个人博客系统**
 
-## 历史
+一个功能丰富、界面美观的现代化博客，前后端分离，开箱即用。
 
-> 1.0版本：main分支
+[![Stars](https://img.shields.io/github/stars/monkey-papa/POEMON-BLOG?style=flat-square&logo=github)](https://github.com/monkey-papa/POEMON-BLOG/stargazers)
+[![Forks](https://img.shields.io/github/forks/monkey-papa/POEMON-BLOG?style=flat-square&logo=github)](https://github.com/monkey-papa/POEMON-BLOG/network/members)
+[![License](https://img.shields.io/github/license/monkey-papa/POEMON-BLOG?style=flat-square)](LICENSE)
+[![Vue](https://img.shields.io/badge/Vue-3.x-4FC08D?style=flat-square&logo=vue.js)](https://vuejs.org/)
+[![Go](https://img.shields.io/badge/Go-1.24-00ADD8?style=flat-square&logo=go)](https://go.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 
-> 2.0版本：https://github.com/monkey-papa/POEMON-BLOG-v2.0
+[在线演示](https://blog.zjh2002.icu) · [功能介绍](#功能特性) · [快速开始](#快速开始) · [部署指南](#生产环境部署) · [API 文档](My-Blog-Go/API.md)
+
+</div>
+
+---
 
 ## 预览
 
-> 在线演示站点：https://blog.zjh2002.icu
+<!-- 请替换为你自己的截图 -->
+<!-- 建议截图尺寸：1280x720 或更大 -->
+
+| 首页 | 文章详情 |
+|:---:|:---:|
+| ![首页](https://via.placeholder.com/600x340/1a1a2e/ffffff?text=Homepage) | ![文章详情](https://via.placeholder.com/600x340/16213e/ffffff?text=Article) |
+
+| 后台管理 | 移动端适配 |
+|:---:|:---:|
+| ![后台管理](https://via.placeholder.com/600x340/0f3460/ffffff?text=Admin+Panel) | ![移动端](https://via.placeholder.com/600x340/533483/ffffff?text=Mobile) |
+
+## 版本历史
+
+| 版本 | 技术栈 | 分支/链接 |
+|------|--------|----------|
+| **v3.0** (当前) | Vue 3 + Go (Gin) | `Vue3-Go` 分支 |
+| v2.0 | Vue 2 + Python (Django) | [POEMON-BLOG-v2.0](https://github.com/monkey-papa/POEMON-BLOG-v2.0) |
+| v1.0 | Vue 2 + Python (Django) | `main` 分支 |
 
 ## 技术栈
 
@@ -23,22 +51,48 @@
 
 ## 功能特性
 
-- 文章管理（发布、编辑、分类、标签、搜索）
-- Markdown 编辑器，支持代码高亮
-- 评论系统（支持表情、回复）
-- 用户系统（注册、登录、个人主页）
-- 树洞 / 微言（匿名留言板）
+<table>
+<tr>
+<td>
+
+**内容管理**
+- 文章发布 / 编辑 / 分类 / 标签
+- Markdown 编辑器 + 代码高亮
+- AI 文章摘要（DeepSeek / OpenAI）
+- 旅行日记
+
+</td>
+<td>
+
+**社交互动**
+- 评论系统（表情、多级回复）
+- 树洞 / 微言（匿名留言）
 - 表白墙
 - 友链管理
-- 旅行日记
-- 背景主题切换（图片、渐变色、纯色）
+
+</td>
+</tr>
+<tr>
+<td>
+
+**个性化**
+- 背景主题切换（图片/渐变/纯色）
 - APlayer 音乐播放器
 - Live2D 看板娘
-- AI 文章摘要生成（支持 DeepSeek / OpenAI 兼容接口）
 - 天气信息展示
+
+</td>
+<td>
+
+**系统能力**
+- JWT 认证 + 三级权限体系
 - 后台管理面板
 - 响应式设计，适配移动端
-- JWT 认证 + 三级权限体系
+- Docker 一键部署
+
+</td>
+</tr>
+</table>
 
 ## 项目结构
 
@@ -82,13 +136,12 @@ POEMON-BLOG/
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-username/POEMON-BLOG.git
+git clone https://github.com/monkey-papa/POEMON-BLOG.git
 cd POEMON-BLOG
+git checkout Vue3-Go
 ```
 
 ### 2. 初始化数据库
-
-创建 MySQL 数据库并导入表结构：
 
 ```bash
 mysql -u root -p -e "CREATE DATABASE myblog CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
@@ -139,49 +192,43 @@ cp ../.env.example .env
 
 ```bash
 cd My-Blog-Go
-
-# 安装依赖
 go mod download
-
-# 启动
 go run main.go
 ```
 
 后端启动后监听 `http://localhost:8000`
 
-**开发模式推荐使用热重载：**
+<details>
+<summary>开发模式推荐使用热重载</summary>
 
 ```bash
-# 安装 air
 go install github.com/air-verse/air@latest
-
-# 启动（修改代码自动重编译重启）
 air
 ```
+
+</details>
 
 ### 5. 启动前端
 
 ```bash
 cd My-Blog-Vue3
-
-# 安装依赖
 npm install
-
-# 启动开发服务器
 npm run dev
 ```
 
 前端启动后访问 `http://localhost:81`
 
-### 6. 访问博客
+### 6. 开始使用
 
-- 前台首页：`http://localhost:81`
-- 后台管理：`http://localhost:81/admin`（使用 admin 账号登录）
-- API 接口：`http://localhost:8000/api/...`
+| 地址 | 说明 |
+|------|------|
+| `http://localhost:81` | 博客前台首页 |
+| `http://localhost:81/admin` | 后台管理面板 |
+| `http://localhost:8000/api/...` | API 接口 |
 
 ## 个性化配置
 
-部署前，你需要修改以下文件来定制你自己的博客：
+部署前，修改以下文件定制你自己的博客：
 
 ### 前端配置
 
@@ -200,18 +247,11 @@ npm run dev
 | `favoriteVideo`       | 收藏视频地址                 |
 | `about`               | 关于页展示图片               |
 
-**`My-Blog-Vue3/index.html`**：
+**`My-Blog-Vue3/index.html`** — 修改 `<title>` 和加载动画文字
 
-- 修改 `<title>` 标签为你的站点名称
-- 修改加载动画文字
+**`My-Blog-Vue3/src/views/about.vue`** — 替换关于页背景图
 
-**`My-Blog-Vue3/src/views/about.vue`**：
-
-- 替换关于页面的背景图片
-
-**`My-Blog-Vue3/src/views/common/footer.vue`** 和 **`myAside.vue`**：
-
-- 修改 GitHub 链接为你的仓库地址
+**`My-Blog-Vue3/src/views/common/footer.vue`** / **`myAside.vue`** — 修改 GitHub 链接
 
 ### 后端配置
 
@@ -240,18 +280,13 @@ npm run build
 
 ```bash
 cd My-Blog-Go
-
-# 交叉编译 Linux 二进制（如果服务器是 Linux）
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o server .
 ```
 
 #### 3. 上传到服务器
 
 ```bash
-# 上传前端静态文件到 Web 服务器目录
 scp -r My-Blog-Vue3/dist/* user@your-server:/var/www/blog/
-
-# 上传后端二进制和配置
 scp My-Blog-Go/server user@your-server:/opt/blog/
 scp .env.example user@your-server:/opt/blog/.env
 # 登录服务器后编辑 /opt/blog/.env 填入生产环境配置
@@ -259,7 +294,8 @@ scp .env.example user@your-server:/opt/blog/.env
 
 #### 4. 服务器配置
 
-**创建 systemd 服务管理后端：**
+<details>
+<summary>systemd 服务配置</summary>
 
 ```bash
 sudo cat > /etc/systemd/system/my-blog.service << 'EOF'
@@ -283,14 +319,16 @@ sudo systemctl enable my-blog
 sudo systemctl start my-blog
 ```
 
-**Nginx 配置（反向代理 + 前端静态文件）：**
+</details>
+
+<details>
+<summary>Nginx 配置</summary>
 
 ```nginx
 server {
     listen 80;
     server_name your-domain.com;
 
-    # 前端静态文件
     root /var/www/blog;
     index index.html;
 
@@ -298,7 +336,6 @@ server {
         try_files $uri $uri/ /index.html;
     }
 
-    # 后端 API 反向代理
     location /api {
         proxy_pass http://127.0.0.1:8000;
         proxy_set_header Host $host;
@@ -310,17 +347,15 @@ server {
 }
 ```
 
-### 方式二：Docker 部署
+</details>
 
-后端提供了 Dockerfile，可以使用 Docker 部署：
+### 方式二：Docker 部署
 
 ```bash
 cd My-Blog-Go
 
-# 构建镜像
 docker build -t poemon-blog-backend .
 
-# 运行容器
 docker run -d \
   --name blog-backend \
   --env-file .env \
@@ -333,15 +368,13 @@ docker run -d \
 
 ### HTTPS 配置
 
-推荐使用 **Let's Encrypt** 免费证书：
-
 ```bash
-# 使用 certbot 自动申请
+# Let's Encrypt 自动申请
 sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx -d your-domain.com
 ```
 
-或者通过宝塔面板一键申请 SSL 证书。
+或通过**宝塔面板**一键申请 SSL 证书。
 
 ## 常用命令
 
@@ -349,26 +382,35 @@ sudo certbot --nginx -d your-domain.com
 # 后端服务管理
 sudo systemctl status my-blog      # 查看状态
 sudo systemctl restart my-blog     # 重启
-sudo systemctl stop my-blog        # 停止
 sudo journalctl -u my-blog -f      # 实时日志
 
-# 前端本地开发
-cd My-Blog-Vue3 && npm run dev     # 启动开发服务器
+# 前端开发
+cd My-Blog-Vue3 && npm run dev     # 开发服务器
 cd My-Blog-Vue3 && npm run build   # 生产构建
 
-# 后端本地开发
+# 后端开发
 cd My-Blog-Go && go run main.go    # 直接启动
-cd My-Blog-Go && air               # 热重载启动
+cd My-Blog-Go && air               # 热重载
 ```
 
 ## API 文档
 
 详见 [My-Blog-Go/API.md](My-Blog-Go/API.md) 和 [My-Blog-Go/README.md](My-Blog-Go/README.md)。
 
+## Star 趋势
+
+[![Star History Chart](https://api.star-history.com/svg?repos=monkey-papa/POEMON-BLOG&type=Date)](https://star-history.com/#monkey-papa/POEMON-BLOG&Date)
+
 ## 许可证
 
-MIT License
+[MIT License](LICENSE) - 免费使用，欢迎贡献代码。
 
 ## 致谢
 
-如果这个项目对你有帮助，欢迎 Star 支持！
+如果这个项目对你有帮助，请点一个 **Star** 支持一下！
+
+<div align="center">
+<a href="https://github.com/monkey-papa/POEMON-BLOG/stargazers">
+<img src="https://img.shields.io/github/stars/monkey-papa/POEMON-BLOG?style=social" alt="Star this repo">
+</a>
+</div>
