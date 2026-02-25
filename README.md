@@ -24,25 +24,21 @@
 <!-- 请替换为你自己的截图 -->
 <!-- 建议截图尺寸：1280x720 或更大 -->
 
-| 首页 | 文章详情 |
-|:---:|:---:|
-| <img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/1a6c378d-5e20-42e4-aa84-6ff23e718c4a" />
- | <img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/08cba9b5-9b74-4acf-9bed-72a889fea44b" />
- |
+|                                           首页                                           |                                           文章详情                                           |
+| :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
+| ![首页](https://github.com/user-attachments/assets/1a6c378d-5e20-42e4-aa84-6ff23e718c4a) | ![文章详情](https://github.com/user-attachments/assets/08cba9b5-9b74-4acf-9bed-72a889fea44b) |
 
-| 后台管理 | 移动端适配 |
-|:---:|:---:|
-| ![后台管理](<img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/df163a90-5533-4749-a528-ac62d6f1a7bb" />
-) | ![移动端](<img width="383" height="671" alt="image" src="https://github.com/user-attachments/assets/66412777-a8b1-4441-8a62-b458488e2172" />
-) |
+|                                           后台管理                                           |                                         移动端适配                                         |
+| :------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+| ![后台管理](https://github.com/user-attachments/assets/df163a90-5533-4749-a528-ac62d6f1a7bb) | ![移动端](https://github.com/user-attachments/assets/66412777-a8b1-4441-8a62-b458488e2172) |
 
 ## 版本历史
 
-| 版本 | 技术栈 | 分支/链接 |
-|------|--------|----------|
-| **v3.0** (当前) | Vue 3 + Go (Gin) | `Vue3-Go` 分支 |
-| v2.0 | Vue 3 + Python (Django) | [POEMON-BLOG-v2.0](https://github.com/monkey-papa/POEMON-BLOG-v2.0) |
-| v1.0 | Vue 2 + Python (Django) | `main` 分支 |
+| 版本            | 技术栈                  | 分支/链接                                                           |
+| --------------- | ----------------------- | ------------------------------------------------------------------- |
+| **v3.0** (当前) | Vue 3 + Go (Gin)        | `Vue3-Go` 分支                                                      |
+| v2.0            | Vue 3 + Python (Django) | [POEMON-BLOG-v2.0](https://github.com/monkey-papa/POEMON-BLOG-v2.0) |
+| v1.0            | Vue 2 + Python (Django) | `main` 分支                                                         |
 
 ## 技术栈
 
@@ -60,6 +56,7 @@
 <td>
 
 **内容管理**
+
 - 文章发布 / 编辑 / 分类 / 标签
 - Markdown 编辑器 + 代码高亮
 - AI 文章摘要（DeepSeek / OpenAI）
@@ -69,6 +66,7 @@
 <td>
 
 **社交互动**
+
 - 评论系统（表情、多级回复）
 - 树洞 / 微言（匿名留言）
 - 表白墙
@@ -80,6 +78,7 @@
 <td>
 
 **个性化**
+
 - 背景主题切换（图片/渐变/纯色）
 - APlayer 音乐播放器
 - Live2D 看板娘
@@ -89,6 +88,7 @@
 <td>
 
 **系统能力**
+
 - JWT 认证 + 三级权限体系
 - 后台管理面板
 - 响应式设计，适配移动端
@@ -224,11 +224,11 @@ npm run dev
 
 ### 6. 开始使用
 
-| 地址 | 说明 |
-|------|------|
-| `http://localhost:81` | 博客前台首页 |
-| `http://localhost:81/admin` | 后台管理面板 |
-| `http://localhost:8000/api/...` | API 接口 |
+| 地址                            | 说明         |
+| ------------------------------- | ------------ |
+| `http://localhost:81`           | 博客前台首页 |
+| `http://localhost:81/admin`     | 后台管理面板 |
+| `http://localhost:8000/api/...` | API 接口     |
 
 ## 个性化配置
 
