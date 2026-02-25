@@ -26,18 +26,22 @@
 
 | 首页 | 文章详情 |
 |:---:|:---:|
-| ![首页](https://via.placeholder.com/600x340/1a1a2e/ffffff?text=Homepage) | ![文章详情](https://via.placeholder.com/600x340/16213e/ffffff?text=Article) |
+| ![首页](<img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/1a6c378d-5e20-42e4-aa84-6ff23e718c4a" />
+) | ![文章详情](<img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/08cba9b5-9b74-4acf-9bed-72a889fea44b" />
+) |
 
 | 后台管理 | 移动端适配 |
 |:---:|:---:|
-| ![后台管理](https://via.placeholder.com/600x340/0f3460/ffffff?text=Admin+Panel) | ![移动端](https://via.placeholder.com/600x340/533483/ffffff?text=Mobile) |
+| ![后台管理](<img width="1470" height="799" alt="image" src="https://github.com/user-attachments/assets/df163a90-5533-4749-a528-ac62d6f1a7bb" />
+) | ![移动端](<img width="383" height="671" alt="image" src="https://github.com/user-attachments/assets/66412777-a8b1-4441-8a62-b458488e2172" />
+) |
 
 ## 版本历史
 
 | 版本 | 技术栈 | 分支/链接 |
 |------|--------|----------|
 | **v3.0** (当前) | Vue 3 + Go (Gin) | `Vue3-Go` 分支 |
-| v2.0 | Vue 2 + Python (Django) | [POEMON-BLOG-v2.0](https://github.com/monkey-papa/POEMON-BLOG-v2.0) |
+| v2.0 | Vue 3 + Python (Django) | [POEMON-BLOG-v2.0](https://github.com/monkey-papa/POEMON-BLOG-v2.0) |
 | v1.0 | Vue 2 + Python (Django) | `main` 分支 |
 
 ## 技术栈
