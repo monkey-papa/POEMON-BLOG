@@ -2,6 +2,11 @@
 
 一个基于 **Vue 3 + Go (Gin)** 的全栈个人博客系统，前后端分离，功能丰富，界面美观。
 
+## 历史
+
+> 1.0版本：main分支
+> 2.0版本：https://github.com/monkey-papa/POEMON-BLOG-v2.0
+
 ## 预览
 
 > 在线演示站点：https://blog.zjh2002.icu
